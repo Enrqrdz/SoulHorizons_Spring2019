@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6643f6f2968d24eb30c1a7dfc687c0, type: 3}
+  m_Name: Atk_Charged Forward
+  m_EditorClassIdentifier: 
+  incrementSpeed: 0.15
+  maxIncrements: 6
+  damage: 5
+  type: 0
+  piercing: 0
+  particles: {fileID: 212286977064683536, guid: 657edad4b3569b845a6d196bb9d171ab,
+    type: 2}
+  particlesOffset: {x: -0.3, y: 0.3, z: 0}

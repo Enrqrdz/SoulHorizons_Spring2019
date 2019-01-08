@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b712e7f0f275114d9be50963617a154, type: 3}
+  m_Name: CardMapping
+  m_EditorClassIdentifier: Assembly-CSharp::scr_NameToCard
+  cards:
+  - name: Dragon Sneeze
+    cardObject: {fileID: 11400000, guid: 6134df2a901a12d42b45705bd9e0f116, type: 2}
+  - name: Ice Spear
+    cardObject: {fileID: 11400000, guid: 0e9d13c53d39ce7409efaddabc11d6be, type: 2}
+  - name: Lightning Bolt
+    cardObject: {fileID: 11400000, guid: a470b6e9c4402a94bbdd9aa3c56d46db, type: 2}
+  - name: Portal to Elsewhere
+    cardObject: {fileID: 11400000, guid: 31871ef7eaa8e7e43bdc85e089cd1307, type: 2}
+  - name: Soul Trace
+    cardObject: {fileID: 11400000, guid: 15d77d96481b1124a8fa25f3311f02fa, type: 2}
+  - name: Bolt
+    cardObject: {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
+  - name: Harden Soul
+    cardObject: {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
+  - name: Seize Domain
+    cardObject: {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  - name: Cleave
+    cardObject: {fileID: 11400000, guid: 797e587004e8f2249aeb41b75157828a, type: 2}
+  - name: Meteor
+    cardObject: {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
+  - name: Inner Strength
+    cardObject: {fileID: 11400000, guid: a3eac10b56a474348b8873fd51572411, type: 2}
+  - name: Blur
+    cardObject: {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
+  - name: Mend
+    cardObject: {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
+  - name: Boomerang
+    cardObject: {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}

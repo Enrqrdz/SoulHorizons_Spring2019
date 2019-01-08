@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: cf78764e95dc2ec43911e6cb84b96d79
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - art: {instanceID: 0}
+  - HardenSoulSFX: {fileID: 8300000, guid: 9ddf86a70b6677e49a20f66961bd57aa, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
