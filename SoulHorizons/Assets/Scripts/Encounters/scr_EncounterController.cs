@@ -8,8 +8,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-//Cameron Made this 
-
 public class scr_EncounterController : MonoBehaviour
 {
 
@@ -17,10 +15,6 @@ public class scr_EncounterController : MonoBehaviour
     public scr_SceneManager sceneManager;
 
     public EncounterSave[] encounterArray = new EncounterSave[10];
-
-
-
-
 
     public int totalButtons;
     public Button[] buttons;
@@ -35,7 +29,7 @@ public class scr_EncounterController : MonoBehaviour
 
     void OnSceneChange(Scene _scene, LoadSceneMode _mode)
     {
-        if (_scene.name == "sn_LocalMap")
+        if (_scene.name == "LocalMap")
         {
             if (Load())
             {
@@ -69,11 +63,8 @@ public class scr_EncounterController : MonoBehaviour
         Save();
     }
 
-
     void Start()
     {
-
-
         if (globalEncounterController != null && globalEncounterController != this)
         {
             Destroy(gameObject);
@@ -85,34 +76,10 @@ public class scr_EncounterController : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneChange;
-
-
-
-
-
-        /*
-        if(SaveLoad.currentGame.encounterSaves == null)  //might be null, check if length is 0?
-        {
-            BuildMap();
-            GenerateButtons();
-            
-
-        }
-        else
-        {
-            GetSaveData(SaveLoad.currentGame.encounterSaves);
-        }
-
-        */
-
     }
-
 
     void Update()
     {
-
-
-
     }
 
 
@@ -145,33 +112,16 @@ public class scr_EncounterController : MonoBehaviour
             {
                 encounterArray[i].tier = 3;
             }
-
         }
-
 
         for (int i = 0; i < buttons.Length; i++)
         {
             encounterArray[i].completed = false; 
-            bool _goodPick = false;
-            int _tries = 0;
             int num = 0;
-            //need to make sure we dont pick the same Encounter 2x. 
             if (encounterArray[i].tier == 1)
             {
-                /*
-                while (!_goodPick  && _tries < 10)
-                {
-                    num = UnityEngine.Random.Range(0, tier1Encounters.Length);
-                    if (!selectedEncounters.Contains(tier1Encounters[num]))
-                    {
-                        _goodPick = true; 
-                    }
-                    _tries++; 
-                }
-                */
                 num = UnityEngine.Random.Range(0, tier1Encounters.Length);
                 encounterArray[i].encounterNumber = num;
-                //selectedEncounters.Add(tier1Encounters[num]);
             }
             else if (encounterArray[i].tier == 2)
             {
@@ -183,19 +133,12 @@ public class scr_EncounterController : MonoBehaviour
                 num = UnityEngine.Random.Range(0, tier3Encounters.Length);
                 encounterArray[i].encounterNumber = num;
             }
-
         }
-
-
-
-
     }
 
     public void GetSaveData(EncounterSave[] _encounters)
     {
-
         encounterArray = new EncounterSave[_encounters.Length];
-
 
         for (int i = 0; i < _encounters.Length; i++)
         {
@@ -204,13 +147,12 @@ public class scr_EncounterController : MonoBehaviour
             encounterArray[i].completed = _encounters[i].completed;
         }
         GenerateButtons();
-
     }
 
     public void GenerateButtons()
     {
         buttons = new Button[totalButtons];
-        if(scr_SceneManager.globalSceneManager.ReturnSceneName() == "sn_LocalMap")
+        if(scr_SceneManager.globalSceneManager.ReturnSceneName() == "LocalMap")
         {
             GameObject encounterCanvas = GameObject.FindWithTag("EncounterCanvas");
 
@@ -243,19 +185,11 @@ public class scr_EncounterController : MonoBehaviour
 
                 }
                 else { return; }
-
-
             }
             GameObject _eventSystem = GameObject.Find("/EventSystem");
             _eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;
         }
-
-
-
-
     }
-
-
 
     public void Save()
     {
@@ -271,7 +205,6 @@ public class scr_EncounterController : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
     }
-
 
     public bool Load()
     {
@@ -296,47 +229,7 @@ public class scr_EncounterController : MonoBehaviour
             return false;
         }
     }
-
-
-
-
-
-
-
-
-
-
-    /*
-        void CycleEvents(){
-
-	    //for Loop to deactivate all of the buttons - Here we are doing it to cycle the events.  We'll remove this loop later.
-	    for (int i = 0; i < buttons.Length; i++) {
-		    buttons [i].gameObject.SetActive(false); 
-	    } 
-
-	    //Loop to Randomize which buttons are on/off.  Also probably not exactly what we want, but will do for now. - Plus it dont even work right 
-	    for (int i = 0; i < activeScenarios; i++) {							//Will run as many times as you want Active Scenarios
-		    bool good = false; 														//temp bool for incoming while loop
-		    int tries = 0; 															// This is not necessary, but a precaution.  If numberOfActiveScenariosn > the total number of buttons in the array, Unity dies.  This prevents it from running more than x times.  <see while loop> 
-		    while (!good  && tries < 50) {
-			    int num = Random.Range (0, buttons.Length); 						//generates a random number between 0 and (total number of buttons - 1) *since there is a button[0]
-			    if (!buttons [num].gameObject.activeSelf) {							//if this random button is not active 
-				    buttons [num].gameObject.SetActive (true); 						//turn on this random button
-				    good = buttons [num].gameObject.activeSelf;						// good = the return value of whether or not the button is active
-
-			    } 
-			    else {																//Else
-				    tries++; 														//try again
-			    }
-
-		    }
-	    }
-    }
-     * 
-     * */
 }
-
-
 
 [System.Serializable]
 public class EncounterSave
@@ -357,17 +250,10 @@ public class EncounterSave
         tier = _encounter.tier;
         encounterNumber = _encounter.encounterNumber;
     }
-
-
 }
 
 [System.Serializable]
 public class EncounterData
 {
     public EncounterSave[] encounters;
-
-
-
 }
-
-

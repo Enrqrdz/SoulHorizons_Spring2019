@@ -21,8 +21,6 @@ public class scr_SceneManager : MonoBehaviour {
             globalSceneManager = this;
             DontDestroyOnLoad(this.gameObject);
         }
-       
-
 	}
 	
 	// Update is called once per frame
@@ -31,7 +29,8 @@ public class scr_SceneManager : MonoBehaviour {
 	}
 
 	public void ChangeScene(string sceneName){
-		if(canSwitch)SceneManager.LoadScene (sceneName);
+		if(canSwitch)
+            SceneManager.LoadScene(sceneName);
 	}
 
     public void EnableSettings()

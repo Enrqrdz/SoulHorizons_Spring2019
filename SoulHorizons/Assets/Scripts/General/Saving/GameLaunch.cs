@@ -16,9 +16,6 @@ public class GameLaunch : MonoBehaviour {
         SaveLoad.NewGame();
     }
 
-    /// <summary>
-    /// Called by the play button
-    /// </summary>
     public void Play()
     {
         SaveLoad.Load();

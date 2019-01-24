@@ -98,7 +98,7 @@ public class scr_statemanager : MonoBehaviour {
             {
                 Debug.Log("Switching Scenes");
                 SaveLoad.Save();
-                SceneManager.LoadScene("sn_LocalMap");
+                SceneManager.LoadScene("LocalMap");
             }
         }
 	}

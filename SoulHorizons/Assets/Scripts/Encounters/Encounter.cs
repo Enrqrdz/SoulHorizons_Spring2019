@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Encounter : ScriptableObject {
 
     public new string name;
-    public string sceneName = "sn_GridTest";                        //Cameron made this variable.  It is used by the scene manager to go to a specific string.  For now all of our combat happens in GridTest, but that might change?
+    public string sceneName = "GridTest";                        //Cameron made this variable.  It is used by the scene manager to go to a specific string.  For now all of our combat happens in GridTest, but that might change?
 
 
     [Header("Grid Size")]
