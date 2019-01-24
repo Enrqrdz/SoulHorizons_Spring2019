@@ -18,7 +18,7 @@ public static class SaveManager
         currentGame.isLastGamePlayed = true;
        
         Save();
-        scr_EncounterController.globalEncounterController.OnNewGame(); 
+        EncounterController.globalEncounterController.OnNewGame(); 
     }
 
     public static void Save()
@@ -64,5 +64,3 @@ public static class SaveManager
         }
     }
 }
-
-

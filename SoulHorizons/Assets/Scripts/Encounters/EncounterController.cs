@@ -8,10 +8,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class scr_EncounterController : MonoBehaviour
+public class EncounterController : MonoBehaviour
 {
-
-    public static scr_EncounterController globalEncounterController;
+    public static EncounterController globalEncounterController;
     public scr_SceneManager sceneManager;
 
     public EncounterSave[] encounterArray = new EncounterSave[10];
@@ -21,11 +20,29 @@ public class scr_EncounterController : MonoBehaviour
 
     public GameObject buttonPrefab;
 
-
     public Encounter[] tier1Encounters = new Encounter[1];
     public Encounter[] tier2Encounters = new Encounter[1];
     public Encounter[] tier3Encounters = new Encounter[1];
     public int currentEncounterIndex;
+
+    void Start()
+    {
+        if (globalEncounterController != null && globalEncounterController != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            globalEncounterController = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
+        SceneManager.sceneLoaded += OnSceneChange;
+    }
+
+    void Update()
+    {
+    }
 
     void OnSceneChange(Scene _scene, LoadSceneMode _mode)
     {
@@ -62,27 +79,6 @@ public class scr_EncounterController : MonoBehaviour
         encounterArray[currentEncounterIndex].completed = true;
         Save();
     }
-
-    void Start()
-    {
-        if (globalEncounterController != null && globalEncounterController != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            globalEncounterController = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-
-        SceneManager.sceneLoaded += OnSceneChange;
-    }
-
-    void Update()
-    {
-    }
-
-
 
     public void GoToEncounter(Encounter encounterName, int index)
     {

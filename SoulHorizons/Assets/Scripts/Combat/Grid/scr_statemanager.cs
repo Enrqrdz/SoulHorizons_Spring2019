@@ -89,7 +89,7 @@ public class scr_statemanager : MonoBehaviour {
 
 
             //Set encounter to complete
-            scr_EncounterController.globalEncounterController.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
+            EncounterController.globalEncounterController.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
         }
         if (endCombat)
         {
