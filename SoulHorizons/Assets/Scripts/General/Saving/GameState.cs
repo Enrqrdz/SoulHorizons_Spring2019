@@ -14,7 +14,7 @@ public class GameState {
     PlayerState player;
     InventoryState inventory;
     List<RegionState> regions = new List<RegionState>();
-    public bool lastGamePlayed;
+    public bool isLastGamePlayed;
 
 
     public GameState()
@@ -62,17 +62,23 @@ public class GameState {
 
     public void SaveInventory()
     {
-        inventory.dustNum = scr_Inventory.dustNum;
-        inventory.cardInv = scr_Inventory.getCardInv();
-        inventory.deckList = scr_Inventory.getDeckList();
-        inventory.deckIndex = scr_Inventory.deckIndex;
-        inventory.numDecks = scr_Inventory.numDecks;
+        try
+        {
+            inventory.dustNum = scr_Inventory.dustNum;
+            inventory.cardInv = scr_Inventory.getCardInv();
+            inventory.deckList = scr_Inventory.getDeckList();
+            inventory.deckIndex = scr_Inventory.deckIndex;
+            inventory.numDecks = scr_Inventory.numDecks;
+        }
+        catch (System.NullReferenceException e)
+        {
+            Debug.Log("This is a " + e);
+        }
     }
 
     public void LoadInventory()
     {
         scr_Inventory.dustNum = inventory.dustNum;
-        //scr_Inventory.cardInv = inventory.cardInv;
         scr_Inventory.deckList = inventory.deckList;
         scr_Inventory.deckIndex = inventory.deckIndex;
         scr_Inventory.numDecks = inventory.numDecks;

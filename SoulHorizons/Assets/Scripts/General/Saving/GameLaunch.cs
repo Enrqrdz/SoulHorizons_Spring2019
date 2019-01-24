@@ -1,11 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Colin 9/15/18
 
-/// <summary>
-/// Run this when the game starts.
-/// </summary>
 public class GameLaunch : MonoBehaviour {
 
 	void Start () {	
@@ -13,12 +9,12 @@ public class GameLaunch : MonoBehaviour {
 
     public void NewGame()
     {
-        SaveLoad.NewGame();
+        SaveManager.NewSave();
     }
 
     public void Play()
     {
-        SaveLoad.Load();
+        SaveManager.Load();
     }
 
 }
