@@ -10,12 +10,12 @@ public class GameLaunch : MonoBehaviour
     {
         SaveManager.NewSave();
         SaveManager.currentGame.SetRegion(regionGenerator.GenerateRegion());
-        scr_SceneManager.globalSceneManager.ChangeScene("LocalMap");
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
     }
 
     public void Continue()
     {
         SaveManager.Load();
-        scr_SceneManager.globalSceneManager.ChangeScene("LocalMap");
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
     }
 }

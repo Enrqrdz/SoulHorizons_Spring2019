@@ -87,7 +87,7 @@ public class scr_statemanager : MonoBehaviour {
             //Debug.Log("DUST AMOUNT: " + SaveLoad.currentGame.GetDustAmount());
 
             //Set encounter to complete
-            EncounterController.globalEncounterController.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
+            RegionManager.globalRegionManager.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
         }
         if (endCombat)
         {
@@ -96,7 +96,7 @@ public class scr_statemanager : MonoBehaviour {
             {
                 Debug.Log("Switching Scenes");
                 SaveManager.Save();
-                SceneManager.LoadScene("LocalMap");
+                SceneManager.LoadScene(SceneNames.REGION);
             }
         }
 	}

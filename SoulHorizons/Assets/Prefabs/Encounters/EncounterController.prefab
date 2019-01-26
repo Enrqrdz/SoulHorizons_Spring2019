@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4719619266096008}
-  - component: {fileID: 114332813414409122}
+  - component: {fileID: 5303232243750536980}
   m_Layer: 0
   m_Name: EncounterController
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114332813414409122
+--- !u!114 &5303232243750536980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,48 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1807240422224678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57fe6d4d1252a457d846231398e9d37b, type: 3}
+  m_Script: {fileID: 11500000, guid: 481b48a1ccdbb41b7a22361bd1324eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneManager: {fileID: 0}
-  encounterArray:
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  - tier: 0
-    encounterNumber: 0
-    completed: 0
-  totalButtons: 0
-  buttons: []
-  buttonPrefab: {fileID: 0}
-  tier1Encounters:
-  - {fileID: 0}
-  tier2Encounters:
-  - {fileID: 0}
-  tier3Encounters:
-  - {fileID: 0}
+  buttonPrefab: {fileID: 1318350694274488, guid: 08c49fa867e77154c8f4e9b0890d66be,
+    type: 3}
   currentEncounterIndex: 0

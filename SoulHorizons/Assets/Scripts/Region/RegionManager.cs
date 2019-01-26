@@ -8,9 +8,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class EncounterController : MonoBehaviour
+public class RegionManager : MonoBehaviour
 {
-    public static EncounterController globalEncounterController;
+    public static RegionManager globalRegionManager;
 
     RegionState currentRegion;
 
@@ -22,13 +22,13 @@ public class EncounterController : MonoBehaviour
 
     void Start()
     {
-        if (globalEncounterController != null && globalEncounterController != this)
+        if (globalRegionManager != null && globalRegionManager != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            globalEncounterController = this;
+            globalRegionManager = this;
             DontDestroyOnLoad(this.gameObject);
         }
 
@@ -39,7 +39,7 @@ public class EncounterController : MonoBehaviour
     {
         currentRegion = SaveManager.currentGame.GetRegion();
 
-        if (scene.name == "LocalMap")
+        if (scene.name == SceneNames.REGION)
         {
             GenerateButtons();
         }
@@ -70,7 +70,7 @@ public class EncounterController : MonoBehaviour
     public void GenerateButtons()
     {
         buttons = new Button[currentRegion.encounters.Count];
-        if(scr_SceneManager.globalSceneManager.ReturnSceneName() == "LocalMap")
+        if(scr_SceneManager.globalSceneManager.ReturnSceneName() == SceneNames.REGION)
         {
             GameObject encounterCanvas = GameObject.FindWithTag("EncounterCanvas");
 
