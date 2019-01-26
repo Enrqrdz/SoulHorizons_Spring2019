@@ -10,52 +10,36 @@ public class scr_SceneManager : MonoBehaviour {
     public int currentEncounterNumber;
     public static bool canSwitch = true;
 	
-	void Start () {
+	void Start ()
+    {
+        SetGlobalSceneManager();
+    }
 
-        if(globalSceneManager != null && globalSceneManager != this)
+    private void SetGlobalSceneManager()
+    {
+        //If there is a scene manager and it is not this game object, destroy this game object
+        if (globalSceneManager != null && globalSceneManager != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
         else
         {
             globalSceneManager = this;
             DontDestroyOnLoad(this.gameObject);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        LockCursor(); 
-	}
-
-	public void ChangeScene(string sceneName){
-		if(canSwitch)
-            SceneManager.LoadScene(sceneName);
-	}
-
-    public void EnableSettings()
-    {
-        Debug.Log("SETTINGS ARE OPEN");
-
     }
-    public void DisableSettings()
-    {
-        Debug.Log("settings are closed");
-    }
+
+    public void ChangeScene(string sceneName){
+		if(canSwitch)SceneManager.LoadScene (sceneName);
+	}
 
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    void LockCursor()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked; 
-    }
     public string ReturnSceneName()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
         return SceneManager.GetActiveScene().name;
     }
 }

@@ -78,6 +78,7 @@ public class scr_AttackController : MonoBehaviour {
             activeAttacks[x]._attack.ProgressEffects(activeAttacks[x]);
         }
     }
+
     void RemoveFromArray(int index)
     {
         //Attack end effects
@@ -132,13 +133,11 @@ public class scr_AttackController : MonoBehaviour {
 
         return null;
     }
-
 }
 
 [System.Serializable]
 public class ActiveAttack
 {
-
     public Attack _attack;
     public Vector2Int pos;
     public Vector2Int lastPos;
@@ -160,9 +159,9 @@ public class ActiveAttack
         lastPos.x = x;
         lastPos.y = y;
         
-        
         lastAttackTime = Time.time - _attack.incrementSpeed;
     }
+
     public ActiveAttack()
     {
         _attack = null;
@@ -179,6 +178,7 @@ public class ActiveAttack
         }
         return false; 
     }
+
     public void Clone(ActiveAttack atk)
     {
         _attack = atk._attack;
@@ -192,7 +192,4 @@ public class ActiveAttack
         particles = atk.particles;
         
     }
-
-    
-   
 }
