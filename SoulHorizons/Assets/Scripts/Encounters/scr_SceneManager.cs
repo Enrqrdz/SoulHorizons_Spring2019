@@ -38,12 +38,6 @@ public class scr_SceneManager : MonoBehaviour {
         Application.Quit();
     }
 
-    public static void ClearSaveFiles()
-    {
-        //Deletes save files if you press the quit button - Used for debugging, delete line when done
-        SaveLoad.Clear();
-    }
-
     public string ReturnSceneName()
     {
         return SceneManager.GetActiveScene().name;

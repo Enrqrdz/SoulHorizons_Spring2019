@@ -1,27 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Colin 9/15/18
 
-/// <summary>
-/// Run this when the game starts.
-/// </summary>
-public class GameLaunch : MonoBehaviour {
-
-	void Start () {	
-	}
+public class GameLaunch : MonoBehaviour 
+{
+    public RegionGenerator regionGenerator;
 
     public void NewGame()
     {
-        SaveLoad.NewGame();
+        SaveManager.NewSave();
+        SaveManager.currentGame.SetRegion(regionGenerator.GenerateRegion());
+        scr_SceneManager.globalSceneManager.ChangeScene("LocalMap");
     }
 
-    /// <summary>
-    /// Called by the play button
-    /// </summary>
-    public void Play()
+    public void Continue()
     {
-        SaveLoad.Load();
+        SaveManager.Load();
+        scr_SceneManager.globalSceneManager.ChangeScene("LocalMap");
     }
-
 }

@@ -40,7 +40,7 @@ public class scr_InvController : MonoBehaviour {
         //LOAD CARD LIST
         try
         {
-            foreach (KeyValuePair<string, int> pair in SaveLoad.currentGame.GetCardList())
+            foreach (KeyValuePair<string, int> pair in SaveManager.currentGame.GetCardList())
             {
                 //attempt to retrieve the object reference from cardMapping
                 scr_Card nextCard = cardMapping.ConvertNameToCard(pair.Key);

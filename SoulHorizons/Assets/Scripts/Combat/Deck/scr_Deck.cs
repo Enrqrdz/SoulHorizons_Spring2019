@@ -33,7 +33,7 @@ public class scr_Deck : MonoBehaviour {
         {
             Debug.Log("Making new deck list");
             LoadNewDeck();
-            SaveLoad.Save();
+            SaveManager.Save();
         }
         else
         {

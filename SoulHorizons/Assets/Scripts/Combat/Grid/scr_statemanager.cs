@@ -35,7 +35,7 @@ public class scr_statemanager : MonoBehaviour {
 
             try
             {
-                hp = SaveLoad.currentGame.GetPlayerHealth();
+                hp = SaveManager.currentGame.GetPlayerHealth();
             }
             catch (NullReferenceException e)
             {
@@ -78,7 +78,7 @@ public class scr_statemanager : MonoBehaviour {
             //save health
             try
             {
-                SaveLoad.currentGame.SetPlayerHealth(playerEntity._health.hp);
+                SaveManager.currentGame.SetPlayerHealth(playerEntity._health.hp);
             }
             catch (NullReferenceException e)
             {
@@ -86,10 +86,8 @@ public class scr_statemanager : MonoBehaviour {
             }
             //Debug.Log("DUST AMOUNT: " + SaveLoad.currentGame.GetDustAmount());
 
-
-
             //Set encounter to complete
-            scr_EncounterController.globalEncounterController.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
+            EncounterController.globalEncounterController.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
         }
         if (endCombat)
         {
@@ -97,8 +95,8 @@ public class scr_statemanager : MonoBehaviour {
             if (Input.GetButton("Menu_Select") || Input.GetButton("Menu_Back"))
             {
                 Debug.Log("Switching Scenes");
-                SaveLoad.Save();
-                SceneManager.LoadScene("sn_LocalMap");
+                SaveManager.Save();
+                SceneManager.LoadScene("LocalMap");
             }
         }
 	}
