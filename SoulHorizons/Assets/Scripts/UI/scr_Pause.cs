@@ -26,7 +26,7 @@ public class scr_Pause : MonoBehaviour {
         }
     }
 
-    public void TogglePause()
+    public static void TogglePause()
     {
         if (paused)
         {
