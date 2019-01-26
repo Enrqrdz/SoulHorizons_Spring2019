@@ -4,19 +4,20 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22755112bae8ca2469151b7d25662c03, type: 3}
   m_Name: Atk_PlayerBlaster 1
   m_EditorClassIdentifier: 
-  incrementSpeed: 0.2
+  incrementTime: 0.2
   maxIncrements: 10
   damage: 2
   type: 1
   piercing: 0
   particles: {fileID: 212171659610033936, guid: ac0b2ce6a60bcb0479224cfa16b4f448,
-    type: 2}
+    type: 3}
   particlesOffset: {x: 0.4, y: 0.3, z: 0}
   particleSpeed: 4.8

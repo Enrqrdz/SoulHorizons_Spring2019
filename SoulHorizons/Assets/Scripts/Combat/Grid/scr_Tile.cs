@@ -115,11 +115,11 @@ public class scr_Tile : MonoBehaviour{
         queuedAttacks++;
         isPrimed = false;
         isActive = true;
-        if(activeAttack.entity.type == EntityType.Player)
+        if(activeAttack.SourceEntity.type == EntityType.Player)
         {
             spriteRenderer.color = playerActiveColor;
         }
-        else if (activeAttack.entity.type == EntityType.Enemy)
+        else if (activeAttack.SourceEntity.type == EntityType.Enemy)
         {
             spriteRenderer.color = activeColor;
         }

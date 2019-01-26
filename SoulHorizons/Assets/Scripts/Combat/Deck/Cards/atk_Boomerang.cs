@@ -15,7 +15,7 @@ public class atk_Boomerang : Attack
     }
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
     {
-        activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.pos),Quaternion.identity);
+        activeAtk.particle = Instantiate(particle, scr_Grid.GridController.GetWorldLocation(activeAtk.position),Quaternion.identity);
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
@@ -64,8 +64,8 @@ public class atk_Boomerang : Attack
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPos.x, activeAttack.lastPos.y) + activeAttack._attack.particlesOffset, (particleSpeed) * Time.deltaTime);
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack._attack.particlesOffset, (particleSpeed) * Time.deltaTime);
         activeAttack.particle.transform.Rotate(0, 0, 30,Space.Self);
-        activeAttack.particle.sortingOrder = -activeAttack.pos.y;
+        activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 }

@@ -217,10 +217,10 @@ public class scr_Grid : MonoBehaviour{
         {
             if (activeEntities[i].gameObject.activeSelf)
             {
-                if (activeEntities[i]._gridPos == attack.pos) 
+                if (activeEntities[i]._gridPos == attack.position) 
                 {
                     //Debug.Log(activeEntities[i].entityTerritory.name + " " + attack.entity.entityTerritory.name);
-                    if (activeEntities[i].type != attack.entity.type)
+                    if (activeEntities[i].type != attack.SourceEntity.type)
                     {
                         Debug.Log("ACTIVE ENTITY HIT!");
                         //Check if entity is invincible and assigns iframes accordingly
@@ -234,8 +234,8 @@ public class scr_Grid : MonoBehaviour{
 
                             }
                         }
-                        attack.entityIsHit = true;
-                        attack.entityHit = activeEntities[i];
+                        attack.isEntityHit = true;
+                        attack.TargetEntity = activeEntities[i];
                         attack._attack.ImpactEffects();
                     }
                     
