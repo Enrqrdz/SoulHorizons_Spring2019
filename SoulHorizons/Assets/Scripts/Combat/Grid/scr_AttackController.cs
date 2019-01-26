@@ -4,39 +4,14 @@ using UnityEngine;
 
 public class scr_AttackController : MonoBehaviour {
 
-    public ActiveAttack[] activeAttacks = new ActiveAttack[10];
-    public int numberOfActiveAttacks = 0; 
-    public static scr_AttackController attackController;
-    public scr_Pause pauseReference;
+    public ActiveAttack[] activeAttacks = new ActiveAttack[10];     //Max number of active attacks is 10
+    public int numberOfActiveAttacks = 0;                           //Number of attacks counter
+    public static scr_AttackController attackController;            //Static reference for scr_AttackController
+    public scr_Pause pauseReference;                                //scr_Pause reference
 
     private void Awake()
     {
-        attackController = this; 
-    }
-
-    public void AddNewAttack(Attack _attack,int xPos, int yPos, scr_Entity ent)
-    {
-        activeAttacks[numberOfActiveAttacks] = new ActiveAttack(_attack, xPos, yPos, ent);
-        activeAttacks[numberOfActiveAttacks]._attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
-        activeAttacks[numberOfActiveAttacks].Clone(activeAttacks[numberOfActiveAttacks]._attack.BeginAttack(activeAttacks[numberOfActiveAttacks]));
-        
-        /*
-        activeAttacks[numberOfActiveAttacks].particle = Instantiate(_attack.particles, scr_Grid.GridController.GetWorldLocation(xPos,yPos)+_attack.particlesOffset, Quaternion.identity);
-        activeAttacks[numberOfActiveAttacks].particle.sortingOrder = -yPos; 
-         */
-
-        //Start effects for when the attack is created
-        if (_attack == null)
-        {
-            Debug.Log("AttackController: attack is null");
-        }
-        if (activeAttacks[numberOfActiveAttacks] == null)
-        {
-            Debug.Log("AttackController: attack is null");
-        }
-        _attack.LaunchEffects(activeAttacks[numberOfActiveAttacks]);
-        numberOfActiveAttacks++;
-        
+        attackController = this;
     }
 
     void Update()
@@ -78,6 +53,32 @@ public class scr_AttackController : MonoBehaviour {
             activeAttacks[x]._attack.ProgressEffects(activeAttacks[x]);
         }
     }
+
+    public void AddNewAttack(Attack _attack, int xPos, int yPos, scr_Entity ent)
+    {
+        activeAttacks[numberOfActiveAttacks] = new ActiveAttack(_attack, xPos, yPos, ent);
+        activeAttacks[numberOfActiveAttacks]._attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
+        activeAttacks[numberOfActiveAttacks].Clone(activeAttacks[numberOfActiveAttacks]._attack.BeginAttack(activeAttacks[numberOfActiveAttacks]));
+
+        /*
+        activeAttacks[numberOfActiveAttacks].particle = Instantiate(_attack.particles, scr_Grid.GridController.GetWorldLocation(xPos,yPos)+_attack.particlesOffset, Quaternion.identity);
+        activeAttacks[numberOfActiveAttacks].particle.sortingOrder = -yPos; 
+         */
+
+        //Start effects for when the attack is created
+        if (_attack == null)
+        {
+            Debug.Log("AttackController: attack is null");
+        }
+        if (activeAttacks[numberOfActiveAttacks] == null)
+        {
+            Debug.Log("AttackController: attack is null");
+        }
+        _attack.LaunchEffects(activeAttacks[numberOfActiveAttacks]);
+        numberOfActiveAttacks++;
+
+    }
+
 
     void RemoveFromArray(int index)
     {
