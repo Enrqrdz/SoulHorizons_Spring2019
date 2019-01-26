@@ -18,7 +18,6 @@ public static class SaveManager
         currentGame.isLastGamePlayed = true;
        
         Save();
-        EncounterController.globalEncounterController.OnNewGame(); 
     }
 
     public static void Save()
@@ -35,7 +34,6 @@ public static class SaveManager
             currentGame = (GameState) DeserializeDataFromFile(saveFilePath);
 
             currentGame.LoadInventory();
-            scr_SceneManager.globalSceneManager.ChangeScene("LocalMap");
         }
     }
 
@@ -54,13 +52,5 @@ public static class SaveManager
         object data = bf.Deserialize(file);
         file.Close();
         return data;
-    }
-
-    public static void Clear()
-    {
-        if (File.Exists(saveFilePath))
-        {
-            File.Delete(saveFilePath);
-        }
     }
 }

@@ -11,14 +11,15 @@ using UnityEngine.EventSystems;
 public class EncounterController : MonoBehaviour
 {
     public static EncounterController globalEncounterController;
-    public scr_SceneManager sceneManager;
 
-    public EncounterSave[] encounterArray = new EncounterSave[10];
+    [SerializeField]
+    private int numberOfEncounters;
 
-    public int totalButtons;
+    RegionState currentRegion;
+
+    [SerializeField]
+    private GameObject buttonPrefab;
     public Button[] buttons;
-
-    public GameObject buttonPrefab;
 
     public Encounter[] tier1Encounters = new Encounter[1];
     public Encounter[] tier2Encounters = new Encounter[1];
@@ -44,21 +45,13 @@ public class EncounterController : MonoBehaviour
     {
     }
 
-    void OnSceneChange(Scene _scene, LoadSceneMode _mode)
+    void OnSceneChange(Scene scene, LoadSceneMode mode)
     {
-        if (_scene.name == "LocalMap")
+        currentRegion = SaveManager.currentGame.GetRegion();
+
+        if (scene.name == "LocalMap")
         {
-            if (Load())
-            {
-                GenerateButtons();
-            }
-            else
-            {
-                //encounterArray = new EncounterSave[totalButtons];
-                BuildMap();
-                GenerateButtons();
-                Save();
-            }
+            GenerateButtons();
         }
     }
 
@@ -66,18 +59,18 @@ public class EncounterController : MonoBehaviour
     {
         BuildMap();
         GenerateButtons();
-        Save();
+        SaveManager.Save();
     }
 
     public void SetEncounterComplete(int _index, bool _completionState)
     {
-        encounterArray[_index].completed = _completionState;
-        Save();
+        currentRegion.encounters[_index].completed = _completionState;
+        SaveManager.Save();
     }
     public void SetCurrentEncounterComplete()
     {
-        encounterArray[currentEncounterIndex].completed = true;
-        Save();
+        currentRegion.encounters[currentEncounterIndex].completed = true;
+        SaveManager.Save();
     }
 
     public void GoToEncounter(Encounter encounterName, int index)
@@ -93,85 +86,76 @@ public class EncounterController : MonoBehaviour
 
     public void BuildMap()
     {
+        currentRegion = SaveManager.currentGame.GetRegion();
+
         List<Encounter> selectedEncounters = new List<Encounter>();
-        for (int i = 0; i < totalButtons; i++)
+        for (int i = 0; i < numberOfEncounters; i++)
         {
+            currentRegion.encounters.Add(new EncounterState());
+
             if (i < 1)
             {
-                encounterArray[i].tier = 1;
+                currentRegion.encounters[i].SetTier(1);
             }
             else if (i >= 1 && i <= 7)
             {
-                encounterArray[i].tier = 2;
+                currentRegion.encounters[i].SetTier(2);
             }
             else if (i > 7)
             {
-                encounterArray[i].tier = 3;
+                currentRegion.encounters[i].SetTier(3);
             }
         }
 
         for (int i = 0; i < buttons.Length; i++)
         {
-            encounterArray[i].completed = false; 
+            currentRegion.encounters[i].completed = false; 
             int num = 0;
-            if (encounterArray[i].tier == 1)
+            if (currentRegion.encounters[i].tier == 1)
             {
                 num = UnityEngine.Random.Range(0, tier1Encounters.Length);
-                encounterArray[i].encounterNumber = num;
+                currentRegion.encounters[i].encounterNumber = num;
             }
-            else if (encounterArray[i].tier == 2)
+            else if (currentRegion.encounters[i].tier == 2)
             {
                 num = UnityEngine.Random.Range(0, tier2Encounters.Length);
-                encounterArray[i].encounterNumber = num;
+                currentRegion.encounters[i].encounterNumber = num;
             }
-            else if (encounterArray[i].tier == 3)
+            else if (currentRegion.encounters[i].tier == 3)
             {
                 num = UnityEngine.Random.Range(0, tier3Encounters.Length);
-                encounterArray[i].encounterNumber = num;
+                currentRegion.encounters[i].encounterNumber = num;
             }
         }
-    }
-
-    public void GetSaveData(EncounterSave[] _encounters)
-    {
-        encounterArray = new EncounterSave[_encounters.Length];
-
-        for (int i = 0; i < _encounters.Length; i++)
-        {
-            encounterArray[i].encounterNumber = _encounters[i].encounterNumber;
-            encounterArray[i].tier = _encounters[i].tier;
-            encounterArray[i].completed = _encounters[i].completed;
-        }
-        GenerateButtons();
     }
 
     public void GenerateButtons()
     {
-        buttons = new Button[totalButtons];
+        buttons = new Button[numberOfEncounters];
         if(scr_SceneManager.globalSceneManager.ReturnSceneName() == "LocalMap")
         {
             GameObject encounterCanvas = GameObject.FindWithTag("EncounterCanvas");
 
-            for (int i = 0; i < totalButtons; i++)
+            for (int i = 0; i < numberOfEncounters; i++)
             {
                 if (encounterCanvas.gameObject != null)
                 {
                     GameObject newButton = Instantiate(buttonPrefab);
-                    newButton.GetComponent<scr_EncounterButtons>().GatherInfo(encounterArray[i].encounterNumber, encounterArray[i].tier, encounterArray[i].completed);
+                    newButton.GetComponent<scr_EncounterButtons>().GatherInfo(currentRegion.encounters[i].encounterNumber, currentRegion.encounters[i].tier, currentRegion.encounters[i].completed);
                     
                     newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
                     Encounter newEncounter = new Encounter();
-                    if (encounterArray[i].tier == 1)
+                    if (currentRegion.encounters[i].tier == 1)
                     {
-                        newEncounter = tier1Encounters[encounterArray[i].encounterNumber];
+                        newEncounter = tier1Encounters[currentRegion.encounters[i].encounterNumber];
                     }
-                    else if (encounterArray[i].tier == 2)
+                    else if (currentRegion.encounters[i].tier == 2)
                     {
-                        newEncounter = tier2Encounters[encounterArray[i].encounterNumber];
+                        newEncounter = tier2Encounters[currentRegion.encounters[i].encounterNumber];
                     }
-                    else if (encounterArray[i].tier == 3)
+                    else if (currentRegion.encounters[i].tier == 3)
                     {
-                        newEncounter = tier3Encounters[encounterArray[i].encounterNumber];
+                        newEncounter = tier3Encounters[currentRegion.encounters[i].encounterNumber];
                     }
                     //DO IT HERE COLOR/COMPLETIONOVERLAY/ETC 
                     int temp = i;
@@ -186,70 +170,4 @@ public class EncounterController : MonoBehaviour
             _eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;
         }
     }
-
-    public void Save()
-    {
-        EncounterData data = new EncounterData();
-        data.encounters = new EncounterSave[totalButtons];
-        for (int i = 0; i < totalButtons; i++)
-        {
-            data.encounters[i] = new EncounterSave();
-            data.encounters[i].Clone(encounterArray[i]);
-        }
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/encounterShit.json"); //you can call it anything you want
-        bf.Serialize(file, data);
-        file.Close();
-    }
-
-    public bool Load()
-    {
-        if (File.Exists(Application.persistentDataPath + "/encounterShit.json"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/encounterShit.json", FileMode.Open);
-            EncounterData data = new EncounterData();
-            data = (EncounterData)bf.Deserialize(file);
-            file.Close();
-            totalButtons = data.encounters.Length;
-            encounterArray = new EncounterSave[data.encounters.Length];
-            for (int i = 0; i < totalButtons; i++)
-            {
-                encounterArray[i] = new EncounterSave();
-                encounterArray[i].Clone(data.encounters[i]);
-            }
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-}
-
-[System.Serializable]
-public class EncounterSave
-{
-    public int tier;
-    public int encounterNumber;
-    public bool completed;
-
-    public EncounterSave()
-    {
-        completed = false;
-        tier = 0;
-        encounterNumber = 0;
-    }
-    public void Clone(EncounterSave _encounter)
-    {
-        completed = _encounter.completed;
-        tier = _encounter.tier;
-        encounterNumber = _encounter.encounterNumber;
-    }
-}
-
-[System.Serializable]
-public class EncounterData
-{
-    public EncounterSave[] encounters;
 }

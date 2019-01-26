@@ -86,8 +86,6 @@ public class scr_statemanager : MonoBehaviour {
             }
             //Debug.Log("DUST AMOUNT: " + SaveLoad.currentGame.GetDustAmount());
 
-
-
             //Set encounter to complete
             EncounterController.globalEncounterController.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
         }

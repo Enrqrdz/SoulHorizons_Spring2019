@@ -46,9 +46,6 @@ public class scr_SceneManager : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
-        //Deletes save files if you press the quit button - Used for debugging, delete line when done
-        SaveManager.Clear();
-        Debug.Log("quit"); 
     }
 
     void LockCursor()
