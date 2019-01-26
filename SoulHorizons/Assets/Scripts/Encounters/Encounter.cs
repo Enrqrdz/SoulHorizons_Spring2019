@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 
 [CreateAssetMenu(fileName = "New Encounter", menuName = "Encounter")]
+[System.Serializable]
 public class Encounter : ScriptableObject {
 
     public new string name;
@@ -22,6 +23,8 @@ public class Encounter : ScriptableObject {
     public int mouse;
     public int mush;
     public int archer;
+    [Header("Encounter Data")]
+    public int tier;
 
     [Header("Territory")]
     public TerritoryRow[] territoryColumn;

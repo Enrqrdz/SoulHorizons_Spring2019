@@ -15,8 +15,6 @@ public static class SaveManager
     public static void NewSave()
     {
         currentGame = new GameState();
-        currentGame.isLastGamePlayed = true;
-       
         Save();
     }
 

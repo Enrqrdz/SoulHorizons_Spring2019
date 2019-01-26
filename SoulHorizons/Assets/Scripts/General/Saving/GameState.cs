@@ -9,7 +9,6 @@ public class GameState
     PlayerState player;
     InventoryState inventory;
     RegionState region;
-    public bool isLastGamePlayed;
 
     public GameState()
     {
@@ -46,6 +45,11 @@ public class GameState
     public RegionState GetRegion()
     {
         return region;
+    }
+
+    public void SetRegion(RegionState newRegion)
+    {
+        region = newRegion;
     }
 
     public void SaveInventory()
@@ -123,25 +127,20 @@ public class RegionState
 public class EncounterState
 {
     public int tier;
-    public int encounterNumber;
+    public int encounterIndex;
     public bool completed;
 
     public EncounterState()
     {
         completed = false;
         tier = 0;
-        encounterNumber = 0;
-    }
-
-    public void SetTier(int newTier)
-    {
-        tier = newTier;
+        encounterIndex = 0;
     }
 
     public void Clone(EncounterState encounter)
     {
         completed = encounter.completed;
         tier = encounter.tier;
-        encounterNumber = encounter.encounterNumber;
+        encounterIndex = encounter.encounterIndex;
     }
 }

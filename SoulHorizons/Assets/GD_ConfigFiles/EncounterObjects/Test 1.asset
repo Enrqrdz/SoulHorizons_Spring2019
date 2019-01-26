@@ -34,6 +34,7 @@ MonoBehaviour:
   mouse: 0
   mush: 2
   archer: 0
+  tier: 1
   territoryColumn:
   - territoryRow:
     - name: 0

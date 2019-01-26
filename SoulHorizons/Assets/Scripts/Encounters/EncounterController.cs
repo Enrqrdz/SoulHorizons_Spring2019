@@ -12,18 +12,12 @@ public class EncounterController : MonoBehaviour
 {
     public static EncounterController globalEncounterController;
 
-    [SerializeField]
-    private int numberOfEncounters;
-
     RegionState currentRegion;
 
     [SerializeField]
     private GameObject buttonPrefab;
-    public Button[] buttons;
+    private Button[] buttons;
 
-    public Encounter[] tier1Encounters = new Encounter[1];
-    public Encounter[] tier2Encounters = new Encounter[1];
-    public Encounter[] tier3Encounters = new Encounter[1];
     public int currentEncounterIndex;
 
     void Start()
@@ -41,10 +35,6 @@ public class EncounterController : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneChange;
     }
 
-    void Update()
-    {
-    }
-
     void OnSceneChange(Scene scene, LoadSceneMode mode)
     {
         currentRegion = SaveManager.currentGame.GetRegion();
@@ -53,13 +43,6 @@ public class EncounterController : MonoBehaviour
         {
             GenerateButtons();
         }
-    }
-
-    public void OnNewGame()
-    {
-        BuildMap();
-        GenerateButtons();
-        SaveManager.Save();
     }
 
     public void SetEncounterComplete(int _index, bool _completionState)
@@ -84,79 +67,28 @@ public class EncounterController : MonoBehaviour
         scr_SceneManager.globalSceneManager.ChangeScene(encounterName.sceneName);
     }
 
-    public void BuildMap()
-    {
-        currentRegion = SaveManager.currentGame.GetRegion();
-
-        List<Encounter> selectedEncounters = new List<Encounter>();
-        for (int i = 0; i < numberOfEncounters; i++)
-        {
-            currentRegion.encounters.Add(new EncounterState());
-
-            if (i < 1)
-            {
-                currentRegion.encounters[i].SetTier(1);
-            }
-            else if (i >= 1 && i <= 7)
-            {
-                currentRegion.encounters[i].SetTier(2);
-            }
-            else if (i > 7)
-            {
-                currentRegion.encounters[i].SetTier(3);
-            }
-        }
-
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            currentRegion.encounters[i].completed = false; 
-            int num = 0;
-            if (currentRegion.encounters[i].tier == 1)
-            {
-                num = UnityEngine.Random.Range(0, tier1Encounters.Length);
-                currentRegion.encounters[i].encounterNumber = num;
-            }
-            else if (currentRegion.encounters[i].tier == 2)
-            {
-                num = UnityEngine.Random.Range(0, tier2Encounters.Length);
-                currentRegion.encounters[i].encounterNumber = num;
-            }
-            else if (currentRegion.encounters[i].tier == 3)
-            {
-                num = UnityEngine.Random.Range(0, tier3Encounters.Length);
-                currentRegion.encounters[i].encounterNumber = num;
-            }
-        }
-    }
-
     public void GenerateButtons()
     {
-        buttons = new Button[numberOfEncounters];
+        buttons = new Button[currentRegion.encounters.Count];
         if(scr_SceneManager.globalSceneManager.ReturnSceneName() == "LocalMap")
         {
             GameObject encounterCanvas = GameObject.FindWithTag("EncounterCanvas");
 
-            for (int i = 0; i < numberOfEncounters; i++)
+            for (int i = 0; i < currentRegion.encounters.Count; i++)
             {
                 if (encounterCanvas.gameObject != null)
                 {
                     GameObject newButton = Instantiate(buttonPrefab);
-                    newButton.GetComponent<scr_EncounterButtons>().GatherInfo(currentRegion.encounters[i].encounterNumber, currentRegion.encounters[i].tier, currentRegion.encounters[i].completed);
+                    newButton.GetComponent<scr_EncounterButtons>().GatherInfo(currentRegion.encounters[i].encounterIndex, currentRegion.encounters[i].tier, currentRegion.encounters[i].completed);
                     
                     newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
+
+                    EncounterState currentEncounterState = currentRegion.encounters[i];
                     Encounter newEncounter = new Encounter();
-                    if (currentRegion.encounters[i].tier == 1)
-                    {
-                        newEncounter = tier1Encounters[currentRegion.encounters[i].encounterNumber];
-                    }
-                    else if (currentRegion.encounters[i].tier == 2)
-                    {
-                        newEncounter = tier2Encounters[currentRegion.encounters[i].encounterNumber];
-                    }
-                    else if (currentRegion.encounters[i].tier == 3)
-                    {
-                        newEncounter = tier3Encounters[currentRegion.encounters[i].encounterNumber];
-                    }
+
+                    Debug.Log(currentEncounterState.tier);
+                    newEncounter = EncounterPool.GetEncounterByTierAndIndex(currentEncounterState.tier, currentEncounterState.encounterIndex);
+ 
                     //DO IT HERE COLOR/COMPLETIONOVERLAY/ETC 
                     int temp = i;
                     newButton.GetComponent<scr_EncounterButtons>().GatherEnemyInfo(newEncounter.mouse,newEncounter.mush,newEncounter.archer);
@@ -170,4 +102,5 @@ public class EncounterController : MonoBehaviour
             _eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;
         }
     }
+
 }
