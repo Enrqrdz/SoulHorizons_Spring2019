@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test 1
   m_EditorClassIdentifier: 
   name: 0-1 Tutorial
-  sceneName: GridTest
+  sceneName: Encounter
   xWidth: 6
   yHeight: 3
   defaultTerrain: 
@@ -31,9 +31,9 @@ MonoBehaviour:
       type: 3}
     x: 4
     y: 2
-  mouse: 0
-  mush: 2
-  archer: 0
+  mouseNum: 0
+  mushNum: 2
+  archerNum: 0
   tier: 1
   territoryColumn:
   - territoryRow:

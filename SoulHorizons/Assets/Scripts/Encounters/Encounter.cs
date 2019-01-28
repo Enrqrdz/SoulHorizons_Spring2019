@@ -20,9 +20,9 @@ public class Encounter : ScriptableObject {
     public List<Terrain_Entry> tiles = new List<Terrain_Entry>();
     [Header("Assets")]
     public EntitySpawnLocation[] entities;
-    public int mouse;
-    public int mush;
-    public int archer;
+    public int mouseNum;
+    public int mushNum;
+    public int archerNum;
     [Header("Encounter Data")]
     public int tier;
 

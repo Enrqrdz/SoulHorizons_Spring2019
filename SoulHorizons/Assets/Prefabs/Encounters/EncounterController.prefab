@@ -45,4 +45,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 1318350694274488, guid: 08c49fa867e77154c8f4e9b0890d66be,
     type: 3}
-  currentEncounterIndex: 0

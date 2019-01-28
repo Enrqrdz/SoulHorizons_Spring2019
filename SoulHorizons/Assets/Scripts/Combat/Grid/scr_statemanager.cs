@@ -22,6 +22,8 @@ public class scr_statemanager : MonoBehaviour {
     scr_Entity playerEntity;
     scr_PlayerMovement playerMovement;
 
+    public int currentEncounterIndex;
+
     // Use this for initialization
     void Start () {
         //rewardPanel.enabled = false; 
@@ -87,7 +89,7 @@ public class scr_statemanager : MonoBehaviour {
             //Debug.Log("DUST AMOUNT: " + SaveLoad.currentGame.GetDustAmount());
 
             //Set encounter to complete
-            RegionManager.globalRegionManager.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
+            SaveManager.currentGame.SetCurrentEncounterCompleteToTrue();
         }
         if (endCombat)
         {

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class scr_Grid : MonoBehaviour{
-
-    
-
     public int xSizeMax; 
     public int ySizeMax;
     [Tooltip("Use to move the center of the grid along the x axis")]
@@ -21,10 +18,9 @@ public class scr_Grid : MonoBehaviour{
     public scr_Entity[] activeEntities;
     public Transform camera; 
 
-
-
-
     public static scr_Grid GridController;
+
+    public Encounter encounter;
 
     private void Awake()
     {
@@ -34,6 +30,8 @@ public class scr_Grid : MonoBehaviour{
 
     private void Start()
     {
+        encounter = SaveManager.currentGame.GetCurrentEncounter();
+
         InitEncounter(); 
     }
 
@@ -54,7 +52,7 @@ public class scr_Grid : MonoBehaviour{
 
                 tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + xOffset, (j * tileSpacing.y) + yOffset, 0), Quaternion.identity);
 
-                tileToAdd.territory = scr_SceneManager.globalSceneManager.currentEncounter.territoryColumn[i].territoryRow[j];
+                tileToAdd.territory = encounter.territoryColumn[i].territoryRow[j];
                 tileToAdd.gridPositionX = i;
                 tileToAdd.gridPositionY = j;
 
@@ -96,16 +94,16 @@ public class scr_Grid : MonoBehaviour{
     {
         //Set movement to true
         scr_InputManager.disableInput = false;
-        xSizeMax = scr_SceneManager.globalSceneManager.currentEncounter.xWidth;
-        ySizeMax = scr_SceneManager.globalSceneManager.currentEncounter.yHeight;
+        xSizeMax = encounter.xWidth;
+        ySizeMax = encounter.yHeight;
         //calling in awake as a debug, should be called in Encounter
         SetNewGrid(xSizeMax, ySizeMax);
-        activeEntities = new scr_Entity[scr_SceneManager.globalSceneManager.currentEncounter.entities.Length]; 
+        activeEntities = new scr_Entity[encounter.entities.Length]; 
         for(int x = 0; x < activeEntities.Length; x++)
         {
             scr_Entity _entity = new scr_Entity();
-            _entity = (scr_Entity)Instantiate(scr_SceneManager.globalSceneManager.currentEncounter.entities[x]._entity, Vector3.zero, Quaternion.identity);
-            _entity.InitPosition(scr_SceneManager.globalSceneManager.currentEncounter.entities[x].x, scr_SceneManager.globalSceneManager.currentEncounter.entities[x].y);
+            _entity = (scr_Entity)Instantiate(encounter.entities[x]._entity, Vector3.zero, Quaternion.identity);
+            _entity.InitPosition(encounter.entities[x].x, encounter.entities[x].y);
             activeEntities[x] = _entity;
         }
     }

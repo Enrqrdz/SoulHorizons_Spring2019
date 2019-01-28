@@ -9,6 +9,7 @@ public class GameState
     PlayerState player;
     InventoryState inventory;
     RegionState region;
+    int currentEncounterIndex;
 
     public GameState()
     {
@@ -50,6 +51,22 @@ public class GameState
     public void SetRegion(RegionState newRegion)
     {
         region = newRegion;
+    }
+
+    public void SetCurrentEncounterIndex(int encounterIndex)
+    {
+        currentEncounterIndex = encounterIndex;
+    }
+
+    public Encounter GetCurrentEncounter()
+    {
+        EncounterState encounterState = region.encounters[currentEncounterIndex];
+        return EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndex);
+    }
+
+    public void SetCurrentEncounterCompleteToTrue()
+    {
+        region.encounters[currentEncounterIndex].isCompleted = true;
     }
 
     public void SaveInventory()
@@ -128,18 +145,18 @@ public class EncounterState
 {
     public int tier;
     public int encounterIndex;
-    public bool completed;
+    public bool isCompleted;
 
     public EncounterState()
     {
-        completed = false;
+        isCompleted = false;
         tier = 0;
         encounterIndex = 0;
     }
 
     public void Clone(EncounterState encounter)
     {
-        completed = encounter.completed;
+        isCompleted = encounter.isCompleted;
         tier = encounter.tier;
         encounterIndex = encounter.encounterIndex;
     }

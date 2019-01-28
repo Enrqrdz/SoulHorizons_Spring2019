@@ -7,100 +7,53 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.Assertions;
 
 public class RegionManager : MonoBehaviour
 {
-    public static RegionManager globalRegionManager;
-
     RegionState currentRegion;
 
     [SerializeField]
     private GameObject buttonPrefab;
-    private Button[] buttons;
-
-    public int currentEncounterIndex;
+    private List<Button> buttons;
 
     void Start()
     {
-        if (globalRegionManager != null && globalRegionManager != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            globalRegionManager = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-
-        SceneManager.sceneLoaded += OnSceneChange;
-    }
-
-    void OnSceneChange(Scene scene, LoadSceneMode mode)
-    {
         currentRegion = SaveManager.currentGame.GetRegion();
 
-        if (scene.name == SceneNames.REGION)
-        {
-            GenerateButtons();
-        }
+        GenerateButtons();
     }
 
-    public void SetEncounterComplete(int _index, bool _completionState)
+    public void GoToEncounter(Encounter encounter, int index)
     {
-        currentRegion.encounters[_index].completed = _completionState;
-        SaveManager.Save();
-    }
-    public void SetCurrentEncounterComplete()
-    {
-        currentRegion.encounters[currentEncounterIndex].completed = true;
-        SaveManager.Save();
-    }
-
-    public void GoToEncounter(Encounter encounterName, int index)
-    {
-        currentEncounterIndex = index;
-        //Here is where we will put all of our info about the encounter
-        //SceneManager.LoadScene or whatever (encounterName.Scene); 
-        string nameOfEncounter = encounterName.name;
-        scr_SceneManager.globalSceneManager.currentEncounter = encounterName;
-        scr_SceneManager.globalSceneManager.currentEncounterNumber = index;
-        scr_SceneManager.globalSceneManager.ChangeScene(encounterName.sceneName);
+        SaveManager.currentGame.SetCurrentEncounterIndex(index);
+        scr_SceneManager.globalSceneManager.ChangeScene(encounter.sceneName);
     }
 
     public void GenerateButtons()
     {
-        buttons = new Button[currentRegion.encounters.Count];
-        if(scr_SceneManager.globalSceneManager.ReturnSceneName() == SceneNames.REGION)
-        {
-            GameObject encounterCanvas = GameObject.FindWithTag("EncounterCanvas");
+        buttons = new List<Button>();
 
-            for (int i = 0; i < currentRegion.encounters.Count; i++)
-            {
-                if (encounterCanvas.gameObject != null)
-                {
-                    GameObject newButton = Instantiate(buttonPrefab);
-                    newButton.GetComponent<scr_EncounterButtons>().GatherInfo(currentRegion.encounters[i].encounterIndex, currentRegion.encounters[i].tier, currentRegion.encounters[i].completed);
-                    
-                    newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
+        GameObject encounterCanvas = GameObject.FindWithTag("EncounterCanvas");
 
-                    EncounterState currentEncounterState = currentRegion.encounters[i];
-                    Encounter newEncounter = new Encounter();
+        foreach(EncounterState encounterState in currentRegion.encounters)
+        {   
+            GameObject newButton = Instantiate(buttonPrefab);
+            newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
 
-                    Debug.Log(currentEncounterState.tier);
-                    newEncounter = EncounterPool.GetEncounterByTierAndIndex(currentEncounterState.tier, currentEncounterState.encounterIndex);
- 
-                    //DO IT HERE COLOR/COMPLETIONOVERLAY/ETC 
-                    int temp = i;
-                    newButton.GetComponent<scr_EncounterButtons>().GatherEnemyInfo(newEncounter.mouse,newEncounter.mush,newEncounter.archer);
-                    newButton.GetComponent<Button>().onClick.AddListener(delegate { GoToEncounter(newEncounter, temp); });
-                    buttons[i] = newButton.GetComponent<Button>();
+            Encounter newEncounter = new Encounter();
+            newEncounter = EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndex);
 
-                }
-                else { return; }
-            }
-            GameObject _eventSystem = GameObject.Find("/EventSystem");
-            _eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;
+            EncounterButtonManager encounterButtonManager = newButton.GetComponent<EncounterButtonManager>();
+            encounterButtonManager.SetStateAndEncounter(encounterState, newEncounter);
+
+            Button button = newButton.GetComponent<Button>();
+            button.onClick.AddListener(delegate {GoToEncounter(newEncounter, currentRegion.encounters.IndexOf(encounterState));});
+
+            buttons.Add(newButton.GetComponent<Button>());
         }
-    }
 
+        GameObject eventSystem = GameObject.Find("/EventSystem");
+        eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;
+    }
 }
