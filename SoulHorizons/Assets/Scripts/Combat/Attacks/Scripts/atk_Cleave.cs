@@ -26,8 +26,8 @@ public class atk_Cleave : Attack {
 	//--Effects Methods--
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
-		activeAttack.particle = Instantiate(particle, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, particle.transform.rotation);
-        activeAttack.particle.sortingOrder = -activeAttack.position.y;
+		activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.pos.x, activeAttack.pos.y) + particlesOffset, particles.transform.rotation);
+        activeAttack.particle.sortingOrder = -activeAttack.pos.y;
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)

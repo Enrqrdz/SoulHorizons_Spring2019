@@ -101,7 +101,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 				//set the damage for the attack
 				attack.damage = (int) Mathf.Round(damage*damageMultiplier);
 				//set the projectile sprite
-				attack.particle = baseProjectile;
+				attack.particles = baseProjectile;
 				scr_AttackController.attackController.AddNewAttack(attack, playerEntity._gridPos.x, playerEntity._gridPos.y, playerEntity);
 				StartCoroutine(AttackCooldown(fireRate));
 			}
@@ -112,7 +112,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 				damage += damageIncrease1;
 				attack.damage = (int) Mathf.Round(damage*damageMultiplier);
 				//set the projectile sprite
-				attack.particle = projectile1;
+				attack.particles = projectile1;
 				//proj.Fire(damage, 1, baseSpeed);
 				scr_AttackController.attackController.AddNewAttack(attack, playerEntity._gridPos.x, playerEntity._gridPos.y, playerEntity);
 				StartCoroutine(AttackCooldown(chargeCooldown));

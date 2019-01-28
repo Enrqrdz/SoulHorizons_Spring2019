@@ -6224,202 +6224,202 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeAttacks:
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
   - _attack: {fileID: 0}
-    position: {x: 0, y: 0}
-    lastPosition: {x: 0, y: 0}
+    pos: {x: 0, y: 0}
+    lastPos: {x: 0, y: 0}
     lastAttackTime: 0
     currentIncrement: 0
     entity: {fileID: 0}
-    isEntityHit: 0
+    entityIsHit: 0
     entityHit: {fileID: 0}
     particle: {fileID: 0}
     particles: []
