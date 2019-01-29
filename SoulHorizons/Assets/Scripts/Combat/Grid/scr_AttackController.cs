@@ -4,26 +4,72 @@ using UnityEngine;
 
 public class scr_AttackController : MonoBehaviour {
 
-    public ActiveAttack[] activeAttacks = new ActiveAttack[10];
-    public int numberOfActiveAttacks = 0; 
+    public ActiveAttack[] activeAttacks = new ActiveAttack[10];     //Max number of active attacks is 10
+    public int numberOfActiveAttacks = 0;
     public static scr_AttackController attackController;
     public scr_Pause pauseReference;
 
     private void Awake()
     {
-        attackController = this; 
+        InitializeAttackController();
     }
 
-    public void AddNewAttack(Attack _attack,int xPos, int yPos, scr_Entity ent)
+    void Update()
+    {
+        IterateThroughActiveAttacks();
+    }
+
+    private void InitializeAttackController()
+    {
+        attackController = this;
+    }
+
+    private void IterateThroughActiveAttacks()
+    {
+        for (int i = 0; i < numberOfActiveAttacks; i++)
+        {
+            bool isAttackAtMaxRange = activeAttacks[i].currentIncrement > activeAttacks[i].attack.maxIncrementRange;
+            bool isAttackOnFinalTarget = !activeAttacks[i].attack.piercing && activeAttacks[i].entityIsHit;
+            bool isAttackOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
+            bool isTileActive = activeAttacks[i].currentIncrement != 0;
+
+            if (activeAttacks[i].CanAttackContinue())
+            {
+                if (isAttackAtMaxRange)
+                {
+                    RemoveFromArray(i);
+                    return;
+                }
+                else if (isAttackOnFinalTarget)
+                {
+                    RemoveFromArray(i);
+                    return;
+                }
+                else if (isAttackOnGrid)
+                {
+                    RemoveFromArray(i);
+                    return;
+                }
+                if (isTileActive)
+                {
+                    scr_Grid.GridController.DeactivateTile(activeAttacks[i].lastPosition.x, activeAttacks[i].lastPosition.y);
+                }
+
+                activeAttacks[i].lastPosition = activeAttacks[i].position;
+                activeAttacks[i].Clone(scr_Grid.GridController.AttackPosition(activeAttacks[i]));
+                activeAttacks[i].position = activeAttacks[i].attack.ProgressAttack(activeAttacks[i].position.x, activeAttacks[i].position.y, activeAttacks[i]);
+                activeAttacks[i].lastAttackTime = Time.time;
+                activeAttacks[i].currentIncrement++;
+            }
+            activeAttacks[i].attack.ProgressEffects(activeAttacks[i]);
+        }
+    }
+
+    public void AddNewAttack(Attack _attack, int xPos, int yPos, scr_Entity ent)
     {
         activeAttacks[numberOfActiveAttacks] = new ActiveAttack(_attack, xPos, yPos, ent);
-        activeAttacks[numberOfActiveAttacks]._attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
-        activeAttacks[numberOfActiveAttacks].Clone(activeAttacks[numberOfActiveAttacks]._attack.BeginAttack(activeAttacks[numberOfActiveAttacks]));
-        
-        /*
-        activeAttacks[numberOfActiveAttacks].particle = Instantiate(_attack.particles, scr_Grid.GridController.GetWorldLocation(xPos,yPos)+_attack.particlesOffset, Quaternion.identity);
-        activeAttacks[numberOfActiveAttacks].particle.sortingOrder = -yPos; 
-         */
+        activeAttacks[numberOfActiveAttacks].attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
+        activeAttacks[numberOfActiveAttacks].Clone(activeAttacks[numberOfActiveAttacks].attack.BeginAttack(activeAttacks[numberOfActiveAttacks]));
 
         //Start effects for when the attack is created
         if (_attack == null)
@@ -36,61 +82,22 @@ public class scr_AttackController : MonoBehaviour {
         }
         _attack.LaunchEffects(activeAttacks[numberOfActiveAttacks]);
         numberOfActiveAttacks++;
-        
+
     }
 
-    void Update()
-    {
-        for (int x = 0; x < numberOfActiveAttacks; x++)
-        {
-            if (activeAttacks[x].CanAttackContinue())
-            {
-                if (activeAttacks[x].currentIncrement > activeAttacks[x]._attack.maxIncrements)
-                {
-                    RemoveFromArray(x);
-                    return;
-                }
-                else if (!activeAttacks[x]._attack.piercing && activeAttacks[x].entityIsHit)
-                {
-                    RemoveFromArray(x);
-                    return;
-                }
-                else if (scr_Grid.GridController.LocationOnGrid(activeAttacks[x].pos.x, activeAttacks[x].pos.y) == false)
-                {
-                    //Debug.Log("location off grid " + activeAttacks[x]._attack.name); 
-                    RemoveFromArray(x);
-                    return;
-                }
-
-                if (activeAttacks[x].currentIncrement != 0)
-                {
-                    scr_Grid.GridController.DeactivateTile(activeAttacks[x].lastPos.x, activeAttacks[x].lastPos.y);
-                }
-                activeAttacks[x].lastPos = activeAttacks[x].pos;
-                activeAttacks[x].Clone(scr_Grid.GridController.AttackPosition(activeAttacks[x]));
-                activeAttacks[x].pos = activeAttacks[x]._attack.ProgressAttack(activeAttacks[x].pos.x, activeAttacks[x].pos.y, activeAttacks[x]);
-                activeAttacks[x].lastAttackTime = Time.time;
-                activeAttacks[x].currentIncrement++;
-
-            }
-            //activeAttacks[x].particle.transform.position = Vector3.Lerp(activeAttacks[x].particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttacks[x].lastPos.x,activeAttacks[x].lastPos.y) + activeAttacks[x]._attack.particlesOffset, (4.5f) * Time.deltaTime);
-            //Replaced this lerp by passing the particle to progress attack above and letting the attack object determine particle behavior - Colin
-            activeAttacks[x]._attack.ProgressEffects(activeAttacks[x]);
-        }
-    }
 
     void RemoveFromArray(int index)
     {
         //Attack end effects
-        activeAttacks[index]._attack.EndEffects(activeAttacks[index]);
+        activeAttacks[index].attack.EndEffects(activeAttacks[index]);
 
-        scr_Grid.GridController.DeactivateTile(activeAttacks[index].lastPos.x, activeAttacks[index].lastPos.y);
-        scr_Grid.GridController.DeactivateTile(activeAttacks[index].pos.x, activeAttacks[index].pos.y);
-        scr_Grid.GridController.DePrimeTile(activeAttacks[index].pos.x, activeAttacks[index].pos.y);
+        scr_Grid.GridController.DeactivateTile(activeAttacks[index].lastPosition.x, activeAttacks[index].lastPosition.y);
+        scr_Grid.GridController.DeactivateTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
+        scr_Grid.GridController.DePrimeTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
         Destroy(activeAttacks[index].particle);
         for (int x = index; x < numberOfActiveAttacks; x++)
         {
-            if (x + 1 < activeAttacks.Length && activeAttacks[x + 1]._attack != null)
+            if (x + 1 < activeAttacks.Length && activeAttacks[x + 1].attack != null)
             {
                 activeAttacks[x].Clone(activeAttacks[x + 1]);
             }
@@ -106,9 +113,9 @@ public class scr_AttackController : MonoBehaviour {
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
         {
-            if (activeAttacks[x].pos == pos)
+            if (activeAttacks[x].position == pos)
             {
-                return activeAttacks[x]._attack;
+                return activeAttacks[x].attack;
             }
         }
         
@@ -120,11 +127,11 @@ public class scr_AttackController : MonoBehaviour {
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
         {
-            if (activeAttacks[x].lastPos == pos)
+            if (activeAttacks[x].lastPosition == pos)
             {
                 if (activeAttacks[x].entity.type != entity.type)
                 {
-                    Attack atk = activeAttacks[x]._attack;
+                    Attack atk = activeAttacks[x].attack;
                     activeAttacks[x].entityIsHit = true;
                     return atk;
                 }
@@ -132,64 +139,5 @@ public class scr_AttackController : MonoBehaviour {
         }
 
         return null;
-    }
-}
-
-[System.Serializable]
-public class ActiveAttack
-{
-    public Attack _attack;
-    public Vector2Int pos;
-    public Vector2Int lastPos;
-    public float lastAttackTime;
-    public int currentIncrement = 0;
-    public scr_Entity entity;
-    public bool entityIsHit = false; //set to true if the attack hits an entity
-    public scr_Entity entityHit = null; //contains a reference to the entity that the attack hit
-    public SpriteRenderer particle; // use if only one particle 
-    public SpriteRenderer[] particles; //use for multiple particles 
-    
-    public ActiveAttack(Attack atk, int x, int y, scr_Entity ent)
-    {
-        particles = new SpriteRenderer[5];
-        _attack = atk;
-        pos.x = x;
-        pos.y = y;
-        entity = ent;
-        lastPos.x = x;
-        lastPos.y = y;
-        
-        lastAttackTime = Time.time - _attack.incrementSpeed;
-    }
-
-    public ActiveAttack()
-    {
-        _attack = null;
-        pos = new Vector2Int();
-        lastAttackTime = 0;
-        currentIncrement = 0; 
-    }
-
-    public bool CanAttackContinue()
-    {
-        if(lastAttackTime + _attack.incrementSpeed <= Time.time)
-        {
-            return true; 
-        }
-        return false; 
-    }
-
-    public void Clone(ActiveAttack atk)
-    {
-        _attack = atk._attack;
-        pos = atk.pos;
-        lastAttackTime = atk.lastAttackTime;
-        currentIncrement = atk.currentIncrement;
-        lastPos = atk.lastPos;
-        entity = atk.entity;
-        entityIsHit = atk.entityIsHit;
-        particle = atk.particle;
-        particles = atk.particles;
-        
     }
 }

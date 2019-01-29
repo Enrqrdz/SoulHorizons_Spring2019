@@ -6,12 +6,11 @@ using UnityEngine;
 //[System.Serializable]
 public abstract class Attack : ScriptableObject {
 
-    public float incrementSpeed;
-    public int maxIncrements = 1;
+    public float incrementTime;
+    public int maxIncrementRange = 10;
     public int damage;
     [Header("Where the attack is coming from")]
-    //public Territory territory;
-    public EntityType type;
+    public EntityType type; //Player, Obstacle, Enemy
     public bool piercing;
     public SpriteRenderer particles;
     public Vector3 particlesOffset;
