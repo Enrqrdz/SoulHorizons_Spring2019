@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class scr_Critter : scr_EntityAI {
 
-
-
-
     public float decisionTime;
     public float decisionTimeLower; 
     public float burrowedTime;
@@ -60,10 +57,6 @@ public class scr_Critter : scr_EntityAI {
         return _x; 
     }
 
-
-
-
-
     private void Movement()
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
@@ -102,10 +95,7 @@ public class scr_Critter : scr_EntityAI {
 
                  
         }
-
-        
     }
-
 
     IEnumerator Brain()
     {

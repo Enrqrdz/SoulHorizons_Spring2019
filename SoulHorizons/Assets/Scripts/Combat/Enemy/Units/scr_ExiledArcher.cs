@@ -100,7 +100,6 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     private IEnumerator ArrowRain(float _aRInterval)
     {
-        
         //TELEGRAPH 
         canArrowRain = false; 
         yield return new WaitForSecondsRealtime(1f);
