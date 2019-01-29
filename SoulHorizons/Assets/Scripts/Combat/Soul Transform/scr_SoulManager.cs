@@ -18,8 +18,6 @@ public class scr_SoulManager : MonoBehaviour {
     public scr_DeckManager deckManager; //a reference to the deck manager. This is needed to disable the deck when a transform is active
     Animator anim; //animator to control soul transform animations
 
-    //public GameObject transformAbilityUI;
-
     private IDictionary<Element, int> soulCharges = new Dictionary<Element, int>(); //the charges
     private IDictionary<Element, Button> elementButtons = new Dictionary<Element, Button>(); //a list of the buttons in terms of their element; this is so we can update them with the charge
     //TODO: need to get references to the UI buttons so they can be updated with sprites and animations can occur when they get chaged
@@ -44,17 +42,6 @@ public class scr_SoulManager : MonoBehaviour {
         {
             //add the transformation code to the button onclick event
             buttons[i].onClick.AddListener(delegate {Transformation(item); });
-
-            //add the components in the soulTransform to the player
-            /*
-            MonoBehaviour attack = (MonoBehaviour) player.gameObject.AddComponent(item.basicAttack.GetClass());
-            attack.enabled = false;
-            if (item.hasMovement) //don't try to add the component unless there is new movement with this transform
-            {   
-                MonoBehaviour movement = (MonoBehaviour) player.gameObject.AddComponent(item.movement.GetClass());
-                movement.enabled = false;
-            }
-             */
 
              MonoBehaviour[] scripts = item.scriptHolder.GetComponents<MonoBehaviour>();
              foreach (MonoBehaviour script in scripts)
@@ -176,8 +163,6 @@ public class scr_SoulManager : MonoBehaviour {
         //disable the deck system
         deckManager.Disable(true);
 
-        //Enable Transform Ability UI
-        //transformAbilityUI.SetActive(true);
 
         //reduce the charge
         soulCharges[soul.element] -= 50; //reduce to 50%
@@ -188,17 +173,6 @@ public class scr_SoulManager : MonoBehaviour {
         //player.gameObject.GetComponent<scr_PlayerBlaster>().enabled = false;
         player.gameObject.GetComponent<scr_PlayerMovement>().enabled = false;
 
-        /*
-        //enable the transform's attack and movement
-        MonoBehaviour attack = (MonoBehaviour) player.gameObject.GetComponent(soul.basicAttack.GetClass());
-        attack.enabled = true;
-        
-        if (soul.hasMovement) //don't try to enable the component unless there is new movement with this transform
-        {   
-            MonoBehaviour movement = (MonoBehaviour)player.gameObject.GetComponent(soul.movement.GetClass());
-            movement.enabled = true;
-        }
-         */
 
         MonoBehaviour[] scripts = soul.scriptHolder.GetComponents<MonoBehaviour>();
         foreach (MonoBehaviour script in scripts)
@@ -229,18 +203,6 @@ public class scr_SoulManager : MonoBehaviour {
         //enable the deck system
         deckManager.Disable(false);
 
-
-        //disable the current transform's components on the player
-        /*
-        MonoBehaviour attack = (MonoBehaviour)player.gameObject.GetComponent(currentTransform.basicAttack.GetClass());
-        attack.enabled = false;
-
-        if (currentTransform.hasMovement) //don't try to disable the component unless there is new movement with this transform
-        {   
-            MonoBehaviour movement = (MonoBehaviour)player.gameObject.GetComponent(currentTransform.movement.GetClass());
-            movement.enabled = false;
-        }
-         */
 
         MonoBehaviour[] scripts = currentTransform.scriptHolder.GetComponents<MonoBehaviour>();
         foreach (MonoBehaviour script in scripts)
