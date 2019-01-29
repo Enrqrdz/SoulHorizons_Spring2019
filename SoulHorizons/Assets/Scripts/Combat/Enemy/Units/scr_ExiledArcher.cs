@@ -6,14 +6,14 @@ using UnityEngine;
 public class scr_ExiledArcher : scr_EntityAI {
 
 
-    public Attack hunterShot;
+    public AttackData hunterShot;
     public float hSChargeTime;
     private bool hSOnCD = false;   //On Cooldown 
     private float hSCooldownTime = 1.5f; 
 
 
 
-    public Attack arrowRain;
+    public AttackData arrowRain;
     public float aRInterval;
     public float movementIntervalLower;
     public float movementIntervalUpper;

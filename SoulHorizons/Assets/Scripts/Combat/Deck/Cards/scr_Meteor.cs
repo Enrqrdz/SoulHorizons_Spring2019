@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Meteor")]
 public class scr_Meteor : CardData {
 
-    public Attack meteorAttack;
+    public AttackData meteorAttack;
 
     public override void Activate()
     {

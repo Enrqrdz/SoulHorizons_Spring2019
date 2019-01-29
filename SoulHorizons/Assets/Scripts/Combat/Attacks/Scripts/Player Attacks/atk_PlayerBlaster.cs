@@ -4,12 +4,12 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Attacks/PlayerBlaster")]
-public class atk_PlayerBlaster : Attack {
+public class atk_PlayerBlaster : AttackData {
 
     
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
     {
-        activeAtk.lastAttackTime -= activeAtk._attack.incrementSpeed;
+        activeAtk.lastAttackTime -= activeAtk.attack.incrementTime;
         return activeAtk; 
     } 
 
@@ -45,18 +45,18 @@ public class atk_PlayerBlaster : Attack {
             Debug.Log("PlayerBlaster: Active Attack is null");
         }
 
-        if (activeAttack.pos == null)
+        if (activeAttack.position == null)
         {
             Debug.Log("PlayerBlaster: Active Attack is null");
         }
 
-            activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.pos.x, activeAttack.pos.y) + particlesOffset, Quaternion.identity);
-            activeAttack.particle.sortingOrder = -activeAttack.pos.y;
+            activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
+            activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPos.x,activeAttack.lastPos.y) + activeAttack._attack.particlesOffset, (particleSpeed) * Time.deltaTime);
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x,activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)

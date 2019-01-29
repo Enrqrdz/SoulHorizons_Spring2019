@@ -100,7 +100,7 @@ public class scr_Entity : MonoBehaviour
         
         scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y,this);
         spr.sortingOrder = -_gridPos.y;
-        Attack atk = scr_AttackController.attackController.MoveIntoAttackCheck(_gridPos, this);
+        AttackData atk = scr_AttackController.attackController.MoveIntoAttackCheck(_gridPos, this);
         if(atk != null)
         {
             if (!invincible)
@@ -121,16 +121,8 @@ public class scr_Entity : MonoBehaviour
     /// Takes an attack object and damages the entity if the attack's type is different from the entity's type.
     /// </summary>
     /// <param name="_attack"></param>
-    public void HitByAttack(Attack _attack)
+    public void HitByAttack(AttackData _attack)
     {
-
-        /*
-        if (_attack.territory.name != entityTerritory.name)
-        {
-            _health.TakeDamage(_attack.damage);
-            StartCoroutine(HitClock(.5f));
-        }
-         */
         if (_attack.type != type)
         {
             int index = Random.Range(0, hurts_SFX.Length);
@@ -146,7 +138,6 @@ public class scr_Entity : MonoBehaviour
                 CameraShaker.Instance.ShakeOnce(2f, 2f, 0.2f, 0.2f);
             }
         }
-
     }
 
     /// <summary>
