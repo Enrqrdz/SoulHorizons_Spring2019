@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Attacks/Bolt")]
-public class scr_BoltAttack : Attack {
+public class scr_BoltAttack : AttackData {
 	public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
 		Debug.Log((activeAtk == null) ? "Null attack" : "Everything is fine with Active Attack");
@@ -15,8 +15,6 @@ public class scr_BoltAttack : Attack {
 		{
 			//set max increments to -1 to make it stop
 			maxIncrementRange = -1;
-
-			//launch a particle at this point?
 		}
 
 		//move in a straight line to the right

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_AttackController : MonoBehaviour {
 
-    public ActiveAttack[] activeAttacks = new ActiveAttack[10];     //Max number of active attacks is 10
+    public ActiveAttack[] activeAttacks = new ActiveAttack[20];     //Max number of active attacks is 20
     public int numberOfActiveAttacks = 0;
     public static scr_AttackController attackController;
     public scr_Pause pauseReference;
@@ -65,7 +65,7 @@ public class scr_AttackController : MonoBehaviour {
         }
     }
 
-    public void AddNewAttack(Attack _attack, int xPos, int yPos, scr_Entity ent)
+    public void AddNewAttack(AttackData _attack, int xPos, int yPos, scr_Entity ent)
     {
         activeAttacks[numberOfActiveAttacks] = new ActiveAttack(_attack, xPos, yPos, ent);
         activeAttacks[numberOfActiveAttacks].attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
@@ -109,7 +109,7 @@ public class scr_AttackController : MonoBehaviour {
         numberOfActiveAttacks--; 
     }
 
-    public Attack AttackType(Vector2Int pos)
+    public AttackData AttackType(Vector2Int pos)
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
         {
@@ -123,7 +123,7 @@ public class scr_AttackController : MonoBehaviour {
         
     }
 
-    public Attack MoveIntoAttackCheck(Vector2Int pos, scr_Entity entity)
+    public AttackData MoveIntoAttackCheck(Vector2Int pos, scr_Entity entity)
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
         {
@@ -131,7 +131,7 @@ public class scr_AttackController : MonoBehaviour {
             {
                 if (activeAttacks[x].entity.type != entity.type)
                 {
-                    Attack atk = activeAttacks[x].attack;
+                    AttackData atk = activeAttacks[x].attack;
                     activeAttacks[x].entityIsHit = true;
                     return atk;
                 }

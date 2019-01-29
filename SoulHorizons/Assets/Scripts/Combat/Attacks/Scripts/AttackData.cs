@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//[System.Serializable]
-public abstract class Attack : ScriptableObject {
+public abstract class AttackData : ScriptableObject {
 
     public float incrementTime;
     public int maxIncrementRange = 10;

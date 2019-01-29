@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Attacks/Cleave")]
-public class atk_Cleave : Attack {
+public class atk_Cleave : AttackData {
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {

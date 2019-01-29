@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Attacks/Meteor")]
 [RequireComponent(typeof(AudioSource))]
 
-public class atk_Meteor : Attack {
+public class atk_Meteor : AttackData {
     private AudioSource PlayCardSFX;
     public AudioClip MeteorSFX;
 
