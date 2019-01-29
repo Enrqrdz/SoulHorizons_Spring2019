@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bc5844cf5600564695a725603c0956f, type: 3}
-  m_Name: Test 5
+  m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
+  m_Name: Test2
   m_EditorClassIdentifier: 
-  name: 0-1 Tutorial
+  name: 0 -1 Tutorial
   sceneName: Encounter
   xWidth: 6
   yHeight: 3
@@ -26,19 +26,11 @@ MonoBehaviour:
   - _entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2,
       type: 3}
     x: 5
-    y: 2
-  - _entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2,
-      type: 3}
-    x: 4
-    y: 1
-  - _entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2,
-      type: 3}
-    x: 5
     y: 0
   mouseNum: 0
   mushNum: 0
-  archerNum: 3
-  tier: 2
+  archerNum: 1
+  tier: 1
   territoryColumn:
   - territoryRow:
     - name: 0

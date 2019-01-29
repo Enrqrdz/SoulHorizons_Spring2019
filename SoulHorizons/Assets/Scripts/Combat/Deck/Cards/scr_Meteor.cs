@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu(menuName = "Cards/Meteor")]
-public class scr_Meteor : scr_Card {
+public class scr_Meteor : CardData {
 
     public Attack meteorAttack;
 

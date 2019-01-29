@@ -20,7 +20,7 @@ public class scr_Grid : MonoBehaviour{
 
     public static scr_Grid GridController;
 
-    public Encounter encounter;
+    public EncounterData encounter;
 
     private void Awake()
     {

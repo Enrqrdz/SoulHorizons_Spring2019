@@ -24,62 +24,26 @@ public class scr_InvController : MonoBehaviour {
         }
       
     }
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
     void LoadInv()
     {
-
-        Debug.Log("Loading Inventory");
-        //LOAD CARD LIST
         try
         {
-            foreach (KeyValuePair<string, int> pair in SaveManager.currentGame.GetCardList())
+            foreach (CardState cardState in SaveManager.currentGame.GetCardList())
             {
                 //attempt to retrieve the object reference from cardMapping
-                scr_Card nextCard = cardMapping.ConvertNameToCard(pair.Key);
+                CardData nextCard = CardPool.GetCardByIndex(cardState.cardIndexInPool);
                 if (nextCard == null)
                 {
                     continue;
                 }
                 //add the card and quantity to an inventory card list
-                scr_Inventory.addCard(nextCard, pair.Value);
+                InventoryManager.addCard(nextCard, cardState.numberOfCopies);
             }
         }
         catch (NullReferenceException e)
         {
             Debug.Log("This is a " + e);
         }
-
-        //MAKES A NEW DECK IF NEW GAME
-        /*if (scr_Inventory.numDecks == 0)
-        {
-            Debug.Log("NEW DECK INCOMING");
-            scr_Deck newDeck = new scr_Deck();
-            /*newDeck.deckList = deckList;
-            newDeck.cardMapping = cardMapping;
-            newDeck.LoadNewDeck();
-            scr_Inventory.numDecks++;
-            SaveLoad.Save();
-        }
-        //ELSE LOADS DECKS
-        else
-        {
-            Debug.Log("LOADING EXISTING DECKS");
-            foreach (List<KeyValuePair<string, int>> myDeck in SaveLoad.currentGame.GetDeckList())
-            {
-                scr_Deck newDeck = new scr_Deck();
-                newDeck.cardMapping = cardMapping;
-                newDeck.LoadDeck(myDeck);
-               
-            }
-        }*/
-
     }
 }

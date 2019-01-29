@@ -24,7 +24,7 @@ public class RegionManager : MonoBehaviour
         GenerateButtons();
     }
 
-    public void GoToEncounter(Encounter encounter, int index)
+    public void GoToEncounter(EncounterData encounter, int index)
     {
         SaveManager.currentGame.SetCurrentEncounterIndex(index);
         scr_SceneManager.globalSceneManager.ChangeScene(encounter.sceneName);
@@ -41,8 +41,8 @@ public class RegionManager : MonoBehaviour
             GameObject newButton = Instantiate(buttonPrefab);
             newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
 
-            Encounter newEncounter = new Encounter();
-            newEncounter = EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndex);
+            EncounterData newEncounter = new EncounterData();
+            newEncounter = EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndexInPool);
 
             EncounterButtonManager encounterButtonManager = newButton.GetComponent<EncounterButtonManager>();
             encounterButtonManager.SetStateAndEncounter(encounterState, newEncounter);

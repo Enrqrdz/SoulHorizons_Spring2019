@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class EncounterButtonManager : MonoBehaviour
 {
     EncounterState encounterState;
-    Encounter encounter;
+    EncounterData encounter;
 
     public Image infoPanel;
 
@@ -51,7 +51,7 @@ public class EncounterButtonManager : MonoBehaviour
         }
     }
 
-    public void SetStateAndEncounter(EncounterState newState, Encounter newEncounter)
+    public void SetStateAndEncounter(EncounterState newState, EncounterData newEncounter)
     {
         encounterState = newState;
         encounter = newEncounter;

@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "Cards/LightningBolt")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_LightningBolt : scr_Card {
+public class scr_LightningBolt : CardData {
 
     public float damage = 6f;
     private AudioSource PlayCardSFX;
