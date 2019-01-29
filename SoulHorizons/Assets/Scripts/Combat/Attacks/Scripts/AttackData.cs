@@ -9,9 +9,7 @@ public abstract class AttackData : ScriptableObject {
     public int damage;
     [Header("Where the attack is coming from")]
     public EntityType type; //Player, Obstacle, Enemy
-
     public bool piercing;
-
     public SpriteRenderer particles;
     public Vector3 particlesOffset;
     public float particleSpeed = 1; 

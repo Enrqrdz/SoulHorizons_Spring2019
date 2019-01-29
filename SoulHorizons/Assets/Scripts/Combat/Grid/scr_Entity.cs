@@ -120,27 +120,21 @@ public class scr_Entity : MonoBehaviour
     /// <summary>
     /// Takes an attack object and damages the entity if the attack's type is different from the entity's type.
     /// </summary>
-<<<<<<< HEAD
     /// <param name="_attack"></param>
     public void HitByAttack(AttackData _attack)
     {
         if (_attack.type != type)
-=======
-    /// <param name="attack"></param>
-    public void HitByAttack(Attack attack)
-    {
-        if (attack.type != type)
->>>>>>> Antonio'sbranch
         {
             int index = Random.Range(0, hurts_SFX.Length);
             hurt_SFX = hurts_SFX[index];
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
 
-            _health.TakeDamage(attack.damage);
-            StartCoroutine(ChangeColorWhenDamaged(.3f));
+            _health.TakeDamage(_attack.damage);
+            StartCoroutine(HitClock(.3f));
             if (type == EntityType.Player)
             {
+                //camera shake
                 CameraShaker.Instance.ShakeOnce(2f, 2f, 0.2f, 0.2f);
             }
         }
@@ -161,7 +155,7 @@ public class scr_Entity : MonoBehaviour
             Hurt_SFX.Play();
 
             _health.TakeDamage(damage);
-            StartCoroutine(ChangeColorWhenDamaged(.3f));
+            StartCoroutine(HitClock(.3f));
             if (type == EntityType.Player)
             {
                 //camera shake
@@ -208,15 +202,16 @@ public class scr_Entity : MonoBehaviour
         //scr_Grid.GridController.RemoveEntity(this);  
     }
    
-    IEnumerator ChangeColorWhenDamaged(float hitTime)
+    IEnumerator HitClock(float hitTime)
     {
         spr.color = Color.red;
+        //Debug.Log("I'M RED");
         yield return new WaitForSecondsRealtime(hitTime);
         spr.color = baseColor;
+        //Debug.Log("NOT RED");
     }
 
 }
-
 [System.Serializable]
 public class Health{
 
@@ -249,3 +244,11 @@ public class Health{
     }
 
 }
+
+
+
+
+
+    
+
+
