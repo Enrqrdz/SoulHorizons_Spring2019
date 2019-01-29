@@ -87,6 +87,7 @@ public class atk_Meteor : Attack {
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
     {
+
     }
 
     public override void EndEffects(ActiveAttack activeAttack)
