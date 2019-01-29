@@ -136,7 +136,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
     int PickXCoord()
     {
         //must return int 
-        int _range = scr_Grid.GridController.xSizeMax;
+        int _range = scr_Grid.GridController.columnSizeMax;
         int _currPosX = entity._gridPos.x;
 
         if(_currPosX == _range - 1)

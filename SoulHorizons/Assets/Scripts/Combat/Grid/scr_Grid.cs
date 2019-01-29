@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class scr_Grid : MonoBehaviour{
-    public int xSizeMax; 
-    public int ySizeMax;
+
+    public int columnSizeMax;
+    public int rowSizeMax;
     [Tooltip("Use to move the center of the grid along the x axis")]
-    public float xOffset = 0;
+    public float columnOffset = 0;
     [Tooltip("Use to move the center of the grid along the y axis")]
-    public float yOffset = 0; 
+    public float rowOffset = 0; 
     public Vector2 tileSpacing;
     public scr_Tile[,] grid;
     public scr_Tile tile;
@@ -40,17 +41,17 @@ public class scr_Grid : MonoBehaviour{
     {
 
         //tile_sprites = Resources.LoadAll<Sprite>("tiles_spritesheet");
-        grid = new scr_Tile[xSizeMax, ySizeMax];
-        Vector2 gridCenter = new Vector2((tileSpacing.x * (xSizeMax-1) / 2), (tileSpacing.y * ySizeMax / 2));
+        grid = new scr_Tile[columnSizeMax, rowSizeMax];
+        Vector2 gridCenter = new Vector2((tileSpacing.x * (columnSizeMax-1) / 2), (tileSpacing.y * rowSizeMax / 2));
         print(gridCenter); 
         camera.transform.position = new Vector3(gridCenter.x,gridCenter.y,camera.transform.position.z); 
-        for (int j = 0; j < ySizeMax; j++)
+        for (int j = 0; j < rowSizeMax; j++)
         {
-            for (int i = 0; i < xSizeMax; i++)
+            for (int i = 0; i < columnSizeMax; i++)
             {
                 scr_Tile tileToAdd = null; 
 
-                tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + xOffset, (j * tileSpacing.y) + yOffset, 0), Quaternion.identity);
+                tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + columnOffset, (j * tileSpacing.y) + rowOffset, 0), Quaternion.identity);
 
                 tileToAdd.territory = encounter.territoryColumn[i].territoryRow[j];
                 tileToAdd.gridPositionX = i;
@@ -83,8 +84,8 @@ public class scr_Grid : MonoBehaviour{
 
     public void SetNewGrid(int new_xSizeMax, int new_ySizeMax)
     {
-        xSizeMax = new_xSizeMax;
-        ySizeMax = new_ySizeMax;
+        columnSizeMax = new_xSizeMax;
+        rowSizeMax = new_ySizeMax;
         BuildGrid(); 
 
     }
@@ -94,10 +95,10 @@ public class scr_Grid : MonoBehaviour{
     {
         //Set movement to true
         scr_InputManager.disableInput = false;
-        xSizeMax = encounter.xWidth;
-        ySizeMax = encounter.yHeight;
+        columnSizeMax = encounter.xWidth;
+        rowSizeMax = encounter.yHeight;
         //calling in awake as a debug, should be called in Encounter
-        SetNewGrid(xSizeMax, ySizeMax);
+        SetNewGrid(columnSizeMax, rowSizeMax);
         activeEntities = new scr_Entity[encounter.entities.Length]; 
         for(int x = 0; x < activeEntities.Length; x++)
         {
@@ -339,10 +340,10 @@ public class scr_Grid : MonoBehaviour{
     {
         bool colFound = false;
         //Debug.Log("SEIZE!");
-        for (int i = 0; i < xSizeMax; i++)
+        for (int i = 0; i < columnSizeMax; i++)
         {
 
-            for (int j = 0; j < ySizeMax; j++)
+            for (int j = 0; j < rowSizeMax; j++)
             {
                 //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
                 if (grid[i, j].territory.name != TerrName.Player)
@@ -373,10 +374,10 @@ public class scr_Grid : MonoBehaviour{
         Debug.Log("RESEIZE");
         yield return new WaitForSeconds(waitTime);
         bool colFound = false;
-        for (int i = xSizeMax - 1; i >= 0; i--)
+        for (int i = columnSizeMax - 1; i >= 0; i--)
         {
 
-            for (int j = 0; j < ySizeMax; j++)
+            for (int j = 0; j < rowSizeMax; j++)
             {
                 //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
                 if (grid[i, j].territory.name != TerrName.Enemy)
