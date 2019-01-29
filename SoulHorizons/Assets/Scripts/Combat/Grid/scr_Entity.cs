@@ -42,7 +42,7 @@ public class scr_Entity : MonoBehaviour
         deathManager = GameObject.Find("DeathSFXManager");
         baseColor = spr.color;
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Hurt_SFX = SFX_Sources[2];
+        Hurt_SFX = SFX_Sources[1];
         _health.max_hp = _health.hp;
     }
     public void Update()
