@@ -41,7 +41,7 @@ public class RegionManager : MonoBehaviour
             GameObject newButton = Instantiate(buttonPrefab);
             newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
 
-            EncounterData newEncounter = new EncounterData();
+            EncounterData newEncounter;
             newEncounter = EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndexInPool);
 
             EncounterButtonManager encounterButtonManager = newButton.GetComponent<EncounterButtonManager>();
