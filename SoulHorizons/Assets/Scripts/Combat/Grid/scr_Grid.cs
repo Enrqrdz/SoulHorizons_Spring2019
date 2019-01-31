@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class scr_Grid : MonoBehaviour{
-    //This is a test change to show rudy what to do
+    //This is a test
     public int columnSizeMax;
     public int rowSizeMax;
     [Tooltip("Use to move the center of the grid along the x axis")]
