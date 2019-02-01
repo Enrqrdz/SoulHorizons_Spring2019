@@ -39,12 +39,12 @@ public class scr_Pause : MonoBehaviour {
 
     private static void EnableInput()
     {
-        scr_InputManager.disableInput = true;
+        scr_InputManager.cannotInput = true;
     }
 
     private static void DisableInput()
     {
-        scr_InputManager.disableInput = false;
+        scr_InputManager.cannotInput = false;
     }
 
     private void ShowPausePanel()

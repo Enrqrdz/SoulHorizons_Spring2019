@@ -49,8 +49,8 @@ public class scr_statemanager : MonoBehaviour {
             }
 
             //make sure that movement is enabled
-            scr_InputManager.disableInput = false;
-            scr_InputManager.disableMovement = false;
+            scr_InputManager.cannotInput = false;
+            scr_InputManager.cannotMove = false;
 
             //load the stamina from the player
             StaminaText.text = "Stamina: " + playerMovement.GetStaminaCharges();

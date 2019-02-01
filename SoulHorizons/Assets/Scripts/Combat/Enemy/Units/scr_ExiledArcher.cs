@@ -106,7 +106,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         yield return new WaitForSecondsRealtime(1f);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         int playerXPos = player.GetComponent<scr_Entity>()._gridPos.x;
-        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
+        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.maxRowSize - 1, entity);
         yield return new WaitForSecondsRealtime(_aRInterval);
         canArrowRain = true; 
     }
@@ -115,7 +115,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     int PickXCoord()
     {
         //must return int 
-        int _range = scr_Grid.GridController.columnSizeMax;
+        int _range = scr_Grid.GridController.maxColumnSize;
         int _currPosX = entity._gridPos.x;
 
         if (_currPosX == _range - 1)
@@ -226,7 +226,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int _y = y + 1;
         
-        if(_y > scr_Grid.GridController.rowSizeMax - 1)
+        if(_y > scr_Grid.GridController.maxRowSize - 1)
         {
             _y = y - 2; 
         }
