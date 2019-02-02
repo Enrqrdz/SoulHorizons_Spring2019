@@ -1,13 +1,9 @@
-﻿//Colin
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-/// <summary>
-/// Contains the deck and discard piles. Handles shuffling and drawing.
-/// </summary>
 public class scr_Deck : MonoBehaviour {
 
 	public int deckSize = 30;
@@ -15,10 +11,10 @@ public class scr_Deck : MonoBehaviour {
     public scr_NameToCard cardMapping; //maps card name to the scriptable object for that card
     //public string DeckList; //the name of the file that contains the deck list
     public TextAsset deckList;
-    [HideInInspector] public List<scr_Card> hand = new List<scr_Card>();
-    [HideInInspector] public List<scr_Card> backupHand = new List<scr_Card>();
-    List<scr_Card> deck = new List<scr_Card>();
-    List<scr_Card> discard = new List<scr_Card>();
+    [HideInInspector] public List<CardData> hand = new List<CardData>();
+    [HideInInspector] public List<CardData> backupHand = new List<CardData>();
+    List<CardData> deck = new List<CardData>();
+    List<CardData> discard = new List<CardData>();
     public List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
 
     public void Awake()
@@ -29,7 +25,7 @@ public class scr_Deck : MonoBehaviour {
             hand.Add(null);
             backupHand.Add(null);
         }
-        if (scr_Inventory.numDecks == 0)
+        if (InventoryManager.deckList.Count == 0)
         {
             Debug.Log("Making new deck list");
             LoadNewDeck();
@@ -93,7 +89,7 @@ public class scr_Deck : MonoBehaviour {
             int quantity = int.Parse(parsedLine[1]);
 
             //attempt to retrieve the object reference from cardMapping
-            scr_Card nextCard = cardMapping.ConvertNameToCard(parsedLine[0]);
+            CardData nextCard = cardMapping.ConvertNameToCard(parsedLine[0]);
             if (nextCard == null)
             {
                 continue;
@@ -106,7 +102,7 @@ public class scr_Deck : MonoBehaviour {
             }
 
             //add the card and quantity to an inventory card list
-            scr_Inventory.addCard(nextCard, quantity);
+            InventoryManager.addCard(nextCard, quantity);
             cardList.Add(new KeyValuePair<string, int>(nextCard.cardName, quantity));
         }
 
@@ -125,10 +121,10 @@ public class scr_Deck : MonoBehaviour {
         }
          */
 
-        ShuffleHelper<scr_Card>(deck);
+        ShuffleHelper<CardData>(deck);
         CheckHandSize();
 
-        scr_Inventory.addDeck(cardList);
+        InventoryManager.addDeck(cardList);
     
 
     }
@@ -147,7 +143,7 @@ public class scr_Deck : MonoBehaviour {
         discard = loadDeck.discard;
         cardList = loadDeck.cardList;
 
-        ShuffleHelper<scr_Card>(deck);
+        ShuffleHelper<CardData>(deck);
         CheckHandSize();
     }
 
@@ -156,10 +152,10 @@ public class scr_Deck : MonoBehaviour {
     /// </summary>
     public void LoadDeck()
     {
-        List<KeyValuePair<string, int>> cards = scr_Inventory.deckList[scr_Inventory.deckIndex];
+        List<KeyValuePair<string, int>> cards = InventoryManager.deckList[InventoryManager.currentDeckIndex];
         foreach (KeyValuePair<string, int> pair in cards)
         {
-            scr_Card nextCard = cardMapping.ConvertNameToCard(pair.Key);
+            CardData nextCard = cardMapping.ConvertNameToCard(pair.Key);
             if (nextCard == null)
             {
                 continue;
@@ -177,7 +173,7 @@ public class scr_Deck : MonoBehaviour {
             Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
         }
 
-        ShuffleHelper<scr_Card>(deck);
+        ShuffleHelper<CardData>(deck);
         CheckHandSize();
 
 
@@ -191,40 +187,40 @@ public class scr_Deck : MonoBehaviour {
     {
         if (list.Equals("deck"))
         {
-            ShuffleHelper<scr_Card>(deck);
+            ShuffleHelper<CardData>(deck);
         }
         else if(list.Equals("discard"))
         {
-            ShuffleHelper<scr_Card>(discard);
+            ShuffleHelper<CardData>(discard);
             return;
         }
         else if(list.Equals("discard into deck"))
         {
             //move discard into deck
-            foreach (scr_Card card in discard)
+            foreach (CardData card in discard)
             {
                 deck.Add(card);
                 discard.Remove(card);
             }
             //shuffle
-            ShuffleHelper<scr_Card>(deck);
+            ShuffleHelper<CardData>(deck);
         }
         else if(list.Equals("all"))
         {
             //move everything into deck
-            foreach (scr_Card card in discard)
+            foreach (CardData card in discard)
             {
                 deck.Add(card);
                 discard.Remove(card);
             }
-            foreach (scr_Card card in hand)
+            foreach (CardData card in hand)
             {
                 deck.Add(card);
                 hand.Remove(card);
             }
 
             //shuffle
-            ShuffleHelper<scr_Card>(deck);
+            ShuffleHelper<CardData>(deck);
             //draw a new hand
             CheckHandSize();
         }
@@ -270,7 +266,7 @@ public class scr_Deck : MonoBehaviour {
         }
         */
         int i = 0;
-        foreach (scr_Card item in hand)
+        foreach (CardData item in hand)
         {
             if(item == null)
             {
@@ -316,7 +312,7 @@ public class scr_Deck : MonoBehaviour {
 
     private IEnumerator ActivateHelper(int index)
     {
-        scr_Card cardToPlay = hand[index];
+        CardData cardToPlay = hand[index];
         //wait however long is required
         if (cardToPlay.castingTime != 0)
         {
@@ -349,7 +345,7 @@ public class scr_Deck : MonoBehaviour {
 
     private IEnumerator ActivateBackupHelper(int index)
     {
-        scr_Card cardToPlay = backupHand[index];
+        CardData cardToPlay = backupHand[index];
         //wait however long is required
         if (cardToPlay.castingTime != 0)
         {
@@ -373,7 +369,7 @@ public class scr_Deck : MonoBehaviour {
     public void Swap(int index)
     {
         //swap the card at this index with the card in its backup slot
-        scr_Card temp = backupHand[index];
+        CardData temp = backupHand[index];
         backupHand[index] = hand[index];
         
         if (temp  == null)

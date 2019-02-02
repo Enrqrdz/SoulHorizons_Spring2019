@@ -31,10 +31,7 @@ public class scr_PlayerMovement : scr_EntityAI
     {
 
     }
-    public override void Attack()
-    {
 
-    }
     public override void UpdateAI()
     {
         MovementCheck();
