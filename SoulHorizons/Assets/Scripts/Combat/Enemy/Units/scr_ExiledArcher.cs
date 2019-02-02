@@ -37,10 +37,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         
     }
-    public override void Attack()
-    {
-        
-    }
+
     public override void UpdateAI()
     {
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity); 
@@ -52,14 +49,6 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             StartCoroutine(MovementClock());
         }
-
-
-        /*
-        if (canArrowRain)
-        {
-            StartCoroutine(ArrowRain(aRInterval)); 
-        }
-        */
 
     }
 
@@ -93,14 +82,12 @@ public class scr_ExiledArcher : scr_EntityAI {
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
         anim.SetBool("Attack", true);
-        //scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         yield return new WaitForSecondsRealtime(hSCooldownTime);
         hSOnCD = false; 
     }
 
     private IEnumerator ArrowRain(float _aRInterval)
     {
-        
         //TELEGRAPH 
         canArrowRain = false; 
         yield return new WaitForSecondsRealtime(1f);
