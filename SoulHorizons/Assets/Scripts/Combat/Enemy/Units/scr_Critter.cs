@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class scr_Critter : scr_EntityAI {
 
-
-
-
     public float decisionTime;
     public float decisionTimeLower; 
     public float burrowedTime;
@@ -27,22 +24,45 @@ public class scr_Critter : scr_EntityAI {
 
     public override void Move()
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Footsteps_SFX = SFX_Sources[0];
+        int index = Random.Range(0, movements_SFX.Length);
+        movement_SFX = movements_SFX[index];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
+        int xCoord = GenerateCoord(scr_Grid.GridController.xSizeMax / 2, scr_Grid.GridController.xSizeMax);
+        int yCoord = GenerateCoord(0, scr_Grid.GridController.ySizeMax);
 
-        
+        if (xCoord == entity._gridPos.x && yCoord == entity._gridPos.y)
+        {
+            //We picked the spot we are on, do the check again 
+            Move();
+            return;
+        }
+        else
+        {
+           if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))   
+            {
+                //if the tile is not occupied
+                scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied 
+                entity.SetTransform(xCoord, yCoord);                                            //move here 
+                return;
+            }
+           else
+           {
+                //it is occupied, perform the check again
+                Move();
+                return;
+           }
+        }
+    }
 
-    }
-    public override void Attack()
-    {
-        
-    }
     public override void UpdateAI()
     {
         if (taskComplete)
         {
             StartCoroutine(Brain()); 
-        }
-
-         
+        }    
     }
 
     public override void Die()
@@ -51,61 +71,11 @@ public class scr_Critter : scr_EntityAI {
         entity.Death();
     }
 
-
-
-
     int GenerateCoord(int lowerLim,int upperLim)
     {
-        int _x = Random.Range(lowerLim, upperLim);
-        return _x; 
+        int x = Random.Range(lowerLim, upperLim);
+        return x; 
     }
-
-
-
-
-
-    private void Movement()
-    {
-        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Footsteps_SFX = SFX_Sources[0];
-        int index = Random.Range(0, movements_SFX.Length);
-        movement_SFX = movements_SFX[index];
-        Footsteps_SFX.clip = movement_SFX;
-        Footsteps_SFX.Play();
-        int _x = GenerateCoord(scr_Grid.GridController.xSizeMax/2, scr_Grid.GridController.xSizeMax);
-        int _y = GenerateCoord(0, scr_Grid.GridController.ySizeMax);
-
-        if(_x == entity._gridPos.x  &&  _y == entity._gridPos.y)
-        {
-            //We picked the spot we are on, do the check again 
-            Movement();
-            return; 
- 
-        }
-        else
-        {
-            
-            if (!scr_Grid.GridController.CheckIfOccupied(_x, _y) && (scr_Grid.GridController.ReturnTerritory(_x, _y).name == entity.entityTerritory.name))                       //if the tile is not occupied 
-            {
-                scr_Grid.GridController.SetTileOccupied(true, _x, _y, entity);          //set it to be occupied 
-                entity.SetTransform(_x, _y);                                            //move here 
-                return;
-
-            }
-            else
-            {
-                //it is occupied, perform the check again
-                Movement();
-                return;
-             
-            }
-
-                 
-        }
-
-        
-    }
-
 
     IEnumerator Brain()
     {
@@ -113,8 +83,8 @@ public class scr_Critter : scr_EntityAI {
         {
             case 0:                                                             //Move the entity,
                 entity.spr.color = burrowedColor;
-                taskComplete = false; 
-                Movement();                                                     //Set new position
+                taskComplete = false;
+                Move();                                                     //Set new position
                 float _thatTime;
                 _thatTime = Random.Range(burrowedTimeLower, burrowedTime);
                 yield return new WaitForSecondsRealtime(_thatTime);          //in case we want him to be hidden/burrowed for an amount of time
@@ -163,29 +133,6 @@ public class scr_Critter : scr_EntityAI {
         
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     int PickYCoord()
     {
         if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
@@ -194,8 +141,8 @@ public class scr_Critter : scr_EntityAI {
         }
         else if (entity._gridPos.y == 1)                        //AI is on y = 1 and can move either up or down
         {
-            int _temp = Random.Range(0, 2);             //make a random number 0 or 1
-            if (_temp == 0)                              //if this number is 0, move to 0 (up)
+            int temp = Random.Range(0, 2);             //make a random number 0 or 1
+            if (temp == 0)                              //if this number is 0, move to 0 (up)
             {
                 return 0;
             }
@@ -209,6 +156,4 @@ public class scr_Critter : scr_EntityAI {
             return 1;
         }
     }
-
-
 }
