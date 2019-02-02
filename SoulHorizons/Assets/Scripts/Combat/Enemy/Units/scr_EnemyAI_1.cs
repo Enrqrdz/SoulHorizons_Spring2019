@@ -13,8 +13,8 @@ public class scr_EnemyAI_1 : scr_EntityAI
     public float movementIntervalLower;
     public float movementIntervalUpper;
     bool waiting = false;
-    public Attack attack1;
-    public Attack chargedAttack;
+    public AttackData attack1;
+    public AttackData chargedAttack;
 
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;

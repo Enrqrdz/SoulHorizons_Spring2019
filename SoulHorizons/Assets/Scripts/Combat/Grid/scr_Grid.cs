@@ -20,7 +20,7 @@ public class scr_Grid : MonoBehaviour{
 
     public static scr_Grid GridController;
 
-    public Encounter encounter;
+    public EncounterData encounter;
 
     private void Awake()
     {
@@ -215,7 +215,7 @@ public class scr_Grid : MonoBehaviour{
         {
             if (activeEntities[i].gameObject.activeSelf)
             {
-                if (activeEntities[i]._gridPos == attack.pos) 
+                if (activeEntities[i]._gridPos == attack.position) 
                 {
                     //Debug.Log(activeEntities[i].entityTerritory.name + " " + attack.entity.entityTerritory.name);
                     if (activeEntities[i].type != attack.entity.type)
@@ -224,7 +224,7 @@ public class scr_Grid : MonoBehaviour{
                         //Check if entity is invincible and assigns iframes accordingly
                         if (!activeEntities[i].isInvincible())
                         {
-                            activeEntities[i].HitByAttack(attack._attack);
+                            activeEntities[i].HitByAttack(attack.attack);
                             if (activeEntities[i].has_iframes)
                             {
                                 //Activate invincibility frames
@@ -234,7 +234,7 @@ public class scr_Grid : MonoBehaviour{
                         }
                         attack.entityIsHit = true;
                         attack.entityHit = activeEntities[i];
-                        attack._attack.ImpactEffects();
+                        attack.attack.ImpactEffects();
                     }
                     
                 }

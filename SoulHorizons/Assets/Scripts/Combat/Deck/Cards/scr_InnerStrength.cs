@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Cards/InnerStrength")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_InnerStrength : scr_Card {
+public class scr_InnerStrength : CardData {
 
     public float multiplier;
     public float duration;

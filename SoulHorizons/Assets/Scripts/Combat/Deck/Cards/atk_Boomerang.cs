@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Attacks/Boomerang")]
 [RequireComponent(typeof(AudioSource))]
 
-public class atk_Boomerang : Attack
+public class atk_Boomerang : AttackData
 {
     private AudioSource PlayCardSFX;
     public AudioClip BoomerangSFX;
@@ -15,11 +15,11 @@ public class atk_Boomerang : Attack
     }
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
     {
-        activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.pos),Quaternion.identity);
+        activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position),Quaternion.identity);
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
-        activeAtk._attack.maxIncrements = ((scr_Grid.GridController.xSizeMax * 2) + scr_Grid.GridController.ySizeMax - 2); 
+        activeAtk.attack.maxIncrementRange = ((scr_Grid.GridController.xSizeMax * 2) + scr_Grid.GridController.ySizeMax - 2); 
         return activeAtk;
     }
 
@@ -64,8 +64,8 @@ public class atk_Boomerang : Attack
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPos.x, activeAttack.lastPos.y) + activeAttack._attack.particlesOffset, (particleSpeed) * Time.deltaTime);
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
         activeAttack.particle.transform.Rotate(0, 0, 30,Space.Self);
-        activeAttack.particle.sortingOrder = -activeAttack.pos.y;
+        activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 }

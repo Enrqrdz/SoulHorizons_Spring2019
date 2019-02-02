@@ -75,7 +75,7 @@ public class scr_statemanager : MonoBehaviour {
             endCombat = true;
 
             //GIVE REWARDS
-            scr_Inventory.dustNum += 50;
+            SaveManager.currentGame.AddDust(50);
 
             //save health
             try
@@ -123,7 +123,7 @@ public class scr_statemanager : MonoBehaviour {
         {
             //scr_InputManager.disableInput = true;
             //RewardMessage.text = "Oh no you died! Press V to return to the Local Map";
-            scr_Pause.setPaused(true);
+            scr_Pause.TogglePause();
             DeathMessage.SetActive(true);
             //rewardPanel.enabled = true; 
             endCombat = true;
