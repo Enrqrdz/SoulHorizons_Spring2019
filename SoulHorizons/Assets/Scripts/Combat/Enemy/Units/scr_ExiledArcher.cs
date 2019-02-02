@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class scr_ExiledArcher : scr_EntityAI {
 
-    public Attack hunterShot;
 
     public AttackData hunterShot;
     public float hSChargeTime;
     private bool hSOnCD = false;   //On Cooldown 
     private float hSCooldownTime = 1.5f; 
-
-    public Attack arrowRain;
-
 
     public AttackData arrowRain;
     public float aRInterval;
@@ -142,7 +138,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         //must return int 
         int _range = scr_Grid.GridController.columnSizeMax;
         int _currPosX = entity._gridPos.x;
-        int range = scr_Grid.GridController.xSizeMax;
+        int range = scr_Grid.GridController.rowSizeMax;
         int curPosX = entity._gridPos.x;
 
         if (curPosX == range - 1)
@@ -210,8 +206,8 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int yDirection = y + 1;
         
-        if(_y > scr_Grid.GridController.rowSizeMax - 1)
-        if(yDirection > scr_Grid.GridController.ySizeMax - 1)
+        if(yDirection > scr_Grid.GridController.rowSizeMax - 1)
+        if(yDirection > scr_Grid.GridController.columnSizeMax - 1)
         {
             yDirection = y - 2; 
         }

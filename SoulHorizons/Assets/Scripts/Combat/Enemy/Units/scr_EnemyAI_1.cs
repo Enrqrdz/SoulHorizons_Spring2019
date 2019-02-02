@@ -35,28 +35,6 @@ public class scr_EnemyAI_1 : scr_EntityAI
 
     public override void Move()
     {
-
-    }
-    public override void Attack()
-    {
-
-    }
-    public override void UpdateAI()
-    {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
-        if (completedTask)
-        {
-            StartCoroutine(Brain()); 
-        }
-    }
-
-    public override void Die()
-    {
-        entity.Death();
-    }
-
-    void Movement()
-    {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Footsteps_SFX = SFX_Sources[0];
         Attack_SFX = SFX_Sources[1];
@@ -69,11 +47,11 @@ public class scr_EnemyAI_1 : scr_EntityAI
         int _temp = Random.Range(0, 2);                                         //Pick a number between 0 and 1
         int _x = entity._gridPos.x;
         int _y = entity._gridPos.y;
-        int _tries = 0; 
-        
-        
+        int _tries = 0;
 
-        while(_tries < 10)
+
+
+        while (_tries < 10)
         {
             _temp = Random.Range(0, 2);
             if (_temp == 0)                                                          //if that number == 0, then we're moving vertically 
@@ -105,6 +83,22 @@ public class scr_EnemyAI_1 : scr_EntityAI
         }
         completedTask = true;
     }
+
+    public override void UpdateAI()
+    {
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        if (completedTask)
+        {
+            StartCoroutine(Brain()); 
+        }
+    }
+
+    public override void Die()
+    {
+        entity.Death();
+    }
+
+
 
 
     void Attack1()
@@ -218,7 +212,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
         {
             case 0:
                 completedTask = false; 
-                Movement();
+                Move();
 
                 state = 1; 
                 break;

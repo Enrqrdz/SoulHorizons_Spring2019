@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Critter : scr_EntityAI {
+public class scr_Critter : scr_EntityAI
+{
 
     public float decisionTime;
-    public float decisionTimeLower; 
+    public float decisionTimeLower;
     public float burrowedTime;
-    public float burrowedTimeLower; 
+    public float burrowedTimeLower;
     public Color burrowedColor;
-    public Color normalColor; 
-    bool taskComplete = true; 
+    public Color normalColor;
+    bool taskComplete = true;
     int state = 1;
     float t = 0;
     float t2 = 0;
@@ -24,53 +25,14 @@ public class scr_Critter : scr_EntityAI {
 
     public override void Move()
     {
-
-        
-
-    }
-    public override void Attack()
-    {
-        
-    }
-    public override void UpdateAI()
-    {
-        if (taskComplete)
-        {
-            StartCoroutine(Brain()); 
-        }
-
-         
-    }
-
-    public override void Die()
-    {
-        Debug.Log("ARGHH");
-        entity.Death();
-    }
-
-
-
-
-    int GenerateCoord(int lowerLim,int upperLim)
-    {
-        int _x = Random.Range(lowerLim, upperLim);
-        return _x; 
-    }
-
-    private void Movement()
-    {
-
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Footsteps_SFX = SFX_Sources[0];
         int index = Random.Range(0, movements_SFX.Length);
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
         Footsteps_SFX.Play();
-        int _x = GenerateCoord(scr_Grid.GridController.columnSizeMax/2, scr_Grid.GridController.columnSizeMax);
-        int _y = GenerateCoord(0, scr_Grid.GridController.rowSizeMax);
-
-        int xCoord = GenerateCoord(scr_Grid.GridController.xSizeMax / 2, scr_Grid.GridController.xSizeMax);
-        int yCoord = GenerateCoord(0, scr_Grid.GridController.ySizeMax);
+        int xCoord = GenerateCoord(scr_Grid.GridController.columnSizeMax / 2, scr_Grid.GridController.columnSizeMax);
+        int yCoord = GenerateCoord(0, scr_Grid.GridController.rowSizeMax);
 
         if (xCoord == entity._gridPos.x && yCoord == entity._gridPos.y)
         {
@@ -80,22 +42,20 @@ public class scr_Critter : scr_EntityAI {
         }
         else
         {
-           if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))   
+            if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
             {
                 //if the tile is not occupied
                 scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied 
                 entity.SetTransform(xCoord, yCoord);                                            //move here 
                 return;
             }
-           else
-           {
+            else
+            {
                 //it is occupied, perform the check again
                 Move();
                 return;
-           }
+            }
         }
-
-    }
 
 
     }
@@ -104,8 +64,10 @@ public class scr_Critter : scr_EntityAI {
     {
         if (taskComplete)
         {
-            StartCoroutine(Brain()); 
-        }    
+            StartCoroutine(Brain());
+        }
+
+
     }
 
     public override void Die()
@@ -114,11 +76,12 @@ public class scr_Critter : scr_EntityAI {
         entity.Death();
     }
 
-    int GenerateCoord(int lowerLim,int upperLim)
+    int GenerateCoord(int lowerLim, int upperLim)
     {
-        int x = Random.Range(lowerLim, upperLim);
-        return x; 
+        int _x = Random.Range(lowerLim, upperLim);
+        return _x;
     }
+
 
     IEnumerator Brain()
     {
@@ -133,24 +96,24 @@ public class scr_Critter : scr_EntityAI {
                 yield return new WaitForSecondsRealtime(_thatTime);          //in case we want him to be hidden/burrowed for an amount of time
                 state = 3;                                                      //go to un-burrowing
                 entity.spr.color = burrowedColor;
-                taskComplete = true; 
+                taskComplete = true;
                 break;
             case 1:                                                             //On a tile, waiting to do a thing
                 entity.invincible = false;
                 taskComplete = false;
                 float _thisTime;
                 _thisTime = Random.Range(decisionTimeLower, decisionTime);
-                yield return new WaitForSecondsRealtime(_thisTime);      
+                yield return new WaitForSecondsRealtime(_thisTime);
                 state = 2;                                                      //go to burrowing                                            
-                taskComplete = true; 
+                taskComplete = true;
                 break;
             case 2:                                                             //burrows and is hidden
                 t = 0;
-                taskComplete = false; 
+                taskComplete = false;
                 while (t < 1)
                 { // while t below the end limit...
                   // increment it at the desired rate every update:
-                    entity.spr.color = Color.Lerp(normalColor, burrowedColor,t);   //fades the color of the sprite to black, this is a placeholder for a burrowing animation
+                    entity.spr.color = Color.Lerp(normalColor, burrowedColor, t);   //fades the color of the sprite to black, this is a placeholder for a burrowing animation
                     t += Time.deltaTime / lerpDuration;
                     yield return new WaitForSecondsRealtime(.001f);
                 }
@@ -159,21 +122,21 @@ public class scr_Critter : scr_EntityAI {
                 taskComplete = true;
                 break;
             case 3:                                                             //pops out of burrow in new tile
-                t2 = 0; 
+                t2 = 0;
                 taskComplete = false;
                 while (t2 < 1)
                 { // while t below the end limit...
                   // increment it at the desired rate every update:
-                    entity.spr.color = Color.Lerp(burrowedColor,normalColor, t2);   //fades the color of the sprite to black, this is a placeholder for a burrowing animation
+                    entity.spr.color = Color.Lerp(burrowedColor, normalColor, t2);   //fades the color of the sprite to black, this is a placeholder for a burrowing animation
                     t2 += Time.deltaTime / lerpDuration;
                     yield return new WaitForSecondsRealtime(.001f);
                 }
                 entity.invincible = false;                                     //make the entity mortal again
                 state = 1;                                                      //go to waiting 
-                taskComplete = true; 
+                taskComplete = true;
                 break;
         }
-        
+
     }
 
     int PickYCoord()
@@ -200,3 +163,4 @@ public class scr_Critter : scr_EntityAI {
         }
     }
 
+}
