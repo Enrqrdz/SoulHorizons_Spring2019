@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class scr_Critter : scr_EntityAI
 {
-
     public float decisionTime;
     public float decisionTimeLower;
     public float burrowedTime;
@@ -66,8 +65,6 @@ public class scr_Critter : scr_EntityAI
         {
             StartCoroutine(Brain());
         }
-
-
     }
 
     public override void Die()
@@ -91,9 +88,9 @@ public class scr_Critter : scr_EntityAI
                 entity.spr.color = burrowedColor;
                 taskComplete = false;
                 Move();                                                     //Set new position
-                float _thatTime;
-                _thatTime = Random.Range(burrowedTimeLower, burrowedTime);
-                yield return new WaitForSecondsRealtime(_thatTime);          //in case we want him to be hidden/burrowed for an amount of time
+                float burrowTime;
+                burrowTime = Random.Range(burrowedTimeLower, burrowedTime);
+                yield return new WaitForSecondsRealtime(burrowTime);          //in case we want him to be hidden/burrowed for an amount of time
                 state = 3;                                                      //go to un-burrowing
                 entity.spr.color = burrowedColor;
                 taskComplete = true;
@@ -101,9 +98,9 @@ public class scr_Critter : scr_EntityAI
             case 1:                                                             //On a tile, waiting to do a thing
                 entity.invincible = false;
                 taskComplete = false;
-                float _thisTime;
-                _thisTime = Random.Range(decisionTimeLower, decisionTime);
-                yield return new WaitForSecondsRealtime(_thisTime);
+                float waitTime;
+                waitTime = Random.Range(decisionTimeLower, decisionTime);
+                yield return new WaitForSecondsRealtime(waitTime);
                 state = 2;                                                      //go to burrowing                                            
                 taskComplete = true;
                 break;
