@@ -13,8 +13,8 @@ public class EncounterData : ScriptableObject {
 
 
     [Header("Grid Size")]
-    public int xWidth = 3;
-    public int yHeight = 3;
+    public int columnNumber = 3;
+    public int rowNumber = 3;
     [Header("Terrain")]
     public string defaultTerrain;
     public List<Terrain_Entry> tiles = new List<Terrain_Entry>();
