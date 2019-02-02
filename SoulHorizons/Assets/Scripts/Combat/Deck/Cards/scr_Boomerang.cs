@@ -7,7 +7,7 @@ using UnityEngine;
 public class scr_Boomerang : scr_Card
 {
 
-    public Attack boomerangAttack;
+    public AttackData boomerangAttack;
     private AudioSource PlayCardSFX;
     public AudioClip BoomerangSFX;
 

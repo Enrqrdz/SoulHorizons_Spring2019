@@ -4,8 +4,8 @@ using UnityEngine;
 
 public static class scr_InputManager {
 
-	public static bool disableInput = false; //set to true to prevent the player from getting input
-	public static bool disableMovement = false; //set to true to prevent the player from inputting movement
+	public static bool cannotInput = false; //set to true to prevent the player from getting input
+	public static bool cannotMove = false; //set to true to prevent the player from inputting movement
 
 	// -- Axis
 	/// <summary>
@@ -15,7 +15,7 @@ public static class scr_InputManager {
 	/// <returns>returns -1 for left, 1 for right, 0 for neither, only on the frame the axis is pressed</returns>
 	public static int MainHorizontal()
 	{
-		if(disableInput || disableMovement)
+		if(cannotInput || cannotMove)
 		{
 			return 0;
 		}
@@ -66,7 +66,7 @@ public static class scr_InputManager {
 	/// <returns>returns -1 for down, 1 for up, 0 for neither</returns>
 	public static int MainVertical()
 	{
-		if(disableInput || disableMovement)
+		if(cannotInput || cannotMove)
 		{
 			return 0;
 		}
@@ -110,7 +110,7 @@ public static class scr_InputManager {
 	/// <returns>returns -1 for left, 1 for right, 0 for neither</returns>
 	public static int HandScrolling()
 	{
-		if(disableInput)
+		if(cannotInput)
 		{
 			return 0;
 		}
@@ -138,7 +138,7 @@ public static class scr_InputManager {
 	/// <returns>returns true if any of these buttons were pressed this frame</returns>
 	public static bool SoulFusion()
 	{
-		if(disableInput)
+		if(cannotInput)
 		{
 			return false;
 		}
@@ -152,7 +152,7 @@ public static class scr_InputManager {
 	/// <returns>returns either 1,2, or 3 to indicate a selection, or 0 if none was selected</returns>
 	public static int K_SoulFusion()
 	{
-		if(disableInput)
+		if(cannotInput)
 		{
 			return 0;
 		}
@@ -184,7 +184,7 @@ public static class scr_InputManager {
 	/// <returns>returns true if the blast button is down.</returns>
 	public static bool Blast()
 	{
-		if(disableInput)
+		if(cannotInput)
 		{
 			return false;
 		}
@@ -223,7 +223,7 @@ public static class scr_InputManager {
 	/// <returns>returns 0-3 the frame a play card button is pressed or -1 if none is pressed</returns>
 	public static int PlayCard()
 	{
-		if(disableInput)
+		if(cannotInput)
 		{
 			return -1;
 		}

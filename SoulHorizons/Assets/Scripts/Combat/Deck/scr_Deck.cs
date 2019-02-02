@@ -33,7 +33,7 @@ public class scr_Deck : MonoBehaviour {
         {
             Debug.Log("Making new deck list");
             LoadNewDeck();
-            SaveLoad.Save();
+            SaveManager.Save();
         }
         else
         {
@@ -322,10 +322,10 @@ public class scr_Deck : MonoBehaviour {
         {
             //start initial effects and stop player input
             cardToPlay.StartCastingEffects();
-            scr_InputManager.disableInput = true;
+            scr_InputManager.cannotInput = true;
             yield return new WaitForSeconds(cardToPlay.castingTime);
         }
-        scr_InputManager.disableInput = false;
+        scr_InputManager.cannotInput = false;
         hand[index].Activate();
         discard.Add(cardToPlay);
         //hand.Remove(cardToPlay);
@@ -355,10 +355,10 @@ public class scr_Deck : MonoBehaviour {
         {
             //start initial effects and stop player input
             cardToPlay.StartCastingEffects();
-            scr_InputManager.disableInput = true;
+            scr_InputManager.cannotInput = true;
             yield return new WaitForSeconds(cardToPlay.castingTime);
         }
-        scr_InputManager.disableInput = false;
+        scr_InputManager.cannotInput = false;
         backupHand[index].Activate();
         discard.Add(cardToPlay);
         //hand.Remove(cardToPlay);

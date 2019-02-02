@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class scr_Bolt : scr_Card {
 
-    public Attack boltAttack;
+    public AttackData boltAttack;
     private AudioSource PlayCardSFX;
     public AudioClip BoltSFX;
 
