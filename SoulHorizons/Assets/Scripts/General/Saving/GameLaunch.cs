@@ -6,8 +6,6 @@ public class GameLaunch : MonoBehaviour
 {
     public RegionGenerator regionGenerator;
 
-    
-
     public void NewGame()
     {
         SaveManager.NewSave();
@@ -19,15 +17,5 @@ public class GameLaunch : MonoBehaviour
     {
         SaveManager.Load();
         scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
-    }
-
-    public void GetCardScriptableObjects()
-    {
-
-    }
-
-    public void GetEncounterScriptableObjects()
-    {
-
     }
 }
