@@ -87,15 +87,12 @@ public class scr_Grid : MonoBehaviour{
                 scr_Tile tileToAdd = null;
 
                 tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((j * tileSpacing.x +columnOffset), (i * tileSpacing.y + rowOffset), 0), Quaternion.identity);
-
                 tileToAdd.territory = encounter.territoryColumn[j].territoryRow[i];
                 tileToAdd.gridPositionX = j;
                 tileToAdd.gridPositionY = i;
 
                 tileSpriteRenderer = tileToAdd.GetComponent<SpriteRenderer>();
                 tileSpriteRenderer.sprite = tile_sprites;
-
-                if (tile_sprites == null) Debug.Log("MISSING SPRITE");
 
                 grid[j, i] = tileToAdd;
 
