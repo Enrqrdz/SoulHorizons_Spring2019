@@ -355,12 +355,12 @@ MonoBehaviour:
   numberOfEncounters: 10
   encounterPool:
   - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
-  - {fileID: 11400000, guid: c2eea985e5ee5cc4bae814e182776a19, type: 2}
-  - {fileID: 11400000, guid: c58da183e3e04b1448c4f221d424c663, type: 2}
-  - {fileID: 11400000, guid: 276926aded5e6fa47a8481d4d7142e06, type: 2}
-  - {fileID: 11400000, guid: e92a3fe3e41ecf44e9d99028f74bc0b8, type: 2}
-  - {fileID: 11400000, guid: 1ea3f71c4d41ba7459e1cf49e49d96d9, type: 2}
-  - {fileID: 11400000, guid: af460fe552103074288c5407c99ce765, type: 2}
+  - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
+  - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
+  - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
+  - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
+  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
 --- !u!4 &268632237
 Transform:
   m_ObjectHideFlags: 0

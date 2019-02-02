@@ -94,9 +94,9 @@ public class scr_Grid : MonoBehaviour{
     public void InitEncounter()
     {
         //Set movement to true
-        scr_InputManager.disableInput = false;
-        columnSizeMax = encounter.xWidth;
-        rowSizeMax = encounter.yHeight;
+        scr_InputManager.cannotInput = false;
+        columnSizeMax = encounter.columnNumber;
+        rowSizeMax = encounter.rowNumber;
         //calling in awake as a debug, should be called in Encounter
         SetNewGrid(columnSizeMax, rowSizeMax);
         activeEntities = new scr_Entity[encounter.entities.Length]; 

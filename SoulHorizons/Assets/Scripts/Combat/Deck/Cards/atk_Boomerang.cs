@@ -19,7 +19,7 @@ public class atk_Boomerang : AttackData
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
-        activeAtk.attack.maxIncrementRange = ((scr_Grid.GridController.maxColumnSize * 2) + scr_Grid.GridController.maxRowSize - 2); 
+        activeAtk.attack.maxIncrementRange = ((scr_Grid.GridController.columnSizeMax * 2) + scr_Grid.GridController.rowSizeMax - 2); 
         return activeAtk;
     }
 
@@ -45,12 +45,12 @@ public class atk_Boomerang : AttackData
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
         
-        if(activeAtk.currentIncrement < scr_Grid.GridController.maxColumnSize - 1)
+        if(activeAtk.currentIncrement < scr_Grid.GridController.columnSizeMax - 1)
         {
             xPos++;
             return new Vector2Int(xPos, yPos); 
         }
-        else if(activeAtk.currentIncrement < (scr_Grid.GridController.maxColumnSize - 1 + scr_Grid.GridController.maxRowSize - 1))
+        else if(activeAtk.currentIncrement < (scr_Grid.GridController.columnSizeMax - 1 + scr_Grid.GridController.rowSizeMax - 1))
         {
             yPos++;
             return new Vector2Int(xPos, yPos); 
