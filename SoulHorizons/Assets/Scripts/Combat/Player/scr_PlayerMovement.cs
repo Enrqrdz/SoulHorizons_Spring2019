@@ -130,7 +130,7 @@ public class scr_PlayerMovement : scr_EntityAI
             {
                 Debug.Log("FOOTSTEP SOUNDS");
                 AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-                Footsteps_SFX = SFX_Sources[1];
+                Footsteps_SFX = SFX_Sources[0];
                 int index = Random.Range(0, movements_SFX.Length);
                 movement_SFX = movements_SFX[index];
                 Footsteps_SFX.clip = movement_SFX;
