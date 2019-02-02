@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement; 
 
 public class scr_SceneManager : MonoBehaviour {
-
-    public Encounter currentEncounter;
     public static scr_SceneManager globalSceneManager;
-    public int currentEncounterNumber;
     public static bool canSwitch = true;
 	
 	void Start ()
@@ -36,12 +33,6 @@ public class scr_SceneManager : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public static void ClearSaveFiles()
-    {
-        //Deletes save files if you press the quit button - Used for debugging, delete line when done
-        SaveLoad.Clear();
     }
 
     public string ReturnSceneName()

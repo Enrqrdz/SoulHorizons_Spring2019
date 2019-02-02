@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class scr_Cleave : scr_Card
 {
-	public Attack attack;
+	public AttackData attack;
     private AudioSource PlayCardSFX;
     public AudioClip CleaveSFX;
 

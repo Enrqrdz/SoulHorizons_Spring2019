@@ -5,23 +5,26 @@ using UnityEngine.UI;
 
 
 [CreateAssetMenu(fileName = "New Encounter", menuName = "Encounter")]
+[System.Serializable]
 public class Encounter : ScriptableObject {
 
     public new string name;
-    public string sceneName = "sn_GridTest";                        //Cameron made this variable.  It is used by the scene manager to go to a specific string.  For now all of our combat happens in GridTest, but that might change?
+    public string sceneName = SceneNames.ENCOUNTER;                        //Cameron made this variable.  It is used by the scene manager to go to a specific string.  For now all of our combat happens in GridTest, but that might change?
 
 
     [Header("Grid Size")]
-    public int xWidth = 3;
-    public int yHeight = 3;
+    public int columnNumber = 3;
+    public int rowNumber = 3;
     [Header("Terrain")]
     public string defaultTerrain;
     public List<Terrain_Entry> tiles = new List<Terrain_Entry>();
     [Header("Assets")]
     public EntitySpawnLocation[] entities;
-    public int mouse;
-    public int mush;
-    public int archer;
+    public int mouseNum;
+    public int mushNum;
+    public int archerNum;
+    [Header("Encounter Data")]
+    public int tier;
 
     [Header("Territory")]
     public TerritoryRow[] territoryColumn;

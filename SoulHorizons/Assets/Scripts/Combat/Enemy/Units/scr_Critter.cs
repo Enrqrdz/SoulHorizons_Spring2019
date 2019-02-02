@@ -72,8 +72,8 @@ public class scr_Critter : scr_EntityAI {
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
         Footsteps_SFX.Play();
-        int _x = GenerateCoord(scr_Grid.GridController.xSizeMax/2, scr_Grid.GridController.xSizeMax);
-        int _y = GenerateCoord(0, scr_Grid.GridController.ySizeMax);
+        int _x = GenerateCoord(scr_Grid.GridController.maxColumnSize/2, scr_Grid.GridController.maxColumnSize);
+        int _y = GenerateCoord(0, scr_Grid.GridController.maxRowSize);
 
         if(_x == entity._gridPos.x  &&  _y == entity._gridPos.y)
         {

@@ -6,14 +6,14 @@ using UnityEngine;
 public class scr_ExiledArcher : scr_EntityAI {
 
 
-    public Attack hunterShot;
+    public AttackData hunterShot;
     public float hSChargeTime;
     private bool hSOnCD = false;   //On Cooldown 
     private float hSCooldownTime = 1.5f; 
 
 
 
-    public Attack arrowRain;
+    public AttackData arrowRain;
     public float aRInterval;
     public float movementIntervalLower;
     public float movementIntervalUpper;
@@ -106,7 +106,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         yield return new WaitForSecondsRealtime(1f);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         int playerXPos = player.GetComponent<scr_Entity>()._gridPos.x;
-        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.ySizeMax - 1, entity);
+        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.maxRowSize - 1, entity);
         yield return new WaitForSecondsRealtime(_aRInterval);
         canArrowRain = true; 
     }
@@ -115,7 +115,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     int PickXCoord()
     {
         //must return int 
-        int _range = scr_Grid.GridController.xSizeMax;
+        int _range = scr_Grid.GridController.maxColumnSize;
         int _currPosX = entity._gridPos.x;
 
         if (_currPosX == _range - 1)
@@ -226,7 +226,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int _y = y + 1;
         
-        if(_y > scr_Grid.GridController.ySizeMax - 1)
+        if(_y > scr_Grid.GridController.maxRowSize - 1)
         {
             _y = y - 2; 
         }

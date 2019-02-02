@@ -13,8 +13,8 @@ public class scr_EnemyAI_1 : scr_EntityAI
     public float movementIntervalLower;
     public float movementIntervalUpper;
     bool waiting = false;
-    public Attack attack1;
-    public Attack chargedAttack;
+    public AttackData attack1;
+    public AttackData chargedAttack;
 
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;
@@ -136,7 +136,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
     int PickXCoord()
     {
         //must return int 
-        int _range = scr_Grid.GridController.xSizeMax;
+        int _range = scr_Grid.GridController.maxColumnSize;
         int _currPosX = entity._gridPos.x;
 
         if(_currPosX == _range - 1)

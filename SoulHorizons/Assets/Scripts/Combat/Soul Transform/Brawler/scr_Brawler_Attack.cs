@@ -11,11 +11,8 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	private scr_Transform_BearUI bearUI; //a reference to the script on the prefab after it is created
 
 	private float swipe_yOffset = 0.2f; //an offset to move the effect higher
-	
-	//Have a general cooldown to check in Update, then specific attack cooldowns depending on what the attack does?
-	//Want to encourage the player to vary their attacks
-	private bool busy = false; //use this to indicate that the script is mid-attack, so don't do another attack (Is this necessary?)
-                               /*Fury Swipe */
+    
+    /*Fury Swipe */
     private int meleeDamage = 8;
 	private float meleeCooldown = 0.4f; //have these on separate cooldowns, so you can melee attack with the projectile in motion
 	private bool meleeReady = true;
@@ -75,9 +72,9 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		bearUI.gameObject.SetActive(false);
 	}
 	
-	void Update () {
-		int input = scr_InputManager.PlayCard();
-
+	void Update ()
+    {
+        int input = scr_InputManager.PlayCard();
 		switch (input)
 		{
 		    case 0:
@@ -126,7 +123,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 		if (target != null && target.type != EntityType.Player)
 		{
-			//deal damage
 			target.HitByAttack(meleeDamage, playerEntity.type);
 		}
 
@@ -136,9 +132,9 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 	}
 
-		private IEnumerator FurySwipeCooldown()
+    private IEnumerator FurySwipeCooldown()
 	{
-		meleeReady = false;
+	    meleeReady = false;
 		yield return new WaitForSeconds(meleeCooldown);
 		meleeReady = true;
 	}
@@ -154,7 +150,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		}
         dashing = true;
 		meleeCooldown -= 0.3f; //speed up the attack rate while dashing
-		scr_InputManager.disableMovement = true;
+		scr_InputManager.cannotMove = true;
 		startPos.x = playerEntity._gridPos.x; 
 		startPos.y = playerEntity._gridPos.y;
 		StartCoroutine(Dash());
@@ -180,7 +176,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 		dashing = false;
 		meleeCooldown += 0.3f; //slow the attack rate back to normal
-		scr_InputManager.disableMovement = false;
+		scr_InputManager.cannotMove = false;
 		playerEntity.SetTransform(startPos.x, startPos.y);
 	}
 
@@ -194,7 +190,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		int enemyY = playerEntity._gridPos.y;
 		if (target != null && target.type == EntityType.Enemy)
 		{
-			Debug.Log("Found an enemy to push");
             //deal damage
             target.HitByAttack(shoulderDamage, playerEntity.type);
             //push the enemy out of the way if possible
@@ -217,8 +212,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
 			{
 				return;
 			}
-
-			//concede defeat if we get to here
 		}
 	}
 
@@ -232,8 +225,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	{
 			if (scr_Grid.GridController.IsTileUnoccupied(x, y))
 			{
-				//move the enemy
-				Debug.Log("Moving the enemy");
 				target.SetTransform(x, y);
 				return true;
 			}
@@ -287,10 +278,8 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		int column = playerEntity._gridPos.x + 1;
 		while (slamDamage > 0 && scr_Grid.GridController.LocationOnGrid(column, 0)) //while the damage has not reduced to zero and we haven't gone off the edge of the grid
 		{
-			//check each column and see if it has enemies
-			bool enemySpaceFound = false; //only yield if we actually attacked an enemy space
 			//iterate through the tiles in this column
-			for (int i = 0; i < scr_Grid.GridController.ySizeMax; i++)
+			for (int i = 0; i < scr_Grid.GridController.maxRowSize; i++)
 			{
 				if (slamDamage > 0)
 				{
@@ -312,9 +301,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 				if (scr_Grid.GridController.grid[column,i].territory.name == TerrName.Enemy)
 				{
-					enemySpaceFound = true;
-					//play some effect on this tile to indicate it was attacked
-
 					//attack an enemy if there is one here
 					scr_Entity target = scr_Grid.GridController.GetEntityAtPosition(column, i);
 					if (target != null)
@@ -330,7 +316,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
 			if (slamDamage > 0)
 			{
 				slamDamage -= slamDamageDeprecation; //heavy slam does less damage as it moves right
-                //Debug.Log("Slam damage is: " + slamDamage + "\n Column position is: " + playerEntity._gridPos.y);
                 yield return new WaitForSeconds(slamMoveCooldown);
 		    }
 			//move to the next column

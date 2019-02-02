@@ -3,116 +3,126 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class scr_Grid : MonoBehaviour{
+    //May not need to be here
+    public static scr_Grid GridController;  
+    public Transform cameraHolder;
 
-    
-
-    public int xSizeMax; 
-    public int ySizeMax;
-    [Tooltip("Use to move the center of the grid along the x axis")]
-    public float xOffset = 0;
-    [Tooltip("Use to move the center of the grid along the y axis")]
-    public float yOffset = 0; 
-    public Vector2 tileSpacing;
-    public scr_Tile[,] grid;
-    public scr_Tile tile;
-    private SpriteRenderer spriteR;
-    public Sprite tile_sprites;
-    private int spriteTracker = 0;
+    public Encounter encounter;
     public scr_Entity[] activeEntities;
-    public Transform camera; 
+    private SpriteRenderer tileSpriteRenderer;
+    private int spriteTracker = 0;
 
-
-
-
-    public static scr_Grid GridController;
+    public scr_Tile[,] grid;    //2 dimensional array
+    public Vector2 gridCenter;
+    public scr_Tile tile;
+    public Vector2 tileSpacing;
+    public Sprite tile_sprites;
+    [Tooltip("Use to move the center of the grid along the x axis")]
+    public float columnOffset = 0;
+    public int maxColumnSize;
+    [Tooltip("Use to move the center of the grid along the y axis")]
+    public float rowOffset = 0;
+    public int maxRowSize;
 
     private void Awake()
     {
-        GridController = this;     
+        GridController = this;
     }
-
 
     private void Start()
     {
-        InitEncounter(); 
+        InitializeEncounter();
+        EnableMovement();
+        SetMaxColumnSize();
+        SetMaxRowSize();
+        SetNewGrid();
+        SetGridCenter();
+        SetCameraToCenter();
+        BuildGrid();
+        SetActiveEntities();
     }
 
-    //Build Grid Tiles
+    //BUG - AT START TILES DON'T COUNT AS OCCUPIED, AFTER INIT SET TILES TO OCCUPIED FOR INITIALIZED ENTITIES
+    private void InitializeEncounter()
+    {
+        encounter = SaveManager.currentGame.GetCurrentEncounter();
+    }
+
+    private static void EnableMovement()
+    {
+        scr_InputManager.cannotInput = false;
+    }
+
+    private void SetMaxColumnSize()
+    {
+        maxColumnSize = encounter.columnNumber;
+    }
+
+    private void SetMaxRowSize()
+    {
+        maxRowSize = encounter.rowNumber;
+    }
+
+    private void SetNewGrid()
+    {
+        grid = new scr_Tile[maxColumnSize, maxRowSize];
+    }
+
+    private void SetGridCenter()
+    {
+        gridCenter = new Vector2((tileSpacing.x * (maxColumnSize - 1) / 2), (tileSpacing.y * maxRowSize / 2));
+    }
+
+    private void SetCameraToCenter()
+    {
+        cameraHolder.transform.position = new Vector3(gridCenter.x, gridCenter.y, cameraHolder.transform.position.z);
+    }
+
     private void BuildGrid()
     {
-
-        //tile_sprites = Resources.LoadAll<Sprite>("tiles_spritesheet");
-        grid = new scr_Tile[xSizeMax, ySizeMax];
-        Vector2 gridCenter = new Vector2((tileSpacing.x * (xSizeMax-1) / 2), (tileSpacing.y * ySizeMax / 2));
-        print(gridCenter); 
-        camera.transform.position = new Vector3(gridCenter.x,gridCenter.y,camera.transform.position.z); 
-        for (int j = 0; j < ySizeMax; j++)
+        for (int i = 0; i < maxRowSize; i++)
         {
-            for (int i = 0; i < xSizeMax; i++)
+            for (int j = 0; j < maxColumnSize; j++)
             {
-                scr_Tile tileToAdd = null; 
+                scr_Tile tileToAdd = null;
 
-                tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + xOffset, (j * tileSpacing.y) + yOffset, 0), Quaternion.identity);
+                tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((j * tileSpacing.x +columnOffset), (i * tileSpacing.y + rowOffset), 0), Quaternion.identity);
+                tileToAdd.territory = encounter.territoryColumn[j].territoryRow[i];
+                tileToAdd.gridPositionX = j;
+                tileToAdd.gridPositionY = i;
 
-                tileToAdd.territory = scr_SceneManager.globalSceneManager.currentEncounter.territoryColumn[i].territoryRow[j];
-                tileToAdd.gridPositionX = i;
-                tileToAdd.gridPositionY = j;
+                tileSpriteRenderer = tileToAdd.GetComponent<SpriteRenderer>();
+                tileSpriteRenderer.sprite = tile_sprites;
 
-                spriteR = tileToAdd.GetComponent<SpriteRenderer>();
-                spriteR.sprite = tile_sprites;
-                
-                if (tile_sprites == null) Debug.Log("MISSING SPRITE");
-
-                grid[i, j] = tileToAdd;
+                grid[j, i] = tileToAdd;
 
                 spriteTracker++;
             }
         }
         spriteTracker = 0;
+    }
 
+    private void SetActiveEntities()
+    {
+        activeEntities = new scr_Entity[encounter.entities.Length];
+
+        for (int i = 0; i < activeEntities.Length; i++)
+        {
+            scr_Entity temporaryEntity = new scr_Entity();
+            temporaryEntity = (scr_Entity)Instantiate(encounter.entities[i]._entity, Vector3.zero, Quaternion.identity);
+            temporaryEntity.InitPosition(encounter.entities[i].x, encounter.entities[i].y);
+            activeEntities[i] = temporaryEntity;
+        }
     }
 
     public bool CheckIfOccupied(int x, int y)
     {
         return grid[x, y].occupied;
     }
+
     public bool CheckIfActive(int x, int y, ActiveAttack _activeAttack)
     {
-
         return grid[x, y].isActive; 
-    }
-
-
-    public void SetNewGrid(int new_xSizeMax, int new_ySizeMax)
-    {
-        xSizeMax = new_xSizeMax;
-        ySizeMax = new_ySizeMax;
-        BuildGrid(); 
-
-    }
-
-    //BUG - AT START TILES DON'T COUNT AS OCCUPIED, AFTER INIT SET TILES TO OCCUPIED FOR INITIALIZED ENTITIES
-    public void InitEncounter()
-    {
-        //Set movement to true
-        scr_InputManager.disableInput = false;
-        xSizeMax = scr_SceneManager.globalSceneManager.currentEncounter.xWidth;
-        ySizeMax = scr_SceneManager.globalSceneManager.currentEncounter.yHeight;
-        //calling in awake as a debug, should be called in Encounter
-        SetNewGrid(xSizeMax, ySizeMax);
-        activeEntities = new scr_Entity[scr_SceneManager.globalSceneManager.currentEncounter.entities.Length]; 
-        for(int x = 0; x < activeEntities.Length; x++)
-        {
-            scr_Entity _entity = new scr_Entity();
-            _entity = (scr_Entity)Instantiate(scr_SceneManager.globalSceneManager.currentEncounter.entities[x]._entity, Vector3.zero, Quaternion.identity);
-            _entity.InitPosition(scr_SceneManager.globalSceneManager.currentEncounter.entities[x].x, scr_SceneManager.globalSceneManager.currentEncounter.entities[x].y);
-            activeEntities[x] = _entity;
-        }
-    }
-
-    // Update is called once per frame
-    void Update () {
-        //Debug.Log("CENTER: " + grid[0, 0].transform.position.x);
     }
 
     public void PrimeNextTile(int x , int y)
@@ -217,7 +227,7 @@ public class scr_Grid : MonoBehaviour{
         {
             if (activeEntities[i].gameObject.activeSelf)
             {
-                if (activeEntities[i]._gridPos == attack.pos) 
+                if (activeEntities[i]._gridPos == attack.position) 
                 {
                     //Debug.Log(activeEntities[i].entityTerritory.name + " " + attack.entity.entityTerritory.name);
                     if (activeEntities[i].type != attack.entity.type)
@@ -226,7 +236,7 @@ public class scr_Grid : MonoBehaviour{
                         //Check if entity is invincible and assigns iframes accordingly
                         if (!activeEntities[i].isInvincible())
                         {
-                            activeEntities[i].HitByAttack(attack._attack);
+                            activeEntities[i].HitByAttack(attack.attack);
                             if (activeEntities[i].has_iframes)
                             {
                                 //Activate invincibility frames
@@ -236,7 +246,7 @@ public class scr_Grid : MonoBehaviour{
                         }
                         attack.entityIsHit = true;
                         attack.entityHit = activeEntities[i];
-                        attack._attack.ImpactEffects();
+                        attack.attack.ImpactEffects();
                     }
                     
                 }
@@ -341,10 +351,10 @@ public class scr_Grid : MonoBehaviour{
     {
         bool colFound = false;
         //Debug.Log("SEIZE!");
-        for (int i = 0; i < xSizeMax; i++)
+        for (int i = 0; i < maxColumnSize; i++)
         {
 
-            for (int j = 0; j < ySizeMax; j++)
+            for (int j = 0; j < maxRowSize; j++)
             {
                 //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
                 if (grid[i, j].territory.name != TerrName.Player)
@@ -375,10 +385,10 @@ public class scr_Grid : MonoBehaviour{
         Debug.Log("RESEIZE");
         yield return new WaitForSeconds(waitTime);
         bool colFound = false;
-        for (int i = xSizeMax - 1; i >= 0; i--)
+        for (int i = maxColumnSize - 1; i >= 0; i--)
         {
 
-            for (int j = 0; j < ySizeMax; j++)
+            for (int j = 0; j < maxRowSize; j++)
             {
                 //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
                 if (grid[i, j].territory.name != TerrName.Enemy)

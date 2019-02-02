@@ -47,7 +47,7 @@ public class scr_InvUI : MonoBehaviour {
             {
                 invPanel.SetActive(false);
                 UpdateBanners();
-                SaveLoad.Save();
+                SaveManager.Save();
             }
         }
     }
