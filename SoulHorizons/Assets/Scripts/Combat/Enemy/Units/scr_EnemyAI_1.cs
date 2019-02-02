@@ -37,7 +37,10 @@ public class scr_EnemyAI_1 : scr_EntityAI
     {
 
     }
+    public override void Attack()
+    {
 
+    }
     public override void UpdateAI()
     {
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
@@ -125,6 +128,10 @@ public class scr_EnemyAI_1 : scr_EntityAI
     {
         anim.SetBool("Attack2", true);
     }
+
+
+
+
 
     int PickXCoord()
     {

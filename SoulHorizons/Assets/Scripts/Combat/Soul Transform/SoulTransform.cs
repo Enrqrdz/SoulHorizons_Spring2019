@@ -13,6 +13,9 @@ public class SoulTransform : ScriptableObject {
     //public MonoScript movement;
     public GameObject scriptHolder; //this will be a prefab that holds the scripts
 
+    //List<Monobehavior> misc = new List<MonoBehavior<()
+
+    //common attributes
     [Tooltip("The percentage of max hp added to the shield")]
     [Range(0, 200)]
     [SerializeField] int shieldGain = 50; //the amount of shield to add when performing this transform (Percentage of max health?)

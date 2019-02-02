@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class scr_ExiledArcher : scr_EntityAI {
 
+
     public Attack hunterShot;
 
     public AttackData hunterShot;
     public float hSChargeTime;
     private bool hSOnCD = false;   //On Cooldown 
     private float hSCooldownTime = 1.5f; 
+
+
 
     public Attack arrowRain;
 
@@ -37,45 +40,12 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void Move()
     {
-        //Decide if we are moving horiz or vert.
-        int randomDirection = Random.Range(0, 2);                                         //Pick a number between 0 and 1
-        int xPos = entity._gridPos.x;
-        int yPos = entity._gridPos.y;
-        int tries = 0;
-
-
-
-        while (tries < 10)
-        {
-            randomDirection = Random.Range(0, 2);
-            if (randomDirection == 0)                                                          //if that number == 0, then we're moving vertically 
-            {
-                yPos = PickYCoord();
-
-            }
-            else if (randomDirection == 1)                                                     //if that number == 1, we're moving horizonally 
-            {
-                xPos = PickXCoord();
-
-            }
-
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-            {
-                entity.SetTransform(xPos, yPos);                               //move to new position
-                return;
-            }
-            else
-            {
-                tries++;
-                if (tries >= 10)
-                {
-                    broken = true;
-                    Debug.Log("I think I am broken");
-                }
-            }
-        }
+        
     }
-
+    public override void Attack()
+    {
+        
+    }
     public override void UpdateAI()
     {
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity); 
@@ -87,6 +57,15 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             StartCoroutine(MovementClock());
         }
+
+
+        /*
+        if (canArrowRain)
+        {
+            StartCoroutine(ArrowRain(aRInterval)); 
+        }
+        */
+
     }
 
     public override void Die()
@@ -141,27 +120,27 @@ public class scr_ExiledArcher : scr_EntityAI {
     int PickXCoord()
     {
         //must return int 
-        int range = scr_Grid.GridController.xSizeMax;
-        int curPosX = entity._gridPos.x;
+        int _range = scr_Grid.GridController.xSizeMax;
+        int _currPosX = entity._gridPos.x;
 
-        if (curPosX == range - 1)
+        if (_currPosX == _range - 1)
         {
-            return (curPosX - 1);
+            return (_currPosX - 1);
         }
-        else if (curPosX == range / 2)
+        else if (_currPosX == _range / 2)
         {
-            return curPosX + 1;
+            return _currPosX + 1;
         }
         else
         {
-            int temp = Random.Range(0, 2);
-            if (temp == 0)
+            int _temp = Random.Range(0, 2);
+            if (_temp == 0)
             {
-                return curPosX + 1;
+                return _currPosX + 1;
             }
-            else if (temp == 1)
+            else if (_temp == 1)
             {
-                return curPosX - 1;
+                return _currPosX - 1;
             }
 
             return 0;
@@ -177,8 +156,8 @@ public class scr_ExiledArcher : scr_EntityAI {
         }
         else if (entity._gridPos.y == 1)                        //AI is on y = 1 and can move either up or down
         {
-            int temp = Random.Range(0, 2);             //make a random number 0 or 1
-            if (temp == 0)                              //if this number is 0, move to 0 (up)
+            int _temp = Random.Range(0, 2);             //make a random number 0 or 1
+            if (_temp == 0)                              //if this number is 0, move to 0 (up)
             {
                 return 0;
             }
@@ -193,11 +172,54 @@ public class scr_ExiledArcher : scr_EntityAI {
         }
     }
 
+    void Movement()
+    {
+
+
+        //Decide if we are moving horiz or vert.
+        int _temp = Random.Range(0, 2);                                         //Pick a number between 0 and 1
+        int _x = entity._gridPos.x;
+        int _y = entity._gridPos.y;
+        int _tries = 0;
+
+
+
+        while (_tries < 10)
+        {
+            _temp = Random.Range(0, 2);
+            if (_temp == 0)                                                          //if that number == 0, then we're moving vertically 
+            {
+                _y = PickYCoord();
+
+            }
+            else if (_temp == 1)                                                     //if that number == 1, we're moving horizonally 
+            {
+                _x = PickXCoord();
+
+            }
+
+            if (!scr_Grid.GridController.CheckIfOccupied(_x, _y) && (scr_Grid.GridController.ReturnTerritory(_x, _y).name == entity.entityTerritory.name))
+            {
+                entity.SetTransform(_x, _y);                               //move to new position
+                return;
+            }
+            else
+            {
+                _tries++;
+                if (_tries >= 10)
+                {
+                    broken = true;
+                    Debug.Log("I think I am broken");
+                }
+            }
+        }
+    }
+
     IEnumerator MovementClock()
     {
         if (canMove)
         {
-            Move();
+            Movement();
             float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
             canMove = false; 
             yield return new WaitForSecondsRealtime(_movementInterval);
@@ -207,13 +229,13 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     void DodgeAttackVertically(int x, int y)
     {
-        int yDirection = y + 1;
+        int _y = y + 1;
         
-        if(yDirection > scr_Grid.GridController.ySizeMax - 1)
+        if(_y > scr_Grid.GridController.ySizeMax - 1)
         {
-            yDirection = y - 2; 
+            _y = y - 2; 
         }
 
-        entity.SetTransform(x, yDirection);
+        entity.SetTransform(x, _y);
     }
 }
