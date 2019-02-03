@@ -95,7 +95,7 @@ public class scr_PlayerMovement : scr_EntityAI
         if(inputX != scr_InputManager.MainHorizontal())
         {
             inputX = scr_InputManager.MainHorizontal();
-            if (inputX != 0 && scr_InputManager.Dash() && staminaCharges > 0)
+            if (inputX != 0 && scr_InputManager.IsDashPressed() && staminaCharges > 0)
             {
                 staminaCharges--; //spend a stamina charge
                 Instantiate(dashEffect, transform.position, dashEffect.transform.rotation);
@@ -144,7 +144,7 @@ public class scr_PlayerMovement : scr_EntityAI
         if (inputY != scr_InputManager.MainVertical())
         {
             inputY = scr_InputManager.MainVertical();
-            if (inputY != 0 && scr_InputManager.Dash() && staminaCharges > 0)
+            if (inputY != 0 && scr_InputManager.IsDashPressed() && staminaCharges > 0)
             {
                 staminaCharges--; //spend a charge
                 Instantiate(dashEffect, transform.position, dashEffect.transform.rotation);

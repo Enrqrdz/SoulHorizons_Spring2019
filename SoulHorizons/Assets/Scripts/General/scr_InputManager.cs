@@ -7,7 +7,6 @@ public static class scr_InputManager {
 	public static bool cannotInput = false; //set to true to prevent the player from getting input
 	public static bool cannotMove = false; //set to true to prevent the player from inputting movement
 
-	// -- Axis
 	/// <summary>
 	/// Xbox one - L stick / D-pad
 	/// Keyboard - AD
@@ -24,12 +23,7 @@ public static class scr_InputManager {
 		r += Input.GetAxis("J_MainHorizontal");
 		r += Input.GetAxis("J_DHorizontal");
 		r += Input.GetAxis("K_MainHorizontal");
-		/*
-		if (!Input.GetButtonDown("J_MainHorizontal")){
-			Debug.Log("GetButtonDown returned false");
-		 	return 0;
-		}
-		 */
+
 		if (r < 0f)
 		{
 			return -1;
@@ -41,7 +35,7 @@ public static class scr_InputManager {
 		return 0;
 	}
 
-		public static int MenuHorizontal()
+	public static int MenuHorizontal()
 	{
 
 		float r = 0.0f;
@@ -86,7 +80,7 @@ public static class scr_InputManager {
 		return 0;
 	}
 
-		public static int MenuVertical()
+	public static int MenuVertical()
 	{
 
 		float r = 0.0f;
@@ -104,35 +98,7 @@ public static class scr_InputManager {
 	}
 
 	/// <summary>
-	/// Xbox one - R stick / LT / RT
-	/// Keyboard - Mouse Wheel up/down
-	/// </summary>
-	/// <returns>returns -1 for left, 1 for right, 0 for neither</returns>
-	public static int HandScrolling()
-	{
-		if(cannotInput)
-		{
-			return 0;
-		}
-
-		float r = 0.0f;
-		r += Input.GetAxis("J_HandScroll");
-		r += Input.GetAxis("Mouse ScrollWheel");
-		if (r < 0f)
-		{
-			return 1;
-		}
-		else if (r > 0f)
-		{
-			return -1;
-		}
-		return 0;
-	}
-
-	// -- Buttons
-
-	/// <summary>
-	/// Xbox one - Y button
+	/// Xbox one - Right Analog
 	/// Keyboard - 1/2/3
 	/// </summary>
 	/// <returns>returns true if any of these buttons were pressed this frame</returns>
@@ -192,30 +158,6 @@ public static class scr_InputManager {
 		return Input.GetButton("Blast_Button") || (Input.GetAxis("Blast_Axis") > falseRadius) || (Input.GetAxis("Blast_Axis") < -falseRadius);
 	}
 
-	//Note: button up and button down can no longer be determined in this script since we are using an axis on the controller
-	/*
-    public static bool Blast_Holding()
-    {
-        if (disableInput)
-        {
-            return false;
-        }
-
-        return Input.GetButton("Blast_Button");
-    }
-
-
-    public static bool Blast_Up()
-	{
-		if(disableInput)
-		{
-			return false;
-		}
-
-		return Input.GetButtonUp("Blast_Button");
-	}
-	 */
-
 	/// <summary>
 	/// Xbox one - X, Y, A, B buttons
 	/// Keyboard - q, w, e, r buttons
@@ -253,7 +195,7 @@ public static class scr_InputManager {
 	/// Keyboard - Tab button
 	/// </summary>
 	/// <returns>returns true if currently pressed</returns>
-	public static bool Dash()
+	public static bool IsDashPressed()
 	{
 		return (Input.GetAxis("Dash_Axis") > 0.02f) || Input.GetButton("Dash_Button");
 	}
@@ -263,20 +205,9 @@ public static class scr_InputManager {
 	/// Keyboard - Space button
 	/// </summary>
 	/// <returns>returns true if currently pressed</returns>
-	public static bool CardSwap()
+	public static bool IsCardSwapPressed()
 	{
 		return (Input.GetAxis("CardSwap_Axis") > 0.02f) || Input.GetButton("CardSwap_Button");
 	}
 
-/* 
-	/// <summary>
-	/// Xbox one - ?
-	/// Keyboard - Space Bar
-	/// </summary>
-	/// <returns></returns>
-	public static bool SoulTap()
-	{
-
-	}
-*/
 }
