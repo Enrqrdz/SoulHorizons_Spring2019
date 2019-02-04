@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Cleave")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Cleave : scr_Card
+public class scr_Cleave : CardData
 {
 	public AttackData attack;
     private AudioSource PlayCardSFX;

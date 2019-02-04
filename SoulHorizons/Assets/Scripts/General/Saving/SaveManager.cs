@@ -20,8 +20,6 @@ public static class SaveManager
 
     public static void Save()
     {
-        currentGame.SaveInventory();
-
         SerializeDataToFile(currentGame, saveFilePath);
     }
 
@@ -30,8 +28,6 @@ public static class SaveManager
         if (File.Exists(saveFilePath))
         {
             currentGame = (GameState) DeserializeDataFromFile(saveFilePath);
-
-            currentGame.LoadInventory();
         }
     }
 

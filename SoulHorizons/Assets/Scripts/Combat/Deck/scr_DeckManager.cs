@@ -30,6 +30,12 @@ public class scr_DeckManager : MonoBehaviour {
 
     void Awake()
     {
+<<<<<<< HEAD
+=======
+        //get references
+        //Debug.Log("CHECKING DECKS: " + scr_Inventory.deckList.Count);
+        Debug.Log("DECK INDEX: " + InventoryManager.currentDeckIndex);
+>>>>>>> Engineering
         deck_scr = GetComponent<scr_Deck>();
     }
 

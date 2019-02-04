@@ -75,7 +75,7 @@ public class scr_statemanager : MonoBehaviour {
             endCombat = true;
 
             //GIVE REWARDS
-            scr_Inventory.dustNum += 50;
+            SaveManager.currentGame.AddDust(50);
 
             //save health
             try

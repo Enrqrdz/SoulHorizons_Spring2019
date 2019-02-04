@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(AudioSource))]
 
-public class scr_EnemyAI_1 : scr_EntityAI
+public class scr_FoulTrifling : scr_EntityAI
 {
-
     public float basicAttackChance;
     public float chargeAttackChance;
     public float chargeTimeUpper;
-    public float chargeTimeLower; 
+    public float chargeTimeLower;
     public float movementIntervalLower;
     public float movementIntervalUpper;
     bool waiting = false;
@@ -89,7 +87,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (completedTask)
         {
-            StartCoroutine(Brain()); 
+            StartCoroutine(Brain());
         }
     }
 
@@ -97,8 +95,6 @@ public class scr_EnemyAI_1 : scr_EntityAI
     {
         entity.Death();
     }
-
-
 
 
     void Attack1()
@@ -124,33 +120,30 @@ public class scr_EnemyAI_1 : scr_EntityAI
     }
 
 
-
-
-
     int PickXCoord()
     {
         //must return int 
         int _range = scr_Grid.GridController.columnSizeMax;
         int _currPosX = entity._gridPos.x;
 
-        if(_currPosX == _range - 1)
+        if (_currPosX == _range - 1)
         {
-            return (_currPosX - 1); 
+            return (_currPosX - 1);
         }
-        else if(_currPosX == _range / 2)
+        else if (_currPosX == _range / 2)
         {
-            return _currPosX + 1; 
+            return _currPosX + 1;
         }
         else
         {
             int _temp = Random.Range(0, 2);
-            if(_temp == 0)
+            if (_temp == 0)
             {
-                return _currPosX + 1; 
+                return _currPosX + 1;
             }
-            else if(_temp == 1)
+            else if (_temp == 1)
             {
-                return _currPosX - 1; 
+                return _currPosX - 1;
             }
 
             return 0;
@@ -190,7 +183,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
         {
             if (_testVal <= chargeAttackChance)
             {
-                completedTask = true; 
+                completedTask = true;
                 return 4; //Begins Charging charged attack 
             }
             else
@@ -205,21 +198,21 @@ public class scr_EnemyAI_1 : scr_EntityAI
             return 2;   //small wait to move again 
         }
     }
-    
+
     private IEnumerator Brain()
     {
-        switch(state)
+        switch (state)
         {
             case 0:
-                completedTask = false; 
+                completedTask = false;
                 Move();
 
-                state = 1; 
+                state = 1;
                 break;
 
             case 1:
-                completedTask = false; 
-                state = AngerTest(); 
+                completedTask = false;
+                state = AngerTest();
                 break;
 
             case 2:
@@ -227,12 +220,12 @@ public class scr_EnemyAI_1 : scr_EntityAI
                 float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
                 yield return new WaitForSecondsRealtime(_movementInterval);
                 state = 0;
-                completedTask = true; 
+                completedTask = true;
                 break;
 
             case 3:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(.75f); 
+                yield return new WaitForSecondsRealtime(.75f);
                 StartAttack1();
                 yield return new WaitForSecondsRealtime(2);
                 state = 0;
@@ -242,15 +235,15 @@ public class scr_EnemyAI_1 : scr_EntityAI
             case 4:
                 completedTask = false;
                 float _thisTime = Random.Range(chargeTimeLower, chargeTimeUpper);
-                yield return new WaitForSecondsRealtime(_thisTime); 
+                yield return new WaitForSecondsRealtime(_thisTime);
                 StartAttack2();
                 yield return new WaitForSecondsRealtime(2f);
                 state = 0;
                 completedTask = true;
                 break;
         }
-        yield return null; 
+        yield return null;
     }
-    
+
 
 }

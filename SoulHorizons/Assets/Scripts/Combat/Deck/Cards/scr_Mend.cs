@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Mend")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Mend : scr_Card
+public class scr_Mend : CardData
 {
 
     public int Mend_hp;

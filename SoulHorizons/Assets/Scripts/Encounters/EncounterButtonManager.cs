@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class EncounterButtonManager : MonoBehaviour
 {
     EncounterState encounterState;
-    Encounter encounter;
+    EncounterData encounter;
 
     public Image infoPanel;
 
@@ -22,7 +22,6 @@ public class EncounterButtonManager : MonoBehaviour
         infoPanel.enabled = false;
         SetIsActive(false); 
         eventSystem = GameObject.Find("/EventSystem");
-        Debug.Log(encounter.mouseNum);
         mouseText.text = "x " + encounter.mouseNum;
         mushText.text = "x " + encounter.mushNum;
         archerText.text = "x " + encounter.archerNum;
@@ -51,7 +50,7 @@ public class EncounterButtonManager : MonoBehaviour
         }
     }
 
-    public void SetStateAndEncounter(EncounterState newState, Encounter newEncounter)
+    public void SetStateAndEncounter(EncounterState newState, EncounterData newEncounter)
     {
         encounterState = newState;
         encounter = newEncounter;

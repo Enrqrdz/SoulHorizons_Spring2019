@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Encounter", menuName = "Encounter")]
 [System.Serializable]
-public class Encounter : ScriptableObject {
+public class EncounterData : ScriptableObject {
 
     public new string name;
-    public string sceneName = SceneNames.ENCOUNTER;                        //Cameron made this variable.  It is used by the scene manager to go to a specific string.  For now all of our combat happens in GridTest, but that might change?
+    public string sceneName = SceneNames.ENCOUNTER;
 
 
     [Header("Grid Size")]
@@ -29,32 +29,6 @@ public class Encounter : ScriptableObject {
     [Header("Territory")]
     public TerritoryRow[] territoryColumn;
 
-
-
-
-    /*
-    void OnValidate()
-    {
-        territoryColumn = new TerritoryRow[length];
-        StartCoroutine(WaitALittle());
-        
-        
-
-    }
-
-    IEnumerator WaitALittle()
-    {
-        yield return new WaitForEndOfFrame();
-
-        for (int x = 0; x < territoryColumn.Length; x++)
-        {
-            territoryColumn[x].territoryRow = new scr_Tile.Territory[width];
-        }
-    }
-    */
-
-
-
     [System.Serializable]
     public class Asset_Entry
     {
@@ -66,13 +40,10 @@ public class Encounter : ScriptableObject {
     [System.Serializable]
     public class Terrain_Entry
     {
-        //TODO: how does the terrain system work on the grid? This will decide what needs to go in this class.
         public string type;
         public int x;
         public int y;
     }
-	
-     
 
     [System.Serializable]
     public class TerritoryRow
@@ -93,7 +64,6 @@ public class Encounter : ScriptableObject {
             x = a;
             y = b;
         }
-
     }
 }
 

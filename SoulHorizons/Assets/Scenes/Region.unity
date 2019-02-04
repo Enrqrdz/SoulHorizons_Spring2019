@@ -3203,7 +3203,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 319486113}
-  - component: {fileID: 319486114}
   - component: {fileID: 319486115}
   m_Layer: 0
   m_Name: InventoryManager
@@ -3226,20 +3225,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &319486114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319486112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3cd0c83df7f1c4ebd60022738937e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardMapping: {fileID: 11400000, guid: 7fd815c874a2e11489c9eedb255bd7dd, type: 2}
-  deckList: {fileID: 4900000, guid: e4d0755a0b712244fb08fb3303a823c6, type: 3}
 --- !u!114 &319486115
 MonoBehaviour:
   m_ObjectHideFlags: 0
