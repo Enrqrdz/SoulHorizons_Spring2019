@@ -317,12 +317,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57beb5df53f9e42a108d56f2a31640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckSize: 30
-  handSize: 4
+  deckSize: 10
+  handSize: 2
   cardMapping: {fileID: 11400000, guid: 7fd815c874a2e11489c9eedb255bd7dd, type: 2}
-  deckList: {fileID: 4900000, guid: 3642a797dd1c07746bf0a668393bf8c9, type: 3}
+  deckList: {fileID: 4900000, guid: e4d0755a0b712244fb08fb3303a823c6, type: 3}
   hand: []
   backupHand: []
+  mantras:
+  - {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
+  - {fileID: 11400000, guid: 797e587004e8f2249aeb41b75157828a, type: 2}
 --- !u!82 &283017073
 AudioSource:
   m_ObjectHideFlags: 0

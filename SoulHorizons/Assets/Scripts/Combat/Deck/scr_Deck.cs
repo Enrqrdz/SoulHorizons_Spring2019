@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class scr_Deck : MonoBehaviour {
 
-	public int deckSize = 30;
-    public int handSize = 4;
+	public int deckSize = 10;
+    public int handSize = 2;
     public scr_NameToCard cardMapping; //maps card name to the scriptable object for that card
     public TextAsset deckList;
     [HideInInspector] public List<CardData> hand = new List<CardData>();
     [HideInInspector] public List<CardData> backupHand = new List<CardData>();
+    public List<CardData> mantras = new List<CardData>(2);
     List<CardData> deck = new List<CardData>();
     List<CardData> discard = new List<CardData>();
     public List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
@@ -29,23 +30,23 @@ public class scr_Deck : MonoBehaviour {
             hand.Add(null);
             backupHand.Add(null);
         }
-<<<<<<< HEAD
     }
 
     private void IntializeDeck()
     {
-        if (scr_Inventory.numDecks == 0)
-=======
         if (InventoryManager.deckList.Count == 0)
->>>>>>> Engineering
         {
+            Debug.Log("Loading New Deck");
             LoadNewDeck();
             SaveManager.Save();
         }
         else
         {
+            Debug.Log("Loading Old Deck");
             LoadDeck();
         }
+
+
     }
 
     /// <summary>
@@ -96,26 +97,9 @@ public class scr_Deck : MonoBehaviour {
             Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
         }
 
-<<<<<<< HEAD
-        ShuffleHelper<scr_Card>(deck);
-        CheckHandSizeAndDraw();
-=======
-        /*
-        Debug.Log("Unshuffled Deck List");
-        int j = 1;
-        foreach (scr_Card item in deck)
-        {
-            Debug.Log(j++ + ": \"" + item.cardName + "\"");
-        }
-         */
-
         ShuffleHelper<CardData>(deck);
-        CheckHandSize();
->>>>>>> Engineering
-
+        CheckHandSizeAndDraw();
         InventoryManager.addDeck(cardList);
-    
-
     }
 
     /// <summary>
@@ -131,13 +115,8 @@ public class scr_Deck : MonoBehaviour {
         discard = loadDeck.discard;
         cardList = loadDeck.cardList;
 
-<<<<<<< HEAD
-        ShuffleHelper<scr_Card>(deck);
-        CheckHandSizeAndDraw();
-=======
         ShuffleHelper<CardData>(deck);
-        CheckHandSize();
->>>>>>> Engineering
+        CheckHandSizeAndDraw();
     }
 
     /// <summary>
@@ -166,15 +145,8 @@ public class scr_Deck : MonoBehaviour {
             Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
         }
 
-<<<<<<< HEAD
-        ShuffleHelper<scr_Card>(deck);
-        CheckHandSizeAndDraw();
-=======
         ShuffleHelper<CardData>(deck);
-        CheckHandSize();
->>>>>>> Engineering
-
-
+        CheckHandSizeAndDraw();
     }
 
     /// <summary>
@@ -266,6 +238,7 @@ public class scr_Deck : MonoBehaviour {
         if (deck.Count > 0)
         {
             hand[index] = deck[0];
+            hand[3] = deck[0];
             deck.RemoveAt(0);
         }
         else

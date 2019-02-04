@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 /// <summary>
 /// Contains references to all parts of the deck system. Anything outside the deck system should use the public functions in this class for deck information.
@@ -30,12 +29,6 @@ public class scr_DeckManager : MonoBehaviour {
 
     void Awake()
     {
-<<<<<<< HEAD
-=======
-        //get references
-        //Debug.Log("CHECKING DECKS: " + scr_Inventory.deckList.Count);
-        Debug.Log("DECK INDEX: " + InventoryManager.currentDeckIndex);
->>>>>>> Engineering
         deck_scr = GetComponent<scr_Deck>();
     }
 

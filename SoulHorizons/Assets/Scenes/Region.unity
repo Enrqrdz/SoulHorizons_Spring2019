@@ -3237,8 +3237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57beb5df53f9e42a108d56f2a31640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckSize: 30
-  handSize: 4
+  deckSize: 10
+  handSize: 2
   cardMapping: {fileID: 11400000, guid: 7fd815c874a2e11489c9eedb255bd7dd, type: 2}
   deckList: {fileID: 4900000, guid: e4d0755a0b712244fb08fb3303a823c6, type: 3}
   hand: []
@@ -13058,7 +13058,7 @@ MonoBehaviour:
   BannerSpawn: {fileID: 356720394}
   c: {fileID: 2116205530}
   UIFont: {fileID: 12800000, guid: 7a7e9138bc7742543b80d6fd0c660d81, type: 3}
-  minDeckSize: 30
+  minDeckSize: 10
   deckNum: {fileID: 758501957}
   deckTextX: 600
   deckTextY: 400
