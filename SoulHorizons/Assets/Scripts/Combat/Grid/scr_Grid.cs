@@ -43,7 +43,6 @@ public class scr_Grid : MonoBehaviour{
         //tile_sprites = Resources.LoadAll<Sprite>("tiles_spritesheet");
         grid = new scr_Tile[columnSizeMax, rowSizeMax];
         Vector2 gridCenter = new Vector2((tileSpacing.x * (columnSizeMax-1) / 2), (tileSpacing.y * rowSizeMax / 2));
-        print(gridCenter); 
         camera.transform.position = new Vector3(gridCenter.x,gridCenter.y,camera.transform.position.z); 
         for (int j = 0; j < rowSizeMax; j++)
         {
@@ -218,7 +217,6 @@ public class scr_Grid : MonoBehaviour{
             {
                 if (activeEntities[i]._gridPos == attack.position) 
                 {
-                    //Debug.Log(activeEntities[i].entityTerritory.name + " " + attack.entity.entityTerritory.name);
                     if (activeEntities[i].type != attack.entity.type)
                     {
                         Debug.Log("ACTIVE ENTITY HIT!");
@@ -230,17 +228,14 @@ public class scr_Grid : MonoBehaviour{
                             {
                                 //Activate invincibility frames
                                 activeEntities[i].setInvincible(true, activeEntities[i].invulnTime);
-
                             }
                         }
                         attack.entityIsHit = true;
                         attack.entityHit = activeEntities[i];
                         attack.attack.ImpactEffects();
                     }
-                    
                 }
             }
-          
         }
         return attack; 
     }
@@ -328,7 +323,6 @@ public class scr_Grid : MonoBehaviour{
             }
             else
             {
-                Debug.Log("else"); 
                 return;
             }
         }
