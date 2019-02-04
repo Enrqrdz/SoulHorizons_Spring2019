@@ -3238,11 +3238,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckSize: 10
-  handSize: 2
+  handSize: 4
   cardMapping: {fileID: 11400000, guid: 7fd815c874a2e11489c9eedb255bd7dd, type: 2}
   deckList: {fileID: 4900000, guid: e4d0755a0b712244fb08fb3303a823c6, type: 3}
   hand: []
   backupHand: []
+  mantras:
+  - {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
+  - {fileID: 11400000, guid: 797e587004e8f2249aeb41b75157828a, type: 2}
 --- !u!1 &331768886
 GameObject:
   m_ObjectHideFlags: 0

@@ -117,7 +117,6 @@ public class scr_SoulManager : MonoBehaviour {
         {
             soulCharges[e] += amount;
             //TODO: trigger any UI effects that come with charging a soul transform
-            Debug.Log("Element " + e + " charged by " + amount + " to " + soulCharges[e]);
             if (soulCharges[e] >= 100)
             {
                 soulCharges[e] = 100;
@@ -149,7 +148,6 @@ public class scr_SoulManager : MonoBehaviour {
         //TODO: Should enable/disable the buttons based on this validation, so this method is only called under valid circumstances
         if (transformed || soulCharges[soul.element] < 100)
         {
-            Debug.Log("Did not meet transform conditions");
             return; //don't transform if the player is already transformed or the element is not charged
         }
         AudioSource Transform_SFX = GetComponent<AudioSource>();

@@ -7,7 +7,7 @@ using UnityEngine;
 public class scr_Deck : MonoBehaviour {
 
 	public int deckSize = 10;
-    public int handSize = 2;
+    public int handSize = 4;
     public scr_NameToCard cardMapping; //maps card name to the scriptable object for that card
     public TextAsset deckList;
     [HideInInspector] public List<CardData> hand = new List<CardData>();
@@ -237,9 +237,16 @@ public class scr_Deck : MonoBehaviour {
     {
         if (deck.Count > 0)
         {
-            hand[index] = deck[0];
-            hand[3] = deck[0];
-            deck.RemoveAt(0);
+            if (index == 0 || index == 1)
+            {
+                hand[index] = deck[0];
+                deck.RemoveAt(0);
+            }
+            else
+            {
+                hand[2] = mantras[0];
+                hand[3] = mantras[1];
+            }           
         }
         else
         {

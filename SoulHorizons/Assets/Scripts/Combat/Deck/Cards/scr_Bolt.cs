@@ -12,7 +12,6 @@ public class scr_Bolt : CardData {
 
     public override void Activate()
     {
-        Debug.Log("Activating Bolt");
         ActivateEffects();
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoltSFX;
