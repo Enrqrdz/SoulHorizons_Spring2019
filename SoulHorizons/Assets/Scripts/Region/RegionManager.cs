@@ -41,14 +41,14 @@ public class RegionManager : MonoBehaviour
             GameObject newButton = Instantiate(buttonPrefab);
             newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
 
-            EncounterData newEncounter;
-            newEncounter = EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndexInPool);
+            EncounterData newEncounterData;
+            newEncounterData = encounterState.GetEncounterData();
 
             EncounterButtonManager encounterButtonManager = newButton.GetComponent<EncounterButtonManager>();
-            encounterButtonManager.SetStateAndEncounter(encounterState, newEncounter);
+            encounterButtonManager.SetStateAndEncounter(encounterState, newEncounterData);
 
             Button button = newButton.GetComponent<Button>();
-            button.onClick.AddListener(delegate {GoToEncounter(newEncounter, currentRegion.encounters.IndexOf(encounterState));});
+            button.onClick.AddListener(delegate {GoToEncounter(newEncounterData, currentRegion.encounters.IndexOf(encounterState));});
 
             buttons.Add(newButton.GetComponent<Button>());
         }

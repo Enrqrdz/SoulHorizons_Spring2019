@@ -25,6 +25,16 @@ public static class EncounterPool
         }
     }
 
+    public static EncounterData GetEncounterByTierAndIndex(int encounterTier, int encounterIndex)
+    {
+        return encountersByTier[encounterTier][encounterIndex];
+    }
+
+    public static int GetRandomEncounterIndexOfTier(int tier)
+    {
+        return Random.Range(0, encountersByTier[tier].Count);
+    }
+  
     private static bool IsNewTier(int tier)
     {
         return encountersByTier.Count <= tier;
@@ -38,15 +48,5 @@ public static class EncounterPool
         {
             encountersByTier.Add(new List<EncounterData>());
         }
-    }
-
-    public static EncounterData GetEncounterByTierAndIndex(int encounterTier, int encounterIndex)
-    {
-        return encountersByTier[encounterTier][encounterIndex];
-    }
-
-    public static int GetRandomEncounterIndexOfTier(int tier)
-    {
-        return Random.Range(0, encountersByTier[tier].Count);
     }
 }
