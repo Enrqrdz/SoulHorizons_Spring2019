@@ -1,6 +1,6 @@
+Blur: 2
 Meteor: 2
 Harden Soul: 1
 Mend: 1
-Blur: 2
 Seize Domain: 2
 Boomerang: 2
