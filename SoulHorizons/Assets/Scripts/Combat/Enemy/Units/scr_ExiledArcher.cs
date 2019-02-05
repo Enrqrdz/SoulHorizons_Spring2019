@@ -39,8 +39,6 @@ public class scr_ExiledArcher : scr_EntityAI {
         int yPos = entity._gridPos.y;
         int tries = 0;
 
-
-
         while (tries < 10)
         {
             randomDirection = Random.Range(0, 2);
@@ -57,7 +55,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                entity.SetTransform(xPos, yPos);                               //move to new position
+                entity.SetTransform(xPos, yPos);   //move to new position
                 return;
             }
             else

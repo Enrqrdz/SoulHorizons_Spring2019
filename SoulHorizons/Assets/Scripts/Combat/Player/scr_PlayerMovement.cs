@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class scr_PlayerMovement : scr_EntityAI
 {
-     
-
     AudioSource Footsteps_SFX;
     public AudioClip[] movements_SFX;
     public GameObject dashEffect; //the particle effect that plays when the player dashes
@@ -31,7 +29,7 @@ public class scr_PlayerMovement : scr_EntityAI
     {
 
     }
- 
+
     public override void UpdateAI()
     {
         MovementCheck();
@@ -39,7 +37,6 @@ public class scr_PlayerMovement : scr_EntityAI
     }
     public override void Die()
     {
-        //throw new System.NotImplementedException();
     }
 
     public void UpdateDash()
@@ -74,20 +71,6 @@ public class scr_PlayerMovement : scr_EntityAI
     {
         int _x = entity._gridPos.x;
         int _y = entity._gridPos.y;
-
-
-        /*if (!axisPressed)
-        {
-            //Debug.Log(scr_InputManager.MainHorizontal() + " " + scr_InputManager.MainVertical());
-            //just pressed the joystick
-            _x += scr_InputManager.MainHorizontal();
-            if(scr_InputManager.MainHorizontal() == 0)
-            {
-                _y += scr_InputManager.MainVertical();
-            }
-       
-            axisPressed = true;
-        }*/
 
         if(inputX != scr_InputManager.MainHorizontal())
         {

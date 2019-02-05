@@ -47,8 +47,6 @@ public class scr_FoulTrifling : scr_EntityAI
         int _y = entity._gridPos.y;
         int _tries = 0;
 
-
-
         while (_tries < 10)
         {
             _temp = Random.Range(0, 2);
@@ -96,7 +94,6 @@ public class scr_FoulTrifling : scr_EntityAI
         entity.Death();
     }
 
-
     void Attack1()
     {
         //make sure we do a check condition for the attack : if(chargedAttack.CheckCondition(entity))
@@ -118,7 +115,6 @@ public class scr_FoulTrifling : scr_EntityAI
     {
         anim.SetBool("Attack2", true);
     }
-
 
     int PickXCoord()
     {
@@ -206,7 +202,6 @@ public class scr_FoulTrifling : scr_EntityAI
             case 0:
                 completedTask = false;
                 Move();
-
                 state = 1;
                 break;
 
@@ -244,6 +239,4 @@ public class scr_FoulTrifling : scr_EntityAI
         }
         yield return null;
     }
-
-
 }
