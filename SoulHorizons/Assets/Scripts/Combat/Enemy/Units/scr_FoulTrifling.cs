@@ -13,6 +13,7 @@ public class scr_FoulTrifling : scr_EntityAI
     bool waiting = false;
     public AttackData attack1;
     public AttackData chargedAttack;
+    public int numOfAttacks;
 
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;
@@ -29,6 +30,15 @@ public class scr_FoulTrifling : scr_EntityAI
     public void Start()
     {
         anim = gameObject.GetComponentInChildren<Animator>();
+    }
+
+    public override void UpdateAI()
+    {
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        if (completedTask)
+        {
+            StartCoroutine(Brain());
+        }
     }
 
     public override void Move()
@@ -80,42 +90,6 @@ public class scr_FoulTrifling : scr_EntityAI
         completedTask = true;
     }
 
-    public override void UpdateAI()
-    {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
-        if (completedTask)
-        {
-            StartCoroutine(Brain());
-        }
-    }
-
-    public override void Die()
-    {
-        entity.Death();
-    }
-
-    void Attack1()
-    {
-        //make sure we do a check condition for the attack : if(chargedAttack.CheckCondition(entity))
-        scr_AttackController.attackController.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
-        int index2 = Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[index2];
-        Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
-    }
-    void Attack2()
-    {
-        scr_AttackController.attackController.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
-    }
-    void StartAttack1()
-    {
-        anim.SetBool("Attack", true);
-    }
-    void StartAttack2()
-    {
-        anim.SetBool("Attack2", true);
-    }
-
     int PickXCoord()
     {
         //must return int 
@@ -149,51 +123,57 @@ public class scr_FoulTrifling : scr_EntityAI
 
     int PickYCoord()
     {
-        if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
+        if (entity._gridPos.y == 0)   //AI is on y = 0 and can only move to 1 (down)                             
         {
             return 1;
         }
-        else if (entity._gridPos.y == 1)                        //AI is on y = 1 and can move either up or down
+        else if (entity._gridPos.y == 1)    //AI is on y = 1 and can move either up or down
         {
-            int _temp = Random.Range(0, 2);             //make a random number 0 or 1
-            if (_temp == 0)                              //if this number is 0, move to 0 (up)
+            int _temp = Random.Range(0, 2);  //make a random number 0 or 1
+            if (_temp == 0)  //if this number is 0, move to 0 (up)
             {
                 return 0;
             }
-            else                                        //if this number is 1, move to 1 (down) 
+            else     //if this number is 1, move to 1 (down) 
             {
                 return 2;
             }
         }
-        else                                            //otherwise, the AI is on 2 and can only move to 1 (up)
+        else    //otherwise, the AI is on 2 and can only move to 1 (up)
         {
             return 1;
         }
     }
 
-    int AngerTest()                     //here is where we will decide whether or not the unit attacks, and if it does, what type of attack: returns a state # for the brain  
+
+
+    public override void Die()
     {
-        //Do I attack?
-        int _testVal = Random.Range(0, 100);
-        if (_testVal <= basicAttackChance)
-        {
-            if (_testVal <= chargeAttackChance)
-            {
-                completedTask = true;
-                return 4; //Begins Charging charged attack 
-            }
-            else
-            {
-                completedTask = true;
-                return 3; //small wait then, casts basic attack 
-            }
-        }
-        else
-        {
-            completedTask = true;
-            return 2;   //small wait to move again 
-        }
+        entity.Death();
     }
+
+    void Attack1()
+    {
+        //make sure we do a check condition for the attack : if(chargedAttack.CheckCondition(entity))
+        scr_AttackController.attackController.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
+        int index2 = Random.Range(0, attacks_SFX.Length);
+        attack_SFX = attacks_SFX[index2];
+        Attack_SFX.clip = attack_SFX;
+        Attack_SFX.Play();
+    }
+    void Attack2()
+    {
+        scr_AttackController.attackController.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
+    }
+    void StartAttack1()
+    {
+        anim.SetBool("Attack", true);
+    }
+    void StartAttack2()
+    {
+        anim.SetBool("Attack2", true);
+    }
+
 
     private IEnumerator Brain()
     {
@@ -202,15 +182,10 @@ public class scr_FoulTrifling : scr_EntityAI
             case 0:
                 completedTask = false;
                 Move();
-                state = 1;
+                state = 2;
                 break;
 
             case 1:
-                completedTask = false;
-                state = AngerTest();
-                break;
-
-            case 2:
                 completedTask = false;
                 float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
                 yield return new WaitForSecondsRealtime(_movementInterval);
@@ -218,24 +193,47 @@ public class scr_FoulTrifling : scr_EntityAI
                 completedTask = true;
                 break;
 
-            case 3:
-                completedTask = false;
-                yield return new WaitForSecondsRealtime(.75f);
-                StartAttack1();
-                yield return new WaitForSecondsRealtime(2);
-                state = 0;
-                completedTask = true;
-                break;
+            case 2:
+                if (numOfAttacks < 2)
+                {
+                    completedTask = false;
+                    yield return new WaitForSecondsRealtime(.75f);
+                    StartAttack1();
+                    yield return new WaitForSecondsRealtime(2);
+                    state = 3;
+                    completedTask = true;
+                    numOfAttacks++;
+                    break;
+                }
+                else
+                {
+                    state = 0;
+                    completedTask = true;
+                    numOfAttacks = 0;
+                    break;
+                }
 
-            case 4:
-                completedTask = false;
-                float _thisTime = Random.Range(chargeTimeLower, chargeTimeUpper);
-                yield return new WaitForSecondsRealtime(_thisTime);
-                StartAttack2();
-                yield return new WaitForSecondsRealtime(2f);
-                state = 0;
-                completedTask = true;
-                break;
+
+            case 3:
+                if (numOfAttacks < 2)
+                {
+                    completedTask = false;
+                    float _thisTime = Random.Range(chargeTimeLower, chargeTimeUpper);
+                    yield return new WaitForSecondsRealtime(_thisTime);
+                    StartAttack2();
+                    yield return new WaitForSecondsRealtime(2f);
+                    state = 2;
+                    completedTask = true;
+                    numOfAttacks++;
+                    break;
+                }
+                else
+                {
+                    state = 0;
+                    completedTask = true;
+                    numOfAttacks = 0;
+                    break;
+                }
         }
         yield return null;
     }

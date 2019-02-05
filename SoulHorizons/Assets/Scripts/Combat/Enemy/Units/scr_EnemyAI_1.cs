@@ -209,7 +209,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
             case 0:
                 completedTask = false; 
                 Move();
-                state = 1; 
+                state = 3; 
                 break;
 
             case 1:
