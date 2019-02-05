@@ -1766,8 +1766,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 890281528}
-        m_MethodName: ButtonSFX
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryOpenCloseSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2535,6 +2535,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 278946747}
         m_MethodName: addCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3811,6 +3822,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &418526394
@@ -4318,6 +4340,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 505306973}
         m_MethodName: addCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5805,6 +5838,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &830626914
@@ -6239,18 +6283,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887949451}
   m_CullTransparentMesh: 0
---- !u!114 &890281528 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1273945393}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273945394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 932631f42cc16bc4d8a54553b78fa52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &903601964
 GameObject:
   m_ObjectHideFlags: 0
@@ -8363,6 +8395,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1083153285
@@ -8497,6 +8540,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093744681}
         m_MethodName: addCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8962,6 +9016,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1116680303}
         m_MethodName: removeCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9635,6 +9700,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1184017690
@@ -10128,6 +10204,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: bcb0076aa14357d488a306db0939f500, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: buttonsSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4010520458062352, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.37783974
@@ -10169,22 +10260,13 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 243849955281638176, guid: 5fa349ee0e2b0fa4e865c4bb8f191b0b,
+        type: 2}
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: m_Volume
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
-        type: 3}
-      propertyPath: music
-      value: 
-      objectReference: {fileID: 8300000, guid: bcb0076aa14357d488a306db0939f500, type: 3}
-    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
-        type: 3}
-      propertyPath: buttonsSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
 --- !u!1 &1273945394 stripped
@@ -10290,6 +10372,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1273945396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273945394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda59a823d28f7b4faf4c7875a5b46f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: bcb0076aa14357d488a306db0939f500, type: 3}
+  inventoryOpenSFX: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
+  inventoryAddSFX: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
+  inventoryCloseSFX: {fileID: 8300000, guid: 8ce300e61b7423247acc75067bfa9365, type: 3}
 --- !u!1 &1283470135
 GameObject:
   m_ObjectHideFlags: 0
@@ -10452,6 +10550,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1334261676}
         m_MethodName: removeCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12689,6 +12798,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1853300764
@@ -13109,6 +13229,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1908988730}
         m_MethodName: addCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14083,6 +14214,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2077551676}
         m_MethodName: removeCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1273945396}
+        m_MethodName: InventoryAddSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
