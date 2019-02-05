@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Atk_Boomerang
   m_EditorClassIdentifier: 
   incrementTime: 0.2
-  maxIncrementRange: 13
+  maxIncrementRange: 18
   damage: 10
   type: 1
-  piercing: 1
+  hasPiercing: 1
   particles: {fileID: 212286977064683536, guid: 6805b2aea64a7294da92797ced98bd29,
     type: 3}
   particlesOffset: {x: 0, y: 0.1, z: 0}

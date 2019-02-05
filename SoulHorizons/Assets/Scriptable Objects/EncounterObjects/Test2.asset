@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 0 -1 Tutorial
   sceneName: Encounter
-  columnNumber: 6
-  rowNumber: 3
+  columnNumber: 8
+  rowNumber: 4
   defaultTerrain: 
   tiles: []
   entities:
@@ -42,13 +42,6 @@ MonoBehaviour:
     - name: 0
       TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
       TerrSprite: {fileID: 0}
-  - territoryRow:
-    - name: 0
-      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
-      TerrSprite: {fileID: 0}
-    - name: 0
-      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
-      TerrSprite: {fileID: 0}
     - name: 0
       TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
       TerrSprite: {fileID: 0}
@@ -62,6 +55,35 @@ MonoBehaviour:
     - name: 0
       TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
       TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
   - territoryRow:
     - name: 1
       TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
@@ -72,6 +94,22 @@ MonoBehaviour:
     - name: 1
       TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
       TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
   - territoryRow:
     - name: 1
       TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
@@ -82,7 +120,13 @@ MonoBehaviour:
     - name: 1
       TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
       TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
   - territoryRow:
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
     - name: 1
       TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
       TerrSprite: {fileID: 0}
