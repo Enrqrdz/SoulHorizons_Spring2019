@@ -348,6 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 268632237}
   - component: {fileID: 268632236}
+  - component: {fileID: 268632238}
   m_Layer: 0
   m_Name: RegionGenerator
   m_TagString: Untagged
@@ -368,14 +369,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfEncounters: 10
-  encounterPool:
-  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
-  - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
-  - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
-  - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
-  - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
-  - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
-  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
 --- !u!4 &268632237
 Transform:
   m_ObjectHideFlags: 0
@@ -390,6 +383,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &268632238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268632235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838a96d9ffae34d10bd64b3af6d749b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encounterPool:
+  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
+  - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
+  - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
+  - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
+  - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
+  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
 --- !u!1 &306506421
 GameObject:
   m_ObjectHideFlags: 0
