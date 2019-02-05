@@ -66,7 +66,7 @@ public class GameState
     public EncounterData GetCurrentEncounter()
     {
         EncounterState encounterState = region.encounters[currentEncounterIndex];
-        return EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndexInPool);
+        return encounterState.GetEncounterData();
     }
 
     public void SetCurrentEncounterCompleteToTrue()
@@ -130,27 +130,5 @@ public class RegionState
     public RegionState()
     {
         encounters = new List<EncounterState>();
-    }
-}
-
-[System.Serializable]
-public class EncounterState
-{
-    public int tier;
-    public int encounterIndexInPool;
-    public bool isCompleted;
-
-    public EncounterState()
-    {
-        isCompleted = false;
-        tier = 0;
-        encounterIndexInPool = 0;
-    }
-
-    public void Clone(EncounterState encounter)
-    {
-        isCompleted = encounter.isCompleted;
-        tier = encounter.tier;
-        encounterIndexInPool = encounter.encounterIndexInPool;
     }
 }

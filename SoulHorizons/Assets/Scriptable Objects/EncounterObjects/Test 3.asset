@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc5844cf5600564695a725603c0956f, type: 3}
+  m_Name: Test 3
+  m_EditorClassIdentifier: 
+  name: 0-1 Tutorial
+  sceneName: sn_GridTest
+  xWidth: 6
+  yHeight: 3
+  defaultTerrain: 
+  tiles: []
+  entities:
+  - _entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605,
+      type: 2}
+    x: 1
+    y: 1
+  - _entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2,
+      type: 2}
+    x: 5
+    y: 0
+  - _entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2,
+      type: 2}
+    x: 5
+    y: 2
+  - _entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45,
+      type: 2}
+    x: 4
+    y: 1
+  mouse: 0
+  mush: 1
+  archer: 2
+  territoryColumn:
+  - territoryRow:
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 0
+      TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+  - territoryRow:
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
+    - name: 1
+      TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+      TerrSprite: {fileID: 0}
