@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class scr_ExiledArcher : scr_EntityAI {
 
+    //AKA Bird Bow Boi
+    //TODO: Antonio: Make it so the archer moves in a clockwise motion diagonally. 
+    // Make it so its arrows can come from either straght in front of him, or one tile below or above
 
     public AttackData hunterShot;
     public float hSChargeTime;
@@ -101,7 +104,20 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     void StartHunterShot()
     {
-        scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+        int randomVal;
+        randomVal = Random.Range(0, 6);
+        if (randomVal == 0)
+        {
+            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
+        }
+        else if (randomVal == 5)
+        {
+            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
+        }
+        else
+        {
+            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+        }
     }
 
     private IEnumerator HunterShot()
