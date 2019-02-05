@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Attacks/ChargedForward")]
-public class atk_ChargedForward : Attack {
+public class atk_ChargedForward : AttackData {
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {

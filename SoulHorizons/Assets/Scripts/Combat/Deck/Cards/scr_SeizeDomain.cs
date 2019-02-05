@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/SeizeDomain")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_SeizeDomain : scr_Card
+public class scr_SeizeDomain : CardData
 {
     public float duration;
     //public Color newColor;

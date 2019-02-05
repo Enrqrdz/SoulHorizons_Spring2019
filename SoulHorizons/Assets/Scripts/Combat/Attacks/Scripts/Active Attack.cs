@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class ActiveAttack
 {
-    public Attack attack;
+    public AttackData attack;
     public Vector2Int position;
     public Vector2Int lastPosition;
     public float lastAttackTime;
@@ -18,7 +18,7 @@ public class ActiveAttack
     public SpriteRenderer particle;     // use if only one particle 
     public SpriteRenderer[] particles;  //use for multiple particles 
 
-    public ActiveAttack(Attack atk, int x, int y, scr_Entity ent)
+    public ActiveAttack(AttackData atk, int x, int y, scr_Entity ent)
     {
         particles = new SpriteRenderer[5];
         attack = atk;

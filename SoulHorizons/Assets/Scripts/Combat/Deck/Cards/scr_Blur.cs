@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Blur")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Blur : scr_Card
+public class scr_Blur : CardData
 {
     private AudioSource PlayCardSFX;
     public AudioClip BlurSFX;

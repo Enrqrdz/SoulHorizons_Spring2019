@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_AttackController : MonoBehaviour {
 
-    public ActiveAttack[] activeAttacks = new ActiveAttack[10];     //Max number of active attacks is 10
+    public ActiveAttack[] activeAttacks = new ActiveAttack[20];     //Max number of active attacks is 20
     public int numberOfActiveAttacks = 0;
     public static scr_AttackController attackController;
     public scr_Pause pauseReference;
@@ -28,29 +28,20 @@ public class scr_AttackController : MonoBehaviour {
     {
         for (int i = 0; i < numberOfActiveAttacks; i++)
         {
-            bool isAttackAtMaxRange = activeAttacks[i].currentIncrement > activeAttacks[i].attack.maxIncrementRange;
-            bool isAttackOnFinalTarget = !activeAttacks[i].attack.piercing && activeAttacks[i].entityIsHit;
-            bool isAttackOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
-            bool isTileActive = activeAttacks[i].currentIncrement != 0;
+            bool attackIsAtMaxRange = activeAttacks[i].currentIncrement > activeAttacks[i].attack.maxIncrementRange;
+            bool attackIsOnFinalTarget = !activeAttacks[i].attack.hasPiercing && activeAttacks[i].entityIsHit;
+            bool attackIsOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
+            bool attackHasMoved = activeAttacks[i].currentIncrement != 0;
 
             if (activeAttacks[i].CanAttackContinue())
             {
-                if (isAttackAtMaxRange)
+                if (attackIsAtMaxRange || attackIsOnFinalTarget || attackIsOnGrid)
                 {
                     RemoveFromArray(i);
                     return;
                 }
-                else if (isAttackOnFinalTarget)
-                {
-                    RemoveFromArray(i);
-                    return;
-                }
-                else if (isAttackOnGrid)
-                {
-                    RemoveFromArray(i);
-                    return;
-                }
-                if (isTileActive)
+
+                if (attackHasMoved)
                 {
                     scr_Grid.GridController.DeactivateTile(activeAttacks[i].lastPosition.x, activeAttacks[i].lastPosition.y);
                 }
@@ -65,7 +56,7 @@ public class scr_AttackController : MonoBehaviour {
         }
     }
 
-    public void AddNewAttack(Attack _attack, int xPos, int yPos, scr_Entity ent)
+    public void AddNewAttack(AttackData _attack, int xPos, int yPos, scr_Entity ent)
     {
         activeAttacks[numberOfActiveAttacks] = new ActiveAttack(_attack, xPos, yPos, ent);
         activeAttacks[numberOfActiveAttacks].attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
@@ -109,7 +100,7 @@ public class scr_AttackController : MonoBehaviour {
         numberOfActiveAttacks--; 
     }
 
-    public Attack AttackType(Vector2Int pos)
+    public AttackData AttackType(Vector2Int pos)
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
         {
@@ -123,7 +114,7 @@ public class scr_AttackController : MonoBehaviour {
         
     }
 
-    public Attack MoveIntoAttackCheck(Vector2Int pos, scr_Entity entity)
+    public AttackData MoveIntoAttackCheck(Vector2Int pos, scr_Entity entity)
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
         {
@@ -131,7 +122,7 @@ public class scr_AttackController : MonoBehaviour {
             {
                 if (activeAttacks[x].entity.type != entity.type)
                 {
-                    Attack atk = activeAttacks[x].attack;
+                    AttackData atk = activeAttacks[x].attack;
                     activeAttacks[x].entityIsHit = true;
                     return atk;
                 }

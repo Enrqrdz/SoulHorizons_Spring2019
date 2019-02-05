@@ -27,7 +27,10 @@ public class scr_SceneManager : MonoBehaviour {
     }
 
     public void ChangeScene(string sceneName){
-		if(canSwitch)SceneManager.LoadScene (sceneName);
+        if (canSwitch)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
 	}
 
     public void QuitGame()

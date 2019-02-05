@@ -7,7 +7,7 @@ public class RegionGenerator : MonoBehaviour
     [SerializeField]
     private int numberOfEncounters;
 
-    public List<Encounter> encounterPool = new List<Encounter>();
+    public List<EncounterData> encounterPool = new List<EncounterData>();
 
     public void Start()
     {
@@ -35,7 +35,7 @@ public class RegionGenerator : MonoBehaviour
                 newEncounter.tier = 2;
             }
 
-            newEncounter.encounterIndex = EncounterPool.GetRandomEncounterIndexOfTier(newEncounter.tier);
+            newEncounter.encounterIndexInPool = EncounterPool.GetRandomEncounterIndexOfTier(newEncounter.tier);
             newRegion.encounters.Add(newEncounter);
         }
 

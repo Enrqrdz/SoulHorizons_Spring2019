@@ -40,7 +40,12 @@ public class GameState
 
     public int GetDustAmount()
     {
-        return scr_Inventory.dustNum;
+        return inventory.dustNum;
+    }
+
+    public void AddDust(int dust)
+    {
+        inventory.dustNum += dust;
     }
 
     public RegionState GetRegion()
@@ -58,10 +63,10 @@ public class GameState
         currentEncounterIndex = encounterIndex;
     }
 
-    public Encounter GetCurrentEncounter()
+    public EncounterData GetCurrentEncounter()
     {
         EncounterState encounterState = region.encounters[currentEncounterIndex];
-        return EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndex);
+        return EncounterPool.GetEncounterByTierAndIndex(encounterState.tier, encounterState.encounterIndexInPool);
     }
 
     public void SetCurrentEncounterCompleteToTrue()
@@ -69,36 +74,12 @@ public class GameState
         region.encounters[currentEncounterIndex].isCompleted = true;
     }
 
-    public void SaveInventory()
-    {
-        try
-        {
-            inventory.dustNum = scr_Inventory.dustNum;
-            inventory.cardInv = scr_Inventory.getCardInv();
-            inventory.deckList = scr_Inventory.getDeckList();
-            inventory.deckIndex = scr_Inventory.deckIndex;
-            inventory.numDecks = scr_Inventory.numDecks;
-        }
-        catch (System.NullReferenceException e)
-        {
-            Debug.Log("This is a " + e);
-        }
-    }
-
-    public void LoadInventory()
-    {
-        scr_Inventory.dustNum = inventory.dustNum;
-        scr_Inventory.deckList = inventory.deckList;
-        scr_Inventory.deckIndex = inventory.deckIndex;
-        scr_Inventory.numDecks = inventory.numDecks;
-    }
-
-    public List<KeyValuePair<string, int>> GetCardList()
+    public List<CardState> GetCardList()
     {
         return inventory.cardInv;
     }
 
-    public List<List<KeyValuePair<string, int>>> GetDeckList()
+    public List<List<CardState>> GetDeckList()
     {
         return inventory.deckList;
     }
@@ -123,10 +104,22 @@ public class PlayerState
 public class InventoryState
 {
     public int dustNum;
-    public List<KeyValuePair<string, int>> cardInv;
-    public List<List<KeyValuePair<string, int>>> deckList;
+    public List<CardState> cardInv;
+    public List<List<CardState>> deckList;
     public int deckIndex;
-    public int numDecks;
+}
+
+[System.Serializable]
+public class CardState
+{
+    public int numberOfCopies;
+    public int cardIndexInPool;
+
+    public CardState()
+    {
+        numberOfCopies = 0;
+        cardIndexInPool = 0;
+    }
 }
 
 [System.Serializable]
@@ -144,20 +137,20 @@ public class RegionState
 public class EncounterState
 {
     public int tier;
-    public int encounterIndex;
+    public int encounterIndexInPool;
     public bool isCompleted;
 
     public EncounterState()
     {
         isCompleted = false;
         tier = 0;
-        encounterIndex = 0;
+        encounterIndexInPool = 0;
     }
 
     public void Clone(EncounterState encounter)
     {
         isCompleted = encounter.isCompleted;
         tier = encounter.tier;
-        encounterIndex = encounter.encounterIndex;
+        encounterIndexInPool = encounter.encounterIndexInPool;
     }
 }

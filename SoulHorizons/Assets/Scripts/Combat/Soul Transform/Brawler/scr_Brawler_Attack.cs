@@ -150,7 +150,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		}
         dashing = true;
 		meleeCooldown -= 0.3f; //speed up the attack rate while dashing
-		scr_InputManager.disableMovement = true;
+		scr_InputManager.cannotMove = true;
 		startPos.x = playerEntity._gridPos.x; 
 		startPos.y = playerEntity._gridPos.y;
 		StartCoroutine(Dash());
@@ -176,7 +176,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 		dashing = false;
 		meleeCooldown += 0.3f; //slow the attack rate back to normal
-		scr_InputManager.disableMovement = false;
+		scr_InputManager.cannotMove = false;
 		playerEntity.SetTransform(startPos.x, startPos.y);
 	}
 
@@ -279,7 +279,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		while (slamDamage > 0 && scr_Grid.GridController.LocationOnGrid(column, 0)) //while the damage has not reduced to zero and we haven't gone off the edge of the grid
 		{
 			//iterate through the tiles in this column
-			for (int i = 0; i < scr_Grid.GridController.ySizeMax; i++)
+			for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
 			{
 				if (slamDamage > 0)
 				{

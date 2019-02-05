@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//[System.Serializable]
-public abstract class Attack : ScriptableObject {
+public abstract class AttackData : ScriptableObject {
 
     public float incrementTime;
     public int maxIncrementRange = 10;
     public int damage;
     [Header("Where the attack is coming from")]
     public EntityType type; //Player, Obstacle, Enemy
-    public bool piercing;
+    public bool hasPiercing;
     public SpriteRenderer particles;
     public Vector3 particlesOffset;
     public float particleSpeed = 1; 

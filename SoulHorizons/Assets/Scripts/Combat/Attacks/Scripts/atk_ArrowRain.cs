@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Attacks/ArrowRain")]
-public class atk_ArrowRain : Attack {
+public class atk_ArrowRain : AttackData {
 
     public int incrementWaitTime = 2; 
 

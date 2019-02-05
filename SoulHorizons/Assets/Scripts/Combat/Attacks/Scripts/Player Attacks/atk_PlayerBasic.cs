@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "Attacks/PlayerBasic")]
-public class atk_PlayerBasic : Attack {
+public class atk_PlayerBasic : AttackData {
 
     
 

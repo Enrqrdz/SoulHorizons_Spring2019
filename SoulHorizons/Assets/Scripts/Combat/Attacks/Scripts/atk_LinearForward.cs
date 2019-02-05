@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "Attacks/LinearForward")]
-public class atk_LinearForward : Attack {
+public class atk_LinearForward : AttackData {
 
     public float chanceToAttack = 30f;
 

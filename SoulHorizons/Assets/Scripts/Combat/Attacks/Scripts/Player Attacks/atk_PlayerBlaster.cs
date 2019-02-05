@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Attacks/PlayerBlaster")]
-public class atk_PlayerBlaster : Attack {
+public class atk_PlayerBlaster : AttackData {
 
     
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
