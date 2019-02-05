@@ -15,7 +15,7 @@ public class atk_Meteor : AttackData {
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = MeteorSFX;
         PlayCardSFX.Play();
-        for (int i = 0; i < scr_Grid.GridController.maxRowSize; i++)
+        for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
         {
             scr_Grid.GridController.PrimeNextTile(xPos, i);
             activeAtk.particles[i] = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.entity._gridPos.x, activeAtk.entity._gridPos.y) + new Vector3(0,2.5f,0), Quaternion.Euler(new Vector3(0,0,33)));

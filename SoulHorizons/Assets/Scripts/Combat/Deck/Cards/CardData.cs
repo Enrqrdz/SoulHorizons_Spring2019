@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-    public enum Element
-    {
-        Earth,
-        Soul,
-        Sun,
-        Void,
-        Wind
-    }
+public enum Element
+{
+    Earth,
+    Soul,
+    Sun,
+    Void,
+    Wind
+}
+
 [System.Serializable]
-public abstract class scr_Card : ScriptableObject {
-
-
+public abstract class CardData : ScriptableObject 
+{
     public List<string> keywords;
     public string cardName;
     public Element element;
@@ -27,5 +27,4 @@ public abstract class scr_Card : ScriptableObject {
                                                 //the spell is about to be cast
     public abstract void Activate();
     protected abstract void ActivateEffects(); //call in activate to trigger any visual/audio effects
-    
 }

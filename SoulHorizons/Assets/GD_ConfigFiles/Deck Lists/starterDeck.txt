@@ -1,8 +1,6 @@
-Bolt: 4
 Blur: 2
-Meteor: 5
-Cleave: 3
-Harden Soul: 4
-Mend: 4
+Meteor: 2
+Harden Soul: 1
+Mend: 1
 Seize Domain: 2
-Boomerang: 6
+Boomerang: 2

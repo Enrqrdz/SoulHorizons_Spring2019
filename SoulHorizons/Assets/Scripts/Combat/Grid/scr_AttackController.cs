@@ -28,29 +28,20 @@ public class scr_AttackController : MonoBehaviour {
     {
         for (int i = 0; i < numberOfActiveAttacks; i++)
         {
-            bool isAttackAtMaxRange = activeAttacks[i].currentIncrement > activeAttacks[i].attack.maxIncrementRange;
-            bool isAttackOnFinalTarget = !activeAttacks[i].attack.piercing && activeAttacks[i].entityIsHit;
-            bool isAttackOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
-            bool isTileActive = activeAttacks[i].currentIncrement != 0;
+            bool attackIsAtMaxRange = activeAttacks[i].currentIncrement > activeAttacks[i].attack.maxIncrementRange;
+            bool attackIsOnFinalTarget = !activeAttacks[i].attack.hasPiercing && activeAttacks[i].entityIsHit;
+            bool attackIsOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
+            bool attackHasMoved = activeAttacks[i].currentIncrement != 0;
 
             if (activeAttacks[i].CanAttackContinue())
             {
-                if (isAttackAtMaxRange)
+                if (attackIsAtMaxRange || attackIsOnFinalTarget || attackIsOnGrid)
                 {
                     RemoveFromArray(i);
                     return;
                 }
-                else if (isAttackOnFinalTarget)
-                {
-                    RemoveFromArray(i);
-                    return;
-                }
-                else if (isAttackOnGrid)
-                {
-                    RemoveFromArray(i);
-                    return;
-                }
-                if (isTileActive)
+
+                if (attackHasMoved)
                 {
                     scr_Grid.GridController.DeactivateTile(activeAttacks[i].lastPosition.x, activeAttacks[i].lastPosition.y);
                 }

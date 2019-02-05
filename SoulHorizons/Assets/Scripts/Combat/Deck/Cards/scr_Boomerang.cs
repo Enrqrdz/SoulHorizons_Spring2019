@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 
 [CreateAssetMenu(menuName = "Cards/Boomerang")]
-public class scr_Boomerang : scr_Card
+public class scr_Boomerang : CardData
 {
 
     public AttackData boomerangAttack;

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public static class EncounterPool
 {
-    private static List<List<Encounter>> encountersByTier = new List<List<Encounter>>();
+    private static List<List<EncounterData>> encountersByTier = new List<List<EncounterData>>();
 
-    public static void AddEncounter(Encounter newEncounter)
+    public static void AddEncounter(EncounterData newEncounter)
     {
         if(IsNewTier(newEncounter.tier))
             CreateTier(newEncounter.tier);
@@ -14,9 +14,9 @@ public static class EncounterPool
         encountersByTier[newEncounter.tier].Add(newEncounter);
     }
 
-    public static void AddEncounter(List<Encounter> newEncounters)
+    public static void AddEncounter(List<EncounterData> newEncounters)
     {
-        foreach(Encounter newEncounter in newEncounters)
+        foreach(EncounterData newEncounter in newEncounters)
         {
             if(IsNewTier(newEncounter.tier))
                 CreateTier(newEncounter.tier);
@@ -36,11 +36,11 @@ public static class EncounterPool
 
         for(int i = 0; i <= missingTiers; i++)
         {
-            encountersByTier.Add(new List<Encounter>());
+            encountersByTier.Add(new List<EncounterData>());
         }
     }
 
-    public static Encounter GetEncounterByTierAndIndex(int encounterTier, int encounterIndex)
+    public static EncounterData GetEncounterByTierAndIndex(int encounterTier, int encounterIndex)
     {
         return encountersByTier[encounterTier][encounterIndex];
     }

@@ -75,7 +75,7 @@ public class scr_PlayerMovement : scr_EntityAI
         if(inputX != scr_InputManager.MainHorizontal())
         {
             inputX = scr_InputManager.MainHorizontal();
-            if (inputX != 0 && scr_InputManager.Dash() && staminaCharges > 0)
+            if (inputX != 0 && scr_InputManager.IsDashPressed() && staminaCharges > 0)
             {
                 staminaCharges--; //spend a stamina charge
                 Instantiate(dashEffect, transform.position, dashEffect.transform.rotation);
@@ -91,7 +91,7 @@ public class scr_PlayerMovement : scr_EntityAI
                 {
                     //move to the rightmost player space
                     //get the rightmost player tile on this row
-                    for (int x = _x; x  < scr_Grid.GridController.maxColumnSize; x++)
+                    for (int x = _x; x  < scr_Grid.GridController.columnSizeMax; x++)
                     {
                         if (scr_Grid.GridController.ReturnTerritory(x,_y).name == entity.entityTerritory.name)
                         {
@@ -124,7 +124,7 @@ public class scr_PlayerMovement : scr_EntityAI
         if (inputY != scr_InputManager.MainVertical())
         {
             inputY = scr_InputManager.MainVertical();
-            if (inputY != 0 && scr_InputManager.Dash() && staminaCharges > 0)
+            if (inputY != 0 && scr_InputManager.IsDashPressed() && staminaCharges > 0)
             {
                 staminaCharges--; //spend a charge
                 Instantiate(dashEffect, transform.position, dashEffect.transform.rotation);
@@ -140,7 +140,7 @@ public class scr_PlayerMovement : scr_EntityAI
                 {
                     //move to the rightmost player space
                     //get the rightmost player tile on this row
-                    for (int y = _y; y  < scr_Grid.GridController.maxRowSize; y++)
+                    for (int y = _y; y  < scr_Grid.GridController.rowSizeMax; y++)
                     {
                         if (scr_Grid.GridController.ReturnTerritory(_x,y).name == entity.entityTerritory.name)
                         {
@@ -193,3 +193,4 @@ public class scr_PlayerMovement : scr_EntityAI
     }
 
 }
+
