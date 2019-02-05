@@ -32,6 +32,7 @@ public class scr_Critter : scr_EntityAI
 
         int xCoord = entity._gridPos.x;
         int yCoord = entity._gridPos.y;
+        int tries = 0;
 
         xCoord = GenerateCoord(scr_Grid.GridController.columnSizeMax / 2, scr_Grid.GridController.columnSizeMax);
         //xCoord = PickXCoord();
@@ -44,20 +45,27 @@ public class scr_Critter : scr_EntityAI
         }
         else
         {
-            if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
+            while (tries < 10)
             {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
-                entity.SetTransform(xCoord, yCoord);
-                MoveAlongColumn(xCoord,yCoord);
-                return;
-            }
-            else
-            {
-                //it is occupied, perform the check again
-                Move();
-                return;
+                if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
+                {
+                    //if the tile is not occupied
+                    scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
+                    entity.SetTransform(xCoord, yCoord);
+                    MoveAlongColumn(xCoord, yCoord);
+                    return;
+                }
+                else
+                {
+                    //it is occupied, perform the check again
+                    tries++;
+                    if(tries >= 10)
+                    {
+                        MoveAlongColumn(xCoord, yCoord);
+                    }
 
+
+                }
             }
         }
     }
