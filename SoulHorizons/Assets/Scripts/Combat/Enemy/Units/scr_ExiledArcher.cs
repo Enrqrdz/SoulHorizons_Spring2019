@@ -21,7 +21,9 @@ public class scr_ExiledArcher : scr_EntityAI {
     public float dodgeChance; 
     private bool canArrowRain = true;
     private bool broken = false;
-    private bool canMove = true; 
+    private bool canMove = true;
+
+    int movementAngle;
 
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
@@ -105,7 +107,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     void StartHunterShot()
     {
         int randomVal;
-        randomVal = Random.Range(0, 6);
+        randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
         if (randomVal == 0)
         {
             scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
