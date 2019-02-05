@@ -4,15 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Bolt")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Bolt : scr_Card {
+public class scr_Bolt : CardData {
 
-    public Attack boltAttack;
+    public AttackData boltAttack;
     private AudioSource PlayCardSFX;
     public AudioClip BoltSFX;
 
     public override void Activate()
     {
-        Debug.Log("Activating Bolt");
         ActivateEffects();
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoltSFX;

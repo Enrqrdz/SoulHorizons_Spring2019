@@ -16,7 +16,7 @@ public class scr_NameToCard : ScriptableObject {
     public class CardEntry
     {
         public string name;
-        public scr_Card cardObject;
+        public CardData cardObject;
     }
     public List<CardEntry> cards = new List<CardEntry>();
 
@@ -25,7 +25,7 @@ public class scr_NameToCard : ScriptableObject {
     /// </summary>
     /// <param name="name"></param>
     /// <returns>Returns the scriptable object or NULL.</returns>
-    public scr_Card ConvertNameToCard(string name)
+    public CardData ConvertNameToCard(string name)
     {
         foreach (CardEntry entry in cards)
         {

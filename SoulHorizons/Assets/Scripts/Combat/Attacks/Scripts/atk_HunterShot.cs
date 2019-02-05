@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Attacks/HunterShot")]
-public class atk_HunterShot : Attack {
+public class atk_HunterShot : AttackData {
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
@@ -37,13 +37,13 @@ public class atk_HunterShot : Attack {
     //--Effects Methods--
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.pos.x, activeAttack.pos.y) + particlesOffset, Quaternion.identity);
-        activeAttack.particle.sortingOrder = -activeAttack.pos.y;
+        activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
+        activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPos.x, activeAttack.lastPos.y) + activeAttack._attack.particlesOffset, (4.5f) * Time.deltaTime);
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (4.5f) * Time.deltaTime);
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)

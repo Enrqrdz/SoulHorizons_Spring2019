@@ -6,11 +6,21 @@ using UnityEngine;
 
 public class backgroundMusic : MonoBehaviour {
 
-    AudioSource Music;
+    AudioSource Music, Buttons;
+    public AudioClip music, buttonsSFX;
 
     void Start () {
-        AudioSource Music = GetComponent<AudioSource>();
+        AudioSource[] Audio_Sources = GetComponents<AudioSource>();
+        Music = Audio_Sources[0];
+        Buttons = Audio_Sources[1];
+        Music.clip = music;
         Music.Play();
+    }
+
+    public void ButtonSFX ()
+    {
+        Buttons.clip = buttonsSFX;
+        Buttons.Play();
     }
 	
 }

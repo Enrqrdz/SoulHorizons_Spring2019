@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/HardenSoul")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_HardenSoul : scr_Card {
+public class scr_HardenSoul : CardData {
 
     private AudioSource PlayCardSFX;
     public AudioClip HardenSoulSFX;

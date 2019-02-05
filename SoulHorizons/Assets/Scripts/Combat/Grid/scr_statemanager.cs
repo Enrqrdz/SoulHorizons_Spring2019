@@ -22,6 +22,8 @@ public class scr_statemanager : MonoBehaviour {
     scr_Entity playerEntity;
     scr_PlayerMovement playerMovement;
 
+    public int currentEncounterIndex;
+
     // Use this for initialization
     void Start () {
         //rewardPanel.enabled = false; 
@@ -35,7 +37,7 @@ public class scr_statemanager : MonoBehaviour {
 
             try
             {
-                hp = SaveLoad.currentGame.GetPlayerHealth();
+                hp = SaveManager.currentGame.GetPlayerHealth();
             }
             catch (NullReferenceException e)
             {
@@ -47,8 +49,8 @@ public class scr_statemanager : MonoBehaviour {
             }
 
             //make sure that movement is enabled
-            scr_InputManager.disableInput = false;
-            scr_InputManager.disableMovement = false;
+            scr_InputManager.cannotInput = false;
+            scr_InputManager.cannotMove = false;
 
             //load the stamina from the player
             StaminaText.text = "Stamina: " + playerMovement.GetStaminaCharges();
@@ -73,12 +75,12 @@ public class scr_statemanager : MonoBehaviour {
             endCombat = true;
 
             //GIVE REWARDS
-            scr_Inventory.dustNum += 50;
+            SaveManager.currentGame.AddDust(50);
 
             //save health
             try
             {
-                SaveLoad.currentGame.SetPlayerHealth(playerEntity._health.hp);
+                SaveManager.currentGame.SetPlayerHealth(playerEntity._health.hp);
             }
             catch (NullReferenceException e)
             {
@@ -86,10 +88,8 @@ public class scr_statemanager : MonoBehaviour {
             }
             //Debug.Log("DUST AMOUNT: " + SaveLoad.currentGame.GetDustAmount());
 
-
-
             //Set encounter to complete
-            scr_EncounterController.globalEncounterController.SetEncounterComplete(scr_SceneManager.globalSceneManager.currentEncounterNumber, true);
+            SaveManager.currentGame.SetCurrentEncounterCompleteToTrue();
         }
         if (endCombat)
         {
@@ -97,8 +97,8 @@ public class scr_statemanager : MonoBehaviour {
             if (Input.GetButton("Menu_Select") || Input.GetButton("Menu_Back"))
             {
                 Debug.Log("Switching Scenes");
-                SaveLoad.Save();
-                SceneManager.LoadScene("sn_LocalMap");
+                SaveManager.Save();
+                SceneManager.LoadScene(SceneNames.REGION);
             }
         }
 	}
@@ -123,7 +123,7 @@ public class scr_statemanager : MonoBehaviour {
         {
             //scr_InputManager.disableInput = true;
             //RewardMessage.text = "Oh no you died! Press V to return to the Local Map";
-            scr_Pause.setPaused(true);
+            scr_Pause.TogglePause();
             DeathMessage.SetActive(true);
             //rewardPanel.enabled = true; 
             endCombat = true;

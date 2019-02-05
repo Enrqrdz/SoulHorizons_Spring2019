@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Attacks/Meteor")]
 [RequireComponent(typeof(AudioSource))]
 
-public class atk_Meteor : Attack {
+public class atk_Meteor : AttackData {
     private AudioSource PlayCardSFX;
     public AudioClip MeteorSFX;
 
@@ -15,7 +15,7 @@ public class atk_Meteor : Attack {
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = MeteorSFX;
         PlayCardSFX.Play();
-        for (int i = 0; i < scr_Grid.GridController.ySizeMax; i++)
+        for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
         {
             scr_Grid.GridController.PrimeNextTile(xPos, i);
             activeAtk.particles[i] = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.entity._gridPos.x, activeAtk.entity._gridPos.y) + new Vector3(0,2.5f,0), Quaternion.Euler(new Vector3(0,0,33)));
@@ -24,7 +24,7 @@ public class atk_Meteor : Attack {
     }
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
     {
-        activeAtk.lastAttackTime += incrementSpeed;
+        activeAtk.lastAttackTime += incrementTime;
         return activeAtk;
     }
 
@@ -35,7 +35,7 @@ public class atk_Meteor : Attack {
 
     Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-
+        ///TODO: Make this a generic solution for scalable grids
         switch (activeAtk.currentIncrement)
         {
             case 0:
@@ -48,9 +48,8 @@ public class atk_Meteor : Attack {
 
             case 2:
                 scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
-                return new Vector2Int(xPos, yPos);
-
-
+                break;
+                //return new Vector2Int(xPos, yPos);
         }
         return new Vector2Int(xPos, yPos);
     }
@@ -59,35 +58,25 @@ public class atk_Meteor : Attack {
         return true; 
     }
 
-    //--Effects Methods--
-    
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
-        //activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.pos.x, activeAttack.pos.y) + particlesOffset, Quaternion.identity);
-        //activeAttack.particle.sortingOrder = -activeAttack.pos.y;
+
     }
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-
-        //activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPos.x, activeAttack.lastPos.y) + activeAttack._attack.particlesOffset, (4.5f) * Time.deltaTime);
         switch (activeAttack.currentIncrement)
         {
             case 0:
-                /*
-                activeAttack.particles[0].sortingOrder = -1;
-                activeAttack.particles[1].sortingOrder = -2;
-                activeAttack.particles[2].sortingOrder = 0;
-                */
-                activeAttack.particles[0].transform.position = Vector3.MoveTowards(activeAttack.particles[0].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.pos) + activeAttack._attack.particlesOffset, (18f) * Time.deltaTime);
+                activeAttack.particles[0].transform.position = Vector3.MoveTowards(activeAttack.particles[0].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
                 break; 
 
             case 1:
-                activeAttack.particles[1].transform.position = Vector3.MoveTowards(activeAttack.particles[1].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.pos) + activeAttack._attack.particlesOffset, (18f) * Time.deltaTime);
+                activeAttack.particles[1].transform.position = Vector3.MoveTowards(activeAttack.particles[1].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
                 activeAttack.particles[0].gameObject.SetActive(false); 
                 break;
             case 2:
-                activeAttack.particles[2].transform.position = Vector3.MoveTowards(activeAttack.particles[2].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.pos) + activeAttack._attack.particlesOffset, (18f) * Time.deltaTime);
+                activeAttack.particles[2].transform.position = Vector3.MoveTowards(activeAttack.particles[2].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
                 activeAttack.particles[1].gameObject.SetActive(false);
                 break;
             case 3:
@@ -98,7 +87,6 @@ public class atk_Meteor : Attack {
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
     {
-
     }
 
     public override void EndEffects(ActiveAttack activeAttack)

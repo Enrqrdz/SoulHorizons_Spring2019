@@ -43,11 +43,11 @@ public class scr_InvUI : MonoBehaviour {
         }
         else
         {
-            if (scr_Inventory.getDeckSize() >= minDeckSize)
+            if (InventoryManager.getDeckSize() >= minDeckSize)
             {
                 invPanel.SetActive(false);
                 UpdateBanners();
-                SaveLoad.Save();
+                SaveManager.Save();
             }
         }
     }
@@ -56,24 +56,24 @@ public class scr_InvUI : MonoBehaviour {
     {
         for (int i = 0; i < cardUI.Length; i++)
         {
-            if (i < scr_Inventory.cardInv.Count)
+            if (i < InventoryManager.cardInv.Count)
             {
-                cardUI[i].SetName(scr_Inventory.cardInv[i].Key.cardName); //set the name
-                cardUI[i].SetArt(scr_Inventory.cardInv[i].Key.art); //set the card art
-                cardUI[i].SetElement(scr_Inventory.cardInv[i].Key.element); //set the card element
+                cardUI[i].SetName(InventoryManager.cardInv[i].Key.cardName); //set the name
+                cardUI[i].SetArt(InventoryManager.cardInv[i].Key.art); //set the card art
+                cardUI[i].SetElement(InventoryManager.cardInv[i].Key.element); //set the card element
 
                 //Find how many of this card are in your current deck 
-                List<KeyValuePair<string, int>> myDeck = scr_Inventory.deckList[scr_Inventory.deckIndex];
+                List<KeyValuePair<string, int>> myDeck = InventoryManager.deckList[InventoryManager.currentDeckIndex];
                 int index = -1;
                 for(int j = 0; j < myDeck.Count; j++)
                 {
-                    if(myDeck[j].Key == scr_Inventory.cardInv[i].Key.cardName)
+                    if(myDeck[j].Key == InventoryManager.cardInv[i].Key.cardName)
                     {
                         index = j;
                     }
                 }
                 if (index < 0) Debug.Log("CARD NOT FOUND");
-                cardUI[i].SetBackupName(scr_Inventory.deckList[scr_Inventory.deckIndex][index].Value.ToString() + "/" + scr_Inventory.cardInv[i].Value.ToString()); //Set the card amount currently in inventory
+                cardUI[i].SetBackupName(InventoryManager.deckList[InventoryManager.currentDeckIndex][index].Value.ToString() + "/" + InventoryManager.cardInv[i].Value.ToString()); //Set the card amount currently in inventory
             }
             else
             {
@@ -90,7 +90,7 @@ public class scr_InvUI : MonoBehaviour {
 
         float tempX = BannerSpawn.transform.position.x;
         float tempY = BannerSpawn.transform.position.y;
-        foreach (KeyValuePair<string, int> pair in scr_Inventory.deckList[scr_Inventory.deckIndex])
+        foreach (KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
         {
             GameObject banner = Instantiate(cardBanner, new Vector3(tempX, tempY, 0), Quaternion.identity);
             string tempTxt = "CardOverlay/" + pair.Key;
@@ -108,7 +108,7 @@ public class scr_InvUI : MonoBehaviour {
         float tempX = BannerSpawn.transform.position.x;
         float tempY = BannerSpawn.transform.position.y;
         int tempCount = 0;
-        foreach (KeyValuePair<string, int> pair in scr_Inventory.deckList[scr_Inventory.deckIndex])
+        foreach (KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
         {
             string tempTxt = "CardOverlay/" + pair.Key;
             banners[tempCount].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(tempTxt);
@@ -125,15 +125,15 @@ public class scr_InvUI : MonoBehaviour {
             tempCount++;
         }
 
-        if (scr_Inventory.getDeckSize() < minDeckSize)
+        if (InventoryManager.getDeckSize() < minDeckSize)
         {
             scr_SceneManager.canSwitch = false;
-            deckNum.text = "<color=red>" + scr_Inventory.getDeckSize() + "</color> / " + minDeckSize;
+            deckNum.text = "<color=red>" + InventoryManager.getDeckSize() + "</color> / " + minDeckSize;
         }
         else
         {
             scr_SceneManager.canSwitch = true;
-            deckNum.text = scr_Inventory.getDeckSize() + " / " + minDeckSize;
+            deckNum.text = InventoryManager.getDeckSize() + " / " + minDeckSize;
         }
     }
 

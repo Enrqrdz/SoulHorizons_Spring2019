@@ -16,11 +16,11 @@ public class scr_InvButtons : MonoBehaviour {
     public void addCard()
     {
         scr_CardUI myCard = gameObject.transform.parent.gameObject.GetComponent<scr_CardUI>();
-        foreach(KeyValuePair<string, int> pair in scr_Inventory.deckList[scr_Inventory.deckIndex])
+        foreach(KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
         {
             if(pair.Key == myCard.getName())
             {
-                scr_Inventory.addCardToDeck(pair.Key);
+                InventoryManager.addCardToDeck(pair.Key);
             }
         }
     }
@@ -28,11 +28,11 @@ public class scr_InvButtons : MonoBehaviour {
     public void removeCard()
     {
         scr_CardUI myCard = gameObject.transform.parent.gameObject.GetComponent<scr_CardUI>();
-        foreach (KeyValuePair<string, int> pair in scr_Inventory.deckList[scr_Inventory.deckIndex])
+        foreach (KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
         {
             if (pair.Key == myCard.getName())
             {
-                scr_Inventory.removeCardFromDeck(pair.Key);
+                InventoryManager.removeCardFromDeck(pair.Key);
             }
         }
     }
