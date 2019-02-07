@@ -6,11 +6,10 @@ using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Encounter", menuName = "Encounter")]
 [System.Serializable]
-public class EncounterData : ScriptableObject {
-
+public class EncounterData : ScriptableObject
+{
     public new string name;
     public string sceneName = SceneNames.ENCOUNTER;
-
 
     [Header("Grid Size")]
     public int columnNumber = 3;
