@@ -3,63 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 [CreateAssetMenu(fileName = "New Encounter", menuName = "Encounter")]
 [System.Serializable]
 public class EncounterData : ScriptableObject
 {
     public new string name;
     public string sceneName = SceneNames.ENCOUNTER;
-
-    [Header("Grid Size")]
-    public int columnNumber = 3;
-    public int rowNumber = 3;
-    [Header("Terrain")]
-    public string defaultTerrain;
-    public List<Terrain_Entry> tiles = new List<Terrain_Entry>();
-    [Header("Assets")]
-    public EntitySpawnLocation[] entities;
-    public int mouseNum;
-    public int mushNum;
-    public int archerNum;
-    [Header("Encounter Data")]
     public int tier;
 
-    [Header("Territory")]
-    public TerritoryRow[] territoryColumn;
+    [Header("Entities")]
+    public EntitySpawnLocation[] entities;
 
-    [System.Serializable]
-    public class Asset_Entry
+    [SerializeField]
+    private EncounterMapData mapData;
+
+    public int GetNumberOfMouses()
     {
-        public GameObject asset;
-        public int x;
-        public int y;
+        return CountEnemy<scr_Critter>();
     }
 
-    [System.Serializable]
-    public class Terrain_Entry
+    public int GetNumberOfMush()
     {
-        public string type;
-        public int x;
-        public int y;
+        return CountEnemy<scr_EnemyAI_1>();
     }
 
-    [System.Serializable]
-    public class TerritoryRow
+    public int GetNumberOfArchers()
     {
-        public Territory[] territoryRow; 
+        return CountEnemy<scr_ExiledArcher>();
+    }
+
+    private int CountEnemy<T>()
+    {
+        int count = 0;
+
+        foreach(EntitySpawnLocation entitySpawn in entities)
+        {
+            if(entitySpawn.entity.GetComponent<T>() != null)
+                count++;
+        }
+
+        return count;
+    }
+
+    public Territory GetTerrorityAtXAndY(int x, int y)
+    {
+        return mapData.GetTerrorityAtXAndY(x, y);
+    }
+
+    public int GetNumberOfColumns()
+    {
+        return mapData.numberOfColumns;
+    }
+
+    public int GetNumberOfRows()
+    {
+        return mapData.numberOfRows;
     }
 
     [System.Serializable]
     public class EntitySpawnLocation
     {
-        public scr_Entity _entity;
+        public scr_Entity entity;
         public int x;
         public int y;
 
         public EntitySpawnLocation(scr_Entity ent, int a, int b)
         {
-            _entity = ent;
+            entity = ent;
             x = a;
             y = b;
         }

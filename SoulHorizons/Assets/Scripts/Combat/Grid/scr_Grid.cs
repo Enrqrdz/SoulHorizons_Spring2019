@@ -52,7 +52,7 @@ public class scr_Grid : MonoBehaviour{
 
                 tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + columnOffset, (j * tileSpacing.y) + rowOffset, 0), Quaternion.identity);
 
-                tileToAdd.territory = encounter.territoryColumn[i].territoryRow[j];
+                tileToAdd.territory = encounter.GetTerrorityAtXAndY(i, j);
                 tileToAdd.gridPositionX = i;
                 tileToAdd.gridPositionY = j;
 
@@ -94,15 +94,15 @@ public class scr_Grid : MonoBehaviour{
     {
         //Set movement to true
         scr_InputManager.cannotInput = false;
-        columnSizeMax = encounter.columnNumber;
-        rowSizeMax = encounter.rowNumber;
+        columnSizeMax = encounter.GetNumberOfColumns();
+        rowSizeMax = encounter.GetNumberOfRows();
         //calling in awake as a debug, should be called in Encounter
         SetNewGrid(columnSizeMax, rowSizeMax);
         activeEntities = new scr_Entity[encounter.entities.Length]; 
         for(int x = 0; x < activeEntities.Length; x++)
         {
             scr_Entity _entity = new scr_Entity();
-            _entity = (scr_Entity)Instantiate(encounter.entities[x]._entity, Vector3.zero, Quaternion.identity);
+            _entity = (scr_Entity)Instantiate(encounter.entities[x].entity, Vector3.zero, Quaternion.identity);
             _entity.InitPosition(encounter.entities[x].x, encounter.entities[x].y);
             activeEntities[x] = _entity;
         }

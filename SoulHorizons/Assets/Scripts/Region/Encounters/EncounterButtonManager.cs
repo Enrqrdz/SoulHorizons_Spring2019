@@ -22,9 +22,9 @@ public class EncounterButtonManager : MonoBehaviour
         infoPanel.enabled = false;
         SetIsActive(false); 
         eventSystem = GameObject.Find("/EventSystem");
-        mouseText.text = "x " + encounter.mouseNum;
-        mushText.text = "x " + encounter.mushNum;
-        archerText.text = "x " + encounter.archerNum;
+        mouseText.text = "x " + encounter.GetNumberOfMouses();
+        mushText.text = "x " + encounter.GetNumberOfMush();
+        archerText.text = "x " + encounter.GetNumberOfArchers();
 
         if (encounterState.isCompleted)
         {

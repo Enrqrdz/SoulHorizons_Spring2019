@@ -17,6 +17,13 @@ public struct Territory
         TerrColor = col;
         TerrSprite = spr;
     }
+
+    public Territory(Territory territoryToCopy)
+    {
+        name = territoryToCopy.name;
+        TerrColor = territoryToCopy.TerrColor;
+        TerrSprite = territoryToCopy.TerrSprite;
+    }
 }
 public class scr_Tile : MonoBehaviour{
 
