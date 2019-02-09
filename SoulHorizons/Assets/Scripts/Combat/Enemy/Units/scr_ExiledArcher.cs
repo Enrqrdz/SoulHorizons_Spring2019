@@ -20,10 +20,9 @@ public class scr_ExiledArcher : scr_EntityAI {
     public float movementIntervalUpper;
     public float dodgeChance; 
     private bool canArrowRain = true;
-    private bool broken = false;
     private bool canMove = true;
-
-    int movementAngle;
+    private bool goBackwards = false;
+    private int movePosition = 0;
 
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
@@ -38,42 +37,82 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void Move()
     {
-        //Decide if we are moving horiz or vert.
-        int randomDirection = Random.Range(0, 2);                                         //Pick a number between 0 and 1
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
+        int xRange = scr_Grid.GridController.columnSizeMax;
+        int yRange = scr_Grid.GridController.rowSizeMax;
         int tries = 0;
 
         while (tries < 10)
         {
-            randomDirection = Random.Range(0, 2);
-            if (randomDirection == 0)                                                          //if that number == 0, then we're moving vertically 
-            {
-                yPos = PickYCoord();
 
-            }
-            else if (randomDirection == 1)                                                     //if that number == 1, we're moving horizonally 
-            {
-                xPos = PickXCoord();
-
-            }
+            yPos = PickYCoord(yPos, movePosition, goBackwards);
+            xPos = PickXCoord(xPos, movePosition, goBackwards);
 
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
+                Debug.Log("LETS GET MOVING");
                 entity.SetTransform(xPos, yPos);   //move to new position
+                if (movePosition < 3)
+                {
+                    movePosition++;
+                    Debug.Log("Position: " + movePosition);
+                }
+                else
+                {
+                    movePosition = 0;
+                }
+
                 return;
             }
             else
             {
                 tries++;
+                goBackwards = true;
+                Debug.Log("goin backwards");
                 if (tries >= 10)
                 {
-                    broken = true;
-                    Debug.Log("I think I am broken");
+                    entity.SetTransform(scr_Grid.GridController.columnSizeMax / 2, scr_Grid.GridController.rowSizeMax / 2);
+                    tries = 0;
                 }
             }
         }
-    }
+            /*//Decide if we are moving horiz or vert.
+            int randomDirection = Random.Range(0, 2);                                         //Pick a number between 0 and 1
+            int xPos = entity._gridPos.x;
+            int yPos = entity._gridPos.y;
+            int tries = 0;
+
+            while (tries < 10)
+            {
+                randomDirection = Random.Range(0, 2);
+                if (randomDirection == 0)                                                          //if that number == 0, then we're moving vertically 
+                {
+                    yPos = PickYCoord();
+
+                }
+                else if (randomDirection == 1)                                                     //if that number == 1, we're moving horizonally 
+                {
+                    xPos = PickXCoord();
+
+                }
+
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                {
+                    entity.SetTransform(xPos, yPos);   //move to new position
+                    return;
+                }
+                else
+                {
+                    tries++;
+                    if (tries >= 10)
+                    {
+                        broken = true;
+                        Debug.Log("I think I am broken");
+                    }
+                }
+            } */
+        }
 
     public override void UpdateAI()
     {
@@ -148,9 +187,53 @@ public class scr_ExiledArcher : scr_EntityAI {
     }
 
 
-    int PickXCoord()
+    int PickXCoord(int xPos, int movePosition, bool backwards)
     {
-        //must return int 
+        if (movePosition == 0)
+        {
+            if (!backwards)
+            {
+                return xPos - 1;
+            }
+            else
+            {
+                return xPos + 1;
+            }
+        }
+        else if (movePosition == 1)
+        {
+            if (!backwards)
+            {
+                return xPos - 1;
+            }
+            else
+            {
+                return xPos + 1;
+            }
+        }
+        else if (movePosition == 2)
+        {
+            if (!backwards)
+            {
+                return xPos + 1;
+            }
+            else
+            {
+                return xPos - 1;
+            }
+        }
+        else
+        {
+            if (!backwards)
+            {
+                return xPos + 1;
+            }
+            else
+            {
+                return xPos - 1;
+            }
+        }
+        /*//must return int 
         int _range = scr_Grid.GridController.columnSizeMax;
         int _currPosX = entity._gridPos.x;
         int range = scr_Grid.GridController.rowSizeMax;
@@ -177,13 +260,58 @@ public class scr_ExiledArcher : scr_EntityAI {
             }
 
             return 0;
-        }
+        } */
 
     }
 
-    int PickYCoord()
+    int PickYCoord(int yPos, int movePosition, bool backwards)
     {
-        if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
+
+        if (movePosition == 0)
+        {
+            if (!backwards)
+            {
+                return yPos + 1;
+            }
+            else
+            {
+                return yPos + 1;
+            }
+        }
+        else if (movePosition == 1)
+        {
+            if (!backwards)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos - 1;
+            }
+        }
+        else if (movePosition == 2)
+        {
+            if (!backwards)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos - 1;
+            }
+        }
+        else
+        {
+            if (!backwards)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos + 1;
+            }
+        }
+        /*if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
         {
             return 1;
         }
@@ -202,7 +330,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         else                                            //otherwise, the AI is on 2 and can only move to 1 (up)
         {
             return 1;
-        }
+        }*/
     }
 
     IEnumerator MovementClock()
