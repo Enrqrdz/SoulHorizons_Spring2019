@@ -34,7 +34,7 @@ public class scr_Critter : scr_EntityAI
         int yCoord = entity._gridPos.y;
         int tries = 0;
 
-        xCoord = GenerateCoord(scr_Grid.GridController.columnSizeMax / 2, scr_Grid.GridController.columnSizeMax);
+        xCoord = GenerateCoord(scr_Grid.GridController.maxColumnSize / 2, scr_Grid.GridController.maxColumnSize);
         //xCoord = PickXCoord();
 
         if (xCoord == entity._gridPos.x && yCoord == entity._gridPos.y)
@@ -92,7 +92,7 @@ public class scr_Critter : scr_EntityAI
     int PickXCoord()
     {
         //must return int 
-        int moveRange = scr_Grid.GridController.columnSizeMax;
+        int moveRange = scr_Grid.GridController.maxColumnSize;
         int currX = entity._gridPos.x;
 
         if (currX == moveRange - 1)
@@ -123,7 +123,7 @@ public class scr_Critter : scr_EntityAI
     int PickYCoord()
     {
         int currY = entity._gridPos.y;
-        int moveRange = scr_Grid.GridController.rowSizeMax;
+        int moveRange = scr_Grid.GridController.maxRowSize;
 
         if (currY == 0)   //AI is on y = 0 and can only move to 1 (down)                             
         {

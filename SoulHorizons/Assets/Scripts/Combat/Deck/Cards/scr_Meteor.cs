@@ -17,7 +17,7 @@ public class scr_Meteor : CardData {
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map 
-        scr_AttackController.attackController.AddNewAttack(meteorAttack, Mathf.Min(player._gridPos.x + 3,(scr_Grid.GridController.columnSizeMax-1)), 1, player);
+        scr_AttackController.attackController.AddNewAttack(meteorAttack, Mathf.Min(player._gridPos.x + 3,(scr_Grid.GridController.maxColumnSize-1)), 1, player);
     }
 
     public override void StartCastingEffects()

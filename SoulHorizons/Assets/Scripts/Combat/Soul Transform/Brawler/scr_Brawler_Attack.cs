@@ -279,7 +279,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		while (slamDamage > 0 && scr_Grid.GridController.LocationOnGrid(column, 0)) //while the damage has not reduced to zero and we haven't gone off the edge of the grid
 		{
 			//iterate through the tiles in this column
-			for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
+			for (int i = 0; i < scr_Grid.GridController.maxRowSize; i++)
 			{
 				if (slamDamage > 0)
 				{

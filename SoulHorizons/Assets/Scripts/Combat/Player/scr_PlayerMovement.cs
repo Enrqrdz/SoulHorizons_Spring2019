@@ -91,7 +91,7 @@ public class scr_PlayerMovement : scr_EntityAI
                 {
                     //move to the rightmost player space
                     //get the rightmost player tile on this row
-                    for (int x = _x; x  < scr_Grid.GridController.columnSizeMax; x++)
+                    for (int x = _x; x  < scr_Grid.GridController.maxColumnSize; x++)
                     {
                         if (scr_Grid.GridController.ReturnTerritory(x,_y).name == entity.entityTerritory.name)
                         {
@@ -140,7 +140,7 @@ public class scr_PlayerMovement : scr_EntityAI
                 {
                     //move to the rightmost player space
                     //get the rightmost player tile on this row
-                    for (int y = _y; y  < scr_Grid.GridController.rowSizeMax; y++)
+                    for (int y = _y; y  < scr_Grid.GridController.maxRowSize; y++)
                     {
                         if (scr_Grid.GridController.ReturnTerritory(_x,y).name == entity.entityTerritory.name)
                         {
