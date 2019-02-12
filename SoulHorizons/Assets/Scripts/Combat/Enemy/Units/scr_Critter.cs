@@ -72,6 +72,7 @@ public class scr_Critter : scr_EntityAI
 
     public override void UpdateAI()
     {
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (taskComplete)
         {
             StartCoroutine(Brain());
