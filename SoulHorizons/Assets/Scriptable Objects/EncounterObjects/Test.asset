@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
   m_Name: Test
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   name: 0 -1 Tutorial
   sceneName: Encounter
   tier: 0
