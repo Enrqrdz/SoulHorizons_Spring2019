@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class scr_ExiledArcher : scr_EntityAI {
 
+    //AKA Bird Bow Boi
+    //TODO: Antonio: Make it so the archer moves in a clockwise motion diagonally. 
+    // Make it so its arrows can come from either straght in front of him, or one tile below or above
 
     public AttackData hunterShot;
     public float hSChargeTime;
@@ -17,8 +20,9 @@ public class scr_ExiledArcher : scr_EntityAI {
     public float movementIntervalUpper;
     public float dodgeChance; 
     private bool canArrowRain = true;
-    private bool broken = false;
-    private bool canMove = true; 
+    private bool canMove = true;
+    private bool goBackwards = false;
+    private int movePosition = 0;
 
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
@@ -33,42 +37,61 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void Move()
     {
-        //Decide if we are moving horiz or vert.
-        int randomDirection = Random.Range(0, 2);                                         //Pick a number between 0 and 1
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
-        int tries = 0;
+        int xRange = scr_Grid.GridController.columnSizeMax;
+        int yRange = scr_Grid.GridController.rowSizeMax;
 
-        while (tries < 10)
+        try
         {
-            randomDirection = Random.Range(0, 2);
-            if (randomDirection == 0)                                                          //if that number == 0, then we're moving vertically 
-            {
-                yPos = PickYCoord();
-
-            }
-            else if (randomDirection == 1)                                                     //if that number == 1, we're moving horizonally 
-            {
-                xPos = PickXCoord();
-
-            }
-
+            yPos = PickYCoord(yPos, movePosition, goBackwards);
+            xPos = PickXCoord(xPos, movePosition, goBackwards);
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                entity.SetTransform(xPos, yPos);   //move to new position
+                entity.SetTransform(xPos, yPos); 
+                if (movePosition < 3)
+                {
+                    movePosition++;
+                }
+                else
+                {
+                    movePosition = 0;
+                }
                 return;
             }
             else
             {
-                tries++;
-                if (tries >= 10)
+                goBackwards = !goBackwards;
+                yPos = PickYCoord(yPos, movePosition, goBackwards);
+                xPos = PickXCoord(xPos, movePosition, goBackwards);
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
                 {
-                    broken = true;
-                    Debug.Log("I think I am broken");
+                    entity.SetTransform(xPos, yPos);   //move to new position
+                    if (movePosition < 3)
+                    {
+                        movePosition++;
+                    }
+                    else
+                    {
+                        movePosition = 0;
+                    }
+                    return;
                 }
             }
+
         }
-    }
+        catch //If the new position is out of range of the grid, move the archer to the middle of the back column
+        {
+            yPos = yRange / 2;
+            xPos = xRange - 1;
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+            {
+                entity.SetTransform(xPos, yPos);   //move to new position
+                movePosition = 0;
+                return;
+            }
+        }
+     }
 
     public override void UpdateAI()
     {
@@ -101,7 +124,20 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     void StartHunterShot()
     {
-        scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+        int randomVal;
+        randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
+        if (randomVal == 0)
+        {
+            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
+        }
+        else if (randomVal == 5)
+        {
+            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
+        }
+        else
+        {
+            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+        }
     }
 
     private IEnumerator HunterShot()
@@ -130,60 +166,101 @@ public class scr_ExiledArcher : scr_EntityAI {
     }
 
 
-    int PickXCoord()
+    int PickXCoord(int xPos, int movePosition, bool backwards)
     {
-        //must return int 
-        int _range = scr_Grid.GridController.columnSizeMax;
-        int _currPosX = entity._gridPos.x;
-        int range = scr_Grid.GridController.rowSizeMax;
-        int curPosX = entity._gridPos.x;
-
-        if (curPosX == range - 1)
+        if (movePosition == 0)
         {
-            return (curPosX - 1);
+            if (backwards == false)
+            {
+                return xPos - 1;
+            }
+            else
+            {
+                return xPos - 1;
+            }
         }
-        else if (curPosX == range / 2)
+        else if (movePosition == 1)
         {
-            return curPosX + 1;
+            if (backwards == false)
+            {
+                return xPos - 1;
+            }
+            else
+            {
+                return xPos + 1;
+            }
+        }
+        else if (movePosition == 2)
+        {
+            if (backwards == false)
+            {
+                return xPos + 1;
+            }
+            else
+            {
+                return xPos + 1;
+            }
         }
         else
         {
-            int temp = Random.Range(0, 2);
-            if (temp == 0)
+            if (backwards == false)
             {
-                return curPosX + 1;
+                return xPos + 1;
             }
-            else if (temp == 1)
+            else
             {
-                return curPosX - 1;
+                return xPos + 1;
             }
-
-            return 0;
         }
 
     }
 
-    int PickYCoord()
+    int PickYCoord(int yPos, int movePosition, bool backwards)
     {
-        if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
+
+        if (movePosition == 0)
         {
-            return 1;
-        }
-        else if (entity._gridPos.y == 1)                        //AI is on y = 1 and can move either up or down
-        {
-            int temp = Random.Range(0, 2);             //make a random number 0 or 1
-            if (temp == 0)                              //if this number is 0, move to 0 (up)
+            if (backwards == false)
             {
-                return 0;
+                return yPos + 1;
             }
-            else                                        //if this number is 1, move to 1 (down) 
+            else
             {
-                return 2;
+                return yPos - 1;
             }
         }
-        else                                            //otherwise, the AI is on 2 and can only move to 1 (up)
+        else if (movePosition == 1)
         {
-            return 1;
+            if (backwards == false)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos + 1;
+            }
+        }
+        else if (movePosition == 2)
+        {
+            if (backwards == false)
+            {
+                return yPos + 1;
+            }
+            else
+            {
+                return yPos + 1;
+            }
+        }
+        else
+        {
+            if (backwards == false)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos - 1;
+            }
         }
     }
 

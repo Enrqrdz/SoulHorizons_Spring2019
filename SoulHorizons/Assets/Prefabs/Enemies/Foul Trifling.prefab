@@ -216,6 +216,7 @@ MonoBehaviour:
   movementIntervalUpper: 4
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
+  numOfAttacks: 0
   movements_SFX:
   - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
   - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
@@ -331,10 +332,10 @@ GameObject:
   - component: {fileID: 4483777865337536}
   - component: {fileID: 61906949573251334}
   - component: {fileID: 114725702907161856}
-  - component: {fileID: 114373111611885714}
+  - component: {fileID: 6450218370751255472}
   - component: {fileID: 82240855345996476}
   - component: {fileID: 82587730288405618}
-  - component: {fileID: 82985607249628794}
+  - component: {fileID: 82506920895334072}
   m_Layer: 0
   m_Name: Foul Trifling
   m_TagString: Enemy
@@ -402,7 +403,7 @@ MonoBehaviour:
     hp: 50
     shield: 0
     max_hp: 50
-  _ai: {fileID: 114373111611885714}
+  _ai: {fileID: 6450218370751255472}
   entityTerritory:
     name: 1
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
@@ -411,7 +412,7 @@ MonoBehaviour:
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
-  invulnTime: 0
+  invulnTime: 100
   hurts_SFX:
   - {fileID: 8300000, guid: 8cc96daad9e40b34e89438f259c636ce, type: 3}
   - {fileID: 8300000, guid: 47b6ba2ecd0b41046b04e996d8152611, type: 3}
@@ -420,7 +421,7 @@ MonoBehaviour:
   anim: {fileID: 95383577856842134}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
---- !u!114 &114373111611885714
+--- !u!114 &6450218370751255472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,7 +430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7a47803631a964ba3f08d547d87350, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a0407a7f4e82a94ca65c5e99e39bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
@@ -442,6 +443,7 @@ MonoBehaviour:
   movementIntervalUpper: 4
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
+  numOfAttacks: 0
   movements_SFX:
   - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
   - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}

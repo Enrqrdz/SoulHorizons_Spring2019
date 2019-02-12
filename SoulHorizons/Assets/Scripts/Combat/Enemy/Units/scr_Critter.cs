@@ -8,7 +8,9 @@ public class scr_Critter : scr_EntityAI
     public float decisionTime;
     public float decisionTimeLower;
     //public float burrowedTime;
-   // public float burrowedTimeLower;
+    // public float burrowedTimeLower;
+    bool movingDown = false;
+    bool movingUp = false;
     bool taskComplete = true;
     int state = 1;
 
@@ -52,7 +54,6 @@ public class scr_Critter : scr_EntityAI
                     //if the tile is not occupied
                     scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
                     entity.SetTransform(xCoord, yCoord);
-                    MoveAlongColumn(xCoord, yCoord);
                     return;
                 }
                 else
@@ -62,6 +63,7 @@ public class scr_Critter : scr_EntityAI
                     if(tries >= 10)
                     {
                         MoveAlongColumn(xCoord, yCoord);
+                        state = 1;
                     }
 
 
@@ -72,6 +74,7 @@ public class scr_Critter : scr_EntityAI
 
     public override void UpdateAI()
     {
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (taskComplete)
         {
             StartCoroutine(Brain());
@@ -127,7 +130,7 @@ public class scr_Critter : scr_EntityAI
 
         if (currY == 0)   //AI is on y = 0 and can only move to 1 (down)                             
         {
-            return 2;
+            return moveRange - 1;
         }
         else if (currY == 2)    //the AI is on the bottom and can only move to up
         {
@@ -174,7 +177,7 @@ public class scr_Critter : scr_EntityAI
             case 0:                                                             //Move the entity's x position,
                 taskComplete = false;
                 Move();                                                     //Set new position
-                state = 1;                                         
+                state = 2;                                         
                 taskComplete = true;
                 break;
             case 1:                                                             //On a tile, waiting to do a thing
@@ -185,103 +188,23 @@ public class scr_Critter : scr_EntityAI
                 state = 0;                                                   //move                                           
                 taskComplete = true;
                 break;
+            case 2:
+                taskComplete = false;
+                float waitTimeAgain;
+                waitTimeAgain = Random.Range(decisionTimeLower, decisionTime);
+                yield return new WaitForSecondsRealtime(waitTimeAgain);
+                state = 3;                                                   //move                                           
+                taskComplete = true;
+                break;
+            case 3:
+                taskComplete = false;
+                MoveAlongColumn(entity._gridPos.x, entity._gridPos.y);
+                state = 1;
+                taskComplete = true;
+                break;
 
         }
     }
 
 }
 
-/* case 0:                                                             //Move the entity,
-               entity.spr.color = burrowedColor;
-               taskComplete = false;
-               Move();                                                     //Set new position
-               float burrowTime;
-               burrowTime = Random.Range(burrowedTimeLower, burrowedTime);
-               yield return new WaitForSecondsRealtime(burrowTime);          //in case we want him to be hidden/burrowed for an amount of time
-               state = 3;                                                      //go to un-burrowing
-               entity.spr.color = burrowedColor;
-               taskComplete = true;
-               break;
-           case 1:                                                             //On a tile, waiting to do a thing
-               entity.invincible = false;
-               taskComplete = false;
-               float waitTime;
-               waitTime = Random.Range(decisionTimeLower, decisionTime);
-               yield return new WaitForSecondsRealtime(waitTime);
-               state = 2;                                                      //go to burrowing                                            
-               taskComplete = true;
-               break;
-           case 2:                                                             //burrows and is hidden
-               t = 0;
-               taskComplete = false;
-               while (t < 1)
-               { // while t below the end limit...
-                 // increment it at the desired rate every update:
-                   entity.spr.color = Color.Lerp(normalColor, burrowedColor, t);   //fades the color of the sprite to black, this is a placeholder for a burrowing animation
-                   t += Time.deltaTime / lerpDuration;
-                   yield return new WaitForSecondsRealtime(.001f);
-               }
-               entity.invincible = true;                                      //give the entity i frames
-               state = 0;                                                      //go to movement 
-               taskComplete = true;
-               break;
-           case 3:                                                             //pops out of burrow in new tile
-               t2 = 0;
-               taskComplete = false;
-               while (t2 < 1)
-               { // while t below the end limit...
-                 // increment it at the desired rate every update:
-                   entity.spr.color = Color.Lerp(burrowedColor, normalColor, t2);   //fades the color of the sprite to black, this is a placeholder for a burrowing animation
-                   t2 += Time.deltaTime / lerpDuration;
-                   yield return new WaitForSecondsRealtime(.001f);
-               }
-               entity.invincible = false;                                     //make the entity mortal again
-               state = 1;                                                      //go to waiting 
-               taskComplete = true;
-               break; */
-//moveAlongColumn
-/*int moveRange = scr_Grid.GridController.rowSizeMax;
-    int newCoord;
-    int temp;         //Pick a number between 0 and 1
-    temp = Random.Range(0, 2);
-    if (temp == 0)            //if that number == 0, then we're moving up
-    {
-        if (yCoord != 0)
-        {
-             newCoord = 0;
-            if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
-            {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied     
-                entity.SetTransform(xCoord, newCoord);
-                return;
-            }
-            else
-            {
-                //it is occupied, perform the check again
-                MoveAlongColumn(xCoord, yCoord);
-                return;
-
-            }
-        }
-    }
-    else if (temp == 1) //the number is 1 so we are moving down
-    {
-        if (yCoord != moveRange - 1)
-        {
-            newCoord = moveRange - 1;
-            if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
-            {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied     
-                entity.SetTransform(xCoord, newCoord);
-                return;
-            }
-            else
-            {
-                //it is occupied, perform the check again
-                MoveAlongColumn(xCoord, yCoord);
-                return;
-            }
-        }
-    } */
