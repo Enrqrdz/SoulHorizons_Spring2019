@@ -6209,7 +6209,7 @@ MonoBehaviour:
   rowSizeMax: 0
   columnOffset: 0
   rowOffset: -1
-  tileSpacing: {x: 0.79, y: 0.65}
+  tileSpacing: {x: 0.5925, y: 0.4875}
   tile: {fileID: 114124032091846856, guid: c0f8ab25b0d628140b13fe6f1ec791c8, type: 3}
   tile_sprites: {fileID: 21300000, guid: b9493c4e0e29b2d449c3b6e7ef2f6556, type: 3}
   activeEntities: []
