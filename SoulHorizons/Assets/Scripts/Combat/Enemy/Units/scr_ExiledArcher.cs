@@ -6,19 +6,19 @@ using UnityEngine;
 public class scr_ExiledArcher : scr_EntityAI {
 
     //AKA Bird Bow Boi
-    //TODO: Antonio: Make it so the archer moves in a clockwise motion diagonally.
+    //TODO: Antonio: Make it so the archer moves in a clockwise motion diagonally. 
     // Make it so its arrows can come from either straght in front of him, or one tile below or above
 
     public AttackData hunterShot;
     public float hSChargeTime;
-    private bool hSOnCD = false;   //On Cooldown
-    private float hSCooldownTime = 1.5f;
+    private bool hSOnCD = false;   //On Cooldown 
+    private float hSCooldownTime = 1.5f; 
 
     public AttackData arrowRain;
     public float aRInterval;
     public float movementIntervalLower;
     public float movementIntervalUpper;
-    public float dodgeChance;
+    public float dodgeChance; 
     private bool canArrowRain = true;
     private bool canMove = true;
     private bool goBackwards = false;
@@ -48,7 +48,7 @@ public class scr_ExiledArcher : scr_EntityAI {
             xPos = PickXCoord(xPos, movePosition, goBackwards);
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                entity.SetTransform(xPos, yPos);
+                entity.SetTransform(xPos, yPos); 
                 if (movePosition < 3)
                 {
                     movePosition++;
@@ -95,7 +95,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity); 
         if(!hSOnCD  && HunterShotCheck())
         {
             StartCoroutine(HunterShot());
@@ -119,7 +119,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             return true;
         }
-        return false;
+        return false; 
     }
 
     void StartHunterShot()
@@ -150,19 +150,19 @@ public class scr_ExiledArcher : scr_EntityAI {
         Attack_SFX.Play();
         anim.SetBool("Attack", true);
         yield return new WaitForSecondsRealtime(hSCooldownTime);
-        hSOnCD = false;
+        hSOnCD = false; 
     }
 
     private IEnumerator ArrowRain(float _aRInterval)
     {
-        //TELEGRAPH
-        canArrowRain = false;
+        //TELEGRAPH 
+        canArrowRain = false; 
         yield return new WaitForSecondsRealtime(1f);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         int playerXPos = player.GetComponent<scr_Entity>()._gridPos.x;
-        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.maxRowSize - 1, entity);
+        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
         yield return new WaitForSecondsRealtime(_aRInterval);
-        canArrowRain = true;
+        canArrowRain = true; 
     }
 
 
@@ -270,20 +270,20 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             Move();
             float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-            canMove = false;
+            canMove = false; 
             yield return new WaitForSecondsRealtime(_movementInterval);
-            canMove = true;
+            canMove = true; 
         }
     }
 
     void DodgeAttackVertically(int x, int y)
     {
         int yDirection = y + 1;
-
-        if(yDirection > scr_Grid.GridController.maxRowSize - 1)
-        if(yDirection > scr_Grid.GridController.maxColumnSize - 1)
+        
+        if(yDirection > scr_Grid.GridController.rowSizeMax - 1)
+        if(yDirection > scr_Grid.GridController.columnSizeMax - 1)
         {
-            yDirection = y - 2;
+            yDirection = y - 2; 
         }
 
         entity.SetTransform(x, yDirection);

@@ -1,5 +1,6 @@
 Blur: 2
-Harden Soul: 2
-Mend: 2
+Meteor: 2
+Harden Soul: 1
+Mend: 1
 Seize Domain: 2
 Boomerang: 2

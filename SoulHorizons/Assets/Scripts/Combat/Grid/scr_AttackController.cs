@@ -85,13 +85,10 @@ public class scr_AttackController : MonoBehaviour {
         scr_Grid.GridController.DeactivateTile(activeAttacks[index].lastPosition.x, activeAttacks[index].lastPosition.y);
         scr_Grid.GridController.DeactivateTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
         scr_Grid.GridController.DePrimeTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
-
-        Destroy(activeAttacks[index].particle.gameObject);
-
-        
+        Destroy(activeAttacks[index].particle);
         for (int x = index; x < numberOfActiveAttacks; x++)
         {
-            if (x < activeAttacks.Length - 1 && activeAttacks[x + 1].attack != null)
+            if (x + 1 < activeAttacks.Length && activeAttacks[x + 1].attack != null)
             {
                 activeAttacks[x].Clone(activeAttacks[x + 1]);
             }

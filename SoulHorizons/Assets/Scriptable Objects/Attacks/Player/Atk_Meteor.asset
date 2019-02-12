@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Atk_Meteor
   m_EditorClassIdentifier: 
   incrementTime: 0.2
-  maxIncrementRange: 3
+  maxIncrementRange: 2
   damage: 10
   type: 1
-  hasPiercing: 0
+  piercing: 1
   particles: {fileID: 212268602049623880, guid: 3306d589b86a9424794eedbb5ad7f1c7,
     type: 3}
   particlesOffset: {x: -0.2, y: 0, z: 0}
