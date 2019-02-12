@@ -48,7 +48,7 @@ public class scr_ExiledArcher : scr_EntityAI {
             xPos = PickXCoord(xPos, movePosition, goBackwards);
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                entity.SetTransform(xPos, yPos);   //move to new position
+                entity.SetTransform(xPos, yPos); 
                 if (movePosition < 3)
                 {
                     movePosition++;
@@ -80,9 +80,8 @@ public class scr_ExiledArcher : scr_EntityAI {
             }
 
         }
-        catch
+        catch //If the new position is out of range of the grid, move the archer to the middle of the back column
         {
-            Debug.Log("We broke");
             yPos = yRange / 2;
             xPos = xRange - 1;
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
@@ -92,41 +91,6 @@ public class scr_ExiledArcher : scr_EntityAI {
                 return;
             }
         }
-            /*//Decide if we are moving horiz or vert.
-            int randomDirection = Random.Range(0, 2);                                         //Pick a number between 0 and 1
-            int xPos = entity._gridPos.x;
-            int yPos = entity._gridPos.y;
-            int tries = 0;
-
-            while (tries < 10)
-            {
-                randomDirection = Random.Range(0, 2);
-                if (randomDirection == 0)                                                          //if that number == 0, then we're moving vertically 
-                {
-                    yPos = PickYCoord();
-
-                }
-                else if (randomDirection == 1)                                                     //if that number == 1, we're moving horizonally 
-                {
-                    xPos = PickXCoord();
-
-                }
-
-                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-                {
-                    entity.SetTransform(xPos, yPos);   //move to new position
-                    return;
-                }
-                else
-                {
-                    tries++;
-                    if (tries >= 10)
-                    {
-                        broken = true;
-                        Debug.Log("I think I am broken");
-                    }
-                }
-            } */
      }
 
     public override void UpdateAI()
@@ -248,34 +212,6 @@ public class scr_ExiledArcher : scr_EntityAI {
                 return xPos + 1;
             }
         }
-        /*//must return int 
-        int _range = scr_Grid.GridController.columnSizeMax;
-        int _currPosX = entity._gridPos.x;
-        int range = scr_Grid.GridController.rowSizeMax;
-        int curPosX = entity._gridPos.x;
-
-        if (curPosX == range - 1)
-        {
-            return (curPosX - 1);
-        }
-        else if (curPosX == range / 2)
-        {
-            return curPosX + 1;
-        }
-        else
-        {
-            int temp = Random.Range(0, 2);
-            if (temp == 0)
-            {
-                return curPosX + 1;
-            }
-            else if (temp == 1)
-            {
-                return curPosX - 1;
-            }
-
-            return 0;
-        } */
 
     }
 
@@ -326,26 +262,6 @@ public class scr_ExiledArcher : scr_EntityAI {
                 return yPos - 1;
             }
         }
-        /*if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
-        {
-            return 1;
-        }
-        else if (entity._gridPos.y == 1)                        //AI is on y = 1 and can move either up or down
-        {
-            int temp = Random.Range(0, 2);             //make a random number 0 or 1
-            if (temp == 0)                              //if this number is 0, move to 0 (up)
-            {
-                return 0;
-            }
-            else                                        //if this number is 1, move to 1 (down) 
-            {
-                return 2;
-            }
-        }
-        else                                            //otherwise, the AI is on 2 and can only move to 1 (up)
-        {
-            return 1;
-        }*/
     }
 
     IEnumerator MovementClock()

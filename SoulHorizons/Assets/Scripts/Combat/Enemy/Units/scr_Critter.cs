@@ -8,7 +8,9 @@ public class scr_Critter : scr_EntityAI
     public float decisionTime;
     public float decisionTimeLower;
     //public float burrowedTime;
-   // public float burrowedTimeLower;
+    // public float burrowedTimeLower;
+    bool movingDown = false;
+    bool movingUp = false;
     bool taskComplete = true;
     int state = 1;
 
@@ -52,7 +54,6 @@ public class scr_Critter : scr_EntityAI
                     //if the tile is not occupied
                     scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
                     entity.SetTransform(xCoord, yCoord);
-                    MoveAlongColumn(xCoord, yCoord);
                     return;
                 }
                 else
@@ -62,6 +63,7 @@ public class scr_Critter : scr_EntityAI
                     if(tries >= 10)
                     {
                         MoveAlongColumn(xCoord, yCoord);
+                        state = 1;
                     }
 
 
@@ -128,7 +130,7 @@ public class scr_Critter : scr_EntityAI
 
         if (currY == 0)   //AI is on y = 0 and can only move to 1 (down)                             
         {
-            return 2;
+            return moveRange - 1;
         }
         else if (currY == 2)    //the AI is on the bottom and can only move to up
         {
@@ -175,7 +177,7 @@ public class scr_Critter : scr_EntityAI
             case 0:                                                             //Move the entity's x position,
                 taskComplete = false;
                 Move();                                                     //Set new position
-                state = 1;                                         
+                state = 2;                                         
                 taskComplete = true;
                 break;
             case 1:                                                             //On a tile, waiting to do a thing
@@ -184,6 +186,20 @@ public class scr_Critter : scr_EntityAI
                 waitTime = Random.Range(decisionTimeLower, decisionTime);
                 yield return new WaitForSecondsRealtime(waitTime);
                 state = 0;                                                   //move                                           
+                taskComplete = true;
+                break;
+            case 2:
+                taskComplete = false;
+                float waitTimeAgain;
+                waitTimeAgain = Random.Range(decisionTimeLower, decisionTime);
+                yield return new WaitForSecondsRealtime(waitTimeAgain);
+                state = 3;                                                   //move                                           
+                taskComplete = true;
+                break;
+            case 3:
+                taskComplete = false;
+                MoveAlongColumn(entity._gridPos.x, entity._gridPos.y);
+                state = 1;
                 taskComplete = true;
                 break;
 
