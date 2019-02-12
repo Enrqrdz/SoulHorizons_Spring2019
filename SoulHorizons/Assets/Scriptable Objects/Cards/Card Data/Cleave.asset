@@ -19,6 +19,6 @@ MonoBehaviour:
   castingTime: 0
   cooldown: 1
   description: 
-  art: {fileID: 21300000, guid: 746457a61e7184b4eb57e3d7f3ba6ce1, type: 3}
+  art: {fileID: 21300000, guid: 3b9f85d69bb43cb47abd02de3e7f4a78, type: 3}
   attack: {fileID: 11400000, guid: 8500b5d9a2c71684591283e74b4216e5, type: 2}
   CleaveSFX: {fileID: 8300000, guid: 9404ae73614512b4eb30999ec479ff93, type: 3}

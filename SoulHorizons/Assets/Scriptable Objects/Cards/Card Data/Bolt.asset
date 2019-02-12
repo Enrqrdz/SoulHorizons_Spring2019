@@ -21,6 +21,6 @@ MonoBehaviour:
   description: 'Fires in a straight line, going through enemies
 
     and stopping if it hits an obstacle.'
-  art: {fileID: 21300000, guid: 7cc960fd5843a7448a245398b4983002, type: 3}
+  art: {fileID: 21300000, guid: d354c4b2dfb8aba43b705cc08858a2f6, type: 3}
   boltAttack: {fileID: 11400000, guid: da7ee130257b5684b80a3a6892049468, type: 2}
   BoltSFX: {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
