@@ -52,35 +52,35 @@ public class scr_FoulTrifling : scr_EntityAI
         Footsteps_SFX.Play();
 
         //Decide if we are moving horiz or vert.
-        int _temp = Random.Range(0, 2);                                         //Pick a number between 0 and 1
-        int _x = entity._gridPos.x;
-        int _y = entity._gridPos.y;
-        int _tries = 0;
+        int temp = Random.Range(0, 2);                                         //Pick a number between 0 and 1
+        int xPos = entity._gridPos.x;
+        int yPos = entity._gridPos.y;
+        int tries = 0;
 
-        while (_tries < 10)
+        while (tries < 10)
         {
-            _temp = Random.Range(0, 2);
-            if (_temp == 0)                                                          //if that number == 0, then we're moving vertically 
+            temp = Random.Range(0, 2);
+            if (temp == 0)                                                          //if that number == 0, then we're moving vertically 
             {
-                _y = PickYCoord();
+                yPos = PickYCoord();
 
             }
-            else if (_temp == 1)                                                     //if that number == 1, we're moving horizonally 
+            else if (temp == 1)                                                     //if that number == 1, we're moving horizonally 
             {
-                _x = PickXCoord();
+                xPos = PickXCoord();
 
             }
 
-            if (!scr_Grid.GridController.CheckIfOccupied(_x, _y) && (scr_Grid.GridController.ReturnTerritory(_x, _y).name == entity.entityTerritory.name))
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                entity.SetTransform(_x, _y);                               //move to new position
+                entity.SetTransform(xPos, yPos);                               //move to new position
                 completedTask = true;
                 return;
             }
             else
             {
-                _tries++;
-                if (_tries >= 10)
+                tries++;
+                if (tries >= 10)
                 {
                     broken = true;
                     Debug.Log("I think I am broken");

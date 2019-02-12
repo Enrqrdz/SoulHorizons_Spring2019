@@ -6,8 +6,6 @@ using UnityEngine;
 public class scr_ExiledArcher : scr_EntityAI {
 
     //AKA Bird Bow Boi
-    //TODO: Antonio: Make it so the archer moves in a clockwise motion diagonally. 
-    // Make it so its arrows can come from either straght in front of him, or one tile below or above
 
     public AttackData hunterShot;
     public float hSChargeTime;
