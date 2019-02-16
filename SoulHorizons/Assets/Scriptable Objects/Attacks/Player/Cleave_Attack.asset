@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afe7204be3fce44297f666d5f51ac81, type: 3}
   m_Name: Cleave_Attack
   m_EditorClassIdentifier: 
-  incrementTime: 0.2
-  maxIncrementRange: 10
-  damage: 15
+  incrementTime: 0.1
+  maxIncrementRange: 3
+  damage: 12
   type: 1
-  piercing: 1
+  hasPiercing: 1
   particles: {fileID: 212919924544438062, guid: 8820eb944250c78449d6afb4fc0c811f,
     type: 3}
   particlesOffset: {x: -0.4, y: 0, z: 0}

@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,10 +13,8 @@ MonoBehaviour:
   m_Name: Brawler
   m_EditorClassIdentifier: 
   element: 0
-  basicAttack: {fileID: 11500000, guid: db0040d3508857a43861d7291cd15e6a, type: 3}
   hasMovement: 0
-  movement: {fileID: 0}
   scriptHolder: {fileID: 1772583064105408, guid: 1eb35448791129842864ddf9ac4fb939,
-    type: 2}
-  shieldGain: 60
-  shieldDrainRate: 1
+    type: 3}
+  shieldGain: 30
+  shieldDrainRate: 2
