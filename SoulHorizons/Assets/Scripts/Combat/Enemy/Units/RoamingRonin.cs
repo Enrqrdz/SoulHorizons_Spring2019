@@ -10,8 +10,7 @@ public class RoamingRonin : scr_EntityAI
     // Phase 1: Moves every 3 seconds, tries to be in the same row as the player
     // Phase 2: Moves every 1 second, melee attack also strikes twice
 
-    public float movementIntervalLower;
-    public float movementIntervalUpper;
+   
 
     public AttackData rangedAttack;
     public AttackData meleeAttack;
@@ -20,9 +19,11 @@ public class RoamingRonin : scr_EntityAI
     public int rangedDamage1 = 2;
     public int meleeDamage2 = 6;
     public int rangedDamage2 = 4;
-    public bool armorBroke = false;
-    public bool gonnaMelee = false;
+    int phase = 0; //0 for normal phase, 1 for broken armor phase
+    bool gonnaMelee = false;
 
+    public float movementIntervalLower;
+    public float movementIntervalUpper;
     int state = 0;
     bool completedTask = false;
 
@@ -88,7 +89,7 @@ public class RoamingRonin : scr_EntityAI
 
     public override void Die()
     {
-
+        Debug.Log("And now my life has ended ... I have no regrets... except that I could not hold my wife and child another time ");
     }
 
     public int PickXCoord (int xPos)

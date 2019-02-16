@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5953397925229168129}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Enemy
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   _gridPos: {x: 0, y: 0}
   _health:
     hp: 50

@@ -22,8 +22,6 @@ public class atk_RoninRanged : AttackData
 
     Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-
-
         scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos);
         scr_Grid.GridController.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos - 1, yPos);

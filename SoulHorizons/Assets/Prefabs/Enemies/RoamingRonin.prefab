@@ -95,10 +95,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2420552478046999407}
   anim: {fileID: 0}
-  basicAttackChance: 0
-  chargeAttackChance: 0
-  chargeTimeUpper: 0
-  chargeTimeLower: 0
   movementIntervalLower: 0
   movementIntervalUpper: 0
   rangedAttack: {fileID: 0}
@@ -379,6 +375,7 @@ GameObject:
   - component: {fileID: 5118994907188997800}
   - component: {fileID: 4821739022399887619}
   - component: {fileID: 101349227337349676}
+  - component: {fileID: 4058025524168445357}
   m_Layer: 0
   m_Name: SpriteRenderer
   m_TagString: Untagged
@@ -576,6 +573,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4058025524168445357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745994152132560101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b55dcac043119c42b14fb98095604c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 2420552478046999407, guid: 8eecdc529b582fd43af72026987b57df, type: 3}
+  anim: {fileID: 0}
+  movementIntervalLower: 0
+  movementIntervalUpper: 0
+  rangedAttack: {fileID: 0}
+  meleeAttack: {fileID: 0}
+  meleeDamage1: 6
+  rangedDamage1: 2
+  meleeDamage2: 6
+  rangedDamage2: 4
+  armorBroke: 0
+  gonnaMelee: 0
+  attacks_SFX: []
+  movements_SFX: []
 --- !u!1 &9139118890167668191
 GameObject:
   m_ObjectHideFlags: 0

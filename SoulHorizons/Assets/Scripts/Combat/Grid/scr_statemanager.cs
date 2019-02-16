@@ -16,6 +16,7 @@ public class scr_statemanager : MonoBehaviour {
     public Text StaminaText;
     private int hp = 100;
     bool endCombat = false;
+    bool endEncounter;
     bool showEffect = false;
     string EffectString;
     GameObject player;
@@ -66,7 +67,10 @@ public class scr_statemanager : MonoBehaviour {
         UpdateHealth();
         UpdateEffects();
         //END OF ENCOUNTER - NO MORE ENEMIES
-		if(!endCombat && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+
+        endEncounter = !endCombat && GameObject.FindGameObjectsWithTag("Enemy").Length == 0;
+
+        if (endEncounter)
         {
             //Debug.Log("NO ENEMIES");
             //scr_InputManager.disableInput = true;
