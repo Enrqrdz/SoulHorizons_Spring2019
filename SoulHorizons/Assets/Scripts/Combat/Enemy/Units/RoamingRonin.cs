@@ -124,10 +124,10 @@ public class RoamingRonin : scr_EntityAI
         }
     }
 
-    public void MoveBack ()
+    public void MoveBack()
     {
         int randomDir;
-        randomDir  = Random.Range(0, 2);
+        randomDir = Random.Range(0, 2);
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
 
@@ -151,21 +151,33 @@ public class RoamingRonin : scr_EntityAI
         {
             MoveBack();
         }
-
     }
+
     private void PhaseManager()
     {
         
     }
+
     void StartRangedAttack()
+    {
+        //insert animation here
+    }
+
+    void RangedAttack()
     {
         Debug.Log("AIR SLASH");
     }
 
     void StartMeleeAttack()
     {
+        //insert animation here
+    }
+
+    void MeleeAttack()
+    {
         Debug.Log("BACK SLASH");
     }
+
     private IEnumerator Brain ()
     {
         switch (state)
@@ -218,7 +230,6 @@ public class RoamingRonin : scr_EntityAI
                 completedTask = true;
                 break;
         }
-
         yield return null;
     }
 }

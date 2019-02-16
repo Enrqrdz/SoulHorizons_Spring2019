@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4233147113314750164}
-  - component: {fileID: 5128192784874713837}
+  - component: {fileID: 2096585363184908517}
   - component: {fileID: 2420552478046999407}
   - component: {fileID: 7573831714010483396}
   - component: {fileID: 8906364254457479854}
   m_Layer: 0
   m_Name: RoamingRonin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,19 +36,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5128192784874713837
-BoxCollider:
+--- !u!61 &2096585363184908517
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3944127940122034491}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!114 &2420552478046999407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,16 +77,16 @@ MonoBehaviour:
   type: 0
   _gridPos: {x: 0, y: 0}
   _health:
-    hp: 10
+    hp: 75
     shield: 0
-    max_hp: 0
+    max_hp: 75
   _ai: {fileID: 7573831714010483396}
   entityTerritory:
     name: 0
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
-  spr: {fileID: 0}
-  lerpSpeed: 0
+  spr: {fileID: 6242049241593098987}
+  lerpSpeed: 15
   has_iframes: 0
   invincible: 0
   invulnTime: 0
@@ -95,16 +108,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2420552478046999407}
   anim: {fileID: 0}
-  movementIntervalLower: 0
-  movementIntervalUpper: 0
   rangedAttack: {fileID: 0}
   meleeAttack: {fileID: 0}
   meleeDamage1: 6
   rangedDamage1: 2
   meleeDamage2: 6
   rangedDamage2: 4
-  armorBroke: 0
-  gonnaMelee: 0
+  movementIntervalLower: 0
+  movementIntervalUpper: 0
   attacks_SFX: []
   movements_SFX: []
 --- !u!82 &8906364254457479854
@@ -373,9 +384,9 @@ GameObject:
   - component: {fileID: 7701671160312054621}
   - component: {fileID: 6242049241593098987}
   - component: {fileID: 5118994907188997800}
+  - component: {fileID: 4058025524168445357}
   - component: {fileID: 4821739022399887619}
   - component: {fileID: 101349227337349676}
-  - component: {fileID: 4058025524168445357}
   m_Layer: 0
   m_Name: SpriteRenderer
   m_TagString: Untagged
@@ -458,6 +469,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 101349227337349676}
+--- !u!114 &4058025524168445357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745994152132560101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b55dcac043119c42b14fb98095604c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 2420552478046999407, guid: 8eecdc529b582fd43af72026987b57df, type: 3}
+  anim: {fileID: 0}
+  rangedAttack: {fileID: 0}
+  meleeAttack: {fileID: 0}
+  meleeDamage1: 6
+  rangedDamage1: 2
+  meleeDamage2: 6
+  rangedDamage2: 4
+  movementIntervalLower: 0
+  movementIntervalUpper: 0
+  attacks_SFX: []
+  movements_SFX: []
 --- !u!82 &4821739022399887619
 AudioSource:
   m_ObjectHideFlags: 0
@@ -573,32 +608,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4058025524168445357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5745994152132560101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b55dcac043119c42b14fb98095604c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity: {fileID: 2420552478046999407, guid: 8eecdc529b582fd43af72026987b57df, type: 3}
-  anim: {fileID: 0}
-  movementIntervalLower: 0
-  movementIntervalUpper: 0
-  rangedAttack: {fileID: 0}
-  meleeAttack: {fileID: 0}
-  meleeDamage1: 6
-  rangedDamage1: 2
-  meleeDamage2: 6
-  rangedDamage2: 4
-  armorBroke: 0
-  gonnaMelee: 0
-  attacks_SFX: []
-  movements_SFX: []
 --- !u!1 &9139118890167668191
 GameObject:
   m_ObjectHideFlags: 0

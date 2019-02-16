@@ -19,10 +19,8 @@ MonoBehaviour:
   - entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
     x: 1
     y: 1
-  - entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
+  - entity: {fileID: 2420552478046999407, guid: 8eecdc529b582fd43af72026987b57df,
+      type: 3}
     x: 5
     y: 0
-  mouseNum: 0
-  mushNum: 0
-  archerNum: 1
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}

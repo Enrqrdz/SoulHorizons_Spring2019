@@ -12,6 +12,7 @@ TagManager:
   - CooldownOverlay
   - EncounterCanvas
   - TransformUI
+  - obstacle
   layers:
   - Default
   - TransparentFX
