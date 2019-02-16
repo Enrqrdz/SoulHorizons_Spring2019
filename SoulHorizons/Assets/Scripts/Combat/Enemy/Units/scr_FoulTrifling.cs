@@ -13,7 +13,7 @@ public class scr_FoulTrifling : scr_EntityAI
     bool waiting = false;
     public AttackData attack1;
     public AttackData chargedAttack;
-    public int numOfAttacks;
+    int numOfAttacks;
 
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;
