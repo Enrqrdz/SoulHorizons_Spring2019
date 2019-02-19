@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class EncounterButtonManager : MonoBehaviour
 {
     EncounterState encounterState;
     EncounterData encounter;
 
-    public Image infoPanel;
+    public GameObject infoPanel;
 
-    public Text mouseText;
-    public Text mushText;
-    public Text archerText; 
+    public TextMeshPro mouseText;
+    public TextMeshPro mushText;
+    public TextMeshPro archerText; 
 
     private GameObject eventSystem; 
 
     void Start()
     {
-        infoPanel.enabled = false;
-        SetIsActive(false); 
+        infoPanel.SetActive(false);
         eventSystem = GameObject.Find("/EventSystem");
         mouseText.text = "x " + encounter.GetNumberOfMouses();
         mushText.text = "x " + encounter.GetNumberOfMush();
@@ -28,11 +28,11 @@ public class EncounterButtonManager : MonoBehaviour
 
         if (encounterState.isCompleted)
         {
-            GetComponent<Image>().color = Color.red; 
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red; 
         }
         else
         {
-            GetComponent<Image>().color = Color.white;
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
@@ -40,26 +40,20 @@ public class EncounterButtonManager : MonoBehaviour
     {        
         if(eventSystem.GetComponent<EventSystem>().currentSelectedGameObject == this.gameObject)
         {
-            infoPanel.enabled = true;
-            SetIsActive(true); 
+            infoPanel.SetActive(true);
+            Vector3 nodePosition = gameObject.transform.GetChild(0).transform.position;
+            Vector3 newPosition = new Vector3(nodePosition.x, nodePosition.y, Camera.main.transform.position.z);
+            Camera.main.transform.position = newPosition;
         }
         else
         {
-            infoPanel.enabled = false;
-            SetIsActive(false); 
+            infoPanel.SetActive(false);
         }
     }
 
-    public void SetStateAndEncounter(EncounterState newState, EncounterData newEncounter)
+    public void SetEncounterStateAndData(EncounterState newState, EncounterData newEncounter)
     {
         encounterState = newState;
         encounter = newEncounter;
-    }
-
-    public void SetIsActive(bool isActive)
-    {
-        infoPanel.transform.GetChild(0).gameObject.SetActive(isActive);
-        infoPanel.transform.GetChild(1).gameObject.SetActive(isActive);
-        infoPanel.transform.GetChild(2).gameObject.SetActive(isActive);
     }
 }
