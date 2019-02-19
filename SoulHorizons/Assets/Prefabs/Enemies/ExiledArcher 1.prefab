@@ -327,10 +327,8 @@ MonoBehaviour:
   invincible: 0
   invulnTime: 0
   hurts_SFX:
-  - {fileID: 8300000, guid: 39a19e3b71171d44f8674ea450365c72, type: 3}
-  - {fileID: 8300000, guid: 31756c889a7e09b4d83c7b70afcbde03, type: 3}
-  - {fileID: 8300000, guid: e154a2027eecbef4e9068d3de8ee3ae7, type: 3}
-  die_SFX: {fileID: 8300000, guid: 39a19e3b71171d44f8674ea450365c72, type: 3}
+  - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  die_SFX: {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
@@ -356,7 +354,7 @@ MonoBehaviour:
   movementIntervalUpper: 5
   dodgeChance: 60
   attacks_SFX:
-  - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
+  - {fileID: 8300000, guid: d25492f55425f534994a68501fb4cc25, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0

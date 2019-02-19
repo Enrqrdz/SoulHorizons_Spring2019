@@ -652,7 +652,7 @@ MonoBehaviour:
   entity: {fileID: 114787085351951448}
   anim: {fileID: 0}
   movements_SFX:
-  - {fileID: 8300000, guid: 601da0aeeb76e554cb6695762e85361a, type: 3}
+  - {fileID: 0}
   dashEffect: {fileID: 1732062955175564, guid: 8082eb11f4a30e447bd201f0ce0c8ade, type: 3}
   dashMeter: {fileID: 1497959155307814}
   dashIcon: {fileID: 1884565677383304, guid: 49b395e0c40117748b2175a1081b6b36, type: 3}
@@ -690,10 +690,11 @@ MonoBehaviour:
   invincible: 0
   invulnTime: 1
   hurts_SFX:
-  - {fileID: 8300000, guid: 581b613c37917dc4696d6f2460976993, type: 3}
-  die_SFX: {fileID: 8300000, guid: 31da37e6cffcebd41a7d84164f6d15a2, type: 3}
+  - {fileID: 8300000, guid: 4794852b9ebf0c843b5ac9e56691af5e, type: 3}
+  die_SFX: {fileID: 8300000, guid: 4794852b9ebf0c843b5ac9e56691af5e, type: 3}
   anim: {fileID: 95721540959835254}
-  deathManager: {fileID: 0}
+  deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
+    type: 3}
 --- !u!114 &114627260013859230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,11 +722,9 @@ MonoBehaviour:
     type: 3}
   playerSprite: {fileID: 212424679629100636}
   blasters_SFX:
-  - {fileID: 8300000, guid: ed6a3f4d9fe9b5142852d40bc75d530d, type: 3}
-  - {fileID: 8300000, guid: 4fa47c8dc7598a34aa5398bfd40e85cc, type: 3}
-  - {fileID: 8300000, guid: bbbbc6e13c45623408ee73b817c67210, type: 3}
-  charging_SFX: {fileID: 8300000, guid: 104fb40d49334f74a924bfcc9a82d551, type: 3}
-  chargingLoop_SFX: {fileID: 8300000, guid: 31278b7125f5a4f4793217bb6849f86d, type: 3}
+  - {fileID: 0}
+  charging_SFX: {fileID: 0}
+  chargingLoop_SFX: {fileID: 0}
 --- !u!82 &82461514573680058
 AudioSource:
   m_ObjectHideFlags: 0
