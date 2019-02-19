@@ -10,16 +10,20 @@ public class RoamingRonin : scr_EntityAI
     // Phase 1: Moves every 3 seconds, tries to be in the same row as the player
     // Phase 2: Moves every 1 second, melee attack also strikes twice
 
-   
-
     public AttackData rangedAttack;
+    public AttackData rangedAttack2; //stronger version of ranged attack
     public AttackData meleeAttack;
+    public AttackData meleeAttack2; //stronger version of melee
 
-    public int meleeDamage1 = 6;
+    int maxHealth = 0;
+    int currHealth = 0;
+
+    public int meleeDamage1 = 3;
     public int rangedDamage1 = 2;
     public int meleeDamage2 = 6;
     public int rangedDamage2 = 4;
-    int phase = 0; //0 for normal phase, 1 for broken armor phase
+    int attackPhase = 0; //0 for normal phase, 1 for broken armor phase
+    public int damageThreshold = 40; //when Ronin reaches 40% health, switch to next phase
     bool gonnaMelee = false;
 
     public float movementIntervalLower;
@@ -39,11 +43,20 @@ public class RoamingRonin : scr_EntityAI
         anim = gameObject.GetComponentInChildren<Animator>();
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Footsteps_SFX = SFX_Sources[0];
+        maxHealth = entity._health.hp;
+        Debug.Log("Well Met!");
     }
 
 
     public override void UpdateAI()
     {
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        currHealth = entity._health.hp;
+        PhaseManager();
+        if (completedTask)
+        {
+            StartCoroutine(Brain());
+        }
 
     }
 
@@ -155,28 +168,57 @@ public class RoamingRonin : scr_EntityAI
 
     private void PhaseManager()
     {
-        
+        if(currHealth <= (maxHealth/100)*damageThreshold)
+        {
+            attackPhase = 1;
+        }
+        else
+        {
+            attackPhase = 0;
+        }
     }
 
     void StartRangedAttack()
     {
         //insert animation here
+        anim.SetBool("Attack2", true);
+        Debug.Log("Air Slash");
     }
 
     void RangedAttack()
     {
-        Debug.Log("AIR SLASH");
+        if (attackPhase == 0)
+        {
+            scr_AttackController.attackController.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y + 1, entity);
+        }
+        else
+        {
+            scr_AttackController.attackController.AddNewAttack(rangedAttack2, entity._gridPos.x, entity._gridPos.y + 1, entity);
+        }
     }
+
+
 
     void StartMeleeAttack()
     {
         //insert animation here
+        anim.SetBool("Attack", true);
+        Debug.Log("BACK SLASH");
     }
 
     void MeleeAttack()
     {
-        Debug.Log("BACK SLASH");
+        if (attackPhase == 0)
+        {
+            scr_AttackController.attackController.AddNewAttack(meleeAttack, entity._gridPos.x, entity._gridPos.y + 1, entity);
+        }
+        else
+        {
+            scr_AttackController.attackController.AddNewAttack(meleeAttack2, entity._gridPos.x, entity._gridPos.y + 1, entity);
+        }
     }
+
+
 
     private IEnumerator Brain ()
     {

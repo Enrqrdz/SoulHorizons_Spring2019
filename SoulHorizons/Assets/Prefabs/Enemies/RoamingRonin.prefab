@@ -82,7 +82,7 @@ MonoBehaviour:
     max_hp: 75
   _ai: {fileID: 7573831714010483396}
   entityTerritory:
-    name: 0
+    name: 1
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 6242049241593098987}
@@ -92,7 +92,7 @@ MonoBehaviour:
   invulnTime: 0
   hurts_SFX: []
   die_SFX: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 101349227337349676}
   deathManager: {fileID: 0}
 --- !u!114 &7573831714010483396
 MonoBehaviour:
@@ -108,14 +108,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2420552478046999407}
   anim: {fileID: 0}
-  rangedAttack: {fileID: 0}
-  meleeAttack: {fileID: 0}
+  rangedAttack: {fileID: 11400000, guid: 1d27b68b86f71e64a90b0920170dfd83, type: 2}
+  rangedAttack2: {fileID: 11400000, guid: b348134bfb276d4468a3b7f03779d596, type: 2}
+  meleeAttack: {fileID: 11400000, guid: e360a6f3d3dd4af4e93b390640d94781, type: 2}
+  meleeAttack2: {fileID: 11400000, guid: a484b03b96a73874dbd14c9b23bb4fce, type: 2}
   meleeDamage1: 6
   rangedDamage1: 2
   meleeDamage2: 6
   rangedDamage2: 4
-  movementIntervalLower: 0
-  movementIntervalUpper: 0
+  damageThreshold: 40
+  movementIntervalLower: 3
+  movementIntervalUpper: 5
   attacks_SFX: []
   movements_SFX: []
 --- !u!82 &8906364254457479854
@@ -402,8 +405,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5745994152132560101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1317.6252, y: 596.3171, z: 0}
-  m_LocalScale: {x: 0.035, y: 0.035, z: 0}
+  m_LocalPosition: {x: 1317.6702, y: 596.582, z: 0}
+  m_LocalScale: {x: 0.72776, y: 0.8, z: 0}
   m_Children: []
   m_Father: {fileID: 4233147113314750164}
   m_RootOrder: 0
@@ -483,14 +486,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2420552478046999407, guid: 8eecdc529b582fd43af72026987b57df, type: 3}
   anim: {fileID: 0}
-  rangedAttack: {fileID: 0}
-  meleeAttack: {fileID: 0}
+  rangedAttack: {fileID: 11400000, guid: 1d27b68b86f71e64a90b0920170dfd83, type: 2}
+  rangedAttack2: {fileID: 0}
+  meleeAttack: {fileID: 11400000, guid: e360a6f3d3dd4af4e93b390640d94781, type: 2}
+  meleeAttack2: {fileID: 0}
   meleeDamage1: 6
   rangedDamage1: 2
   meleeDamage2: 6
   rangedDamage2: 4
-  movementIntervalLower: 0
-  movementIntervalUpper: 0
+  damageThreshold: 40
+  movementIntervalLower: 3
+  movementIntervalUpper: 5
   attacks_SFX: []
   movements_SFX: []
 --- !u!82 &4821739022399887619
