@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 212410729078944208}
   - component: {fileID: 95383577856842134}
   - component: {fileID: 114046856536850596}
-  - component: {fileID: 114188394038170206}
+  - component: {fileID: 5488337350052519454}
   - component: {fileID: 82158913280631940}
   m_Layer: 0
   m_Name: SpriteRenderer
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 95383577856842134}
---- !u!114 &114188394038170206
+--- !u!114 &5488337350052519454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1099033517750084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7a47803631a964ba3f08d547d87350, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a0407a7f4e82a94ca65c5e99e39bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
@@ -216,7 +216,6 @@ MonoBehaviour:
   movementIntervalUpper: 4
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
-  numOfAttacks: 0
   movements_SFX:
   - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
   - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
@@ -443,7 +442,6 @@ MonoBehaviour:
   movementIntervalUpper: 4
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
-  numOfAttacks: 0
   movements_SFX:
   - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
   - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}

@@ -29,20 +29,17 @@ public class RoamingRonin : scr_EntityAI
     public float movementIntervalLower;
     public float movementIntervalUpper;
     int state = 0;
-    bool completedTask = false;
+    bool completedTask = true;
 
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
-    AudioSource Footsteps_SFX;
-    public AudioClip[] movements_SFX;
-    private AudioClip movement_SFX;
 
     void Start()
     {
         anim = gameObject.GetComponentInChildren<Animator>();
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Footsteps_SFX = SFX_Sources[0];
+        Attack_SFX = SFX_Sources[1];
         maxHealth = entity._health.hp;
         Debug.Log("Well Met!");
     }
@@ -71,6 +68,7 @@ public class RoamingRonin : scr_EntityAI
             if (gonnaMelee)
             {
                 xPos = PickXCoord(xPos);
+                Debug.Log(xPos);
             }
             else
             {
@@ -103,6 +101,7 @@ public class RoamingRonin : scr_EntityAI
     public override void Die()
     {
         Debug.Log("And now my life has ended ... I have no regrets... except that I could not hold my wife and child another time ");
+        entity.Death();
     }
 
     public int PickXCoord (int xPos)
@@ -110,7 +109,7 @@ public class RoamingRonin : scr_EntityAI
         
         if(gonnaMelee)
         {
-            xPos = 0;
+            xPos = 4;
         }
         else
         {
@@ -168,8 +167,10 @@ public class RoamingRonin : scr_EntityAI
 
     private void PhaseManager()
     {
-        if(currHealth <= (maxHealth/100)*damageThreshold)
+        int healthWhenArmorBreaks =( maxHealth / 100)*damageThreshold;
+        if (currHealth < healthWhenArmorBreaks)
         {
+            Debug.Log("Even without my armor, I shall continue to fight");
             attackPhase = 1;
         }
         else
@@ -223,51 +224,44 @@ public class RoamingRonin : scr_EntityAI
         {
             case 0:
                 completedTask = false;
+                float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
+                yield return new WaitForSecondsRealtime(_movementInterval);
                 Move();
                 state = 1;
                 completedTask = true;
                 break;
-
             case 1:
                 completedTask = false;
-                float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(_movementInterval);
-                state = 0;
+                gonnaMelee = true;
+                yield return new WaitForSecondsRealtime(0.75f);
+                Move();
+                state = 2;
                 completedTask = true;
                 break;
-
             case 2:
                 completedTask = false;
-                gonnaMelee = true;
-                Move();
+                StartMeleeAttack();
                 state = 3;
+                gonnaMelee = false;
                 completedTask = true;
                 break;
             case 3:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(.5f);
-                StartMeleeAttack();
-                yield return new WaitForSecondsRealtime(1);
+                float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
+                yield return new WaitForSecondsRealtime(moveInterval);
+                MoveBack();
                 state = 4;
                 completedTask = true;
-                gonnaMelee = false;
                 break;
-
             case 4:
-                completedTask = false;
-                MoveBack();
-                state = 5;
-                completedTask = true;
-                break;
-
-            case 5:
                 completedTask = false;
                 yield return new WaitForSecondsRealtime(.75f);
                 StartRangedAttack();
                 yield return new WaitForSecondsRealtime(2);
                 state = 0;
                 completedTask = true;
-                break;
+                break; 
+
         }
         yield return null;
     }
