@@ -11,49 +11,85 @@ using UnityEngine.Assertions;
 
 public class RegionManager : MonoBehaviour
 {
-    RegionState currentRegion;
-
+    [SerializeField]
+    private RegionState currentRegion;
     [SerializeField]
     private GameObject buttonPrefab;
+    [SerializeField]
+    private GameObject nodeConnectionPrefab;
+
     private List<Button> buttons;
+    private GameObject encounterMap;
 
     void Start()
     {
         currentRegion = SaveManager.currentGame.GetRegion();
+        encounterMap = new GameObject("Map");
 
         GenerateButtons();
+        CreateNodeConnections();
     }
 
-    public void GoToEncounter(EncounterData encounter, int index)
+    public void GoToEncounter(EncounterState encounter)
     {
-        SaveManager.currentGame.SetCurrentEncounterIndex(index);
-        scr_SceneManager.globalSceneManager.ChangeScene(encounter.sceneName);
+        SaveManager.currentGame.SetCurrentEncounterState(encounter);
+        scr_SceneManager.globalSceneManager.ChangeScene(encounter.GetEncounterData().sceneName);
     }
 
     public void GenerateButtons()
     {
         buttons = new List<Button>();
 
-        GameObject encounterCanvas = GameObject.FindWithTag("EncounterCanvas");
+        for(int i = 0; i < currentRegion.map.rings.Count; i++)
+        {
+            foreach(Node node in currentRegion.map.rings[i])
+            {
+                GameObject newButton = Instantiate(
+                    buttonPrefab, 
+                    node.position,
+                    Quaternion.identity,
+                    encounterMap.transform);
 
-        foreach(EncounterState encounterState in currentRegion.encounters)
-        {   
-            GameObject newButton = Instantiate(buttonPrefab);
-            newButton.transform.SetParent(encounterCanvas.GetComponent<RectTransform>());
+                EncounterData newEncounterData;
+                newEncounterData = node.encounter.GetEncounterData();
 
-            EncounterData newEncounterData;
-            newEncounterData = encounterState.GetEncounterData();
+                EncounterButtonManager encounterButtonManager = newButton.GetComponent<EncounterButtonManager>();
+                encounterButtonManager.SetEncounterStateAndData(node.encounter, newEncounterData);
 
-            EncounterButtonManager encounterButtonManager = newButton.GetComponent<EncounterButtonManager>();
-            encounterButtonManager.SetStateAndEncounter(encounterState, newEncounterData);
+                Button button = newButton.GetComponent<Button>();
+                button.onClick.AddListener(delegate {GoToEncounter(node.encounter);});
 
-            Button button = newButton.GetComponent<Button>();
-            button.onClick.AddListener(delegate {GoToEncounter(newEncounterData, currentRegion.encounters.IndexOf(encounterState));});
-
-            buttons.Add(newButton.GetComponent<Button>());
+                buttons.Add(newButton.GetComponent<Button>());
+            }
         }
 
         GameObject eventSystem = GameObject.Find("/EventSystem");
-        eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;
+        eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;      
+    }
+
+    private void CreateNodeConnections()
+    {
+        for(int i = 0; i < currentRegion.map.rings.Count; i++)
+        {
+            foreach(Node node in currentRegion.map.rings[i])
+            {
+                foreach(Node connectedNode in node.nextNodes)
+                {
+                    GameObject newConnection = Instantiate(
+                        nodeConnectionPrefab, 
+                        node.position,
+                        Quaternion.identity,
+                        encounterMap.transform);
+
+                    Vector3[] points = new Vector3[2];
+                    points[0] = node.position;
+                    points[1] = connectedNode.position;
+
+                    LineRenderer lr = newConnection.GetComponent<LineRenderer>();
+                    lr.positionCount = points.Length;
+                    lr.SetPositions(points);
+                }
+            }
+        }
     }
 }
