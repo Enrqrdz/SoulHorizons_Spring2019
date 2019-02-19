@@ -414,10 +414,8 @@ MonoBehaviour:
   invincible: 0
   invulnTime: 100
   hurts_SFX:
-  - {fileID: 8300000, guid: 8cc96daad9e40b34e89438f259c636ce, type: 3}
-  - {fileID: 8300000, guid: 47b6ba2ecd0b41046b04e996d8152611, type: 3}
-  - {fileID: 8300000, guid: 0b146d0b97f1b1c4cbf907bbf9e83713, type: 3}
-  die_SFX: {fileID: 8300000, guid: a3b03b2ed4235ae41bded89f6d7ca807, type: 3}
+  - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  die_SFX: {fileID: 8300000, guid: 091c1dad4393cda409ed1617bb1831a5, type: 3}
   anim: {fileID: 95383577856842134}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
@@ -449,9 +447,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
   - {fileID: 8300000, guid: 06847d784b65279448930a7c65222bd1, type: 3}
   attacks_SFX:
-  - {fileID: 8300000, guid: 0c68b39421bdcea4192b86975d94583e, type: 3}
-  - {fileID: 8300000, guid: d44b4747215832a4b9a521d7aaa072ac, type: 3}
-  - {fileID: 8300000, guid: 0427e5383a85e27468bcd9f6a1a31f21, type: 3}
+  - {fileID: 8300000, guid: 2a4b8d76122eff84a8b0dd06431dc0db, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -558,7 +554,7 @@ AudioSource:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243843424514397098, guid: 7117f9058e0f8104c8d7218cd2b06d74,
+  OutputAudioMixerGroup: {fileID: 243883424422922524, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -655,7 +651,7 @@ AudioSource:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243335829217030302, guid: 7117f9058e0f8104c8d7218cd2b06d74,
+  OutputAudioMixerGroup: {fileID: 243843424514397098, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
