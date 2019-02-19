@@ -197,8 +197,6 @@ public class RoamingRonin : scr_EntityAI
         }
     }
 
-
-
     void StartMeleeAttack()
     {
         //insert animation here
@@ -217,7 +215,6 @@ public class RoamingRonin : scr_EntityAI
             scr_AttackController.attackController.AddNewAttack(meleeAttack2, entity._gridPos.x, entity._gridPos.y + 1, entity);
         }
     }
-
 
 
     private IEnumerator Brain ()
