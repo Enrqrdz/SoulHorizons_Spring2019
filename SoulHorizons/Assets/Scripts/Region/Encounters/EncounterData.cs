@@ -24,7 +24,7 @@ public class EncounterData : ScriptableObject
 
     public int GetNumberOfMush()
     {
-        return CountEnemy<scr_EnemyAI_1>();
+        return CountEnemy<scr_FoulTrifling>();
     }
 
     public int GetNumberOfArchers()

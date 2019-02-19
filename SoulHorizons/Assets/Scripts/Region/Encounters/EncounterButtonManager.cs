@@ -18,6 +18,9 @@ public class EncounterButtonManager : MonoBehaviour
 
     private GameObject eventSystem; 
 
+    public float deltaT = .05f;
+    private float t;
+
     void Start()
     {
         infoPanel.SetActive(false);
@@ -43,11 +46,13 @@ public class EncounterButtonManager : MonoBehaviour
             infoPanel.SetActive(true);
             Vector3 nodePosition = gameObject.transform.GetChild(0).transform.position;
             Vector3 newPosition = new Vector3(nodePosition.x, nodePosition.y, Camera.main.transform.position.z);
-            Camera.main.transform.position = newPosition;
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, newPosition, t);
+            t += deltaT;
         }
         else
         {
             infoPanel.SetActive(false);
+            t = 0;
         }
     }
 
