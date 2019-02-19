@@ -11,17 +11,13 @@ public class scr_SeizeDomain : CardData
     private AudioSource PlayCardSFX;
     public AudioClip SeizeDomainSFX;
     public override void Activate()
-    {
-      
+    {    
         ActivateEffects();
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = SeizeDomainSFX;
         PlayCardSFX.Play();
         Debug.Log("SEIZE!");
         scr_Grid.GridController.seizeDomain(duration);
-        
-       
-
     }
 
     public override void StartCastingEffects()

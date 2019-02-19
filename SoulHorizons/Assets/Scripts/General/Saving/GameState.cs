@@ -9,7 +9,7 @@ public class GameState
     PlayerState player;
     InventoryState inventory;
     RegionState region;
-    int currentEncounterIndex;
+    EncounterState currentEncounter;
 
     public GameState()
     {
@@ -58,20 +58,19 @@ public class GameState
         region = newRegion;
     }
 
-    public void SetCurrentEncounterIndex(int encounterIndex)
+    public void SetCurrentEncounterState(EncounterState encounter)
     {
-        currentEncounterIndex = encounterIndex;
+        currentEncounter = encounter;
     }
 
     public EncounterData GetCurrentEncounter()
     {
-        EncounterState encounterState = region.encounters[currentEncounterIndex];
-        return encounterState.GetEncounterData();
+        return currentEncounter.GetEncounterData();
     }
 
     public void SetCurrentEncounterCompleteToTrue()
     {
-        region.encounters[currentEncounterIndex].isCompleted = true;
+        currentEncounter.isCompleted = true;
     }
 
     public List<CardState> GetCardList()
@@ -119,16 +118,5 @@ public class CardState
     {
         numberOfCopies = 0;
         cardIndexInPool = 0;
-    }
-}
-
-[System.Serializable]
-public class RegionState
-{
-    public List<EncounterState> encounters;
-
-    public RegionState()
-    {
-        encounters = new List<EncounterState>();
     }
 }

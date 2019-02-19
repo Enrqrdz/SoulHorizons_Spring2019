@@ -368,7 +368,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e113ad87e1843a4894a317571a2c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfEncounters: 10
+  tiers: 10
+  distanceBetweenTiers: 2.5
+  connectionRange: 2
 --- !u!4 &268632237
 Transform:
   m_ObjectHideFlags: 0
