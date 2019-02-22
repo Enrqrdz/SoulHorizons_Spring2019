@@ -16,7 +16,7 @@ public class scr_Bolt : CardData {
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoltSFX;
         PlayCardSFX.Play();
-        scr_Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_Entity>();
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         //add attack to attack controller script
         scr_AttackController.attackController.AddNewAttack(boltAttack, player._gridPos.x, player._gridPos.y, player);

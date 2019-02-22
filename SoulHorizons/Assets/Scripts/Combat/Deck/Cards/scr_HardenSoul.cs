@@ -16,7 +16,7 @@ public class scr_HardenSoul : CardData {
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = HardenSoulSFX;
         PlayCardSFX.Play();
-        scr_Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_Entity>();
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         player._health.shield += Shield_hp;
         
     }

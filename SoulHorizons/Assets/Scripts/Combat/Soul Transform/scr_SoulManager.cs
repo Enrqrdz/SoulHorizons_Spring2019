@@ -14,7 +14,7 @@ public class scr_SoulManager : MonoBehaviour {
     public  List<Button> buttons = new List<Button>();
     private SoulTransform currentTransform = null;
     private bool transformed = false;
-    private scr_Entity player;
+    private Entity player;
     public scr_DeckManager deckManager;
     Animator anim; //animator to control soul transform animations
 
@@ -31,7 +31,7 @@ public class scr_SoulManager : MonoBehaviour {
     void Start () {
         //find the player
         GameObject p = GameObject.FindGameObjectWithTag("Player");
-        player = p.GetComponent<scr_Entity>();
+        player = p.GetComponent<Entity>();
         anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
 
         //TODO: Set all the button sprites according to the soul transforms given

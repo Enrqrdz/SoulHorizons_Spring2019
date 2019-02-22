@@ -39,7 +39,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	private float slamMoveCooldown  = 0.004f;
 
 	//references
-	scr_Entity playerEntity; //use to get position
+	Entity playerEntity; //use to get position
 
     AudioSource TransformAttack_SFX;
     public AudioClip furySwipes_SFX;
@@ -49,7 +49,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
     void Awake()
 	{
-		playerEntity = GetComponent<scr_Entity>();
+		playerEntity = GetComponent<Entity>();
 	}
 
 	void Start () {
@@ -108,18 +108,18 @@ public class scr_Brawler_Attack : MonoBehaviour {
         //play any effects
         if (leftSlash)
         {
-            Instantiate(particle_furySwipe, scr_Grid.GridController.GetWorldLocation(playerEntity._gridPos.x + 1, playerEntity._gridPos.y), particle_furySwipe.transform.rotation);
-            scr_Grid.GridController.BriefActivateTile(playerEntity._gridPos.x + 1, playerEntity._gridPos.y, 0.1f);
+            Instantiate(particle_furySwipe, Grid.Instance.GetWorldLocation(playerEntity._gridPos.x + 1, playerEntity._gridPos.y), particle_furySwipe.transform.rotation);
+            Grid.Instance.BriefActivateTile(playerEntity._gridPos.x + 1, playerEntity._gridPos.y, 0.1f);
             leftSlash = !leftSlash;
         }
         else
         {
-            Instantiate(particle_furySwipe, scr_Grid.GridController.GetWorldLocation(playerEntity._gridPos.x + 1, playerEntity._gridPos.y), particle_furySwipe.transform.rotation);
-            scr_Grid.GridController.BriefActivateTile(playerEntity._gridPos.x + 1, playerEntity._gridPos.y, 0.1f);
+            Instantiate(particle_furySwipe, Grid.Instance.GetWorldLocation(playerEntity._gridPos.x + 1, playerEntity._gridPos.y), particle_furySwipe.transform.rotation);
+            Grid.Instance.BriefActivateTile(playerEntity._gridPos.x + 1, playerEntity._gridPos.y, 0.1f);
         }
 
 		//check the grid position one over; if it contains an attackable entity, deal damage; note this will return null if the player is at the far right of the grid
-		scr_Entity target = scr_Grid.GridController.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
+		Entity target = Grid.Instance.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
 
 		if (target != null && target.type != EntityType.Player)
 		{
@@ -158,7 +158,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 	private IEnumerator Dash()
 	{
-		while (dashing && scr_Grid.GridController.LocationOnGrid(playerEntity._gridPos.x + 1, playerEntity._gridPos.y))
+		while (dashing && Grid.Instance.LocationOnGrid(playerEntity._gridPos.x + 1, playerEntity._gridPos.y))
 		{
             TransformAttack_SFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
             TransformAttack_SFX.clip = shoulderDash_SFX;
@@ -185,7 +185,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	/// </summary>
 	private void Push()
 	{
-		scr_Entity target = scr_Grid.GridController.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
+		Entity target = Grid.Instance.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
 		int enemyX = playerEntity._gridPos.x + 1;
 		int enemyY = playerEntity._gridPos.y;
 		if (target != null && target.type == EntityType.Enemy)
@@ -221,9 +221,9 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	/// <param name="target"></param>
 	/// <param name="x"></param>
 	/// <param name="y"></param>
-	private bool MoveIfOpen(scr_Entity target, int x, int y)
+	private bool MoveIfOpen(Entity target, int x, int y)
 	{
-			if (scr_Grid.GridController.IsTileUnoccupied(x, y))
+			if (Grid.Instance.IsTileUnoccupied(x, y))
 			{
 				target.SetTransform(x, y);
 				return true;
@@ -276,15 +276,15 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	private IEnumerator HeavySlamRoutine()
 	{
 		int column = playerEntity._gridPos.x + 1;
-		while (slamDamage > 0 && scr_Grid.GridController.LocationOnGrid(column, 0)) //while the damage has not reduced to zero and we haven't gone off the edge of the grid
+		while (slamDamage > 0 && Grid.Instance.LocationOnGrid(column, 0)) //while the damage has not reduced to zero and we haven't gone off the edge of the grid
 		{
 			//iterate through the tiles in this column
-			for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
+			for (int i = 0; i < Grid.Instance.rowSizeMax; i++)
 			{
 				if (slamDamage > 0)
 				{
                     //create the attack effect at this space
-                    GameObject particle =  Instantiate(particle_heavySlam, scr_Grid.GridController.GetWorldLocation(column, i), particle_heavySlam.transform.rotation);
+                    GameObject particle =  Instantiate(particle_heavySlam, Grid.Instance.GetWorldLocation(column, i), particle_heavySlam.transform.rotation);
                     if (slamDamage == slamDamageMax - slamDamageDeprecation)
                     {
                         //second row
@@ -295,14 +295,14 @@ public class scr_Brawler_Attack : MonoBehaviour {
                         //third row
                         particle.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                     }
-                    scr_Grid.GridController.BriefActivateTile(column, i, 0.28f);
+                    Grid.Instance.BriefActivateTile(column, i, 0.28f);
 
                 }
 
-				if (scr_Grid.GridController.grid[column,i].territory.name == TerrName.Enemy)
+				if (Grid.Instance.grid[column,i].territory.name == TerrName.Enemy)
 				{
 					//attack an enemy if there is one here
-					scr_Entity target = scr_Grid.GridController.GetEntityAtPosition(column, i);
+					Entity target = Grid.Instance.GetEntityAtPosition(column, i);
 					if (target != null)
 					{
 						//deal damage

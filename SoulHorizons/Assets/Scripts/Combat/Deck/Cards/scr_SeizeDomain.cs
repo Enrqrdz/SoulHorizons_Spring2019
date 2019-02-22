@@ -17,7 +17,7 @@ public class scr_SeizeDomain : CardData
         PlayCardSFX.clip = SeizeDomainSFX;
         PlayCardSFX.Play();
         Debug.Log("SEIZE!");
-        scr_Grid.GridController.seizeDomain(duration);
+        Grid.Instance.seizeDomain(duration);
     }
 
     public override void StartCastingEffects()

@@ -19,7 +19,7 @@ public class scr_statemanager : MonoBehaviour {
     bool showEffect = false;
     string EffectString;
     GameObject player;
-    scr_Entity playerEntity;
+    Entity playerEntity;
     scr_PlayerMovement playerMovement;
 
     public int currentEncounterIndex;
@@ -31,7 +31,7 @@ public class scr_statemanager : MonoBehaviour {
         EffectText.enabled = false;
         if (player != null)
         {
-            playerEntity = player.GetComponent<scr_Entity>();
+            playerEntity = player.GetComponent<Entity>();
             playerMovement = player.GetComponent<scr_PlayerMovement>();
             //load the health from the GameState
 

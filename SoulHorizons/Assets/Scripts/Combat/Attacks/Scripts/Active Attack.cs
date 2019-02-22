@@ -11,14 +11,14 @@ public class ActiveAttack
     public float lastAttackTime;
     public int currentIncrement = 0;
 
-    public scr_Entity entity;
-    public scr_Entity entityHit = null; //contains a reference to the entity that the attack hit
+    public Entity entity;
+    public Entity entityHit = null; //contains a reference to the entity that the attack hit
     public bool entityIsHit = false;    //set to true if the attack hits an entity
 
     public SpriteRenderer particle;     // use if only one particle 
     public SpriteRenderer[] particles;  //use for multiple particles 
 
-    public ActiveAttack(AttackData atk, int x, int y, scr_Entity ent)
+    public ActiveAttack(AttackData atk, int x, int y, Entity ent)
     {
         particles = new SpriteRenderer[5];
         attack = atk;

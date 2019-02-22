@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_PlayerMovement : scr_EntityAI
+public class scr_PlayerMovement : EntityAI
 {
     AudioSource Footsteps_SFX;
     public AudioClip[] movements_SFX;
@@ -91,9 +91,9 @@ public class scr_PlayerMovement : scr_EntityAI
                 {
                     //move to the rightmost player space
                     //get the rightmost player tile on this row
-                    for (int x = _x; x  < scr_Grid.GridController.columnSizeMax; x++)
+                    for (int x = _x; x  < Grid.Instance.columnSizeMax; x++)
                     {
-                        if (scr_Grid.GridController.ReturnTerritory(x,_y).name == entity.entityTerritory.name)
+                        if (Grid.Instance.ReturnTerritory(x,_y).name == entity.entityTerritory.name)
                         {
                             _x = x; //if we found a valid space then this becomes the new space to move to
                         }
@@ -140,9 +140,9 @@ public class scr_PlayerMovement : scr_EntityAI
                 {
                     //move to the rightmost player space
                     //get the rightmost player tile on this row
-                    for (int y = _y; y  < scr_Grid.GridController.rowSizeMax; y++)
+                    for (int y = _y; y  < Grid.Instance.rowSizeMax; y++)
                     {
-                        if (scr_Grid.GridController.ReturnTerritory(_x,y).name == entity.entityTerritory.name)
+                        if (Grid.Instance.ReturnTerritory(_x,y).name == entity.entityTerritory.name)
                         {
                             _y = y; //if we found a valid space then this becomes the new space to move to
                         }
@@ -175,7 +175,7 @@ public class scr_PlayerMovement : scr_EntityAI
             axisPressed = false;
         }
 
-        if (scr_Grid.GridController.LocationOnGrid(_x, _y) &&  scr_Grid.GridController.ReturnTerritory(_x,_y).name == entity.entityTerritory.name)
+        if (Grid.Instance.LocationOnGrid(_x, _y) &&  Grid.Instance.ReturnTerritory(_x,_y).name == entity.entityTerritory.name)
         {
            
             entity.SetTransform(_x, _y);

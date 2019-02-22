@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_ExiledArcher : scr_EntityAI {
+public class scr_ExiledArcher : EntityAI {
 
     //AKA Bird Bow Boi
     //TODO: Antonio: Make it so the archer moves in a clockwise motion diagonally. 
@@ -39,14 +39,14 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
-        int xRange = scr_Grid.GridController.columnSizeMax;
-        int yRange = scr_Grid.GridController.rowSizeMax;
+        int xRange = Grid.Instance.columnSizeMax;
+        int yRange = Grid.Instance.rowSizeMax;
 
         try
         {
             yPos = PickYCoord(yPos, movePosition, goBackwards);
             xPos = PickXCoord(xPos, movePosition, goBackwards);
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+            if (!Grid.Instance.CheckIfOccupied(xPos, yPos) && (Grid.Instance.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
                 entity.SetTransform(xPos, yPos); 
                 if (movePosition < 3)
@@ -64,7 +64,7 @@ public class scr_ExiledArcher : scr_EntityAI {
                 goBackwards = !goBackwards;
                 yPos = PickYCoord(yPos, movePosition, goBackwards);
                 xPos = PickXCoord(xPos, movePosition, goBackwards);
-                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                if (!Grid.Instance.CheckIfOccupied(xPos, yPos) && (Grid.Instance.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
                 {
                     entity.SetTransform(xPos, yPos);   //move to new position
                     if (movePosition < 3)
@@ -84,7 +84,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             yPos = yRange / 2;
             xPos = xRange - 1;
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+            if (!Grid.Instance.CheckIfOccupied(xPos, yPos) && (Grid.Instance.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
                 entity.SetTransform(xPos, yPos);   //move to new position
                 movePosition = 0;
@@ -95,7 +95,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity); 
+        Grid.Instance.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity); 
         if(!hSOnCD  && HunterShotCheck())
         {
             StartCoroutine(HunterShot());
@@ -114,7 +114,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     bool HunterShotCheck()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int playerY = player.GetComponent<scr_Entity>()._gridPos.y;
+        int playerY = player.GetComponent<Entity>()._gridPos.y;
         if(entity._gridPos.y == playerY)
         {
             return true;
@@ -159,8 +159,8 @@ public class scr_ExiledArcher : scr_EntityAI {
         canArrowRain = false; 
         yield return new WaitForSecondsRealtime(1f);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int playerXPos = player.GetComponent<scr_Entity>()._gridPos.x;
-        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
+        int playerXPos = player.GetComponent<Entity>()._gridPos.x;
+        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, Grid.Instance.rowSizeMax - 1, entity);
         yield return new WaitForSecondsRealtime(_aRInterval);
         canArrowRain = true; 
     }
@@ -280,8 +280,8 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int yDirection = y + 1;
         
-        if(yDirection > scr_Grid.GridController.rowSizeMax - 1)
-        if(yDirection > scr_Grid.GridController.columnSizeMax - 1)
+        if(yDirection > Grid.Instance.rowSizeMax - 1)
+        if(yDirection > Grid.Instance.columnSizeMax - 1)
         {
             yDirection = y - 2; 
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_EnemyAI_1 : scr_EntityAI
+public class scr_EnemyAI_1 : EntityAI
 {
 
     public float basicAttackChance;
@@ -36,7 +36,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        Grid.Instance.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (completedTask)
         {
             StartCoroutine(Brain());
@@ -73,7 +73,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
 
             }
 
-            if (!scr_Grid.GridController.CheckIfOccupied(_x, _y) && (scr_Grid.GridController.ReturnTerritory(_x, _y).name == entity.entityTerritory.name))
+            if (!Grid.Instance.CheckIfOccupied(_x, _y) && (Grid.Instance.ReturnTerritory(_x, _y).name == entity.entityTerritory.name))
             {
                 entity.SetTransform(_x, _y);                               //move to new position
                 completedTask = true;
@@ -95,7 +95,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
     int PickXCoord()
     {
         //must return int 
-        int _range = scr_Grid.GridController.columnSizeMax;
+        int _range = Grid.Instance.columnSizeMax;
         int _currPosX = entity._gridPos.x;
 
         if (_currPosX == _range - 1)

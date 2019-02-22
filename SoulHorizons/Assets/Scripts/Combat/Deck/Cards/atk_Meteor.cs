@@ -15,10 +15,10 @@ public class atk_Meteor : AttackData {
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = MeteorSFX;
         PlayCardSFX.Play();
-        for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
+        for (int i = 0; i < Grid.Instance.rowSizeMax; i++)
         {
-            scr_Grid.GridController.PrimeNextTile(xPos, i);
-            activeAtk.particles[i] = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.entity._gridPos.x, activeAtk.entity._gridPos.y) + new Vector3(0,2.5f,0), Quaternion.Euler(new Vector3(0,0,33)));
+            Grid.Instance.PrimeNextTile(xPos, i);
+            activeAtk.particles[i] = Instantiate(particles, Grid.Instance.GetWorldLocation(activeAtk.entity._gridPos.x, activeAtk.entity._gridPos.y) + new Vector3(0,2.5f,0), Quaternion.Euler(new Vector3(0,0,33)));
         }
         return new Vector2Int(xPos, yPos); 
     }
@@ -39,21 +39,21 @@ public class atk_Meteor : AttackData {
         switch (activeAtk.currentIncrement)
         {
             case 0:
-                scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
+                Grid.Instance.ActivateTile(xPos, yPos, activeAtk);
                 return new Vector2Int(xPos, yPos + 1);
 
             case 1:
-                scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
+                Grid.Instance.ActivateTile(xPos, yPos, activeAtk);
                 return new Vector2Int(xPos, yPos - 2);
 
             case 2:
-                scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
+                Grid.Instance.ActivateTile(xPos, yPos, activeAtk);
                 break;
                 //return new Vector2Int(xPos, yPos);
         }
         return new Vector2Int(xPos, yPos);
     }
-    public override bool CheckCondition(scr_Entity _ent)
+    public override bool CheckCondition(Entity _ent)
     {
         return true; 
     }
@@ -68,15 +68,15 @@ public class atk_Meteor : AttackData {
         switch (activeAttack.currentIncrement)
         {
             case 0:
-                activeAttack.particles[0].transform.position = Vector3.MoveTowards(activeAttack.particles[0].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
+                activeAttack.particles[0].transform.position = Vector3.MoveTowards(activeAttack.particles[0].transform.position, Grid.Instance.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
                 break; 
 
             case 1:
-                activeAttack.particles[1].transform.position = Vector3.MoveTowards(activeAttack.particles[1].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
+                activeAttack.particles[1].transform.position = Vector3.MoveTowards(activeAttack.particles[1].transform.position, Grid.Instance.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
                 activeAttack.particles[0].gameObject.SetActive(false); 
                 break;
             case 2:
-                activeAttack.particles[2].transform.position = Vector3.MoveTowards(activeAttack.particles[2].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
+                activeAttack.particles[2].transform.position = Vector3.MoveTowards(activeAttack.particles[2].transform.position, Grid.Instance.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
                 activeAttack.particles[1].gameObject.SetActive(false);
                 break;
             case 3:

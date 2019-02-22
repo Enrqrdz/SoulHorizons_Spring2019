@@ -23,7 +23,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 	public float chargeCooldown = 0.4f; //we can use this instead of fire rate after a charged shot if we want a longer cooldown for charged shots
 	private bool readyToFire = true; //used to indicate if the blaster is ready to fire again
 	public AttackData attack; //the attack that will be launched
-	private scr_Entity playerEntity;
+	private Entity playerEntity;
 
 	public SpriteRenderer baseProjectile;
 	public SpriteRenderer projectile1;
@@ -40,7 +40,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
     void Awake()
 	{
 		//objectPool_scr = GetComponent<scr_ObjectPool>();
-		playerEntity = GetComponent<scr_Entity>();
+		playerEntity = GetComponent<Entity>();
 	}
 	
 	void Start () {

@@ -7,9 +7,9 @@ public class atk_Cleave : AttackData {
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos + 2);
+        Grid.Instance.PrimeNextTile(xPos, yPos);
+        Grid.Instance.PrimeNextTile(xPos, yPos + 1);
+        Grid.Instance.PrimeNextTile(xPos, yPos + 2);
         return new Vector2Int(xPos, yPos); 
     }
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
@@ -19,14 +19,14 @@ public class atk_Cleave : AttackData {
 
     Vector2Int Cleave_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.ActivateTile(xPos, yPos);
+        Grid.Instance.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos, yPos + 1);
     }
 
 	//--Effects Methods--
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
-		activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, particles.transform.rotation);
+		activeAttack.particle = Instantiate(particles, Grid.Instance.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, particles.transform.rotation);
         activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 

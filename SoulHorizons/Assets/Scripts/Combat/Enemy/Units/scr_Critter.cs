@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Critter : scr_EntityAI
+public class scr_Critter : EntityAI
 {
     public float decisionTime;
     public float decisionTimeLower;
@@ -36,7 +36,7 @@ public class scr_Critter : scr_EntityAI
         int yCoord = entity._gridPos.y;
         int tries = 0;
 
-        xCoord = GenerateCoord(scr_Grid.GridController.columnSizeMax / 2, scr_Grid.GridController.columnSizeMax);
+        xCoord = GenerateCoord(Grid.Instance.columnSizeMax / 2, Grid.Instance.columnSizeMax);
         //xCoord = PickXCoord();
 
         if (xCoord == entity._gridPos.x && yCoord == entity._gridPos.y)
@@ -49,10 +49,10 @@ public class scr_Critter : scr_EntityAI
         {
             while (tries < 10)
             {
-                if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
+                if (!Grid.Instance.CheckIfOccupied(xCoord, yCoord) && (Grid.Instance.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
                 {
                     //if the tile is not occupied
-                    scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
+                    Grid.Instance.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
                     entity.SetTransform(xCoord, yCoord);
                     return;
                 }
@@ -74,7 +74,7 @@ public class scr_Critter : scr_EntityAI
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        Grid.Instance.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (taskComplete)
         {
             StartCoroutine(Brain());
@@ -95,7 +95,7 @@ public class scr_Critter : scr_EntityAI
     int PickXCoord()
     {
         //must return int 
-        int moveRange = scr_Grid.GridController.columnSizeMax;
+        int moveRange = Grid.Instance.columnSizeMax;
         int currX = entity._gridPos.x;
 
         if (currX == moveRange - 1)
@@ -126,7 +126,7 @@ public class scr_Critter : scr_EntityAI
     int PickYCoord()
     {
         int currY = entity._gridPos.y;
-        int moveRange = scr_Grid.GridController.rowSizeMax;
+        int moveRange = Grid.Instance.rowSizeMax;
 
         if (currY == 0)   //AI is on y = 0 and can only move to 1 (down)                             
         {
@@ -154,10 +154,10 @@ public class scr_Critter : scr_EntityAI
     void MoveAlongColumn(int xCoord, int yCoord)
     {
         yCoord = PickYCoord();
-        if (!scr_Grid.GridController.CheckIfOccupied(xCoord, yCoord) && (scr_Grid.GridController.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
+        if (!Grid.Instance.CheckIfOccupied(xCoord, yCoord) && (Grid.Instance.ReturnTerritory(xCoord, yCoord).name == entity.entityTerritory.name))
         {
             //if the tile is not occupied   
-            scr_Grid.GridController.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
+            Grid.Instance.SetTileOccupied(true, xCoord, yCoord, entity);          //set it to be occupied  
             entity.SetTransform(xCoord, yCoord);
             return;
         }

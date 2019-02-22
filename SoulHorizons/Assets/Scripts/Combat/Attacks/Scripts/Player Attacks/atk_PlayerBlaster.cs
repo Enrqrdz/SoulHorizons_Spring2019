@@ -24,10 +24,10 @@ public class atk_PlayerBlaster : AttackData {
         //ProgressEffects(xPos, yPos, activeAtk.lastPos.x, activeAtk.lastPos.y, activeParticle);
 
         //scr_Grid.GridController.PrimeNextTile(xPos + 1, yPos);
-        scr_Grid.GridController.ActivateTile(xPos, yPos);
+        Grid.Instance.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos + 1, yPos);
     }
-    public override bool CheckCondition(scr_Entity _ent)
+    public override bool CheckCondition(Entity _ent)
     {
         return true; // to make it happy 
     }
@@ -50,13 +50,13 @@ public class atk_PlayerBlaster : AttackData {
             Debug.Log("PlayerBlaster: Active Attack is null");
         }
 
-            activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
+            activeAttack.particle = Instantiate(particles, Grid.Instance.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
             activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x,activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, Grid.Instance.GetWorldLocation(activeAttack.lastPosition.x,activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)

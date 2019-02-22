@@ -12,13 +12,13 @@ public enum EntityType
 
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Entity : MonoBehaviour
+public class Entity : MonoBehaviour
 {
     public EntityType type;
 
     public Vector2Int _gridPos = new Vector2Int();
     public Health _health = new Health();
-    public scr_EntityAI _ai;
+    public EntityAI _ai;
     public Territory entityTerritory;
     public SpriteRenderer spr;
     Color baseColor;
@@ -53,7 +53,7 @@ public class scr_Entity : MonoBehaviour
             _ai.Die();
         }
         
-        transform.position = Vector3.Lerp(transform.position, scr_Grid.GridController.GetWorldLocation(_gridPos.x, _gridPos.y), (lerpSpeed*Time.deltaTime));
+        transform.position = Vector3.Lerp(transform.position, Grid.Instance.GetWorldLocation(_gridPos.x, _gridPos.y), (lerpSpeed*Time.deltaTime));
         //Counts down iframes
         if (invulnCounter > 0)
         {
@@ -70,8 +70,8 @@ public class scr_Entity : MonoBehaviour
     public void InitPosition(int x, int y)
     {
         _gridPos = new Vector2Int(x, y);
-        transform.position = scr_Grid.GridController.GetWorldLocation(_gridPos.x, _gridPos.y); 
-        scr_Grid.GridController.SetTileOccupied(true, x, y, this);
+        transform.position = Grid.Instance.GetWorldLocation(_gridPos.x, _gridPos.y); 
+        Grid.Instance.SetTileOccupied(true, x, y, this);
         spr.sortingOrder = -_gridPos.y;
     }
 
@@ -95,10 +95,10 @@ public class scr_Entity : MonoBehaviour
         }
 
         //Check if tile is occupied
-        scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
+        Grid.Instance.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
         _gridPos = new Vector2Int(x, y);
         
-        scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y,this);
+        Grid.Instance.SetTileOccupied(true, _gridPos.x, _gridPos.y,this);
         spr.sortingOrder = -_gridPos.y;
         AttackData atk = scr_AttackController.attackController.MoveIntoAttackCheck(_gridPos, this);
         if(atk != null)
@@ -197,7 +197,7 @@ public class scr_Entity : MonoBehaviour
             anim.SetBool("Dead", true);
         }
         //Debug.Log("I AM DEAD");
-        scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
+        Grid.Instance.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
         gameObject.SetActive(false); 
         //scr_Grid.GridController.RemoveEntity(this);  
     }

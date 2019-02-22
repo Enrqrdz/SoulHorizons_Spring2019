@@ -10,10 +10,10 @@ public class atk_ArrowRain : AttackData {
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos - 1);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos - 2);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos - 3);
+        Grid.Instance.PrimeNextTile(xPos, yPos);
+        Grid.Instance.PrimeNextTile(xPos, yPos - 1);
+        Grid.Instance.PrimeNextTile(xPos, yPos - 2);
+        Grid.Instance.PrimeNextTile(xPos, yPos - 3);
         return new Vector2Int(xPos, yPos); 
     }
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
@@ -28,10 +28,10 @@ public class atk_ArrowRain : AttackData {
             return new Vector2Int(xPos, yPos); 
         }
 
-        scr_Grid.GridController.ActivateTile(xPos, yPos);
+        Grid.Instance.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos, yPos - 1);
     }
-    public override bool CheckCondition(scr_Entity _ent)
+    public override bool CheckCondition(Entity _ent)
     {
         return true; 
     }
@@ -39,7 +39,7 @@ public class atk_ArrowRain : AttackData {
      //--Effects Methods--
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + (new Vector3(0, 2.5f, 0)) + particlesOffset, Quaternion.identity);
+        activeAttack.particle = Instantiate(particles, Grid.Instance.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + (new Vector3(0, 2.5f, 0)) + particlesOffset, Quaternion.identity);
         activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 
@@ -52,9 +52,9 @@ public class atk_ArrowRain : AttackData {
         }
         if (activeAttack.currentIncrement == incrementWaitTime)
         {
-            activeAttack.particle.transform.position = scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset; 
+            activeAttack.particle.transform.position = Grid.Instance.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset; 
         }
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (4.5f) * Time.deltaTime);
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, Grid.Instance.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (4.5f) * Time.deltaTime);
     }
 
       public override void ImpactEffects(int xPos = -1, int yPos = -1)

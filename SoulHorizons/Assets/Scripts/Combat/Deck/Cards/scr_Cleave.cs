@@ -15,8 +15,8 @@ public class scr_Cleave : CardData
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = CleaveSFX;
         PlayCardSFX.Play();
-        scr_Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_Entity>();
-		if(scr_Grid.GridController.LocationOnGrid(player._gridPos.x + 1, player._gridPos.y - 1))
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+		if(Grid.Instance.LocationOnGrid(player._gridPos.x + 1, player._gridPos.y - 1))
 		{
         	scr_AttackController.attackController.AddNewAttack(attack, player._gridPos.x + 1, player._gridPos.y - 1, player);
 		}

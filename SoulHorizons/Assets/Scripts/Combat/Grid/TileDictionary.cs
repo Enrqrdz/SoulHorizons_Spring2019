@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_TileDict{
+public class TileDictionary{
     
     //Dictionary that holds territory name and color associated with it
     public static Dictionary<TerrName, Color> colorDict = new Dictionary<TerrName, Color>()

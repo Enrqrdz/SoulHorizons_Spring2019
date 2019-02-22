@@ -25,7 +25,7 @@ public struct Territory
         TerrSprite = territoryToCopy.TerrSprite;
     }
 }
-public class scr_Tile : MonoBehaviour{
+public class Tile : MonoBehaviour{
 
     [Header("Combat Colors")]
     public Color primeColor;
@@ -41,11 +41,9 @@ public class scr_Tile : MonoBehaviour{
     public bool isActive; 
     public Territory territory;
     GameObject gridController;
-    scr_Grid grid;
-    public int gridPositionX;
-    public int gridPositionY;
+    Grid grid;
     public int queuedAttacks = 0;
-    public scr_Entity entityOnTile;
+    public Entity entityOnTile;
     
 
     Vector2 spriteSize = new Vector2 (1f,.85f);
@@ -65,7 +63,7 @@ public class scr_Tile : MonoBehaviour{
         harmful = false;                                                        //Sets tile to do persistent harm. May not be needed
         occupied = false;                                                       //Sets a tile to be occupied by an entity
         gridController = GameObject.FindGameObjectWithTag("GridController");    //Grid Controller
-        grid = gridController.GetComponent<scr_Grid>();
+        grid = gridController.GetComponent<Grid>();
         entityOnTile = null;
          
         
