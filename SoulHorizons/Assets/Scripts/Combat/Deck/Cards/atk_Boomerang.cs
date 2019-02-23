@@ -23,7 +23,7 @@ public class atk_Boomerang : AttackData
         return activeAtk;
     }
 
-    public override bool CheckCondition(scr_Entity _ent)
+    public override bool CheckCondition(Entity _ent)
     {
         return false;
     }

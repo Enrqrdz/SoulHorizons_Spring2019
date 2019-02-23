@@ -16,7 +16,7 @@ public class scr_Blur : CardData
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BlurSFX;
         PlayCardSFX.Play();
-        scr_Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_Entity>();
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         player.setInvincible(true, duration);
 
     }

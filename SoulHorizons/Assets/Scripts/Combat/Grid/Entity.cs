@@ -12,7 +12,7 @@ public enum EntityType
 
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Entity : MonoBehaviour
+public class Entity : MonoBehaviour
 {
     public EntityType type;
 
@@ -100,7 +100,7 @@ public class scr_Entity : MonoBehaviour
         
         scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y,this);
         spr.sortingOrder = -_gridPos.y;
-        AttackData atk = scr_AttackController.attackController.MoveIntoAttackCheck(_gridPos, this);
+        AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this);
         if(atk != null)
         {
             if (!invincible)

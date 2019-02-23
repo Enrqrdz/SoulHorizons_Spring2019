@@ -19,11 +19,11 @@ public class scr_Boomerang : CardData
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
 
-        scr_Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_Entity>();
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map 
-        scr_AttackController.attackController.AddNewAttack(boomerangAttack,0,0, player);
+        AttackController.Instance.AddNewAttack(boomerangAttack,0,0, player);
     }
 
     public override void StartCastingEffects()

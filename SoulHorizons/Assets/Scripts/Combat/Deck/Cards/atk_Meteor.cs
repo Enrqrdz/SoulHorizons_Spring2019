@@ -53,7 +53,7 @@ public class atk_Meteor : AttackData {
         }
         return new Vector2Int(xPos, yPos);
     }
-    public override bool CheckCondition(scr_Entity _ent)
+    public override bool CheckCondition(Entity _ent)
     {
         return true; 
     }

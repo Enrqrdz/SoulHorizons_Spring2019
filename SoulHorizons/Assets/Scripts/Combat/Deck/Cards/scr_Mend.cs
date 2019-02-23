@@ -16,7 +16,7 @@ public class scr_Mend : CardData
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = MendSFX;
         PlayCardSFX.Play();
-        scr_Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_Entity>();
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         player._health.hp += Mend_hp;
         if(player._health.hp > player._health.max_hp)
         {

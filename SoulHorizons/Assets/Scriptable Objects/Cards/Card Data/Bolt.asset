@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af63bf3612b5232418ed2e5027d97137, type: 3}
+  m_Script: {fileID: 11500000, guid: c4ed53aacdb969a4491970d02c96ba90, type: 3}
   m_Name: Bolt
   m_EditorClassIdentifier: 
   keywords: []
@@ -18,9 +18,7 @@ MonoBehaviour:
   chargeAmount: 5
   castingTime: 0
   cooldown: 1
-  description: 'Fires in a straight line, going through enemies
-
-    and stopping if it hits an obstacle.'
+  description: Fires in a straight line and hits the first enemy in its path.
   art: {fileID: 21300000, guid: 7cc960fd5843a7448a245398b4983002, type: 3}
   boltAttack: {fileID: 11400000, guid: da7ee130257b5684b80a3a6892049468, type: 2}
-  BoltSFX: {fileID: 0}
+  BoltSFX: {fileID: 8300000, guid: 2a977ea0e5cf5d24685663bc83a907a8, type: 3}

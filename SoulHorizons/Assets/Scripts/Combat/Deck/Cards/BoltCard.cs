@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Bolt")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Bolt : CardData {
+public class BoltCard : CardData
+{
 
     public AttackData boltAttack;
     private AudioSource PlayCardSFX;
@@ -16,20 +17,18 @@ public class scr_Bolt : CardData {
         PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoltSFX;
         PlayCardSFX.Play();
-        scr_Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_Entity>();
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         //add attack to attack controller script
-        scr_AttackController.attackController.AddNewAttack(boltAttack, player._gridPos.x, player._gridPos.y, player);
+        AttackController.Instance.AddNewAttack(boltAttack, player._gridPos.x, player._gridPos.y, player);
     }
 
     public override void StartCastingEffects()
     {
-        
     }
 
-        protected override void ActivateEffects()
+    protected override void ActivateEffects()
     {
-        //put start effects here
     }
 
 }

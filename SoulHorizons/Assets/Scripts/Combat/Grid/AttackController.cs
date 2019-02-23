@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_AttackController : MonoBehaviour {
+public class AttackController : MonoBehaviour {
+    public static AttackController Instance { get; private set; }
 
-    public ActiveAttack[] activeAttacks = new ActiveAttack[20];     //Max number of active attacks is 20
+    public ActiveAttack[] activeAttacks = new ActiveAttack[20]; 
     public int numberOfActiveAttacks = 0;
-    public static scr_AttackController attackController;
-    public scr_Pause pauseReference;
+    public Pause pauseReference;
 
     private void Awake()
     {
-        InitializeAttackController();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
@@ -19,10 +26,6 @@ public class scr_AttackController : MonoBehaviour {
         IterateThroughActiveAttacks();
     }
 
-    private void InitializeAttackController()
-    {
-        attackController = this;
-    }
 
     private void IterateThroughActiveAttacks()
     {
@@ -56,28 +59,7 @@ public class scr_AttackController : MonoBehaviour {
         }
     }
 
-    public void AddNewAttack(AttackData _attack, int xPos, int yPos, scr_Entity ent)
-    {
-        activeAttacks[numberOfActiveAttacks] = new ActiveAttack(_attack, xPos, yPos, ent);
-        activeAttacks[numberOfActiveAttacks].attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
-        activeAttacks[numberOfActiveAttacks].Clone(activeAttacks[numberOfActiveAttacks].attack.BeginAttack(activeAttacks[numberOfActiveAttacks]));
-
-        //Start effects for when the attack is created
-        if (_attack == null)
-        {
-            Debug.Log("AttackController: attack is null");
-        }
-        if (activeAttacks[numberOfActiveAttacks] == null)
-        {
-            Debug.Log("AttackController: attack is null");
-        }
-        _attack.LaunchEffects(activeAttacks[numberOfActiveAttacks]);
-        numberOfActiveAttacks++;
-
-    }
-
-
-    void RemoveFromArray(int index)
+    private void RemoveFromArray(int index)
     {
         //Attack end effects
         activeAttacks[index].attack.EndEffects(activeAttacks[index]);
@@ -100,6 +82,25 @@ public class scr_AttackController : MonoBehaviour {
         numberOfActiveAttacks--; 
     }
 
+    public void AddNewAttack(AttackData attackData, int xPos, int yPos, Entity entity)
+    {
+        activeAttacks[numberOfActiveAttacks] = new ActiveAttack(attackData, xPos, yPos, entity);
+        activeAttacks[numberOfActiveAttacks].attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
+        activeAttacks[numberOfActiveAttacks].Clone(activeAttacks[numberOfActiveAttacks].attack.BeginAttack(activeAttacks[numberOfActiveAttacks]));
+
+        if (attackData == null)
+        {
+            Debug.Log("AttackController: attack is null");
+        }
+        if (activeAttacks[numberOfActiveAttacks] == null)
+        {
+            Debug.Log("AttackController: attack is null");
+        }
+        attackData.LaunchEffects(activeAttacks[numberOfActiveAttacks]);
+        numberOfActiveAttacks++;
+
+    }
+
     public AttackData AttackType(Vector2Int pos)
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
@@ -109,12 +110,10 @@ public class scr_AttackController : MonoBehaviour {
                 return activeAttacks[x].attack;
             }
         }
-        
-        return null; 
-        
+        return null;  
     }
 
-    public AttackData MoveIntoAttackCheck(Vector2Int pos, scr_Entity entity)
+    public AttackData MoveIntoAttackCheck(Vector2Int pos, Entity entity)
     {
         for (int x = 0; x < numberOfActiveAttacks; x++)
         {
@@ -128,7 +127,6 @@ public class scr_AttackController : MonoBehaviour {
                 }
             }
         }
-
         return null;
     }
 }

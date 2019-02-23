@@ -26,7 +26,7 @@ public abstract class AttackData : ScriptableObject {
     {
         return new Vector2Int(); 
     }
-    public virtual bool CheckCondition(scr_Entity _ent)
+    public virtual bool CheckCondition(Entity _ent)
     {
         return false; 
     }

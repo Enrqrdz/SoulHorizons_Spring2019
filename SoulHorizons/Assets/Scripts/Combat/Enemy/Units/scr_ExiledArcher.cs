@@ -114,7 +114,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     bool HunterShotCheck()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int playerY = player.GetComponent<scr_Entity>()._gridPos.y;
+        int playerY = player.GetComponent<Entity>()._gridPos.y;
         if(entity._gridPos.y == playerY)
         {
             return true;
@@ -128,15 +128,15 @@ public class scr_ExiledArcher : scr_EntityAI {
         randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
         if (randomVal == 0)
         {
-            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
         }
         else if (randomVal == 5)
         {
-            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
         }
         else
         {
-            scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         }
     }
 
@@ -159,8 +159,8 @@ public class scr_ExiledArcher : scr_EntityAI {
         canArrowRain = false; 
         yield return new WaitForSecondsRealtime(1f);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int playerXPos = player.GetComponent<scr_Entity>()._gridPos.x;
-        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
+        int playerXPos = player.GetComponent<Entity>()._gridPos.x;
+        AttackController.Instance.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
         yield return new WaitForSecondsRealtime(_aRInterval);
         canArrowRain = true; 
     }
