@@ -28,12 +28,17 @@ public class RegionManager : MonoBehaviour
 
         GenerateButtons();
         CreateNodeConnections();
+
+        EventSystem eventSystem = EventSystem.current;
     }
 
     public void GoToEncounter(EncounterState encounter)
     {
-        SaveManager.currentGame.SetCurrentEncounterState(encounter);
-        scr_SceneManager.globalSceneManager.ChangeScene(encounter.GetEncounterData().sceneName);
+        if(encounter.isAccessible)
+        {
+            SaveManager.currentGame.SetCurrentEncounterState(encounter);
+            scr_SceneManager.globalSceneManager.ChangeScene(encounter.GetEncounterData().sceneName);
+        }
     }
 
     public void GenerateButtons()
@@ -50,11 +55,8 @@ public class RegionManager : MonoBehaviour
                     Quaternion.identity,
                     encounterMap.transform);
 
-                EncounterData newEncounterData;
-                newEncounterData = node.encounter.GetEncounterData();
-
                 EncounterButtonManager encounterButtonManager = newButton.GetComponent<EncounterButtonManager>();
-                encounterButtonManager.SetEncounterStateAndData(node.encounter, newEncounterData);
+                encounterButtonManager.SetEncounterState(node.GetEncounterState());
 
                 Button button = newButton.GetComponent<Button>();
                 button.onClick.AddListener(delegate {GoToEncounter(node.encounter);});

@@ -7,13 +7,14 @@ using System.IO;
 public class EncounterState
 {
     public int tier;
-    public bool isCompleted;
+    public bool isCompleted, isAccessible;
 
     private int encounterIndexInPool;
 
     public EncounterState()
     {
         isCompleted = false;
+        isAccessible = false;
         tier = 0;
         encounterIndexInPool = 0;
     }

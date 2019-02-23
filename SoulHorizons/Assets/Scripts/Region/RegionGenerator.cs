@@ -45,6 +45,7 @@ public class RegionGenerator : MonoBehaviour
         Map map = new Map(tiers);
 
         map.AddNode(new Node(new Vector3(0, 0, 0)), 0);
+        map.rings[0][0].SetAsRootNode();
 
         for(int i = 1; i < tiers; i++)
         {
@@ -70,7 +71,7 @@ public class RegionGenerator : MonoBehaviour
                 {
                     if(Vector3.Distance(currentNode.position, nextNode.position) < (connectionRange + distanceBetweenTiers))
                     {
-                        currentNode.AddConnectedNode(nextNode);
+                        currentNode.AddNextNode(nextNode);
                     }
                 }
             }
