@@ -273,17 +273,4 @@ public class scr_ExiledArcher : scr_EntityAI {
             canMove = true; 
         }
     }
-
-    void DodgeAttackVertically(int x, int y)
-    {
-        int yDirection = y + 1;
-        
-        if(yDirection > scr_Grid.GridController.rowSizeMax - 1)
-        if(yDirection > scr_Grid.GridController.columnSizeMax - 1)
-        {
-            yDirection = y - 2; 
-        }
-
-        entity.SetTransform(x, yDirection);
-    }
 }

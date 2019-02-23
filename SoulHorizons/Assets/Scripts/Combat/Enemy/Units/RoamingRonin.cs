@@ -44,7 +44,6 @@ public class RoamingRonin : scr_EntityAI
         Debug.Log("Well Met!");
     }
 
-
     public override void UpdateAI()
     {
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
@@ -68,7 +67,6 @@ public class RoamingRonin : scr_EntityAI
             if (gonnaMelee)
             {
                 xPos = PickXCoord(xPos);
-                Debug.Log(xPos);
             }
             else
             {
@@ -153,13 +151,15 @@ public class RoamingRonin : scr_EntityAI
             xPos++;
             yPos++;
         }
-
-        if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+        try
         {
-            entity.SetTransform(xPos, yPos);
-            return;
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+            {
+                entity.SetTransform(xPos, yPos);
+                return;
+            }
         }
-        else
+        catch
         {
             MoveBack();
         }
@@ -167,10 +167,9 @@ public class RoamingRonin : scr_EntityAI
 
     private void PhaseManager()
     {
-        int healthWhenArmorBreaks =( maxHealth / 100)*damageThreshold;
-        if (currHealth < healthWhenArmorBreaks)
+        int healthWhenArmorBreaks =( maxHealth * damageThreshold)/100;
+        if (currHealth <= healthWhenArmorBreaks)
         {
-            Debug.Log("Even without my armor, I shall continue to fight");
             attackPhase = 1;
         }
         else
@@ -182,38 +181,56 @@ public class RoamingRonin : scr_EntityAI
     void StartRangedAttack()
     {
         //insert animation here
-        anim.SetBool("Attack2", true);
-        Debug.Log("Air Slash");
+        anim.SetBool("RoninRanged", true);
+        if (attackPhase == 0)
+        {
+            scr_AttackController.attackController.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y, entity);
+        }
+        else
+        {
+            scr_AttackController.attackController.AddNewAttack(rangedAttack2, entity._gridPos.x, entity._gridPos.y, entity);
+        }
+
     }
 
     void RangedAttack()
     {
+        Debug.Log("Air Slash");
         if (attackPhase == 0)
         {
-            scr_AttackController.attackController.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y + 1, entity);
+            scr_AttackController.attackController.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y, entity);
         }
         else
         {
-            scr_AttackController.attackController.AddNewAttack(rangedAttack2, entity._gridPos.x, entity._gridPos.y + 1, entity);
+            scr_AttackController.attackController.AddNewAttack(rangedAttack2, entity._gridPos.x, entity._gridPos.y, entity);
         }
     }
 
     void StartMeleeAttack()
     {
         //insert animation here
-        anim.SetBool("Attack", true);
-        Debug.Log("BACK SLASH");
+        anim.SetBool("RoninMelee", true);
+        if (attackPhase == 0)
+        {
+            scr_AttackController.attackController.AddNewAttack(meleeAttack, entity._gridPos.x, entity._gridPos.y, entity);
+        }
+        else
+        {
+            scr_AttackController.attackController.AddNewAttack(meleeAttack2, entity._gridPos.x, entity._gridPos.y, entity);
+        }
+
     }
 
     void MeleeAttack()
     {
+        Debug.Log("BACK SLASH");
         if (attackPhase == 0)
         {
-            scr_AttackController.attackController.AddNewAttack(meleeAttack, entity._gridPos.x, entity._gridPos.y + 1, entity);
+            scr_AttackController.attackController.AddNewAttack(meleeAttack, entity._gridPos.x, entity._gridPos.y, entity);
         }
         else
         {
-            scr_AttackController.attackController.AddNewAttack(meleeAttack2, entity._gridPos.x, entity._gridPos.y + 1, entity);
+            scr_AttackController.attackController.AddNewAttack(meleeAttack2, entity._gridPos.x, entity._gridPos.y, entity);
         }
     }
 

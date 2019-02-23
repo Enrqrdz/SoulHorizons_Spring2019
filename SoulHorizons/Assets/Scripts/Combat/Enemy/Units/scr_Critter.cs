@@ -7,6 +7,8 @@ public class scr_Critter : scr_EntityAI
 {
     public float decisionTime;
     public float decisionTimeLower;
+    public float movementIntervalLower;
+    public float movementIntervalUpper;
     //public float burrowedTime;
     // public float burrowedTimeLower;
     bool movingDown = false;

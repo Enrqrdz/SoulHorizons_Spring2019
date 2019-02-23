@@ -219,7 +219,6 @@ public class scr_Grid : MonoBehaviour{
                 {
                     if (activeEntities[i].type != attack.entity.type)
                     {
-                        Debug.Log("ACTIVE ENTITY HIT!");
                         //Check if entity is invincible and assigns iframes accordingly
                         if (!activeEntities[i].isInvincible())
                         {

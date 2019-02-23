@@ -194,10 +194,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   decisionTime: 3
   decisionTimeLower: 1
-  burrowedTime: 1.5
-  burrowedTimeLower: 0.5
-  burrowedColor: {r: 0, g: 0, b: 0, a: 0}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  movementIntervalLower: 3
+  movementIntervalUpper: 5
   movements_SFX:
   - {fileID: 8300000, guid: 80b2c6c4ff0767047bd78791fc9bbbf7, type: 3}
   - {fileID: 8300000, guid: 115bedd7a324c7d45b9433d193e86bdc, type: 3}

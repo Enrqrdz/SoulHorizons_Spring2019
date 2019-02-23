@@ -159,10 +159,8 @@ public class scr_DeckManager : MonoBehaviour {
 	/// <returns></returns>
 	private IEnumerator CastCooldown(float cooldown)
 	{
-        Debug.Log("Hello, I am on cooldown");
 		readyToCast = false;
 		yield return new WaitForSeconds(cooldown);
-        Debug.Log("Hello, I am off of cooldown");
         readyToCast = true;
 	}
 
