@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc5a079ed8103049abc55e00fa008ef, type: 3}
   m_Name: Seize Domain
   m_EditorClassIdentifier: 
-  keywords: []
-  cardName: Seize Domain
+  spellName: Seize Domain
   element: 0
-  chargeAmount: 5
+  transformChargeAmount: 5
   castingTime: 0
   cooldown: 1.5
   description: Seizes a column for you to move on.

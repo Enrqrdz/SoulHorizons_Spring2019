@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ed53aacdb969a4491970d02c96ba90, type: 3}
   m_Name: Bolt
   m_EditorClassIdentifier: 
-  keywords: []
-  cardName: Bolt
+  spellName: Bolt
   element: 1
-  chargeAmount: 5
+  transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1
+  cooldown: 0
   description: Fires in a straight line and hits the first enemy in its path.
   art: {fileID: 21300000, guid: 7cc960fd5843a7448a245398b4983002, type: 3}
   boltAttack: {fileID: 11400000, guid: da7ee130257b5684b80a3a6892049468, type: 2}

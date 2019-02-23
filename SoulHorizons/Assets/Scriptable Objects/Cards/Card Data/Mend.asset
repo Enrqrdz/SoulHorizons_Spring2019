@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c57c6c5b878b746ab769d494e41f34, type: 3}
   m_Name: Mend
   m_EditorClassIdentifier: 
-  keywords: []
-  cardName: Mend
+  spellName: Mend
   element: 1
-  chargeAmount: 5
+  transformChargeAmount: 5
   castingTime: 0
   cooldown: 1.5
   description: 

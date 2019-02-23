@@ -14,10 +14,9 @@ public enum Element
 [System.Serializable]
 public abstract class CardData : ScriptableObject 
 {
-    public List<string> keywords;
-    public string cardName;
+    public string spellName;
     public Element element;
-    public int chargeAmount = 5; //the amount that the soul transform for this element is charged when the card is played
+    public int transformChargeAmount = 5;
     public float castingTime = 1f; //the delay before the card is cast
     public float cooldown = 1.5f; //the cooldown after casting this card in seconds, after which another card may be cast
     [Multiline]

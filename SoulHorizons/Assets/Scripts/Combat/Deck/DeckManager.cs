@@ -7,15 +7,15 @@ using UnityEngine.UI;
 /// <summary>
 /// Contains references to all parts of the deck system. Anything outside the deck system should use the public functions in this class for deck information.
 /// </summary>
-[RequireComponent(typeof(scr_Deck))]
+[RequireComponent(typeof(Deck))]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_DeckManager : MonoBehaviour {
+public class DeckManager : MonoBehaviour {
 
 	public scr_CardUI[] cardUI; //references to the cards UI
     public GameObject handPanel; //a reference to the parent hand object
     public Animator anim;
-	scr_Deck deck_scr;
+	Deck deck_scr;
     [SerializeField] scr_SoulManager soulManager;
     int currentCard = 0;
     public float doublePressWindow = 0.3f; //the window of time the user has to press the same card again and have it register as a double press
@@ -29,7 +29,7 @@ public class scr_DeckManager : MonoBehaviour {
 
     void Awake()
     {
-        deck_scr = GetComponent<scr_Deck>();
+        deck_scr = GetComponent<Deck>();
     }
 
 	void Start ()
@@ -94,7 +94,7 @@ public class scr_DeckManager : MonoBehaviour {
             //start cooldown to be able to cast another card
             StartCoroutine(CastCooldown(deck_scr.backupHand[index].cooldown));
             //charge the soul transform
-            soulManager.ChargeSoulTransform(deck_scr.backupHand[index].element, deck_scr.backupHand[index].chargeAmount);
+            soulManager.ChargeSoulTransform(deck_scr.backupHand[index].element, deck_scr.backupHand[index].transformChargeAmount);
             deck_scr.ActivateBackup(index);
 
         }
@@ -113,7 +113,7 @@ public class scr_DeckManager : MonoBehaviour {
             //start cooldown to be able to cast another card
             StartCoroutine(CastCooldown(deck_scr.hand[index].cooldown));
             //charge the soul transform
-            soulManager.ChargeSoulTransform(deck_scr.hand[index].element, deck_scr.hand[index].chargeAmount);
+            soulManager.ChargeSoulTransform(deck_scr.hand[index].element, deck_scr.hand[index].transformChargeAmount);
             anim.SetBool("Cast", true);
             deck_scr.Activate(index);
         }
@@ -136,7 +136,7 @@ public class scr_DeckManager : MonoBehaviour {
         {
             if (deck_scr.hand[i] != null) //the slot in the hand may not have been refilled if the cooldown is not finished
             {
-                cardUI[i].SetName(deck_scr.hand[i].cardName); //set the name
+                cardUI[i].SetName(deck_scr.hand[i].spellName); //set the name
                 cardUI[i].SetArt(deck_scr.hand[i].art); //set the card art
                 cardUI[i].SetElement(deck_scr.hand[i].element); //set the card element
             }
@@ -144,7 +144,7 @@ public class scr_DeckManager : MonoBehaviour {
             //update the backup hand slot
             if (deck_scr.backupHand[i] != null)
             {
-                cardUI[i].SetBackupName(deck_scr.backupHand[i].cardName);
+                cardUI[i].SetBackupName(deck_scr.backupHand[i].spellName);
             }
             else
             {

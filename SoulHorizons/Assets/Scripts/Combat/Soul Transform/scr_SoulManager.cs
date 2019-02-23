@@ -15,7 +15,7 @@ public class scr_SoulManager : MonoBehaviour {
     private SoulTransform currentTransform = null;
     private bool transformed = false;
     private Entity player;
-    public scr_DeckManager deckManager;
+    public DeckManager deckManager;
     Animator anim; //animator to control soul transform animations
 
     private IDictionary<Element, int> soulCharges = new Dictionary<Element, int>(); 

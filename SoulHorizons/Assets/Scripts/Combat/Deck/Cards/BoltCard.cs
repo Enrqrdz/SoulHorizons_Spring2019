@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class BoltCard : CardData
 {
-
     public AttackData boltAttack;
     private AudioSource PlayCardSFX;
     public AudioClip BoltSFX;

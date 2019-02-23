@@ -4,14 +4,14 @@ using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-public class scr_Deck : MonoBehaviour {
+public class Deck : MonoBehaviour {
 
 	public int deckSize = 10;
-    public int handSize = 4;
+    public int handSize = 2;
     public scr_NameToCard cardMapping; //maps card name to the scriptable object for that card
     public TextAsset deckList;
-    [HideInInspector] public List<CardData> hand = new List<CardData>();
-    [HideInInspector] public List<CardData> backupHand = new List<CardData>();
+    public List<CardData> hand = new List<CardData>();
+    public List<CardData> backupHand = new List<CardData>();
     public List<CardData> mantras = new List<CardData>(2);
     List<CardData> deck = new List<CardData>();
     List<CardData> discard = new List<CardData>();
@@ -36,13 +36,11 @@ public class scr_Deck : MonoBehaviour {
     {
         if (InventoryManager.deckList.Count == 0)
         {
-            Debug.Log("Loading New Deck");
             LoadNewDeck();
             SaveManager.Save();
         }
         else
         {
-            Debug.Log("Loading Old Deck");
             LoadDeck();
         }
 
@@ -89,7 +87,7 @@ public class scr_Deck : MonoBehaviour {
 
             //add the card and quantity to an inventory card list
             InventoryManager.addCard(nextCard, quantity);
-            cardList.Add(new KeyValuePair<string, int>(nextCard.cardName, quantity));
+            cardList.Add(new KeyValuePair<string, int>(nextCard.spellName, quantity));
         }
 
         if (deck.Count != deckSize)
@@ -105,7 +103,7 @@ public class scr_Deck : MonoBehaviour {
     /// <summary>
     /// Load the deck list from the existing inventory 
     /// </summary>
-    void LoadDeckList(scr_Deck loadDeck)
+    void LoadDeckList(Deck loadDeck)
     {
         deckSize = loadDeck.deckSize;
         handSize = loadDeck.handSize;
@@ -137,7 +135,7 @@ public class scr_Deck : MonoBehaviour {
             {
                 deck.Add(nextCard);
             }
-            cardList.Add(new KeyValuePair<string, int>(nextCard.cardName, pair.Value));
+            cardList.Add(new KeyValuePair<string, int>(nextCard.spellName, pair.Value));
         }
 
         if (deck.Count != deckSize)
@@ -250,7 +248,7 @@ public class scr_Deck : MonoBehaviour {
         }
         else
         {
-            //TODO: What do we do when the deck runs out?
+
             Shuffle("discard into deck");
         }
     }

@@ -18,7 +18,7 @@ public static class InventoryManager
     {
         foreach(KeyValuePair<CardData, int> pair in cardInv)
         {
-            if(pair.Key.cardName == card.cardName)
+            if(pair.Key.spellName == card.spellName)
             {
                 int prevNum = pair.Value;
                 cardInv.Remove(pair);
@@ -70,7 +70,7 @@ public static class InventoryManager
         List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
         foreach (KeyValuePair<CardData, int> pair in cardInv)
         {
-            cardList.Add(new KeyValuePair<string, int>(pair.Key.cardName, pair.Value));
+            cardList.Add(new KeyValuePair<string, int>(pair.Key.spellName, pair.Value));
         }
         return cardList;
     }
@@ -84,7 +84,7 @@ public static class InventoryManager
     {
         for (int i = 0; i < cardInv.Count; i++)
         {
-            if (cardInv[i].Key.cardName == cardName)
+            if (cardInv[i].Key.spellName == cardName)
             {
                 return i;
             }
