@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Atk_Ronin Melee
   m_EditorClassIdentifier: 
   incrementTime: 0
-  maxIncrementRange: 10
-  damage: 3
+  maxIncrementRange: 2
+  damage: 6
   type: 0
   hasPiercing: 0
   particles: {fileID: 212489909936821062, guid: 93dcc66df25d71d408deac69aa2070c0,
     type: 3}
-  particlesOffset: {x: 0, y: 0, z: 0}
+  particlesOffset: {x: -0.5, y: 0, z: 0}
   particleSpeed: 1
