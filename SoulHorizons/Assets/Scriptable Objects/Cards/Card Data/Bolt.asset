@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 1
   chargeAmount: 5
   castingTime: 0
-  cooldown: 1
+  cooldown: 0.8
   description: 'Fires in a straight line, going through enemies
 
     and stopping if it hits an obstacle.'

@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 4
   chargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: Boomerang?
   art: {fileID: 21300000, guid: 63023d068ef6d3947beff08d45db918f, type: 3}
   boomerangAttack: {fileID: 11400000, guid: 516a5abe9795e4840892f7d41aaef1ee, type: 2}

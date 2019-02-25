@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 0
   chargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: Seizes a column for you to move on.
   art: {fileID: 21300000, guid: 133a9b6a5e302e447b9394941a5c6d8d, type: 3}
   duration: 8

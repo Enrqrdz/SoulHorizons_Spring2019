@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -16,7 +17,7 @@ MonoBehaviour:
   element: 4
   chargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: 
   art: {fileID: 21300000, guid: dfbac7c3950fdef49b7dbdd17a1cf6bc, type: 3}
   BlurSFX: {fileID: 8300000, guid: 93d3d9cc687f5e04ab58b052c4d14d1d, type: 3}
