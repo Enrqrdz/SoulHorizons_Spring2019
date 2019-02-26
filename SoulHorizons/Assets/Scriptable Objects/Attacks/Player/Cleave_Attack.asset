@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cleave_Attack
   m_EditorClassIdentifier: 
   incrementTime: 0.1
-  maxIncrementRange: 3
+  maxIncrementRange: 2
   damage: 6
   type: 1
   hasPiercing: 1
