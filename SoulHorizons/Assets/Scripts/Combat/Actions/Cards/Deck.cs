@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour {
 
-	public int deckSize = 10;
-    public int handSize = 2;
+    [SerializeField]
+	private int deckSize = 10;
+    [SerializeField]
+    private int handSize = 2;
+
     public scr_NameToCard cardMapping; //maps card name to the scriptable object for that card
     public TextAsset deckList;
     public List<CardData> hand = new List<CardData>();
     public List<CardData> backupHand = new List<CardData>();
-    public List<CardData> mantras = new List<CardData>(2);
     List<CardData> deck = new List<CardData>();
     List<CardData> discard = new List<CardData>();
     public List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
@@ -212,9 +214,9 @@ public class Deck : MonoBehaviour {
         if (cardToPlay.castingTime != 0)
         {
             cardToPlay.StartCastingEffects();
-            scr_InputManager.cannotInput = true;
+            InputManager.cannotInput = true;
             yield return new WaitForSeconds(cardToPlay.castingTime);
-            scr_InputManager.cannotInput = false;
+            InputManager.cannotInput = false;
         }
 
         hand[index].Activate();
@@ -241,10 +243,10 @@ public class Deck : MonoBehaviour {
         {
             //start initial effects and stop player input
             cardToPlay.StartCastingEffects();
-            scr_InputManager.cannotInput = true;
+            InputManager.cannotInput = true;
             yield return new WaitForSeconds(cardToPlay.castingTime);
         }
-        scr_InputManager.cannotInput = false;
+        InputManager.cannotInput = false;
         backupHand[index].Activate();
         discard.Add(cardToPlay);
         //hand.Remove(cardToPlay);

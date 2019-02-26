@@ -62,20 +62,23 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 	private void OnEnable()
 	{
-		//activate the UI
-		bearUI.gameObject.SetActive(true);
+		if(bearUI.gameObject != null)
+        {
+            bearUI.gameObject.SetActive(true);
+        }
 	}
 
 	private void OnDisable()
 	{
-		//deactivate the UI
-		bearUI.gameObject.SetActive(false);
-	}
+        if (bearUI.gameObject != null)
+        {
+            bearUI.gameObject.SetActive(false);
+        }
+    }
 	
 	void Update ()
     {
-        int input = scr_InputManager.PlayCard();
-		switch (input)
+		switch (InputManager.ActionNumber())
 		{
 		    case 0:
 				ShoulderDash();
@@ -150,7 +153,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		}
         dashing = true;
 		meleeCooldown -= 0.3f; //speed up the attack rate while dashing
-		scr_InputManager.cannotMove = true;
+		InputManager.cannotMove = true;
 		startPos.x = playerEntity._gridPos.x; 
 		startPos.y = playerEntity._gridPos.y;
 		StartCoroutine(Dash());
@@ -176,7 +179,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 		dashing = false;
 		meleeCooldown += 0.3f; //slow the attack rate back to normal
-		scr_InputManager.cannotMove = false;
+		InputManager.cannotMove = false;
 		playerEntity.SetTransform(startPos.x, startPos.y);
 	}
 

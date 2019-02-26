@@ -16,7 +16,12 @@ public class atk_Boomerang : AttackData
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
     {
         activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position),Quaternion.identity);
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
+
+        if (PlayCardSFX == null)
+        {
+            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        }
+
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
         activeAtk.attack.maxIncrementRange = ((scr_Grid.GridController.columnSizeMax * 2) + scr_Grid.GridController.rowSizeMax - 2); 

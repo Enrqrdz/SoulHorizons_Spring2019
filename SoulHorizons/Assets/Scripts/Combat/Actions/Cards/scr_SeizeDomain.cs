@@ -1,28 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu (menuName = "Cards/LightningBolt")]
+[CreateAssetMenu(menuName = "Cards/SeizeDomain")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_LightningBolt : CardData {
-
-    public float damage = 6f;
+public class scr_SeizeDomain : CardData
+{
+    public float duration;
+    //public Color newColor;
     private AudioSource PlayCardSFX;
-    public AudioClip LightningBoltSFX;
-
+    public AudioClip SeizeDomainSFX;
     public override void Activate()
-    {
+    {    
         ActivateEffects();
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
-        PlayCardSFX.clip = LightningBoltSFX;
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX.clip = SeizeDomainSFX;
         PlayCardSFX.Play();
-        //implement functionality here
-        Debug.Log(name + ": Zap!");
+        Debug.Log("SEIZE!");
+        scr_Grid.GridController.seizeDomain(duration);
     }
 
     public override void StartCastingEffects()
     {
-        
+
     }
 
     protected override void ActivateEffects()

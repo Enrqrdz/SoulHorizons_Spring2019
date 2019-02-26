@@ -45,8 +45,8 @@ public class scr_statemanager : MonoBehaviour {
                 playerEntity._health.hp = hp;
             }
 
-            scr_InputManager.cannotInput = false;
-            scr_InputManager.cannotMove = false;
+            InputManager.cannotInput = false;
+            InputManager.cannotMove = false;
         }
 
         else

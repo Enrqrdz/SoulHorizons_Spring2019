@@ -30,7 +30,8 @@ public class scr_CardUI : MonoBehaviour {
 
 	private bool selected = false; //whether this card is currently selected or not
 	
-	void Awake () {
+	void Awake ()
+    {
 		cooldownOverlay = GetComponent<scr_CooldownOverlay>();
 	}
 
@@ -95,7 +96,6 @@ public class scr_CardUI : MonoBehaviour {
 	{
 		if (this.selected == selected)
 		{
-			//nothing changes
 			return;
 		}
 		//if we're proceeding, then that means a change is occurring
@@ -114,14 +114,8 @@ public class scr_CardUI : MonoBehaviour {
 		this.selected = selected;
 	}
 
-	/// <summary>
-	/// Start the cooldown animation and have it run the given number of seconds
-	/// </summary>
-	/// <param name="seconds"></param>
 	public void StartCooldown(float seconds)
 	{
-        //cooldownOverlay.rate = seconds;
-        //How to set the rate?
         cooldownOverlay.SetTime(seconds);
 		cooldownOverlay.StartCooldown();
 	}

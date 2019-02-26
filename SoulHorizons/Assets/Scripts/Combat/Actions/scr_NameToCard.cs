@@ -7,8 +7,8 @@ using UnityEngine;
 /// <summary>
 /// Connects the data loaded from the save file to the object that corresponds to that card. Holds a list of all the card objects.
 /// </summary>
-public class scr_NameToCard : ScriptableObject {
-
+public class scr_NameToCard : ScriptableObject
+{
     /// <summary>
     /// This class contains fields that can be edited in the inspector to put all card information in one object.
     /// </summary>

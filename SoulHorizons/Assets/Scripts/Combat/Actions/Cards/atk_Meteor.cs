@@ -12,7 +12,7 @@ public class atk_Meteor : AttackData {
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = MeteorSFX;
         PlayCardSFX.Play();
         for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)

@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class scr_InputManager {
-
+public static class InputManager
+{
 	public static bool cannotInput = false; //set to true to prevent the player from getting input
 	public static bool cannotMove = false; //set to true to prevent the player from inputting movement
+    private static float falseRadius = 0.2f;
 
-	/// <summary>
-	/// Xbox one - L stick / D-pad
-	/// Keyboard - AD
-	/// </summary>
-	/// <returns>returns -1 for left, 1 for right, 0 for neither, only on the frame the axis is pressed</returns>
-	public static int MainHorizontal()
+    /// <summary>
+    /// Xbox one - L stick / D-pad
+    /// Keyboard - AD
+    /// </summary>
+    /// <returns>returns -1 for left, 1 for right, 0 for neither, only on the frame the axis is pressed</returns>
+    public static int MainHorizontal()
 	{
 		if(cannotInput || cannotMove)
 		{
@@ -141,8 +142,6 @@ public static class scr_InputManager {
 		return 0;
 	}
 
-	static float falseRadius = 0.2f; //values within falseRadius of 0 will give a false reading for the button being pressed. Used with the axis to account for uncertainty with float equality
-
 	/// <summary>
 	/// XBox one - B button
 	/// Keyboard - LMB
@@ -163,7 +162,7 @@ public static class scr_InputManager {
 	/// Keyboard - q, w, e, r buttons
 	/// </summary>
 	/// <returns>returns 0-3 the frame a play card button is pressed or -1 if none is pressed</returns>
-	public static int PlayCard()
+	public static int ActionNumber()
 	{
 		if(cannotInput)
 		{
@@ -185,9 +184,7 @@ public static class scr_InputManager {
 		{
 			return 3;
 		}
-
 		return -1;
-
 	}
 
 	/// <summary>
@@ -197,7 +194,7 @@ public static class scr_InputManager {
 	/// <returns>returns true if currently pressed</returns>
 	public static bool IsDashPressed()
 	{
-		return (Input.GetAxis("Dash_Axis") > 0.02f) || Input.GetButton("Dash_Button");
+		return (Input.GetAxis("Dash_Axis") > falseRadius) || Input.GetButton("Dash_Button");
 	}
 
 	/// <summary>
@@ -207,7 +204,7 @@ public static class scr_InputManager {
 	/// <returns>returns true if currently pressed</returns>
 	public static bool IsCardSwapPressed()
 	{
-		return (Input.GetAxis("CardSwap_Axis") > 0.02f) || Input.GetButton("CardSwap_Button");
+		return (Input.GetAxis("CardSwap_Axis") > falseRadius) || Input.GetButton("CardSwap_Button");
 	}
 
 }

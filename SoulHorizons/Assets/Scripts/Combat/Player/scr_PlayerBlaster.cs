@@ -52,8 +52,8 @@ public class scr_PlayerBlaster : MonoBehaviour {
 
     private bool blastLastFrame = false; //this is used to get detect "buttonUp" since we can only determine if the button is down or not
 	void Update () {
-		bool blastUp = blastLastFrame && !scr_InputManager.Blast(); //blastUp is true if the button was down(true) last frame and is not pressed this frame
-		blastLastFrame = scr_InputManager.Blast(); //update the blast last frame
+		bool blastUp = blastLastFrame && !InputManager.Blast(); //blastUp is true if the button was down(true) last frame and is not pressed this frame
+		blastLastFrame = InputManager.Blast(); //update the blast last frame
 
 		if (pressed)
 		{
@@ -61,7 +61,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 			//TODO:need to calculate charge level here for visual indicators that you have increased the charge level
 		}
 
-		if (scr_InputManager.Blast() && readyToFire)
+		if (InputManager.Blast() && readyToFire)
 		{
             if (BlasterCharge_SFX.isPlaying != true && timePressed < chargeTime1)
             {
@@ -71,7 +71,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
             pressed = true;
         }
 
-        if (scr_InputManager.Blast() && readyToFire)
+        if (InputManager.Blast() && readyToFire)
         {
             if (timePressed > chargeTime1)
             {

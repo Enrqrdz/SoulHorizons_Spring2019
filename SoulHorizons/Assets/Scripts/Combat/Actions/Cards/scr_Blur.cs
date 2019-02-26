@@ -1,29 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[CreateAssetMenu(menuName = "Cards/Blur")]
 [RequireComponent(typeof(AudioSource))]
 
-[CreateAssetMenu(menuName = "Cards/Boomerang")]
-public class scr_Boomerang : CardData
+public class scr_Blur : CardData
 {
-
-    public AttackData boomerangAttack;
     private AudioSource PlayCardSFX;
-    public AudioClip BoomerangSFX;
+    public AudioClip BlurSFX;
 
+    public float duration;
     public override void Activate()
     {
-
         ActivateEffects();
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
-        PlayCardSFX.clip = BoomerangSFX;
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX.clip = BlurSFX;
         PlayCardSFX.Play();
-
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player.setInvincible(true, duration);
 
-        //add attack to attack controller script
-        //does a check to see if the target col is off the map 
-        AttackController.Instance.AddNewAttack(boomerangAttack,0,0, player);
     }
 
     public override void StartCastingEffects()

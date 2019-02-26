@@ -31,11 +31,11 @@ public class scr_ButtonManager : MonoBehaviour {
         if (!axisPressed)
         {
             //just pressed the joystick
-            axis = scr_InputManager.MenuVertical() * -1;
+            axis = InputManager.MenuVertical() * -1;
             axisPressed = true;
         }
 
-        if(scr_InputManager.MenuVertical() == 0)
+        if(InputManager.MenuVertical() == 0)
         {
             //joystick is not pressed
             axisPressed = false;

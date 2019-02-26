@@ -17,7 +17,7 @@ public class scr_InnerStrength : CardData {
     public override void Activate()
     {
         ActivateEffects();
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = InnerStrengthSFX;
         PlayCardSFX.Play();
         scr_PlayerBlaster blaster = GameObject.FindGameObjectWithTag("Player").GetComponent<scr_PlayerBlaster>();

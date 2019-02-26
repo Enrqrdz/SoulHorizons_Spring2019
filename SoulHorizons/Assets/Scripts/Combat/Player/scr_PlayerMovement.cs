@@ -32,21 +32,21 @@ public class scr_PlayerMovement : scr_EntityAI
         int _x = entity._gridPos.x;
         int _y = entity._gridPos.y;
 
-        if(inputX != scr_InputManager.MainHorizontal())
+        if(inputX != InputManager.MainHorizontal())
         {
-            inputX = scr_InputManager.MainHorizontal();
-            _x += scr_InputManager.MainHorizontal();
+            inputX = InputManager.MainHorizontal();
+            _x += InputManager.MainHorizontal();
             axisPressed = true;
         }
 
-        if (inputY != scr_InputManager.MainVertical())
+        if (inputY != InputManager.MainVertical())
         {
-            inputY = scr_InputManager.MainVertical();
-            _y += scr_InputManager.MainVertical();
+            inputY = InputManager.MainVertical();
+            _y += InputManager.MainVertical();
             axisPressed = true;
         }
 
-        if (scr_InputManager.MainHorizontal() == 0 && scr_InputManager.MainVertical() == 0)
+        if (InputManager.MainHorizontal() == 0 && InputManager.MainVertical() == 0)
         {
             axisPressed = false;
         }

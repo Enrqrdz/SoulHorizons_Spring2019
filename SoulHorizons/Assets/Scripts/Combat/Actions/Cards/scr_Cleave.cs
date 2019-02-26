@@ -12,7 +12,7 @@ public class scr_Cleave : CardData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = CleaveSFX;
         PlayCardSFX.Play();
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();

@@ -51,14 +51,14 @@ public class Pause : MonoBehaviour {
 
     private static void DisableInput()
     {
-        scr_InputManager.cannotInput = true;
-        scr_InputManager.cannotMove = true;
+        InputManager.cannotInput = true;
+        InputManager.cannotMove = true;
     }
 
     private static void EnableInput()
     {
-        scr_InputManager.cannotInput = false;
-        scr_InputManager.cannotMove = false;
+        InputManager.cannotInput = false;
+        InputManager.cannotMove = false;
     }
 
     private void ShowPausePanel()

@@ -13,7 +13,7 @@ public class BoltCard : CardData
     public override void Activate()
     {
         ActivateEffects();
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoltSFX;
         PlayCardSFX.Play();
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();

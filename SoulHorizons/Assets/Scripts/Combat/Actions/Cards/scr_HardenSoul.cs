@@ -13,7 +13,7 @@ public class scr_HardenSoul : CardData {
 
     {
         ActivateEffects();
-        PlayCardSFX = GameObject.Find("DeckManager").GetComponent<AudioSource>();
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = HardenSoulSFX;
         PlayCardSFX.Play();
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
