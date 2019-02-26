@@ -105,13 +105,26 @@ public class RoamingRonin : scr_EntityAI
     public int PickXCoord (int xPos)
     {
         
-        if(gonnaMelee)
+        if(!gonnaMelee)
         {
-            xPos = 4;
+            xPos++;
         }
         else
         {
-            xPos++;
+            int xRange = scr_Grid.GridController.columnSizeMax;
+            int tempX = xPos;
+            for (int i = 0; i < xRange; i++)
+            {
+                tempX--;
+                if (scr_Grid.GridController.grid[tempX, entity._gridPos.y].territory.name != TerrName.Player)
+                {
+                    xPos = tempX;            
+                }
+                else
+                {
+                    return xPos;
+                }
+            }  
         }
         return xPos;
     }
@@ -210,6 +223,7 @@ public class RoamingRonin : scr_EntityAI
     {
         //insert animation here
         anim.SetBool("RoninMelee", true);
+        Move();
         if (attackPhase == 0)
         {
             scr_AttackController.attackController.AddNewAttack(meleeAttack, entity._gridPos.x, entity._gridPos.y, entity);
@@ -251,7 +265,6 @@ public class RoamingRonin : scr_EntityAI
                 completedTask = false;
                 gonnaMelee = true;
                 yield return new WaitForSecondsRealtime(0.75f);
-                Move();
                 state = 2;
                 completedTask = true;
                 break;

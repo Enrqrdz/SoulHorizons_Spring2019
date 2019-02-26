@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Atk_Ronin Melee2
   m_EditorClassIdentifier: 
   incrementTime: 0
-  maxIncrementRange: 3
+  maxIncrementRange: 4
   damage: 12
   type: 0
   hasPiercing: 0
