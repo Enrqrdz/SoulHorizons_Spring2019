@@ -34,7 +34,7 @@ public class Deck : MonoBehaviour {
 
     private void IntializeDeck()
     {
-        if (InventoryManager.deckList.Count == 0)
+        if (InventoryManager.deckList.Count <= 0)
         {
             LoadNewDeck();
             SaveManager.Save();
@@ -43,13 +43,8 @@ public class Deck : MonoBehaviour {
         {
             LoadDeck();
         }
-
-
     }
 
-    /// <summary>
-    /// Load the deck list from the file, shuffle, then draw a starting hand.
-    /// </summary>
     public void LoadNewDeck()
     {
         StringReader reader = new StringReader(deckList.text);
@@ -58,13 +53,12 @@ public class Deck : MonoBehaviour {
         while ((strLine = reader.ReadLine()) != null)
         {
             string[] parsedLine = strLine.Split( ':');
-            //check that there was only one colon in the line
+
             if (parsedLine.Length != 2)
             {
                 continue;
             }
             
-            //check that the second element is a number
             parsedLine[1] = parsedLine[1].Trim();
             if(!Regex.IsMatch(parsedLine[1], @"^\d+$"))
             {
@@ -72,20 +66,17 @@ public class Deck : MonoBehaviour {
             }
             int quantity = int.Parse(parsedLine[1]);
 
-            //attempt to retrieve the object reference from cardMapping
             CardData nextCard = cardMapping.ConvertNameToCard(parsedLine[0]);
             if (nextCard == null)
             {
                 continue;
             }
 
-            //add that card to the list a number of times equal to the quantity
             for(int i = 0; i < quantity; i++)
             {
                 deck.Add(nextCard);
             }
 
-            //add the card and quantity to an inventory card list
             InventoryManager.addCard(nextCard, quantity);
             cardList.Add(new KeyValuePair<string, int>(nextCard.spellName, quantity));
         }
@@ -100,26 +91,6 @@ public class Deck : MonoBehaviour {
         InventoryManager.addDeck(cardList);
     }
 
-    /// <summary>
-    /// Load the deck list from the existing inventory 
-    /// </summary>
-    void LoadDeckList(Deck loadDeck)
-    {
-        deckSize = loadDeck.deckSize;
-        handSize = loadDeck.handSize;
-        cardMapping = loadDeck.cardMapping;
-        hand = loadDeck.hand;
-        deck = loadDeck.deck;
-        discard = loadDeck.discard;
-        cardList = loadDeck.cardList;
-
-        ShuffleHelper<CardData>(deck);
-        CheckHandSizeAndDraw();
-    }
-
-    /// <summary>
-    /// Load the deck list from the inventory deck
-    /// </summary>
     public void LoadDeck()
     {
         List<KeyValuePair<string, int>> cards = InventoryManager.deckList[InventoryManager.currentDeckIndex];
@@ -130,7 +101,7 @@ public class Deck : MonoBehaviour {
             {
                 continue;
             }
-            //add that card to the list a number of times equal to the quantity
+
             for (int i = 0; i < pair.Value; i++)
             {
                 deck.Add(nextCard);
@@ -147,10 +118,6 @@ public class Deck : MonoBehaviour {
         CheckHandSizeAndDraw();
     }
 
-    /// <summary>
-    /// Pass a string telling the method what list to shuffle. Options are "deck", "discard", "discard into deck", and "all".
-    /// </summary>
-    /// <param name="list"></param>
     public void Shuffle(string list)
     {
         if (list.Equals("deck"))
@@ -164,18 +131,15 @@ public class Deck : MonoBehaviour {
         }
         else if(list.Equals("discard into deck"))
         {
-            //move discard into deck
             foreach (CardData card in discard)
             {
                 deck.Add(card);
                 discard.Remove(card);
             }
-            //shuffle
             ShuffleHelper<CardData>(deck);
         }
         else if(list.Equals("all"))
         {
-            //move everything into deck
             foreach (CardData card in discard)
             {
                 deck.Add(card);
@@ -187,17 +151,11 @@ public class Deck : MonoBehaviour {
                 hand.Remove(card);
             }
 
-            //shuffle
             ShuffleHelper<CardData>(deck);
-            //draw a new hand
             CheckHandSizeAndDraw();
         }
     }
 
-    /// <summary>
-    /// Shuffles the list provided.
-    /// </summary>
-    /// <param name="list"></param>
     void ShuffleHelper<T>(List<T> list)
     {
         int n = list.Count;
@@ -211,9 +169,6 @@ public class Deck : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Make sure that the hand size is correct. Draw cards as necessary.
-    /// </summary>
     void CheckHandSizeAndDraw()
     {
         int i = 0;
@@ -226,37 +181,20 @@ public class Deck : MonoBehaviour {
             i++;
         }
     }
-
-    /// <summary>
-    /// Remove the top card from the deck and add it to the hand.
-    /// </summary>
-    /// <param name="index">The index to put the new card at</param>
+    
     public void Draw(int index)
     {
         if (deck.Count > 0)
         {
-            if (index == 0 || index == 1)
-            {
-                hand[index] = deck[0];
-                deck.RemoveAt(0);
-            }
-            else
-            {
-                hand[2] = mantras[0];
-                hand[3] = mantras[1];
-            }           
+            hand[index] = deck[0];
+            deck.RemoveAt(0);         
         }
         else
         {
-
             Shuffle("discard into deck");
         }
     }
 
-    /// <summary>
-    /// Play the selected card, then move it to the discard pile.
-    /// </summary>
-    /// <param name="index"></param>
     public void Activate(int index)
     {
         if (hand[index] == null)
@@ -270,10 +208,9 @@ public class Deck : MonoBehaviour {
     private IEnumerator ActivateHelper(int index)
     {
         CardData cardToPlay = hand[index];
-        //wait however long is required
+
         if (cardToPlay.castingTime != 0)
         {
-            //start initial effects and stop player input
             cardToPlay.StartCastingEffects();
             scr_InputManager.cannotInput = true;
             yield return new WaitForSeconds(cardToPlay.castingTime);
@@ -287,10 +224,6 @@ public class Deck : MonoBehaviour {
         CheckHandSizeAndDraw();
     }
 
-    /// <summary>
-    /// Play the selected card, then move it to the discard pile.
-    /// </summary>
-    /// <param name="index"></param>
     public void ActivateBackup(int index)
     {
         if (backupHand[index] == null)
