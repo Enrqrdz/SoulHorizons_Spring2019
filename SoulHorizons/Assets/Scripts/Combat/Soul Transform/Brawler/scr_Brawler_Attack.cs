@@ -59,8 +59,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		bearUI =  Instantiate(uiPrefab, location.transform).GetComponent<scr_Transform_BearUI>(); //create the UI and get the UI script
         slamDamageMax = slamDamage;
     }
-<<<<<<< HEAD
-=======
 
 	private void OnEnable()
 	{
@@ -77,7 +75,6 @@ public class scr_Brawler_Attack : MonoBehaviour {
             bearUI.gameObject.SetActive(false);
         }
     }
->>>>>>> Psuedo_Master
 	
 	void Update ()
     {
