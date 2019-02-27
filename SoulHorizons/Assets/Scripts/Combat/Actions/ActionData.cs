@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public enum Element
 {
@@ -12,14 +14,16 @@ public enum Element
 [System.Serializable]
 public abstract class ActionData : ScriptableObject
 {
-    public string actionName;
+    public string name;
     public Sprite art;
     public Element element;
-    public int transformChargeAmount = 5;
-    public float castingTime = 0f; 
+    public int soulTransformCharge = 5;
+    public float delayBeforeCast = 0f;
     public float cooldown = 1f;
     [Multiline]
     public string description;
 
+    public abstract void StartCastingEffects();
     public abstract void Activate();
+    protected abstract void ActivateEffects();
 }

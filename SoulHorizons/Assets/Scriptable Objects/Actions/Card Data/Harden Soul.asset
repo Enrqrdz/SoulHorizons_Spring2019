@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf78764e95dc2ec43911e6cb84b96d79, type: 3}
   m_Name: Harden Soul
   m_EditorClassIdentifier: 
-  actionName: Harden Soul
-  art: {fileID: 21300000, guid: 3e0f60e3550be0949b01d856293399e7, type: 3}
+  spellName: Harden Soul
   element: 1
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1.5
   description: Adds temporary health to the player.
+  art: {fileID: 21300000, guid: 3e0f60e3550be0949b01d856293399e7, type: 3}
   HardenSoulSFX: {fileID: 8300000, guid: ab860179d3ba16f48bf234a47330a69e, type: 3}
   Shield_hp: 20

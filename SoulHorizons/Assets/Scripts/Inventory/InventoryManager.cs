@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public static class InventoryManager
 {
-    public static List<KeyValuePair<ActionData, int>> cardInv = new List<KeyValuePair<ActionData, int>>();
+    public static List<KeyValuePair<CardData, int>> cardInv = new List<KeyValuePair<CardData, int>>();
     public static List<List<KeyValuePair<string, int>>> deckList = new List<List<KeyValuePair<string, int>>>();
     public static int currentDeckIndex = 0;
 
@@ -14,19 +14,19 @@ public static class InventoryManager
         deckList.Add(deck);
     }
     
-    public static void addCard(ActionData card, int quantity)
+    public static void addCard(CardData card, int quantity)
     {
-        foreach(KeyValuePair<ActionData, int> pair in cardInv)
+        foreach(KeyValuePair<CardData, int> pair in cardInv)
         {
-            if(pair.Key.actionName == card.actionName)
+            if(pair.Key.spellName == card.spellName)
             {
                 int prevNum = pair.Value;
                 cardInv.Remove(pair);
-                cardInv.Add(new KeyValuePair<ActionData, int>(card, quantity + prevNum));
+                cardInv.Add(new KeyValuePair<CardData, int>(card, quantity + prevNum));
                 return;
             }
         }
-        cardInv.Add(new KeyValuePair<ActionData, int>(card, quantity));
+        cardInv.Add(new KeyValuePair<CardData, int>(card, quantity));
     }
 
     public static void addCardToDeck(string cardName)
@@ -68,9 +68,9 @@ public static class InventoryManager
     public static List<KeyValuePair<string, int>> getCardInv()
     {
         List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
-        foreach (KeyValuePair<ActionData, int> pair in cardInv)
+        foreach (KeyValuePair<CardData, int> pair in cardInv)
         {
-            cardList.Add(new KeyValuePair<string, int>(pair.Key.actionName, pair.Value));
+            cardList.Add(new KeyValuePair<string, int>(pair.Key.spellName, pair.Value));
         }
         return cardList;
     }
@@ -84,7 +84,7 @@ public static class InventoryManager
     {
         for (int i = 0; i < cardInv.Count; i++)
         {
-            if (cardInv[i].Key.actionName == cardName)
+            if (cardInv[i].Key.spellName == cardName)
             {
                 return i;
             }

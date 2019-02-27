@@ -9,6 +9,7 @@ public class BoltAttack : AttackData {
         return new Vector2Int(xPos + 1, yPos); 
     }
 
+    //--Effects Methods--
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
         activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);

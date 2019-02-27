@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Blur")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Blur : ActionData
+public class scr_Blur : CardData
 {
     private AudioSource PlayCardSFX;
     public AudioClip BlurSFX;
@@ -12,11 +12,22 @@ public class scr_Blur : ActionData
     public float duration;
     public override void Activate()
     {
+        ActivateEffects();
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BlurSFX;
         PlayCardSFX.Play();
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         player.setInvincible(true, duration);
 
+    }
+
+    public override void StartCastingEffects()
+    {
+
+    }
+
+    protected override void ActivateEffects()
+    {
+        //put start effects here
     }
 }

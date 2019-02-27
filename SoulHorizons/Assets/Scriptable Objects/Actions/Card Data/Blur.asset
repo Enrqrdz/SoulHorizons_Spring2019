@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2da3450745fa0b4485fbea54b7b1c2d, type: 3}
   m_Name: Blur
   m_EditorClassIdentifier: 
-  actionName: Blur
-  art: {fileID: 21300000, guid: dfbac7c3950fdef49b7dbdd17a1cf6bc, type: 3}
+  spellName: Blur
   element: 4
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1.5
   description: 
+  art: {fileID: 21300000, guid: dfbac7c3950fdef49b7dbdd17a1cf6bc, type: 3}
   BlurSFX: {fileID: 8300000, guid: 93d3d9cc687f5e04ab58b052c4d14d1d, type: 3}
   duration: 3

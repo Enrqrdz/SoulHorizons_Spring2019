@@ -6,40 +6,25 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    public static Deck Instance { get; private set; }
-
     [SerializeField]
-    private List<ActionData> deck = new List<ActionData>();
+    private List<CardData> deck = new List<CardData>();
     [SerializeField]
-    private List<ActionData> discard = new List<ActionData>();
+    private List<CardData> discard = new List<CardData>();
     [SerializeField]
 	private int deckSize = 10;
     [SerializeField]
     private int handSize = 2;
 
-    public List<ActionData> hand = new List<ActionData>();
-    public List<ActionData> backupHand = new List<ActionData>();
+    public List<CardData> hand = new List<CardData>();
+    public List<CardData> backupHand = new List<CardData>();
     public CardDictionary cardMapping;
     public TextAsset deckTextList;
     public List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
 
     public void Awake()
     {
-        IntiializeSingleton();
         AllocateHandSlots();
         IntializeDeck();
-    }
-
-    private void IntiializeSingleton()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void AllocateHandSlots()
@@ -85,7 +70,7 @@ public class Deck : MonoBehaviour
             }
             int quantity = int.Parse(parsedLine[1]);
 
-            ActionData nextCard = cardMapping.ConvertNameToCard(parsedLine[0]);
+            CardData nextCard = cardMapping.ConvertNameToCard(parsedLine[0]);
             if (nextCard == null)
             {
                 continue;
@@ -97,7 +82,7 @@ public class Deck : MonoBehaviour
             }
 
             InventoryManager.addCard(nextCard, quantity);
-            cardList.Add(new KeyValuePair<string, int>(nextCard.actionName, quantity));
+            cardList.Add(new KeyValuePair<string, int>(nextCard.spellName, quantity));
         }
 
         if (deck.Count != deckSize)
@@ -105,7 +90,7 @@ public class Deck : MonoBehaviour
             Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
         }
 
-        ShuffleHelper<ActionData>(deck);
+        ShuffleHelper<CardData>(deck);
         CheckHandSizeAndDraw();
         InventoryManager.addDeck(cardList);
     }
@@ -115,7 +100,7 @@ public class Deck : MonoBehaviour
         List<KeyValuePair<string, int>> cards = InventoryManager.deckList[InventoryManager.currentDeckIndex];
         foreach (KeyValuePair<string, int> pair in cards)
         {
-            ActionData nextCard = cardMapping.ConvertNameToCard(pair.Key);
+            CardData nextCard = cardMapping.ConvertNameToCard(pair.Key);
             if (nextCard == null)
             {
                 continue;
@@ -125,7 +110,7 @@ public class Deck : MonoBehaviour
             {
                 deck.Add(nextCard);
             }
-            cardList.Add(new KeyValuePair<string, int>(nextCard.actionName, pair.Value));
+            cardList.Add(new KeyValuePair<string, int>(nextCard.spellName, pair.Value));
         }
 
         if (deck.Count != deckSize)
@@ -133,7 +118,7 @@ public class Deck : MonoBehaviour
             Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
         }
 
-        ShuffleHelper<ActionData>(deck);
+        ShuffleHelper<CardData>(deck);
         CheckHandSizeAndDraw();
     }
 
@@ -141,36 +126,36 @@ public class Deck : MonoBehaviour
     {
         if (list.Equals("deck"))
         {
-            ShuffleHelper<ActionData>(deck);
+            ShuffleHelper<CardData>(deck);
         }
         else if(list.Equals("discard"))
         {
-            ShuffleHelper<ActionData>(discard);
+            ShuffleHelper<CardData>(discard);
             return;
         }
         else if(list.Equals("discard into deck"))
         {
-            foreach (ActionData card in discard)
+            foreach (CardData card in discard)
             {
                 deck.Add(card);
                 discard.Remove(card);
             }
-            ShuffleHelper<ActionData>(deck);
+            ShuffleHelper<CardData>(deck);
         }
         else if(list.Equals("all"))
         {
-            foreach (ActionData card in discard)
+            foreach (CardData card in discard)
             {
                 deck.Add(card);
                 discard.Remove(card);
             }
-            foreach (ActionData card in hand)
+            foreach (CardData card in hand)
             {
                 deck.Add(card);
                 hand.Remove(card);
             }
 
-            ShuffleHelper<ActionData>(deck);
+            ShuffleHelper<CardData>(deck);
             CheckHandSizeAndDraw();
         }
     }
@@ -191,7 +176,7 @@ public class Deck : MonoBehaviour
     void CheckHandSizeAndDraw()
     {
         int i = 0;
-        foreach (ActionData item in hand)
+        foreach (CardData item in hand)
         {
             if(item == null)
             {
@@ -226,15 +211,18 @@ public class Deck : MonoBehaviour
 
     private IEnumerator ActivateHelper(int index)
     {
-        if (hand[index].castingTime != 0)
+        CardData cardToPlay = hand[index];
+
+        if (cardToPlay.castingTime != 0)
         {
-            InputManager.cannotInputAnything = true;
-            yield return new WaitForSeconds(hand[index].castingTime);
-            InputManager.cannotInputAnything = false;
+            cardToPlay.StartCastingEffects();
+            InputManager.cannotInput = true;
+            yield return new WaitForSeconds(cardToPlay.castingTime);
+            InputManager.cannotInput = false;
         }
 
         hand[index].Activate();
-        discard.Add(hand[index]);
+        discard.Add(cardToPlay);
         hand[index] = null;
         //make sure hand size is correct
         CheckHandSizeAndDraw();
@@ -251,15 +239,16 @@ public class Deck : MonoBehaviour
 
     private IEnumerator ActivateBackupHelper(int index)
     {
-        ActionData cardToPlay = backupHand[index];
+        CardData cardToPlay = backupHand[index];
         //wait however long is required
         if (cardToPlay.castingTime != 0)
         {
             //start initial effects and stop player input
-            InputManager.canInputCards = false;
+            cardToPlay.StartCastingEffects();
+            InputManager.cannotInput = true;
             yield return new WaitForSeconds(cardToPlay.castingTime);
         }
-        InputManager.canInputCards = true;
+        InputManager.cannotInput = false;
         backupHand[index].Activate();
         discard.Add(cardToPlay);
         //hand.Remove(cardToPlay);
@@ -274,7 +263,7 @@ public class Deck : MonoBehaviour
     public void Swap(int index)
     {
         //swap the card at this index with the card in its backup slot
-        ActionData temp = backupHand[index];
+        CardData temp = backupHand[index];
         backupHand[index] = hand[index];
         
         if (temp  == null)

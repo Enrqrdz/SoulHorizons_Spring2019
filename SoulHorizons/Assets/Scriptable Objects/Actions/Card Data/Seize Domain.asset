@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc5a079ed8103049abc55e00fa008ef, type: 3}
   m_Name: Seize Domain
   m_EditorClassIdentifier: 
-  actionName: Seize Domain
-  art: {fileID: 21300000, guid: 133a9b6a5e302e447b9394941a5c6d8d, type: 3}
+  spellName: Seize Domain
   element: 0
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1.5
   description: Seizes a column for you to move on.
+  art: {fileID: 21300000, guid: 133a9b6a5e302e447b9394941a5c6d8d, type: 3}
   duration: 8
   SeizeDomainSFX: {fileID: 8300000, guid: 1a51e922013de2848b028fe566d97c19, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Cleave")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Cleave : ActionData
+public class scr_Cleave : CardData
 {
 	public AttackData attack;
     private AudioSource PlayCardSFX;
@@ -24,5 +24,15 @@ public class scr_Cleave : ActionData
 		{
 			AttackController.Instance.AddNewAttack(attack, player._gridPos.x + 1, player._gridPos.y , player);
 		}
+    }
+
+    public override void StartCastingEffects()
+    {
+        
+    }
+
+    protected override void ActivateEffects()
+    {
+        //trigger the cleave effect here
     }
 }

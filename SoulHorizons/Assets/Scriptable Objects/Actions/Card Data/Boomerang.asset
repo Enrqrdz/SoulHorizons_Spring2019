@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b107455547cfdf4e8561e998f83ed77, type: 3}
   m_Name: Boomerang
   m_EditorClassIdentifier: 
-  actionName: Boomerang
-  art: {fileID: 21300000, guid: 63023d068ef6d3947beff08d45db918f, type: 3}
+  spellName: Boomerang
   element: 4
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1.5
   description: Boomerang?
+  art: {fileID: 21300000, guid: 63023d068ef6d3947beff08d45db918f, type: 3}
   boomerangAttack: {fileID: 11400000, guid: 516a5abe9795e4840892f7d41aaef1ee, type: 2}
   BoomerangSFX: {fileID: 8300000, guid: 891336a9e02794c4293c7dc420eb2507, type: 3}

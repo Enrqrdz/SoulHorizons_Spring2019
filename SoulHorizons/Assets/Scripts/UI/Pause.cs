@@ -51,13 +51,13 @@ public class Pause : MonoBehaviour {
 
     private static void DisableInput()
     {
-        InputManager.cannotInputAnything = true;
+        InputManager.cannotInput = true;
         InputManager.cannotMove = true;
     }
 
     private static void EnableInput()
     {
-        InputManager.cannotInputAnything = false;
+        InputManager.cannotInput = false;
         InputManager.cannotMove = false;
     }
 

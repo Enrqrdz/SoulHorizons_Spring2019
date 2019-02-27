@@ -10,10 +10,10 @@ public class CardDictionary : ScriptableObject
     public class CardEntry
     {
         public string name;
-        public ActionData cardObject;
+        public CardData cardObject;
     }
 
-    public ActionData ConvertNameToCard(string name)
+    public CardData ConvertNameToCard(string name)
     {
         foreach (CardEntry entry in cards)
         {

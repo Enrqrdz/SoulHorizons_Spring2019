@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafe643fedf99294d98f826a02dc0627, type: 3}
   m_Name: Meteor
   m_EditorClassIdentifier: 
-  actionName: Meteor
-  art: {fileID: 21300000, guid: d3ddb67aa21fd134c84518574cddb5dd, type: 3}
+  spellName: Meteor
   element: 0
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1.5
   description: 
+  art: {fileID: 21300000, guid: d3ddb67aa21fd134c84518574cddb5dd, type: 3}
   meteorAttack: {fileID: 11400000, guid: d457d8639677859488384b05e7cbbe5f, type: 2}

@@ -12,7 +12,7 @@ public class scr_InvUI : MonoBehaviour {
     public GameObject BannerSpawn;
     public Canvas c;
     public Font UIFont;
-    public int minDeckSize = 10;
+    public int minDeckSize = 30;
     public Text deckNum;
     public float deckTextX = 600;
     public float deckTextY = 400;
@@ -58,7 +58,7 @@ public class scr_InvUI : MonoBehaviour {
         {
             if (i < InventoryManager.cardInv.Count)
             {
-                cardUI[i].SetName(InventoryManager.cardInv[i].Key.actionName); //set the name
+                cardUI[i].SetName(InventoryManager.cardInv[i].Key.spellName); //set the name
                 cardUI[i].SetArt(InventoryManager.cardInv[i].Key.art); //set the card art
                 cardUI[i].SetElement(InventoryManager.cardInv[i].Key.element); //set the card element
 
@@ -67,7 +67,7 @@ public class scr_InvUI : MonoBehaviour {
                 int index = -1;
                 for(int j = 0; j < myDeck.Count; j++)
                 {
-                    if(myDeck[j].Key == InventoryManager.cardInv[i].Key.actionName)
+                    if(myDeck[j].Key == InventoryManager.cardInv[i].Key.spellName)
                     {
                         index = j;
                     }

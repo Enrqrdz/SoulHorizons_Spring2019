@@ -7,6 +7,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public class StartingInventory : ScriptableObject 
 {
-    public List<ActionData> startingInventoryCards;
+    public List<CardData> startingInventoryCards;
     public List<int> startingInventoryCardNumbers;
 }

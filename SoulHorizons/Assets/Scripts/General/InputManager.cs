@@ -4,10 +4,8 @@ using UnityEngine;
 
 public static class InputManager
 {
-	public static bool cannotInputAnything = false; //set to true to prevent the player from getting input
-    public static bool canInputCards = true;
-    public static bool canInputMantras = true;
-    public static bool cannotMove = false; //set to true to prevent the player from inputting movement
+	public static bool cannotInput = false; //set to true to prevent the player from getting input
+	public static bool cannotMove = false; //set to true to prevent the player from inputting movement
     private static float falseRadius = 0.2f;
 
     /// <summary>
@@ -17,7 +15,7 @@ public static class InputManager
     /// <returns>returns -1 for left, 1 for right, 0 for neither, only on the frame the axis is pressed</returns>
     public static int MainHorizontal()
 	{
-		if(cannotInputAnything || cannotMove)
+		if(cannotInput || cannotMove)
 		{
 			return 0;
 		}
@@ -63,7 +61,7 @@ public static class InputManager
 	/// <returns>returns -1 for down, 1 for up, 0 for neither</returns>
 	public static int MainVertical()
 	{
-		if(cannotInputAnything || cannotMove)
+		if(cannotInput || cannotMove)
 		{
 			return 0;
 		}
@@ -107,7 +105,7 @@ public static class InputManager
 	/// <returns>returns true if any of these buttons were pressed this frame</returns>
 	public static bool SoulFusion()
 	{
-		if(cannotInputAnything)
+		if(cannotInput)
 		{
 			return false;
 		}
@@ -121,7 +119,7 @@ public static class InputManager
 	/// <returns>returns either 1,2, or 3 to indicate a selection, or 0 if none was selected</returns>
 	public static int K_SoulFusion()
 	{
-		if(cannotInputAnything)
+		if(cannotInput)
 		{
 			return 0;
 		}
@@ -151,7 +149,7 @@ public static class InputManager
 	/// <returns>returns true if the blast button is down.</returns>
 	public static bool Blast()
 	{
-		if(cannotInputAnything)
+		if(cannotInput)
 		{
 			return false;
 		}
@@ -166,23 +164,23 @@ public static class InputManager
 	/// <returns>returns 0-3 the frame a play card button is pressed or -1 if none is pressed</returns>
 	public static int ActionNumber()
 	{
-		if(cannotInputAnything)
+		if(cannotInput)
 		{
 			return -1;
 		}
-		else if (Input.GetButtonDown("PlayCard1_Button") && canInputCards)
+		else if (Input.GetButtonDown("PlayCard1_Button"))
 		{
 			return 0;
 		}
-		else if (Input.GetButtonDown("PlayCard2_Button") && canInputCards)
+		else if (Input.GetButtonDown("PlayCard2_Button"))
 		{
 			return 1;
 		}
-		else if (Input.GetButtonDown("PlayCard3_Button") && canInputMantras)
+		else if (Input.GetButtonDown("PlayCard3_Button"))
 		{
 			return 2;
 		}
-		else if (Input.GetButtonDown("PlayCard4_Button") && canInputMantras)
+		else if (Input.GetButtonDown("PlayCard4_Button"))
 		{
 			return 3;
 		}
