@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Bolt")]
 [RequireComponent(typeof(AudioSource))]
 
-public class BoltCard : CardData
+public class BoltCard : ActionData
 {
     public AttackData boltAttack;
     private AudioSource PlayCardSFX;
@@ -12,7 +12,6 @@ public class BoltCard : CardData
 
     public override void Activate()
     {
-        ActivateEffects();
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoltSFX;
         PlayCardSFX.Play();
@@ -21,13 +20,4 @@ public class BoltCard : CardData
         //add attack to attack controller script
         AttackController.Instance.AddNewAttack(boltAttack, player._gridPos.x, player._gridPos.y, player);
     }
-
-    public override void StartCastingEffects()
-    {
-    }
-
-    protected override void ActivateEffects()
-    {
-    }
-
 }
