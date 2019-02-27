@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class scr_NameToCard : ScriptableObject
 {
+    public List<CardEntry> cards = new List<CardEntry>();
     /// <summary>
     /// This class contains fields that can be edited in the inspector to put all card information in one object.
     /// </summary>
@@ -18,7 +19,6 @@ public class scr_NameToCard : ScriptableObject
         public string name;
         public CardData cardObject;
     }
-    public List<CardEntry> cards = new List<CardEntry>();
 
     /// <summary>
     /// Takes a card name and returns the object corresponding to that name.
