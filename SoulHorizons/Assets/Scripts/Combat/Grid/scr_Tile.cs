@@ -45,7 +45,7 @@ public class scr_Tile : MonoBehaviour{
     public int gridPositionX;
     public int gridPositionY;
     public int queuedAttacks = 0;
-    public scr_Entity entityOnTile;
+    public Entity entityOnTile;
     
 
     Vector2 spriteSize = new Vector2 (1f,.85f);

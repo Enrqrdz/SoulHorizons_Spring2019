@@ -21,7 +21,7 @@ public class atk_LinearForward : AttackData {
         scr_Grid.GridController.ActivateTile(xPos, yPos); 
         return new Vector2Int(xPos - 1, yPos); 
     }
-    public override bool CheckCondition(scr_Entity _ent)
+    public override bool CheckCondition(Entity _ent)
     {
         return Random.Range(0, 100) < chanceToAttack; 
     }

@@ -63,11 +63,11 @@ public class EncounterData : ScriptableObject
     [System.Serializable]
     public class EntitySpawnLocation
     {
-        public scr_Entity entity;
+        public Entity entity;
         public int x;
         public int y;
 
-        public EntitySpawnLocation(scr_Entity ent, int a, int b)
+        public EntitySpawnLocation(Entity ent, int a, int b)
         {
             entity = ent;
             x = a;
