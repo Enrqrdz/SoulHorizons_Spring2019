@@ -6,4 +6,5 @@ using UnityEngine;
 public class Mantras : MonoBehaviour
 {
     public List<CardData> mantras = new List<CardData>();
+    private int mantraSize = 2;
 }

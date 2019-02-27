@@ -261,8 +261,8 @@ GameObject:
   - component: {fileID: 283017071}
   - component: {fileID: 283017070}
   - component: {fileID: 283017072}
-  - component: {fileID: 283017073}
   - component: {fileID: 283017074}
+  - component: {fileID: 283017073}
   m_Layer: 0
   m_Name: ActionManager
   m_TagString: Untagged
@@ -287,6 +287,8 @@ MonoBehaviour:
   - {fileID: 751725473}
   handPanel: {fileID: 1533865064}
   anim: {fileID: 95721540959835254, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
+  currentDeck: {fileID: 0}
+  currentMantras: {fileID: 0}
   soulManager: {fileID: 1431935930}
   cardChange_SFX: {fileID: 0}
 --- !u!4 &283017071
@@ -315,10 +317,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57beb5df53f9e42a108d56f2a31640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deck: []
+  discard: []
   deckSize: 10
   handSize: 2
   cardMapping: {fileID: 11400000, guid: 7fd815c874a2e11489c9eedb255bd7dd, type: 2}
-  deckList: {fileID: 4900000, guid: e4d0755a0b712244fb08fb3303a823c6, type: 3}
+  deckTextList: {fileID: 4900000, guid: e4d0755a0b712244fb08fb3303a823c6, type: 3}
   hand: []
   backupHand: []
 --- !u!82 &283017073
@@ -430,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1986a6012e4b316489ba7c7057ffe69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mantras: []
 --- !u!1 &290868838
 GameObject:
   m_ObjectHideFlags: 0

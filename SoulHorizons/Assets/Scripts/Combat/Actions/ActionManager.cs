@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class ActionManager : MonoBehaviour {
 
-	public scr_CardUI[] abilityUI; //references to the ability UI prefabs
+	public ActionUI[] abilityUI; //references to the ability UI prefabs
     public GameObject handPanel; //a reference to the parent hand object
     public Animator anim;
 

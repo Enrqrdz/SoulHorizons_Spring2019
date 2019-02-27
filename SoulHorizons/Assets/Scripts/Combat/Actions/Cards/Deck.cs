@@ -4,19 +4,21 @@ using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-public class Deck : MonoBehaviour {
-
+public class Deck : MonoBehaviour
+{
+    [SerializeField]
+    private List<CardData> deck = new List<CardData>();
+    [SerializeField]
+    private List<CardData> discard = new List<CardData>();
     [SerializeField]
 	private int deckSize = 10;
     [SerializeField]
     private int handSize = 2;
 
-    public CardDictionary cardMapping; //maps card name to the scriptable object for that card
-    public TextAsset deckList;
     public List<CardData> hand = new List<CardData>();
     public List<CardData> backupHand = new List<CardData>();
-    List<CardData> deck = new List<CardData>();
-    List<CardData> discard = new List<CardData>();
+    public CardDictionary cardMapping;
+    public TextAsset deckTextList;
     public List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
 
     public void Awake()
@@ -49,7 +51,7 @@ public class Deck : MonoBehaviour {
 
     public void LoadNewDeck()
     {
-        StringReader reader = new StringReader(deckList.text);
+        StringReader reader = new StringReader(deckTextList.text);
         string strLine;
 
         while ((strLine = reader.ReadLine()) != null)

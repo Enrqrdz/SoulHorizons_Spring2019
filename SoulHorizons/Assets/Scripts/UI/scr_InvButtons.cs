@@ -15,7 +15,7 @@ public class scr_InvButtons : MonoBehaviour {
 	}
     public void addCard()
     {
-        scr_CardUI myCard = gameObject.transform.parent.gameObject.GetComponent<scr_CardUI>();
+        ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
         foreach(KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
         {
             if(pair.Key == myCard.getName())
@@ -27,7 +27,7 @@ public class scr_InvButtons : MonoBehaviour {
 
     public void removeCard()
     {
-        scr_CardUI myCard = gameObject.transform.parent.gameObject.GetComponent<scr_CardUI>();
+        ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
         foreach (KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
         {
             if (pair.Key == myCard.getName())

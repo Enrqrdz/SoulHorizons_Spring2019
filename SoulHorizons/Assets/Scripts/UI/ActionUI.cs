@@ -8,7 +8,7 @@ using TMPro;
 /// This script is attached to each card in the UI. The deck manager script has a reference to this and uses it to update the UI
 /// </summary>
 [RequireComponent(typeof(scr_CooldownOverlay))]
-public class scr_CardUI : MonoBehaviour {
+public class ActionUI : MonoBehaviour {
 	//--UI Components--
 	[SerializeField] private TextMeshProUGUI cardName;
 	[SerializeField] private TextMeshProUGUI description;

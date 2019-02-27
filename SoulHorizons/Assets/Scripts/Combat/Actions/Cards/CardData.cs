@@ -2,15 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Element
-{
-    Earth,
-    Soul,
-    Sun,
-    Void,
-    Wind
-}
-
 [System.Serializable]
 public abstract class CardData : ScriptableObject 
 {

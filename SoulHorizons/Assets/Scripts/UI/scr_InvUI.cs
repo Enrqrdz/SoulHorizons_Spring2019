@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class scr_InvUI : MonoBehaviour {
 
-    public scr_CardUI[] cardUI;
+    public ActionUI[] cardUI;
     public List<GameObject> banners;
     public GameObject invPanel;
     public GameObject cardBanner;
