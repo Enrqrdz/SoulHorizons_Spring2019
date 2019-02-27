@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Cards/InnerStrength")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_InnerStrength : CardData {
+public class scr_InnerStrength : ActionData {
 
     public float multiplier;
     public float duration;
@@ -16,7 +16,6 @@ public class scr_InnerStrength : CardData {
 
     public override void Activate()
     {
-        ActivateEffects();
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = InnerStrengthSFX;
         PlayCardSFX.Play();
@@ -24,15 +23,5 @@ public class scr_InnerStrength : CardData {
         scr_statemanager manager = GameObject.FindGameObjectWithTag("StateManager").GetComponent<scr_statemanager>();
         blaster.setMultiplier(multiplier, duration);
         manager.ChangeEffects("Attack Up: " + multiplier, duration);
-    }
-
-    public override void StartCastingEffects()
-    {
-
-    }
-
-    protected override void ActivateEffects()
-    {
-        //put start effects here
     }
 }

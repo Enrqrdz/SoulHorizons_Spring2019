@@ -93,7 +93,7 @@ public class scr_Grid : MonoBehaviour{
     public void InitEncounter()
     {
         //Set movement to true
-        InputManager.cannotInput = false;
+        InputManager.cannotInputAnything = false;
         columnSizeMax = encounter.GetNumberOfColumns();
         rowSizeMax = encounter.GetNumberOfRows();
         //calling in awake as a debug, should be called in Encounter

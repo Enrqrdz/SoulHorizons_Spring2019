@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Mend")]
 [RequireComponent(typeof(AudioSource))]
 
-public class scr_Mend : CardData
+public class scr_Mend : ActionData
 {
 
     public int Mend_hp;
@@ -12,7 +12,6 @@ public class scr_Mend : CardData
     public AudioClip MendSFX;
     public override void Activate()
     {
-        ActivateEffects();
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = MendSFX;
         PlayCardSFX.Play();
@@ -23,15 +22,5 @@ public class scr_Mend : CardData
             player._health.hp = player._health.max_hp;
         }
 
-    }
-
-    public override void StartCastingEffects()
-    {
-
-    }
-
-    protected override void ActivateEffects()
-    {
-        //put start effects here
     }
 }

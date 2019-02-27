@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 
 [CreateAssetMenu(menuName = "Cards/Boomerang")]
-public class scr_Boomerang : CardData
+public class scr_Boomerang : ActionData
 {
 
     public AttackData boomerangAttack;
@@ -13,8 +13,6 @@ public class scr_Boomerang : CardData
 
     public override void Activate()
     {
-
-        ActivateEffects();
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
@@ -24,15 +22,5 @@ public class scr_Boomerang : CardData
         //add attack to attack controller script
         //does a check to see if the target col is off the map 
         AttackController.Instance.AddNewAttack(boomerangAttack,0,0, player);
-    }
-
-    public override void StartCastingEffects()
-    {
-
-    }
-
-    protected override void ActivateEffects()
-    {
-        //put start effects here
     }
 }

@@ -285,12 +285,16 @@ MonoBehaviour:
   abilityUI:
   - {fileID: 616674215}
   - {fileID: 751725473}
+  mantraUI:
+  - {fileID: 1735512330}
+  - {fileID: 1632654633}
   handPanel: {fileID: 1533865064}
-  anim: {fileID: 95721540959835254, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
+  playerAnimator: {fileID: 0}
+  globalCooldown: 0.25
+  CardChange_SFX: {fileID: 0}
   currentDeck: {fileID: 0}
   currentMantras: {fileID: 0}
   soulManager: {fileID: 1431935930}
-  cardChange_SFX: {fileID: 0}
 --- !u!4 &283017071
 Transform:
   m_ObjectHideFlags: 0
@@ -321,10 +325,12 @@ MonoBehaviour:
   discard: []
   deckSize: 10
   handSize: 2
+  hand:
+  - {fileID: 0}
+  - {fileID: 0}
+  backupHand: []
   cardMapping: {fileID: 11400000, guid: 7fd815c874a2e11489c9eedb255bd7dd, type: 2}
   deckTextList: {fileID: 4900000, guid: e4d0755a0b712244fb08fb3303a823c6, type: 3}
-  hand: []
-  backupHand: []
 --- !u!82 &283017073
 AudioSource:
   m_ObjectHideFlags: 0
@@ -434,7 +440,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1986a6012e4b316489ba7c7057ffe69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mantras: []
+  primaryMantra: {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
+  secondaryMantra: {fileID: 11400000, guid: 797e587004e8f2249aeb41b75157828a, type: 2}
+  activeMantras:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &290868838
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,6 +5034,18 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3857e857903f6324899fd94903c78bca, type: 3}
+--- !u!114 &1632654633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114704433024285922, guid: 3857e857903f6324899fd94903c78bca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1632654632}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6993c9897613849a8c58f6a03d1fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1679792846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5501,6 +5523,18 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3857e857903f6324899fd94903c78bca, type: 3}
+--- !u!114 &1735512330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114704433024285922, guid: 3857e857903f6324899fd94903c78bca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1735512329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6993c9897613849a8c58f6a03d1fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1790704016
 PrefabInstance:
   m_ObjectHideFlags: 0
