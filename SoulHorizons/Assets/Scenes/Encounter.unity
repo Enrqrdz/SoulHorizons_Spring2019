@@ -264,7 +264,6 @@ GameObject:
   - component: {fileID: 283017074}
   - component: {fileID: 283017073}
   m_Layer: 0
-  m_Name: DeckManager
   m_Name: ActionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &283017072
 MonoBehaviour:
@@ -442,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryMantra: {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
-  secondaryMantra: {fileID: 11400000, guid: 797e587004e8f2249aeb41b75157828a, type: 2}
+  secondaryMantra: {fileID: 11400000, guid: 7507efb0d7f08e34d878601513c98909, type: 2}
   activeMantras:
   - {fileID: 0}
   - {fileID: 0}
@@ -488,7 +487,7 @@ Transform:
   m_Children:
   - {fileID: 566323204}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!213 &410425637
 Sprite:
@@ -6345,7 +6344,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2115534117
 MonoBehaviour:
