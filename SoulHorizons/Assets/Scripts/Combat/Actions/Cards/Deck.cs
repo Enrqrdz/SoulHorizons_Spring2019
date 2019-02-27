@@ -11,7 +11,7 @@ public class Deck : MonoBehaviour {
     [SerializeField]
     private int handSize = 2;
 
-    public scr_NameToCard cardMapping; //maps card name to the scriptable object for that card
+    public CardDictionary cardMapping; //maps card name to the scriptable object for that card
     public TextAsset deckList;
     public List<CardData> hand = new List<CardData>();
     public List<CardData> backupHand = new List<CardData>();
