@@ -14,8 +14,8 @@ public class scr_SoulManager : MonoBehaviour {
     public  List<Button> buttons = new List<Button>();
     private SoulTransform currentTransform = null;
     private bool transformed = false;
-    private scr_Entity player;
-    public scr_DeckManager deckManager;
+    private Entity player;
+    public ActionManager deckManager;
     Animator anim; //animator to control soul transform animations
 
     private IDictionary<Element, int> soulCharges = new Dictionary<Element, int>(); 
@@ -31,7 +31,7 @@ public class scr_SoulManager : MonoBehaviour {
     void Start () {
         //find the player
         GameObject p = GameObject.FindGameObjectWithTag("Player");
-        player = p.GetComponent<scr_Entity>();
+        player = p.GetComponent<Entity>();
         anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
 
         //TODO: Set all the button sprites according to the soul transforms given
@@ -81,7 +81,7 @@ public class scr_SoulManager : MonoBehaviour {
     {   
         //this is used only for keyboard input
         //TODO: need to take charge into account once we start charging these
-        switch (scr_InputManager.K_SoulFusion())
+        switch (InputManager.K_SoulFusion())
         {
             case 1:
                 buttons[0].onClick.Invoke();
@@ -156,7 +156,7 @@ public class scr_SoulManager : MonoBehaviour {
         anim.SetBool("BearTransform", true);
 
         //disable the deck system
-        deckManager.Disable(true);
+        deckManager.DisableBasicActions(true);
 
 
         //reduce the charge
@@ -192,7 +192,7 @@ public class scr_SoulManager : MonoBehaviour {
         anim.SetBool("BearTransform", false);
 
         //enable the deck system
-        deckManager.Disable(false);
+        deckManager.DisableBasicActions(false);
 
         MonoBehaviour[] scripts = currentTransform.scriptHolder.GetComponents<MonoBehaviour>();
         foreach (MonoBehaviour script in scripts)

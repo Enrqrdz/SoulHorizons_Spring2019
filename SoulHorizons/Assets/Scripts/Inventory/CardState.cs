@@ -15,13 +15,13 @@ public class CardState
         numberOfCopies = cardState.numberOfCopies;
     }
 
-    public CardState(CardData cardData, int numberOfCopies)
+    public CardState(ActionData cardData, int numberOfCopies)
     {
         cardIndexInPool = CardPool.getIndexOfCardData(cardData);
         this.numberOfCopies = numberOfCopies;
     }
 
-    public CardData GetCardData()
+    public ActionData GetActionData()
     {
         return CardPool.GetCardByIndex(cardIndexInPool);
     }

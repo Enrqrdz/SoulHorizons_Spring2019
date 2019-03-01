@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class scr_InvUI : MonoBehaviour {
 
-    public scr_CardUI[] cardUI;
+    public ActionUI[] cardUI;
     public List<GameObject> banners;
     public GameObject invPanel;
     public GameObject cardBanner;
     public GameObject BannerSpawn;
     public Canvas c;
     public Font UIFont;
-    public int minDeckSize = 30;
+    public int minDeckSize = 10;
     public Text deckNum;
     public float deckTextX = 600;
     public float deckTextY = 400;
@@ -60,9 +60,9 @@ public class scr_InvUI : MonoBehaviour {
         {
             if (i < cardInventory.Count)
             {
-                CardData cardData = cardInventory[i].GetCardData();
+                ActionData cardData = cardInventory[i].GetActionData();
                 cardUI[i].SetCardState(new CardState(cardData, 1));
-                cardUI[i].SetName(cardData.cardName);
+                cardUI[i].SetName(cardData.actionName);
                 cardUI[i].SetArt(cardData.art);
                 cardUI[i].SetElement(cardData.element);
 
@@ -91,9 +91,9 @@ public class scr_InvUI : MonoBehaviour {
         foreach (CardState cardState in deck)
         {
             GameObject banner = Instantiate(cardBanner, new Vector3(tempX, tempY, 0), Quaternion.identity);
-            string tempTxt = "CardOverlay/" + cardState.GetCardData().cardName;
+            string tempTxt = "CardOverlay/" + cardState.GetActionData().actionName;
             banner.transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(tempTxt);
-            banner.transform.GetChild(3).GetComponent<Text>().text = cardState.GetCardData().cardName + ": " + cardState.numberOfCopies + "\n";
+            banner.transform.GetChild(3).GetComponent<Text>().text = cardState.GetActionData().actionName + ": " + cardState.numberOfCopies + "\n";
             banner.transform.SetParent(c.transform);         
             banners.Add(banner);
             tempY -= 75;
@@ -110,9 +110,9 @@ public class scr_InvUI : MonoBehaviour {
 
         foreach (CardState cardState in deck)
         {
-            string tempTxt = "CardOverlay/" + cardState.GetCardData().cardName;
+            string tempTxt = "CardOverlay/" + cardState.GetActionData().actionName;
             banners[tempCount].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(tempTxt);
-            banners[tempCount].transform.GetChild(3).GetComponent<Text>().text = cardState.GetCardData().cardName + ": " + cardState.numberOfCopies + "\n";
+            banners[tempCount].transform.GetChild(3).GetComponent<Text>().text = cardState.GetActionData().actionName + ": " + cardState.numberOfCopies + "\n";
             tempY -= 75;
             if (invPanel.activeSelf)
             {

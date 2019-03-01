@@ -6,14 +6,14 @@ public class scr_InvButtons : MonoBehaviour
 {
     public void addCard()
     {
-        scr_CardUI myCard = gameObject.transform.parent.gameObject.GetComponent<scr_CardUI>();
+        ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
 
         SaveManager.currentGame.inventory.AddCardToDeck(myCard.GetCardState());
     }
 
     public void removeCard()
     {
-        scr_CardUI myCard = gameObject.transform.parent.gameObject.GetComponent<scr_CardUI>();
+        ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
 
         SaveManager.currentGame.inventory.RemoveCardFromDeck(myCard.GetCardState());
     }

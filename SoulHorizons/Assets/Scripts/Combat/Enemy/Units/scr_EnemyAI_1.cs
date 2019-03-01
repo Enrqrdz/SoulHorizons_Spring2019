@@ -157,7 +157,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
     void Attack1()
     {
         //make sure we do a check condition for the attack : if(chargedAttack.CheckCondition(entity))
-        scr_AttackController.attackController.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
+        AttackController.Instance.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
         int index2 = Random.Range(0, attacks_SFX.Length);
         attack_SFX = attacks_SFX[index2];
         Attack_SFX.clip = attack_SFX;
@@ -165,7 +165,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
     }
     void Attack2()
     {
-        scr_AttackController.attackController.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
+        AttackController.Instance.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
     }
     void StartAttack1()
     {

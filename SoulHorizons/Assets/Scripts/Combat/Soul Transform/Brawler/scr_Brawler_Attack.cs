@@ -39,7 +39,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	private float slamMoveCooldown  = 0.004f;
 
 	//references
-	scr_Entity playerEntity; //use to get position
+	Entity playerEntity; //use to get position
 
     AudioSource TransformAttack_SFX;
     public AudioClip furySwipes_SFX;
@@ -49,7 +49,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
     void Awake()
 	{
-		playerEntity = GetComponent<scr_Entity>();
+		playerEntity = GetComponent<Entity>();
 	}
 
 	void Start () {
@@ -62,20 +62,23 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 	private void OnEnable()
 	{
-		//activate the UI
-		bearUI.gameObject.SetActive(true);
+		if(bearUI.gameObject != null)
+        {
+            bearUI.gameObject.SetActive(true);
+        }
 	}
 
 	private void OnDisable()
 	{
-		//deactivate the UI
-		bearUI.gameObject.SetActive(false);
-	}
+        if (bearUI.gameObject != null)
+        {
+            bearUI.gameObject.SetActive(false);
+        }
+    }
 	
 	void Update ()
     {
-        int input = scr_InputManager.PlayCard();
-		switch (input)
+		switch (InputManager.ActionNumber())
 		{
 		    case 0:
 				ShoulderDash();
@@ -119,7 +122,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
         }
 
 		//check the grid position one over; if it contains an attackable entity, deal damage; note this will return null if the player is at the far right of the grid
-		scr_Entity target = scr_Grid.GridController.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
+		Entity target = scr_Grid.GridController.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
 
 		if (target != null && target.type != EntityType.Player)
 		{
@@ -150,7 +153,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 		}
         dashing = true;
 		meleeCooldown -= 0.3f; //speed up the attack rate while dashing
-		scr_InputManager.cannotMove = true;
+		InputManager.cannotMove = true;
 		startPos.x = playerEntity._gridPos.x; 
 		startPos.y = playerEntity._gridPos.y;
 		StartCoroutine(Dash());
@@ -176,7 +179,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 		dashing = false;
 		meleeCooldown += 0.3f; //slow the attack rate back to normal
-		scr_InputManager.cannotMove = false;
+		InputManager.cannotMove = false;
 		playerEntity.SetTransform(startPos.x, startPos.y);
 	}
 
@@ -185,7 +188,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	/// </summary>
 	private void Push()
 	{
-		scr_Entity target = scr_Grid.GridController.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
+		Entity target = scr_Grid.GridController.GetEntityAtPosition(playerEntity._gridPos.x + 1, playerEntity._gridPos.y);
 		int enemyX = playerEntity._gridPos.x + 1;
 		int enemyY = playerEntity._gridPos.y;
 		if (target != null && target.type == EntityType.Enemy)
@@ -221,7 +224,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	/// <param name="target"></param>
 	/// <param name="x"></param>
 	/// <param name="y"></param>
-	private bool MoveIfOpen(scr_Entity target, int x, int y)
+	private bool MoveIfOpen(Entity target, int x, int y)
 	{
 			if (scr_Grid.GridController.IsTileUnoccupied(x, y))
 			{
@@ -302,7 +305,7 @@ public class scr_Brawler_Attack : MonoBehaviour {
 				if (scr_Grid.GridController.grid[column,i].territory.name == TerrName.Enemy)
 				{
 					//attack an enemy if there is one here
-					scr_Entity target = scr_Grid.GridController.GetEntityAtPosition(column, i);
+					Entity target = scr_Grid.GridController.GetEntityAtPosition(column, i);
 					if (target != null)
 					{
 						//deal damage

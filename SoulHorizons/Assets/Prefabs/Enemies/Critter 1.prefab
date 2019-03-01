@@ -173,7 +173,6 @@ MonoBehaviour:
   invulnTime: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 338c597140c217c42a56f6133edc5605, type: 3}
-  - {fileID: 8300000, guid: 26fb9ff7413851e4d946785fba0d13c3, type: 3}
   die_SFX: {fileID: 8300000, guid: 26fb9ff7413851e4d946785fba0d13c3, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
@@ -194,10 +193,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   decisionTime: 3
   decisionTimeLower: 1
-  burrowedTime: 1.5
-  burrowedTimeLower: 0.5
-  burrowedColor: {r: 0, g: 0, b: 0, a: 0}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
   movements_SFX:
   - {fileID: 8300000, guid: 80b2c6c4ff0767047bd78791fc9bbbf7, type: 3}
   - {fileID: 8300000, guid: 115bedd7a324c7d45b9433d193e86bdc, type: 3}

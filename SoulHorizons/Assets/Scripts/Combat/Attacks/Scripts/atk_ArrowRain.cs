@@ -31,7 +31,7 @@ public class atk_ArrowRain : AttackData {
         scr_Grid.GridController.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos, yPos - 1);
     }
-    public override bool CheckCondition(scr_Entity _ent)
+    public override bool CheckCondition(Entity _ent)
     {
         return true; 
     }
