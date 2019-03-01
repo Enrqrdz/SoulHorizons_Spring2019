@@ -304,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 175848280}
   - component: {fileID: 175848281}
+  - component: {fileID: 175848282}
   m_Layer: 0
   m_Name: GameLauncher
   m_TagString: Untagged
@@ -338,6 +339,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regionGenerator: {fileID: 268632236}
+--- !u!114 &175848282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175848279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838a96d9ffae34d10bd64b3af6d749b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encounterPool:
+  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
+  - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
+  - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
+  - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
+  - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
+  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
+  cardPool:
+  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
+  - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
+  - {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
+  - {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
+  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  - {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
+  startingInventory: {fileID: 11400000, guid: c93a04a8ff38644dbb65fa16e9ed7886, type: 2}
 --- !u!1 &268632235
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +377,6 @@ GameObject:
   m_Component:
   - component: {fileID: 268632237}
   - component: {fileID: 268632236}
-  - component: {fileID: 268632238}
   m_Layer: 0
   m_Name: RegionGenerator
   m_TagString: Untagged
@@ -385,34 +413,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &268632238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268632235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838a96d9ffae34d10bd64b3af6d749b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  encounterPool:
-  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
-  - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
-  - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
-  - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
-  - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
-  - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
-  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
-  cardPool:
-  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
-  - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
-  - {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
-  - {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
-  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
-  - {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
-  startingInventory: {fileID: 11400000, guid: c93a04a8ff38644dbb65fa16e9ed7886, type: 2}
 --- !u!1 &306506421
 GameObject:
   m_ObjectHideFlags: 0

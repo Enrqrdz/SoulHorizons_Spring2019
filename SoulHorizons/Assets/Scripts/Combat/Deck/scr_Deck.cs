@@ -34,72 +34,7 @@ public class scr_Deck : MonoBehaviour {
 
     private void IntializeDeck()
     {
-        if (InventoryManager.deckList.Count == 0)
-        {
-            Debug.Log("Loading New Deck");
-            LoadNewDeck();
-            SaveManager.Save();
-        }
-        else
-        {
-            Debug.Log("Loading Old Deck");
-            LoadDeck();
-        }
-
-
-    }
-
-    /// <summary>
-    /// Load the deck list from the file, shuffle, then draw a starting hand.
-    /// </summary>
-    public void LoadNewDeck()
-    {
-        StringReader reader = new StringReader(deckList.text);
-        string strLine;
-
-        while ((strLine = reader.ReadLine()) != null)
-        {
-            string[] parsedLine = strLine.Split( ':');
-            //check that there was only one colon in the line
-            if (parsedLine.Length != 2)
-            {
-                continue;
-            }
-            
-            //check that the second element is a number
-            parsedLine[1] = parsedLine[1].Trim();
-            if(!Regex.IsMatch(parsedLine[1], @"^\d+$"))
-            {
-                continue;
-            }
-            int quantity = int.Parse(parsedLine[1]);
-
-            //attempt to retrieve the object reference from cardMapping
-            CardData nextCard = cardMapping.ConvertNameToCard(parsedLine[0]);
-            if (nextCard == null)
-            {
-                continue;
-            }
-
-            //add that card to the list a number of times equal to the quantity
-            for(int i = 0; i < quantity; i++)
-            {
-                deck.Add(nextCard);
-            }
-
-            //add the card and quantity to an inventory card list
-            InventoryManager.addCard(nextCard, quantity);
-            cardList.Add(new KeyValuePair<string, int>(nextCard.cardName, quantity));
-        }
-
-        if (deck.Count != deckSize)
-        {
-            Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
-        }
-
-        ShuffleHelper<CardData>(deck);
-        CheckHandSizeAndDraw();
-        InventoryManager.addDeck(cardList);
+        LoadDeck();
     }
 
     /// <summary>
@@ -124,20 +59,20 @@ public class scr_Deck : MonoBehaviour {
     /// </summary>
     public void LoadDeck()
     {
-        List<KeyValuePair<string, int>> cards = InventoryManager.deckList[InventoryManager.currentDeckIndex];
-        foreach (KeyValuePair<string, int> pair in cards)
+        List<CardState> newDeck = SaveManager.currentGame.inventory.GetDeck();
+        foreach (CardState cardState in newDeck)
         {
-            CardData nextCard = cardMapping.ConvertNameToCard(pair.Key);
+            CardData nextCard = cardState.GetCardData();
             if (nextCard == null)
             {
                 continue;
             }
             //add that card to the list a number of times equal to the quantity
-            for (int i = 0; i < pair.Value; i++)
+            for (int i = 0; i < cardState.numberOfCopies; i++)
             {
                 deck.Add(nextCard);
             }
-            cardList.Add(new KeyValuePair<string, int>(nextCard.cardName, pair.Value));
+            cardList.Add(new KeyValuePair<string, int>(nextCard.cardName, cardState.numberOfCopies));
         }
 
         if (deck.Count != deckSize)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CardPool
 {
-    private static List<CardData> cardPool;
+    private static List<CardData> cardPool = new List<CardData>();
 
     public static void AddCard(CardData newCard)
     {
@@ -19,5 +19,18 @@ public static class CardPool
     public static CardData GetCardByIndex(int index)
     {
         return cardPool[index];
+    }
+
+    public static int getIndexOfCardData(CardData cardData)
+    {
+        for(int i = 0; i < cardPool.Count; i++)
+        {
+            if(cardPool[i] == cardData)
+            {
+                return i;
+            }
+        }
+
+        throw new System.ArgumentException("cardData is not in cardPool", "cardData");
     }
 }

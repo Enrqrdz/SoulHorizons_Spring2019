@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Encounter.unity
     guid: fa41c8c1839f34d4da13f0424a84b243
+  - enabled: 1
+    path: Assets/Scenes/Inventory.unity
+    guid: 39165ab556c014984a6c19b9fb1b6394
   m_configObjects: {}

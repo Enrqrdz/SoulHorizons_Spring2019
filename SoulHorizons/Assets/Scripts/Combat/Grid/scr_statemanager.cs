@@ -74,9 +74,6 @@ public class scr_statemanager : MonoBehaviour {
             //rewardPanel.enabled = true; 
             endCombat = true;
 
-            //GIVE REWARDS
-            SaveManager.currentGame.AddDust(50);
-
             //save health
             try
             {

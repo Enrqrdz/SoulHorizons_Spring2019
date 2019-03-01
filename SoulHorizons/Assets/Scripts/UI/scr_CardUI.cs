@@ -29,6 +29,8 @@ public class scr_CardUI : MonoBehaviour {
 	private scr_CooldownOverlay cooldownOverlay;
 
 	private bool selected = false; //whether this card is currently selected or not
+
+	private CardState cardState;
 	
 	void Awake () {
 		cooldownOverlay = GetComponent<scr_CooldownOverlay>();
@@ -125,4 +127,14 @@ public class scr_CardUI : MonoBehaviour {
         cooldownOverlay.SetTime(seconds);
 		cooldownOverlay.StartCooldown();
 	}
+
+	public void SetCardState(CardState newCardState)
+	{
+		cardState = newCardState;
+	}
+
+    public CardState GetCardState()
+    {
+        return cardState;
+    }
 }
