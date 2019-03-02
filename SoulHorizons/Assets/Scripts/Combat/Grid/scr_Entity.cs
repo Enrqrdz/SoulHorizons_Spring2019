@@ -25,6 +25,7 @@ public class scr_Entity : MonoBehaviour
     public float lerpSpeed;
     public bool has_iframes;
     public bool invincible = false;
+    public bool isStunned = false;
     public float invulnTime;
     float invulnCounter = 0f;
 
@@ -47,7 +48,14 @@ public class scr_Entity : MonoBehaviour
     }
     public void Update()
     {
-        if(gameObject.activeSelf)_ai.UpdateAI();
+        if (gameObject.activeSelf)
+        {
+            if (!isStunned)
+            {
+                _ai.UpdateAI();
+            }
+        }
+
         if (_health.hp <= 0)
         {
             _ai.Die();
@@ -164,6 +172,12 @@ public class scr_Entity : MonoBehaviour
         }
     }
 
+    public void gotStunned (float stunTime)
+    {
+        isStunned = true;
+        StartCoroutine(HitClock(stunTime));
+    }
+
     public bool isInvincible()
     {
         return invincible;
@@ -201,7 +215,13 @@ public class scr_Entity : MonoBehaviour
         gameObject.SetActive(false); 
         //scr_Grid.GridController.RemoveEntity(this);  
     }
-   
+
+    IEnumerator StunClock(float stunTime)
+    {
+        yield return new WaitForSecondsRealtime(stunTime);
+        isStunned = true;
+    }
+
     IEnumerator HitClock(float hitTime)
     {
         spr.color = Color.red;

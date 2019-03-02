@@ -123,6 +123,7 @@ public class scr_AttackController : MonoBehaviour {
                 if (activeAttacks[x].entity.type != entity.type)
                 {
                     AttackData atk = activeAttacks[x].attack;
+                    activeAttacks[x].entityHit = activeAttacks[x].entity;
                     activeAttacks[x].entityIsHit = true;
                     return atk;
                 }
@@ -131,4 +132,5 @@ public class scr_AttackController : MonoBehaviour {
 
         return null;
     }
+
 }
