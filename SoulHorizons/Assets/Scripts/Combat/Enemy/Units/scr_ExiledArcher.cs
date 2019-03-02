@@ -87,6 +87,7 @@ public class scr_ExiledArcher : scr_EntityAI {
             {
                 entity.SetTransform(xPos, yPos);   //move to new position
                 movePosition = 0;
+                goBackwards = false;
                 return;
             }
         }
@@ -125,12 +126,9 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int randomVal;
         randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
-        if (randomVal == 0)
+        if (randomVal == 0 || randomVal == 5)
         {
             scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
-        }
-        else if (randomVal == 5)
-        {
             scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
         }
         else
@@ -152,7 +150,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         hSOnCD = false; 
     }
 
-    private IEnumerator ArrowRain(float _aRInterval)
+    private IEnumerator ArrowRain(float _aRInterval) //Maybe one day we'll put this in
     {
         //TELEGRAPH 
         canArrowRain = false; 
@@ -266,11 +264,11 @@ public class scr_ExiledArcher : scr_EntityAI {
     IEnumerator MovementClock()
     {
         if (canMove)
-        {
-            Move();
+        {          
             float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
             canMove = false; 
             yield return new WaitForSecondsRealtime(_movementInterval);
+            Move();
             canMove = true; 
         }
     }

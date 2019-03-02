@@ -116,7 +116,7 @@ MonoBehaviour:
   aRInterval: 5
   movementIntervalLower: 3
   movementIntervalUpper: 5
-  dodgeChance: 60
+  stunTime: 0.5
   attacks_SFX:
   - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
 --- !u!82 &82002260226468596
@@ -325,6 +325,7 @@ MonoBehaviour:
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
+  isStunned: 0
   invulnTime: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 39a19e3b71171d44f8674ea450365c72, type: 3}
@@ -352,9 +353,9 @@ MonoBehaviour:
   hSChargeTime: 3
   arrowRain: {fileID: 11400000, guid: 320a8358f456ced43b8ea33ecfec776c, type: 2}
   aRInterval: 5
-  movementIntervalLower: 3
-  movementIntervalUpper: 5
-  dodgeChance: 60
+  movementIntervalLower: 1.5
+  movementIntervalUpper: 3
+  stunTime: 0.5
   attacks_SFX:
   - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
 --- !u!82 &82240855345996476

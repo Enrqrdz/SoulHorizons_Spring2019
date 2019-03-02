@@ -6,7 +6,6 @@ public class scr_FoulTrifling : scr_EntityAI
 {
     public float movementIntervalLower;
     public float movementIntervalUpper;
-    public float stunTime = .5f;
 
     public AttackData attack1;
     public AttackData chargedAttack;
@@ -24,7 +23,6 @@ public class scr_FoulTrifling : scr_EntityAI
     private bool completedTask = true;
     private bool xDirection = false; //false means left, true means right
     private bool yDirection = false; //false means down, true means up
-    public bool isStunned = false;
 
     public void Start()
     {
