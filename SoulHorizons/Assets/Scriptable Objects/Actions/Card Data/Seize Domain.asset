@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 0
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1.8
+  cooldown: 0.3
   description: Seizes a column for you to move on.
   duration: 8
   SeizeDomainSFX: {fileID: 8300000, guid: 1a51e922013de2848b028fe566d97c19, type: 3}

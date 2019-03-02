@@ -10,31 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
-  m_Name: Tier1-2
+  m_Name: Tier2-2
   m_EditorClassIdentifier: 
-  name: Tier 1-2
+  name: Tier2-2
   sceneName: Encounter
-  tier: 1
+  tier: 2
   entities:
   - entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
     x: 1
     y: 1
+  - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
+    x: 5
+    y: 0
   - entity: {fileID: 114725702907161856, guid: 2e48af5c2d92a1043acb3c262a5cc78b, type: 3}
-    x: 6
+    x: 5
     y: 2
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
-    x: 6
-    y: 1
-  - entity: {fileID: 114725702907161856, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
-    x: 0
-    y: 1
-  - entity: {fileID: 114725702907161856, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
-    x: 0
-    y: 2
-  - entity: {fileID: 114725702907161856, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
-    x: 6
-    y: 0
-  - entity: {fileID: 114725702907161856, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
-    x: 7
+    x: 4
     y: 1
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}

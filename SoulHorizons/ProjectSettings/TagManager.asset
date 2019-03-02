@@ -53,6 +53,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Entities
+    uniqueID: 1324763931
+    locked: 0
+  - name: Player
+    uniqueID: 3798467371
+    locked: 0
   - name: Particles
     uniqueID: 433812055
+    locked: 0
+  - name: UI
+    uniqueID: 3341181381
     locked: 0

@@ -165,8 +165,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 0.2688679, g: 0.9032047, b: 1, a: 1}
@@ -404,8 +404,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 0.3931559, g: 0.8962264, b: 0.39853984, a: 1}
@@ -485,7 +485,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 433812055
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 52a0fae38330d114ea79699a6c046f11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.29411766}
@@ -619,16 +619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 114787085351951448}
   anim: {fileID: 0}
-  movements_SFX:
-  - {fileID: 0}
-  dashEffect: {fileID: 1732062955175564, guid: 8082eb11f4a30e447bd201f0ce0c8ade, type: 3}
-  dashMeter: {fileID: 0}
-  dashIcon: {fileID: 1884565677383304, guid: 49b395e0c40117748b2175a1081b6b36, type: 3}
-  dashOn: {fileID: 21300000, guid: b3779f9011fba614e8d45f970f06acb3, type: 3}
-  dashOff: {fileID: 21300000, guid: c049e3644d5fe7a4b87ffc7c38902adc, type: 3}
-  staminaChargesMax: 0
-  staminaCharges: 0
-  staminaRechargeTime: 1.5
 --- !u!114 &114787085351951448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,9 +914,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -496499925
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d9ffdbb2566a76f44a314c762e151ea9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1035,8 +1025,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

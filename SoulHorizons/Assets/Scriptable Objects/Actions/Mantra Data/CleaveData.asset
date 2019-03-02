@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 4
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1
+  cooldown: 0.8
   description: 
   attack: {fileID: 11400000, guid: 8500b5d9a2c71684591283e74b4216e5, type: 2}
   CleaveSFX: {fileID: 8300000, guid: 351e1d4b2b5fe874bbda4baf48d09b84, type: 3}
