@@ -7,10 +7,7 @@ public class scr_Critter : scr_EntityAI
 {
     public float movementIntervalLower = .75f;
     public float movementIntervalUpper = 1.5f;
-    public float decisionTime;
-    public float decisionTimeLower;
-    //public float burrowedTime;
-    // public float burrowedTimeLower;
+    public float stunTime;
     bool leftOrRight = false; //false left, true right
     bool taskComplete = true;
     int state = 0;
@@ -59,40 +56,6 @@ public class scr_Critter : scr_EntityAI
                return;
             }
         }
-        /*xPos = GenerateCoord(scr_Grid.GridController.columnSizeMax / 2, scr_Grid.GridController.columnSizeMax);
-        //xCoord = PickXCoord();
-
-        if (xPos == entity._gridPos.x && yPos == entity._gridPos.y)
-        {
-        //We picked the spot we are on, do the check again 
-         Move();
-         return;
-        }
-        else
-        {
-            while (tries < 10)
-            {
-                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-                {
-                    //if the tile is not occupied
-                    scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                    entity.SetTransform(xPos, yPos);
-                    return;
-                }
-                else
-                {
-                    //it is occupied, perform the check again
-                    tries++;
-                    if(tries >= 10)
-                    {
-                        MoveAlongRow(xPos, yPos);
-                        state = 1;
-                    }
-
-
-                }
-            }
-        }*/
     }
 
     public override void UpdateAI()
@@ -109,101 +72,104 @@ public class scr_Critter : scr_EntityAI
         entity.Death();
     }
 
-    int GenerateCoord(int lowerLim, int upperLim)
-    {
-        int x = Random.Range(lowerLim, upperLim);
-        return x;
-    }
-
-    int PickXCoord( int xPos)
-    {
-        //must return int 
-        int moveRange = scr_Grid.GridController.columnSizeMax;
-        int currX = entity._gridPos.x;
-
-        if (currX == moveRange - 1)
-        {
-            return (currX - 1);
-        }
-        else if (currX == 0)
-        {
-            return currX + 1;
-        }
-        else
-        {
-            int temp = Random.Range(0, 2);
-            if (temp == 0)
-            {
-                return currX + 1;
-            }
-            else if (temp == 1)
-            {
-                return currX - 1;
-            }
-
-            return 0;
-        }
-
-    }
-
     int PickYCoord(int yPos)
     {
-        int currY = entity._gridPos.y;
         int moveRange = scr_Grid.GridController.rowSizeMax;
         int rand = Random.Range(0, 2);
 
         if(rand == 0)
         {
-            return yPos;
+            int tempVar = yPos - 1;
+            if (tempVar >= 0)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos + 1;
+            }
         }
         else
         {
-            return yPos;
+            int tempVar = yPos + 1;
+            if (tempVar < moveRange)
+            {
+                return yPos + 1;
+            }
+            else
+            {
+                return yPos - 1;
+            }
         }
         
     }
 
-    void MoveAlongRow(int xPos, int yPos)
+    void MoveAlongRow(int xPos, int yPos, int xLimit, bool direction)
     {
         int xRange = scr_Grid.GridController.columnSizeMax;
-        int random = Random.Range(0, 2);
+        if(!direction)
+        {
+            xPos--;
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos >= xLimit)
+            {
+                //if the tile is not occupied
+                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+                entity.SetTransform(xPos, yPos);
+                return;
+            }
+        }
+        else
+        {
+            xPos++;
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos < xRange)
+            {
+                //if the tile is not occupied
+                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+                entity.SetTransform(xPos, yPos);
+                return;
+            }
+        }
 
         
     } 
+
+    int GetXLimit (int xPos)
+    {
+        int xRange = scr_Grid.GridController.columnSizeMax;
+        int xLimit = xPos;
+        for (int i = 0; i < xRange; i++)
+        {
+            xLimit--;
+            if (scr_Grid.GridController.grid[xLimit, entity._gridPos.y].territory.name != TerrName.Player)
+            {
+                continue;
+            }
+            else
+            {
+                return xLimit++;
+            }
+        }
+        return xLimit;
+    }
 
     IEnumerator Brain()
     {
         switch (state)
         {
-            case 0:                                                             //Move the entity's x position,
+            case 0:                                  //Move to a new Row
                 taskComplete = false;
                 Move();                                                    
-                state = 2;                                         
+                state = 2;
+                float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
+                yield return new WaitForSecondsRealtime(moveInterval);
                 taskComplete = true;
                 break;
 
-            case 1:                                                             //On a tile, waiting to do a thing
-                taskComplete = false;
-                float waitTime;
-                waitTime = Random.Range(decisionTimeLower, decisionTime);
-                yield return new WaitForSecondsRealtime(waitTime);
-                state = 0;                                                                                             
-                taskComplete = true;
-                break;
-
-            case 2:
-                taskComplete = false;
-                float waitTimeAgain;
-                waitTimeAgain = Random.Range(decisionTimeLower, decisionTime);
-                yield return new WaitForSecondsRealtime(waitTimeAgain);
-                state = 3;                                                                                           
-                taskComplete = true;
-                break;
-
-            case 3: //Move on row case
+            case 2: //Move along the row
                 taskComplete = false;
                 int startPos = entity._gridPos.x;
                 int xRange = scr_Grid.GridController.columnSizeMax;
+                int xLimit = GetXLimit(startPos);
                 int random = Random.Range(0, 2);
                 if(random == 0)
                 {
@@ -213,20 +179,48 @@ public class scr_Critter : scr_EntityAI
                 {
                     leftOrRight = true;
                 }
-
-                for (int i = 0; i < xRange; i++) // Make the function increment through the whole row and shit
+                for (int i = 0; i < xRange; i++) //moves along the row either left or right then 
                 {
-                    MoveAlongRow(entity._gridPos.x, entity._gridPos.y);
-                    float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                    yield return new WaitForSecondsRealtime(moveInterval);
+                    try
+                    {
+                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
+                    }
+                    catch
+                    {
+                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, !leftOrRight);
+                        leftOrRight = !leftOrRight;
+                    }
+                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
+                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    if(entity._gridPos.x == startPos)
+                    {
+                        break;
+                    }
                 }
-                state = 1;
+                for (int i = 0; i < xRange; i++)
+                {
+                    try
+                    {
+                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, !leftOrRight);
+                    }
+                    catch
+                    {
+                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
+                    }
+                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
+                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    if (entity._gridPos.x == startPos)
+                    {
+                        break;
+                    }
+                }
+                state = 0;
                 taskComplete = true;
                 break;
 
-            case 4: //Stunned Case
-                waitTimeAgain = Random.Range(decisionTimeLower, decisionTime);
-                yield return new WaitForSecondsRealtime(waitTimeAgain);
+            case 3: //Stunned Case
+                yield return new WaitForSecondsRealtime(stunTime);
+                state = 0;
                 break;
 
         }
