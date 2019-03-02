@@ -290,7 +290,7 @@ MonoBehaviour:
   - {fileID: 1632654633}
   handPanel: {fileID: 1533865064}
   playerAnimator: {fileID: 0}
-  globalCooldown: 0.25
+  globalCooldown: 0.2
   CardChange_SFX: {fileID: 0}
   currentDeck: {fileID: 0}
   currentMantras: {fileID: 0}

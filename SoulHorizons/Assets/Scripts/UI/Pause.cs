@@ -46,7 +46,7 @@ public class Pause : MonoBehaviour {
     private static void PlayGame()
     {
         Time.timeScale = 1f;
-        DisableInput();
+        EnableInput();
     }
 
     private static void DisableInput()
