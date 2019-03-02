@@ -15,6 +15,11 @@ public class RegionManager : MonoBehaviour
 
     [SerializeField]
     private GameObject buttonPrefab;
+    [SerializeField]
+    private GameObject nodeConnectionPrefab;
+    [SerializeField]
+    private GameObject inventoryButton;
+
     private List<Button> buttons;
 
     void Start()
@@ -24,7 +29,12 @@ public class RegionManager : MonoBehaviour
         GenerateButtons();
     }
 
-    public void GoToEncounter(EncounterData encounter, int index)
+    void Update()
+    {
+        CheckForInventoryInput();
+    }
+
+    public void GoToEncounter(EncounterState encounter)
     {
         SaveManager.currentGame.SetCurrentEncounterIndex(index);
         scr_SceneManager.globalSceneManager.ChangeScene(encounter.sceneName);
@@ -55,5 +65,13 @@ public class RegionManager : MonoBehaviour
 
         GameObject eventSystem = GameObject.Find("/EventSystem");
         eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;
+    }
+
+    public void CheckForInventoryInput()
+    {
+        if(Input.GetButtonDown("PlayCard2_Button") || Input.GetKeyDown("i"))
+        {
+            inventoryButton.GetComponent<Button>().onClick.Invoke();
+        }
     }
 }
