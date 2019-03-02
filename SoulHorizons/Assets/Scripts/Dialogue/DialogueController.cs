@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
@@ -120,3 +120,4 @@ public class DialogueController : MonoBehaviour
         }
     }
 }
+*/
