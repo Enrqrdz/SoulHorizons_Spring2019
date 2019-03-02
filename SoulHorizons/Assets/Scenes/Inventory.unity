@@ -1343,7 +1343,7 @@ GameObject:
   - component: {fileID: 185610114}
   - component: {fileID: 185610113}
   m_Layer: 5
-  m_Name: InventoryButton
+  m_Name: RegionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7859,7 +7859,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: INVENTORY
+  m_Text: REGION
 --- !u!222 &1357959246
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10044,7 +10044,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 185610111}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1636989483

@@ -17,6 +17,8 @@ public class RegionManager : MonoBehaviour
     private GameObject buttonPrefab;
     [SerializeField]
     private GameObject nodeConnectionPrefab;
+    [SerializeField]
+    private GameObject inventoryButton;
 
     private List<Button> buttons;
     private GameObject encounterMap;
@@ -30,6 +32,11 @@ public class RegionManager : MonoBehaviour
         CreateNodeConnections();
 
         EventSystem eventSystem = EventSystem.current;
+    }
+
+    void Update()
+    {
+        CheckForInventoryInput();
     }
 
     public void GoToEncounter(EncounterState encounter)
@@ -92,6 +99,14 @@ public class RegionManager : MonoBehaviour
                     lr.SetPositions(points);
                 }
             }
+        }
+    }
+
+    public void CheckForInventoryInput()
+    {
+        if(Input.GetButtonDown("PlayCard2_Button") || Input.GetKeyDown("i"))
+        {
+            inventoryButton.GetComponent<Button>().onClick.Invoke();
         }
     }
 }
