@@ -16,7 +16,8 @@ public class scr_ExiledArcher : scr_EntityAI {
     public float aRInterval;
     public float movementIntervalLower;
     public float movementIntervalUpper;
-    public float dodgeChance; 
+    public float stunTime = .5f;
+
     private bool canArrowRain = true;
     private bool canMove = true;
     private bool goBackwards = false;

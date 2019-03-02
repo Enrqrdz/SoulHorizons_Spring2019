@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class scr_FoulTrifling : scr_EntityAI
 {
-    public float basicAttackChance;
-    public float chargeAttackChance;
-    public float chargeTimeUpper;
-    public float chargeTimeLower;
     public float movementIntervalLower;
     public float movementIntervalUpper;
-    bool waiting = false;
+    public float stunTime = .5f;
+
     public AttackData attack1;
     public AttackData chargedAttack;
-    int numOfAttacks;
+    private int attackCounter = 0; // keeps track of how many tiles the entity has moved before it can attack , if it reaches 3 then it attempts to do a charge attack
 
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;
@@ -21,11 +18,13 @@ public class scr_FoulTrifling : scr_EntityAI
     private AudioClip movement_SFX;
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
-    private bool canMove = true;
-    private bool charging = false;
-    private int state = 2;
+
+    private int state = 0;
+   
     private bool completedTask = true;
-    private bool broken = false; //This is to check if something has caused their AI to stop working 
+    private bool xDirection = false; //false means left, true means right
+    private bool yDirection = false; //false means down, true means up
+    public bool isStunned = false;
 
     public void Start()
     {
@@ -43,118 +42,119 @@ public class scr_FoulTrifling : scr_EntityAI
 
     public override void Move()
     {
-        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Footsteps_SFX = SFX_Sources[0];
-        Attack_SFX = SFX_Sources[1];
-        int index = Random.Range(0, movements_SFX.Length);
-        movement_SFX = movements_SFX[index];
-        Footsteps_SFX.clip = movement_SFX;
-        Footsteps_SFX.Play();
 
-        //Decide if we are moving horiz or vert.
-        int temp = Random.Range(0, 2);                                         //Pick a number between 0 and 1
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
-        int tries = 0;
 
-        while (tries < 10)
+       
+        if (!xDirection)
         {
-            temp = Random.Range(0, 2);
-            if (temp == 0)                                                          //if that number == 0, then we're moving vertically 
-            {
-                yPos = PickYCoord();
-
-            }
-            else if (temp == 1)                                                     //if that number == 1, we're moving horizonally 
-            {
-                xPos = PickXCoord();
-
-            }
-
+            xPos--;
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                entity.SetTransform(xPos, yPos);                               //move to new position
-                completedTask = true;
+                entity.SetTransform(xPos, yPos);
                 return;
             }
-            else
+            else if(scr_Grid.GridController.ReturnTerritory(xPos, yPos).name != entity.entityTerritory.name)
             {
-                tries++;
-                if (tries >= 10)
-                {
-                    broken = true;
-                    Debug.Log("I think I am broken");
-                }
+                xDirection = !xDirection;
+                Move();
             }
-        }
-        completedTask = true;
-    }
-
-    int PickXCoord()
-    {
-        //must return int 
-        int _range = scr_Grid.GridController.columnSizeMax;
-        int _currPosX = entity._gridPos.x;
-
-        if (_currPosX == _range - 1)
-        {
-            return (_currPosX - 1);
-        }
-        else if (_currPosX == _range / 2)
-        {
-            return _currPosX + 1;
         }
         else
         {
-            int _temp = Random.Range(0, 2);
-            if (_temp == 0)
+            try
             {
-                return _currPosX + 1;
+                xPos++;
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                {
+                    entity.SetTransform(xPos, yPos);
+                    return;
+                }
             }
-            else if (_temp == 1)
+            catch
             {
-                return _currPosX - 1;
+                xDirection = !xDirection;
+                Move();
             }
-
-            return 0;
         }
-
     }
 
-    int PickYCoord()
+    void MoveAlongColumn (int xPos, int yPos, bool direction)
     {
-        if (entity._gridPos.y == 0)   //AI is on y = 0 and can only move to 1 (down)                             
+
+        if (direction)
         {
-            return 1;
+            yPos--;
         }
-        else if (entity._gridPos.y == 1)    //AI is on y = 1 and can move either up or down
+        else
         {
-            int _temp = Random.Range(0, 2);  //make a random number 0 or 1
-            if (_temp == 0)  //if this number is 0, move to 0 (up)
-            {
-                return 0;
-            }
-            else     //if this number is 1, move to 1 (down) 
-            {
-                return 2;
-            }
+            yPos++;
         }
-        else    //otherwise, the AI is on 2 and can only move to 1 (up)
+
+        if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
         {
-            return 1;
+            //if the tile is not occupied
+            scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+            entity.SetTransform(xPos, yPos);
+            return;
+        }
+        else
+        {
+            MoveAlongColumn(xPos, yPos, direction);
         }
     }
-
-
 
     public override void Die()
     {
         entity.Death();
     }
 
+    void AttackManager ()
+    {
+        int random = Random.Range(1, 10);
+        if(random < 8)
+        {
+            StartAttack1();
+        }
+
+        if (attackCounter >= 3)
+        {
+            int rand = Random.Range(0, 2);
+            {
+                StartAttack2();
+                attackCounter = 0;
+            }
+        }
+    }
+
+    void GetYDirection (int yPos)
+    {
+        int yRange = scr_Grid.GridController.rowSizeMax;
+        if (yPos == 0)
+        {
+            yDirection = false;
+        }
+        else if (yPos == yRange - 1)
+        {
+            yDirection = true;
+        }
+        else
+        {
+            int random = Random.Range(0, 2);
+            if (random == 1)
+            {
+                yDirection = true;
+            }
+            else
+            {
+                yDirection = false;
+            }
+        }
+    }
+
     void Attack1()
     {
-        //make sure we do a check condition for the attack : if(chargedAttack.CheckCondition(entity))
         scr_AttackController.attackController.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
         int index2 = Random.Range(0, attacks_SFX.Length);
         attack_SFX = attacks_SFX[index2];
@@ -186,58 +186,42 @@ public class scr_FoulTrifling : scr_EntityAI
             case 0:
                 completedTask = false;
                 Move();
-                state = 2;
+                float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
+                yield return new WaitForSecondsRealtime(moveInterval);
+                attackCounter++;
+                AttackManager();
+                state = 1;
+                completedTask = true;
                 break;
 
             case 1:
                 completedTask = false;
-                float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(_movementInterval);
-                state = 0;
+                int yRange = scr_Grid.GridController.rowSizeMax;
+                GetYDirection(entity._gridPos.y);
+                for (int i = 0; i < yRange; i++) //along the column
+                {
+                    attackCounter++;
+                    AttackManager();
+                    try
+                    {
+                        MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, yDirection);
+                        if(entity._gridPos.y == 0)
+                        {
+                            break;
+                        }
+                    }
+                    catch
+                    {
+                        break;
+                    }
+                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
+                    yield return new WaitForSecondsRealtime(moveInterval2);
+                }
                 completedTask = true;
+                state = 0;
+                float moveInterval3 = Random.Range(movementIntervalLower, movementIntervalUpper);
+                yield return new WaitForSecondsRealtime(moveInterval3);
                 break;
-
-            case 2:
-                if (numOfAttacks < 2)
-                {
-                    completedTask = false;
-                    yield return new WaitForSecondsRealtime(.75f);
-                    StartAttack1();
-                    yield return new WaitForSecondsRealtime(2);
-                    state = 3;
-                    completedTask = true;
-                    numOfAttacks++;
-                    break;
-                }
-                else
-                {
-                    state = 0;
-                    completedTask = true;
-                    numOfAttacks = 0;
-                    break;
-                }
-
-
-            case 3:
-                if (numOfAttacks < 2)
-                {
-                    completedTask = false;
-                    float _thisTime = Random.Range(chargeTimeLower, chargeTimeUpper);
-                    yield return new WaitForSecondsRealtime(_thisTime);
-                    StartAttack2();
-                    yield return new WaitForSecondsRealtime(2f);
-                    state = 2;
-                    completedTask = true;
-                    numOfAttacks++;
-                    break;
-                }
-                else
-                {
-                    state = 0;
-                    completedTask = true;
-                    numOfAttacks = 0;
-                    break;
-                }
         }
         yield return null;
     }

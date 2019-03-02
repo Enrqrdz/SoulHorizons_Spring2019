@@ -7,10 +7,12 @@ public class scr_Critter : scr_EntityAI
 {
     public float movementIntervalLower = .75f;
     public float movementIntervalUpper = 1.5f;
-    public float stunTime;
+    public float stunTime = .5f;
+    public bool isStunned = false;
     bool leftOrRight = false; //false left, true right
     bool taskComplete = true;
     int state = 0;
+   
 
     AudioSource Footsteps_SFX;
     public AudioClip[] movements_SFX;
@@ -106,7 +108,15 @@ public class scr_Critter : scr_EntityAI
 
     void MoveAlongRow(int xPos, int yPos, int xLimit, bool direction)
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Footsteps_SFX = SFX_Sources[0];
+        int index = Random.Range(0, movements_SFX.Length);
+        movement_SFX = movements_SFX[index];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
+
         int xRange = scr_Grid.GridController.columnSizeMax;
+
         if(!direction)
         {
             xPos--;
@@ -128,9 +138,7 @@ public class scr_Critter : scr_EntityAI
                 entity.SetTransform(xPos, yPos);
                 return;
             }
-        }
-
-        
+        }  
     } 
 
     int GetXLimit (int xPos)
@@ -216,11 +224,6 @@ public class scr_Critter : scr_EntityAI
                 }
                 state = 0;
                 taskComplete = true;
-                break;
-
-            case 3: //Stunned Case
-                yield return new WaitForSecondsRealtime(stunTime);
-                state = 0;
                 break;
 
         }

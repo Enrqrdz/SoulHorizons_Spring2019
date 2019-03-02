@@ -214,6 +214,7 @@ MonoBehaviour:
   chargeTimeLower: 1
   movementIntervalLower: 3
   movementIntervalUpper: 4
+  stunTime: 0.5
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:
@@ -224,6 +225,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c68b39421bdcea4192b86975d94583e, type: 3}
   - {fileID: 8300000, guid: d44b4747215832a4b9a521d7aaa072ac, type: 3}
   - {fileID: 8300000, guid: 0427e5383a85e27468bcd9f6a1a31f21, type: 3}
+  isStunned: 0
 --- !u!82 &82158913280631940
 AudioSource:
   m_ObjectHideFlags: 0
@@ -438,8 +440,9 @@ MonoBehaviour:
   chargeAttackChance: 10
   chargeTimeUpper: 2
   chargeTimeLower: 1
-  movementIntervalLower: 3
-  movementIntervalUpper: 4
+  movementIntervalLower: 1
+  movementIntervalUpper: 2.5
+  stunTime: 0.5
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:
@@ -450,6 +453,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c68b39421bdcea4192b86975d94583e, type: 3}
   - {fileID: 8300000, guid: d44b4747215832a4b9a521d7aaa072ac, type: 3}
   - {fileID: 8300000, guid: 0427e5383a85e27468bcd9f6a1a31f21, type: 3}
+  isStunned: 0
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0

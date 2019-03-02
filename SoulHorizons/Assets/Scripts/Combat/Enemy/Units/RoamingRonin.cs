@@ -22,6 +22,8 @@ public class RoamingRonin : scr_EntityAI
     public int rangedDamage1 = 2;
     public int meleeDamage2 = 6;
     public int rangedDamage2 = 4;
+    public float stunTime = .5f;
+
     int attackPhase = 0; //0 for normal phase, 1 for broken armor phase
     public int damageThreshold = 40; //when Ronin reaches 40% health, switch to next phase
     bool gonnaMelee = false;
@@ -30,6 +32,7 @@ public class RoamingRonin : scr_EntityAI
     public float movementIntervalUpper;
     int state = 0;
     bool completedTask = true;
+    bool isStunned = false;
 
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
@@ -98,7 +101,6 @@ public class RoamingRonin : scr_EntityAI
 
     public override void Die()
     {
-        Debug.Log("And now my life has ended ... I have no regrets... except that I could not hold my wife and child another time ");
         entity.Death();
     }
 
@@ -290,7 +292,7 @@ public class RoamingRonin : scr_EntityAI
                 yield return new WaitForSecondsRealtime(2);
                 state = 0;
                 completedTask = true;
-                break; 
+                break;
 
         }
         yield return null;
