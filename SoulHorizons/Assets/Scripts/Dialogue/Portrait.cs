@@ -7,5 +7,5 @@ public enum CharacterName { Nobody, Kana, Grimoire, Merchant, Bandit, }
 public class Portrait : ScriptableObject
 {
     public CharacterName characterName = CharacterName.Nobody;
-    public Image characterImage;
+    public Sprite characterSprite;
 }

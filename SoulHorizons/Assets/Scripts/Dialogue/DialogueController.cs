@@ -7,12 +7,29 @@ public class DialogueController : MonoBehaviour
 
     [Tooltip("Dialogue for the entire scene.")]
     public Dialogue dialogue;
-
     public Text displayText;
-    public Image portraitToDisplay;
+    public Sprite portraitToDisplay;
     private static int conversationIndex = 0;
     private static int decisionIndex = 0;
     private bool decisionIsBeingMade = false;
+    private CharacterName characterOnScreen;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        //Read text and see when characters start talking
+    }
 
     private void Update()
     {
@@ -43,10 +60,10 @@ public class DialogueController : MonoBehaviour
 
     private void DisplayDialogueBox()
     {
-        displayText.text = dialogue.dialogueBox[conversationIndex].text;
-        portraitToDisplay = dialogue.dialogueBox[conversationIndex].characterTalking.characterImage;
+        displayText.text = dialogue.text[conversationIndex];
+        //Display portrait
     }
-
+    
     private void CheckForDecision()
     {
         if (dialogue.decisionIndexes.Contains(conversationIndex))
