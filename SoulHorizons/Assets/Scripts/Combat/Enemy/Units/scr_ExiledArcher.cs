@@ -268,10 +268,11 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         if (canMove)
         {
-            Move();
+            
             float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
             canMove = false; 
             yield return new WaitForSecondsRealtime(_movementInterval);
+            Move();
             canMove = true; 
         }
     }
