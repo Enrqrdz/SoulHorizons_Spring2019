@@ -111,7 +111,7 @@ public class scr_FoulTrifling : scr_EntityAI
     void AttackManager ()
     {
         int random = Random.Range(1, 10);
-        if(random < 8)
+        if(random < 7)
         {
             StartAttack1();
         }
@@ -120,7 +120,11 @@ public class scr_FoulTrifling : scr_EntityAI
         {
             int rand = Random.Range(0, 2);
             {
-                StartAttack2();
+                if (rand == 1)
+                {
+                    StartAttack2();
+                    
+                }
                 attackCounter = 0;
             }
         }
