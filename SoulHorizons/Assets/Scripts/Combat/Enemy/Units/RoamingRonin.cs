@@ -18,11 +18,6 @@ public class RoamingRonin : scr_EntityAI
     int maxHealth = 0;
     int currHealth = 0;
 
-    public int meleeDamage1 = 3;
-    public int rangedDamage1 = 2;
-    public int meleeDamage2 = 6;
-    public int rangedDamage2 = 4;
-
     int attackPhase = 0; //0 for normal phase, 1 for broken armor phase
     public int damageThreshold = 40; //when Ronin reaches 40% health, switch to next phase
     bool gonnaMelee = false;
