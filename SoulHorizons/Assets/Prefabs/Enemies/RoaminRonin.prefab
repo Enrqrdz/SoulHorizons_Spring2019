@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1099033517750084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.7, y: 14.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 18, y: 18, z: 1}
   m_Children: []
   m_Father: {fileID: 4483777865337536}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 72bf3c1a018294d4d99c09d8c0d4e8ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08ca4d0d16f31184da5037c4362b1ca8, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,16 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94399160048de274785c4ffb161fbc83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 114725702907161856, guid: d1c5e4c1de720b64680765d836b159a9, type: 3}
+  entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
   rangedAttack: {fileID: 11400000, guid: a93ae82a0daa6e3429f492125eee5a97, type: 2}
   rangedAttack2: {fileID: 11400000, guid: c2d7c507dae93d5439aa740b57027cd2, type: 2}
   meleeAttack: {fileID: 11400000, guid: 1d27b68b86f71e64a90b0920170dfd83, type: 2}
   meleeAttack2: {fileID: 11400000, guid: 3ff8a7628620f0b41afda589643d6364, type: 2}
-  meleeDamage1: 3
-  rangedDamage1: 2
-  meleeDamage2: 6
-  rangedDamage2: 4
   damageThreshold: 40
   movementIntervalLower: 3
   movementIntervalUpper: 4
@@ -319,7 +315,7 @@ MonoBehaviour:
     hp: 75
     shield: 0
     max_hp: 75
-  _ai: {fileID: 0}
+  _ai: {fileID: 6237129734399639385}
   entityTerritory:
     name: 1
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
@@ -347,16 +343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94399160048de274785c4ffb161fbc83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 114725702907161856, guid: d1c5e4c1de720b64680765d836b159a9, type: 3}
+  entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
   rangedAttack: {fileID: 11400000, guid: 1d27b68b86f71e64a90b0920170dfd83, type: 2}
   rangedAttack2: {fileID: 11400000, guid: 3ff8a7628620f0b41afda589643d6364, type: 2}
   meleeAttack: {fileID: 11400000, guid: a93ae82a0daa6e3429f492125eee5a97, type: 2}
   meleeAttack2: {fileID: 11400000, guid: c2d7c507dae93d5439aa740b57027cd2, type: 2}
-  meleeDamage1: 3
-  rangedDamage1: 2
-  meleeDamage2: 6
-  rangedDamage2: 4
   damageThreshold: 40
   movementIntervalLower: 2
   movementIntervalUpper: 4

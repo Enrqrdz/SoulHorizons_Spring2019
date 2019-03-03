@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87a49a7d621cd7b45a320c2d365e5c13, type: 3}
-  m_Name: Atk_RoninMelee
+  m_Script: {fileID: 11500000, guid: 1be64bcd7d0735846bb52c9537dd7770, type: 3}
+  m_Name: Atk_Crescent Strike
   m_EditorClassIdentifier: 
-  incrementTime: 0.01
-  maxIncrementRange: 2
-  damage: 5
-  type: 0
-  hasPiercing: 0
-  particles: {fileID: 212489909936821062, guid: 93dcc66df25d71d408deac69aa2070c0,
+  incrementTime: 0.2
+  maxIncrementRange: 18
+  damage: 10
+  type: 1
+  hasPiercing: 1
+  particles: {fileID: 212286977064683536, guid: 6805b2aea64a7294da92797ced98bd29,
     type: 3}
   particlesOffset: {x: 0, y: 0.1, z: 0}
-  particleSpeed: 1
+  particleSpeed: 11
+  CrescentSFX: {fileID: 0}

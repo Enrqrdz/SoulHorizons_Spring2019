@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a49a7d621cd7b45a320c2d365e5c13, type: 3}
   m_Name: Atk_RoninMelee2
   m_EditorClassIdentifier: 
-  incrementTime: 0.1
+  incrementTime: 0.01
   maxIncrementRange: 3
   damage: 10
   type: 0
