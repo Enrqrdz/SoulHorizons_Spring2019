@@ -10,6 +10,11 @@ public class GameLaunch : MonoBehaviour
     {
         SaveManager.NewSave();
         SaveManager.currentGame.SetRegion(regionGenerator.GenerateRegion());
+
+        List<CardState> startingDeck = gameObject.GetComponent<ScriptableObjectFinder>().GetStartingDeck();
+        SaveManager.currentGame.inventory.AddCardToInventory(startingDeck);
+        SaveManager.currentGame.inventory.AddCardToDeck(startingDeck);
+
         scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
     }
 

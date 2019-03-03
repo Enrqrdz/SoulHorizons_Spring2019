@@ -6,7 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Boomerang")]
 public class scr_Boomerang : ActionData
 {
-
     public AttackData boomerangAttack;
     private AudioSource PlayCardSFX;
     public AudioClip BoomerangSFX;
@@ -21,6 +20,6 @@ public class scr_Boomerang : ActionData
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map 
-        AttackController.Instance.AddNewAttack(boomerangAttack,0,0, player);
+        AttackController.Instance.AddNewAttack(boomerangAttack, 0, 0, player);
     }
 }

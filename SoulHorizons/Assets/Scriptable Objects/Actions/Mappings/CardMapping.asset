@@ -25,3 +25,5 @@ MonoBehaviour:
     cardObject: {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
   - name: Boomerang
     cardObject: {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
+  - name: Crescent Strike
+    cardObject: {fileID: 11400000, guid: b5cc732327c09eb4dbc1e89402e4fc43, type: 2}

@@ -66,8 +66,6 @@ public class scr_statemanager : MonoBehaviour {
  
             endCombat = true;
 
-            SaveManager.currentGame.AddDust(50);
-
             try
             {
                 SaveManager.currentGame.SetPlayerHealth(playerEntity._health.hp);

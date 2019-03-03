@@ -7,7 +7,7 @@ using System.IO;
 public class GameState 
 {
     PlayerState player;
-    InventoryState inventory;
+    public InventoryState inventory;
     RegionState region;
     EncounterState currentEncounter;
 
@@ -38,16 +38,6 @@ public class GameState
         player.currentHealth = health;
     }
 
-    public int GetDustAmount()
-    {
-        return inventory.dustNum;
-    }
-
-    public void AddDust(int dust)
-    {
-        inventory.dustNum += dust;
-    }
-
     public RegionState GetRegion()
     {
         return region;
@@ -63,7 +53,7 @@ public class GameState
         currentEncounter = encounter;
     }
 
-    public EncounterData GetCurrentEncounter()
+    public EncounterData GetCurrentEncounterData()
     {
         return currentEncounter.GetEncounterData();
     }
@@ -71,16 +61,6 @@ public class GameState
     public void SetCurrentEncounterCompleteToTrue()
     {
         currentEncounter.isCompleted = true;
-    }
-
-    public List<CardState> GetCardList()
-    {
-        return inventory.cardInv;
-    }
-
-    public List<List<CardState>> GetDeckList()
-    {
-        return inventory.deckList;
     }
 }
 
@@ -96,27 +76,5 @@ public class PlayerState
         name = "Kana";
         playerLevel = 1;
         currentHealth = 100;
-    }
-}
-
-[System.Serializable]
-public class InventoryState
-{
-    public int dustNum;
-    public List<CardState> cardInv;
-    public List<List<CardState>> deckList;
-    public int deckIndex;
-}
-
-[System.Serializable]
-public class CardState
-{
-    public int numberOfCopies;
-    public int cardIndexInPool;
-
-    public CardState()
-    {
-        numberOfCopies = 0;
-        cardIndexInPool = 0;
     }
 }

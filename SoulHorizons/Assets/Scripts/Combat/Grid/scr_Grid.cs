@@ -31,7 +31,7 @@ public class scr_Grid : MonoBehaviour{
 
     private void Start()
     {
-        encounter = SaveManager.currentGame.GetCurrentEncounter();
+        encounter = SaveManager.currentGame.GetCurrentEncounterData();
 
         InitEncounter(); 
     }

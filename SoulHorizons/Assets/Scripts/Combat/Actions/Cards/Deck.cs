@@ -53,79 +53,27 @@ public class Deck : MonoBehaviour
 
     private void IntializeDeck()
     {
-        if (InventoryManager.deckList.Count <= 0)
-        {
-            LoadNewDeck();
-            SaveManager.Save();
-        }
-        else
-        {
-            LoadDeck();
-        }
-    }
-
-    public void LoadNewDeck()
-    {
-        StringReader reader = new StringReader(deckTextList.text);
-        string strLine;
-
-        while ((strLine = reader.ReadLine()) != null)
-        {
-            string[] parsedLine = strLine.Split( ':');
-
-            if (parsedLine.Length != 2)
-            {
-                continue;
-            }
-            
-            parsedLine[1] = parsedLine[1].Trim();
-            if(!Regex.IsMatch(parsedLine[1], @"^\d+$"))
-            {
-                continue;
-            }
-            int quantity = int.Parse(parsedLine[1]);
-
-            ActionData nextCard = cardMapping.ConvertNameToCard(parsedLine[0]);
-            if (nextCard == null)
-            {
-                continue;
-            }
-
-            for(int i = 0; i < quantity; i++)
-            {
-                deck.Add(nextCard);
-            }
-
-            InventoryManager.addCard(nextCard, quantity);
-            cardList.Add(new KeyValuePair<string, int>(nextCard.actionName, quantity));
-        }
-
-        if (deck.Count != deckSize)
-        {
-            Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
-        }
-
-        ShuffleHelper<ActionData>(deck);
-        CheckHandSizeAndDraw();
-        InventoryManager.addDeck(cardList);
+        LoadDeck();
     }
 
     public void LoadDeck()
     {
-        List<KeyValuePair<string, int>> cards = InventoryManager.deckList[InventoryManager.currentDeckIndex];
-        foreach (KeyValuePair<string, int> pair in cards)
+        List<CardState> newDeck = SaveManager.currentGame.inventory.GetDeck();
+        foreach (CardState cardState in newDeck)
         {
-            ActionData nextCard = cardMapping.ConvertNameToCard(pair.Key);
+            ActionData nextCard = cardState.GetActionData();
+
             if (nextCard == null)
             {
                 continue;
             }
 
-            for (int i = 0; i < pair.Value; i++)
+            //add that card to the list a number of times equal to the quantity
+            for (int i = 0; i < cardState.numberOfCopies; i++)
             {
                 deck.Add(nextCard);
             }
-            cardList.Add(new KeyValuePair<string, int>(nextCard.actionName, pair.Value));
+            cardList.Add(new KeyValuePair<string, int>(nextCard.actionName, cardState.numberOfCopies));
         }
 
         if (deck.Count != deckSize)

@@ -22,7 +22,6 @@ public class BoltAttack : AttackData {
 
 	public override void ImpactEffects(int xPos = -1, int yPos = -1)
     {
-		Debug.Log("Bolt Impact Effects!!!");
 		
     }
 
