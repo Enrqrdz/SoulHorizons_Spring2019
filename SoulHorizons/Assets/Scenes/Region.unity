@@ -10170,7 +10170,7 @@ PrefabInstance:
         type: 3}
       propertyPath: music
       value: 
-      objectReference: {fileID: 8300000, guid: bcb0076aa14357d488a306db0939f500, type: 3}
+      objectReference: {fileID: 8300000, guid: 29bbb49828ddd3e40851ea1492d6f443, type: 3}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: buttonsSFX
@@ -10181,7 +10181,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
 --- !u!1 &1273945394 stripped
 GameObject:
@@ -10298,7 +10299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda59a823d28f7b4faf4c7875a5b46f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: bcb0076aa14357d488a306db0939f500, type: 3}
+  music: {fileID: 8300000, guid: 29bbb49828ddd3e40851ea1492d6f443, type: 3}
   inventoryOpenSFX: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
   inventoryAddSFX: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
   inventoryCloseSFX: {fileID: 8300000, guid: 8ce300e61b7423247acc75067bfa9365, type: 3}
