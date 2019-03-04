@@ -25,7 +25,6 @@ public static class CardPool
     {
         for(int i = 0; i < cardPool.Count; i++)
         {
-            Debug.Log(cardData);
             if (cardPool[i] == cardData)
             {
                 return i;

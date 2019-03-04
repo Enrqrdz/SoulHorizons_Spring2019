@@ -27,3 +27,5 @@ MonoBehaviour:
     cardObject: {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
   - name: Crescent Strike
     cardObject: {fileID: 11400000, guid: b5cc732327c09eb4dbc1e89402e4fc43, type: 2}
+  - name: Pull
+    cardObject: {fileID: 11400000, guid: c18df7fb756afc6458c1e54ba409df95, type: 2}

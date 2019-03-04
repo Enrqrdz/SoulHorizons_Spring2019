@@ -218,22 +218,22 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             if (backwards == false)
             {
-                return yPos + 1;
+                return yPos - 1;
             }
             else
             {
-                return yPos - 1;
+                return yPos + 1;
             }
         }
         else if (movePosition == 1)
         {
             if (backwards == false)
             {
-                return yPos - 1;
+                return yPos + 1;
             }
             else
             {
-                return yPos + 1;
+                return yPos - 1;
             }
         }
         else if (movePosition == 2)
@@ -244,7 +244,7 @@ public class scr_ExiledArcher : scr_EntityAI {
             }
             else
             {
-                return yPos + 1;
+                return yPos - 1;
             }
         }
         else
@@ -255,7 +255,7 @@ public class scr_ExiledArcher : scr_EntityAI {
             }
             else
             {
-                return yPos - 1;
+                return yPos + 1;
             }
         }
     }

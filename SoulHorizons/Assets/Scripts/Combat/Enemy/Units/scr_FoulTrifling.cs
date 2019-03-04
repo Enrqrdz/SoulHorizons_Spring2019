@@ -83,11 +83,11 @@ public class scr_FoulTrifling : scr_EntityAI
 
         if (direction)
         {
-            yPos--;
+            yPos++;
         }
         else
         {
-            yPos++;
+            yPos--;
         }
 
         if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
@@ -135,11 +135,11 @@ public class scr_FoulTrifling : scr_EntityAI
         int yRange = scr_Grid.GridController.rowSizeMax;
         if (yPos == 0)
         {
-            yDirection = false;
+            yDirection = true;
         }
         else if (yPos == yRange - 1)
         {
-            yDirection = true;
+            yDirection = false;
         }
         else
         {
