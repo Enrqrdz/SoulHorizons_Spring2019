@@ -9,6 +9,7 @@ public class scr_Critter : scr_EntityAI
     public float movementIntervalUpper = 1.5f;
     bool leftOrRight = false; //false left, true right
     bool taskComplete = true;
+    bool isStuck = false;
     int state = 0;
 
 
@@ -118,11 +119,16 @@ public class scr_Critter : scr_EntityAI
         if (!direction)
         {
             xPos--;
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos >= xLimit)
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
             {
                 //if the tile is not occupied
                 scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
                 entity.SetTransform(xPos, yPos);
+                return;
+            }
+            else
+            {
+                isStuck = true;
                 return;
             }
         }
@@ -143,16 +149,17 @@ public class scr_Critter : scr_EntityAI
     {
         int xRange = scr_Grid.GridController.columnSizeMax;
         int xLimit = xPos;
+        int tempX = xPos;
         for (int i = 0; i < xRange; i++)
         {
-            xLimit--;
+            tempX--;
             if (scr_Grid.GridController.grid[xLimit, entity._gridPos.y].territory.name != TerrName.Player)
             {
-                continue;
+                xLimit = tempX;
             }
             else
             {
-                return xLimit++;
+                return xLimit;
             }
         }
         return xLimit;
@@ -174,7 +181,7 @@ public class scr_Critter : scr_EntityAI
             case 2: //Move along the row
                 taskComplete = false;
                 int startPos = entity._gridPos.x;
-                int xRange = scr_Grid.GridController.columnSizeMax;
+                int xRange = scr_Grid.GridController.columnSizeMax-1;
                 int xLimit = GetXLimit(startPos);
                 int random = Random.Range(0, 2);
                 if (random == 0)
@@ -200,6 +207,11 @@ public class scr_Critter : scr_EntityAI
                     yield return new WaitForSecondsRealtime(moveInterval2);
                     if (entity._gridPos.x == startPos)
                     {
+                        leftOrRight = !leftOrRight;
+                        break;
+                    }
+                    if(isStuck)
+                    {
                         break;
                     }
                 }
@@ -207,11 +219,12 @@ public class scr_Critter : scr_EntityAI
                 {
                     try
                     {
-                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, !leftOrRight);
+                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
                     }
                     catch
                     {
-                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
+                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, !leftOrRight);
+                        leftOrRight = !leftOrRight;
                     }
                     float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
                     yield return new WaitForSecondsRealtime(moveInterval2);
@@ -219,11 +232,14 @@ public class scr_Critter : scr_EntityAI
                     {
                         break;
                     }
+                    if (isStuck)
+                    {
+                        break;
+                    }
                 }
                 state = 0;
                 taskComplete = true;
                 break;
-
         }
     }
 }
