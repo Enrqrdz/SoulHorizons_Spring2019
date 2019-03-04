@@ -234,6 +234,7 @@ public class scr_Critter : scr_EntityAI
                     }
                     if (isStuck)
                     {
+                        isStuck = false;
                         break;
                     }
                 }
