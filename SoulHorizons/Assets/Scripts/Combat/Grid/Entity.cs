@@ -26,6 +26,7 @@ public class Entity : MonoBehaviour
     public bool has_iframes;
     public bool invincible = false;
     public float invulnTime;
+    public bool isStunned = false;
     float invulnCounter = 0f;
 
     AudioSource Hurt_SFX;
@@ -47,7 +48,13 @@ public class Entity : MonoBehaviour
     }
     public void Update()
     {
-        if(gameObject.activeSelf)_ai.UpdateAI();
+        if (gameObject.activeSelf)
+        {
+            if (isStunned == false)
+            {
+                _ai.UpdateAI();
+            }
+        }
         if (_health.hp <= 0)
         {
             _ai.Die();
@@ -201,7 +208,14 @@ public class Entity : MonoBehaviour
         gameObject.SetActive(false); 
         //scr_Grid.GridController.RemoveEntity(this);  
     }
-   
+
+    public IEnumerator gotStunned(float stunTime)
+    {
+        isStunned = true;
+        yield return new WaitForSecondsRealtime(stunTime);
+        isStunned = false;
+    }
+
     IEnumerator HitClock(float hitTime)
     {
         spr.color = Color.red;

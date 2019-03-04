@@ -10,6 +10,8 @@ public class atk_CrescentStrike : AttackData
     private AudioSource PlayCardSFX;
     public AudioClip CrescentSFX;
 
+    int playerX;
+    int playerY;
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
@@ -19,6 +21,14 @@ public class atk_CrescentStrike : AttackData
     {
         activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.identity);
 
+        playerX = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.x;
+        playerY = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y;
+        
+        if(playerY == 0)
+        {
+            maxIncrementRange = maxIncrementRange - 1;
+        }
+
         if (PlayCardSFX == null)
         {
             PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
@@ -26,8 +36,6 @@ public class atk_CrescentStrike : AttackData
 
         PlayCardSFX.clip = CrescentSFX;
         PlayCardSFX.Play();
-
-        activeAtk.attack.maxIncrementRange = ((scr_Grid.GridController.columnSizeMax * 2) + scr_Grid.GridController.rowSizeMax - 2);
         return activeAtk;
     }
 
@@ -52,21 +60,27 @@ public class atk_CrescentStrike : AttackData
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-
-        if (activeAtk.currentIncrement < 1)
+        int tempX = xPos - playerX;
+        int tempY = yPos - playerY;
+        if (tempX <= 1)
         {
-            return new Vector2Int(xPos++, yPos);
+            scr_Grid.GridController.PrimeNextTile(xPos + 1, yPos);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos + 1, yPos);
         }
-        else if (activeAtk.currentIncrement >= 1 && activeAtk.currentIncrement < 3)
+        else if (tempX == 2 && yPos <= playerY)
         {
-            return new Vector2Int(xPos, yPos--);
+            scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos, yPos + 1);
         }
         else
         {
-            return new Vector2Int(xPos--, yPos);
+            scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos - 1, yPos);
         }
     }
-
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
         activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);

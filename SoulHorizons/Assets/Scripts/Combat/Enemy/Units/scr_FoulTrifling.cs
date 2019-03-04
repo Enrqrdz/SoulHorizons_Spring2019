@@ -21,6 +21,7 @@ public class scr_FoulTrifling : scr_EntityAI
     private int state = 0;
 
     private bool completedTask = true;
+    private bool isStuck = false;
     private bool xDirection = false; //false means left, true means right
     private bool yDirection = false; //false means down, true means up
 
@@ -53,7 +54,7 @@ public class scr_FoulTrifling : scr_EntityAI
                 entity.SetTransform(xPos, yPos);
                 return;
             }
-            else if (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name != entity.entityTerritory.name)
+            else if (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == TerrName.Player)
             {
                 xDirection = !xDirection;
                 Move();
@@ -83,23 +84,27 @@ public class scr_FoulTrifling : scr_EntityAI
 
         if (direction)
         {
-            yPos--;
+            yPos = yPos + 1;
         }
         else
         {
-            yPos++;
+            yPos = yPos - 1;
         }
 
-        if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+        try
         {
-            //if the tile is not occupied
-            scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-            entity.SetTransform(xPos, yPos);
-            return;
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+            {
+                //if the tile is not occupied
+                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+                entity.SetTransform(xPos, yPos);
+                return;
+            }
         }
-        else
+        catch
         {
-            MoveAlongColumn(xPos, yPos, direction);
+            isStuck = true;
+            return;
         }
     }
 
@@ -135,11 +140,11 @@ public class scr_FoulTrifling : scr_EntityAI
         int yRange = scr_Grid.GridController.rowSizeMax;
         if (yPos == 0)
         {
-            yDirection = false;
+            yDirection = true;
         }
         else if (yPos == yRange - 1)
         {
-            yDirection = true;
+            yDirection = false;
         }
         else
         {
@@ -204,20 +209,20 @@ public class scr_FoulTrifling : scr_EntityAI
                 {
                     attackCounter++;
                     AttackManager();
-                    try
-                    {
-                        MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, yDirection);
-                        if (entity._gridPos.y == 0)
-                        {
-                            break;
-                        }
-                    }
-                    catch
+
+                    MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, yDirection);
+                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
+                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    if (entity._gridPos.y == 0)
                     {
                         break;
                     }
-                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
-                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    if (isStuck)
+                    {
+                        isStuck = false;
+                        break;
+                    }
+
                 }
                 completedTask = true;
                 state = 0;

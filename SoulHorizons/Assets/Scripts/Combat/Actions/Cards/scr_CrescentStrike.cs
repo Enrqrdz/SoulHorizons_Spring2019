@@ -21,7 +21,14 @@ public class scr_CrescentStrike : ActionData
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map
-        AttackController.Instance.AddNewAttack(crescentAttack, player._gridPos.x + 1, player._gridPos.y + 1, player);
+        if (player.GetComponent<Entity>()._gridPos.y == 0)
+        {
+            AttackController.Instance.AddNewAttack(crescentAttack, player._gridPos.x + 1, player._gridPos.y, player);
+        }
+        else
+        {
+            AttackController.Instance.AddNewAttack(crescentAttack, player._gridPos.x + 1, player._gridPos.y - 1, player);
+        }
 
     }
 }

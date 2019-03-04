@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[CreateAssetMenu(menuName = "Cards/Pull")]
+[RequireComponent(typeof(AudioSource))]
 
-public class scr_Pull : MonoBehaviour
+public class scr_Pull : ActionData
 {
-    // Start is called before the first frame update
-    void Start()
+    private AudioSource PlayCardSFX;
+    public AudioClip PullSFX;
+    public AttackData pull;
+
+    public override void Activate()
     {
-        
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX.clip =PullSFX;
+        PlayCardSFX.Play();
+         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+
+        //add attack to attack controller script
+        AttackController.Instance.AddNewAttack(pull, player._gridPos.x, player._gridPos.y, player);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

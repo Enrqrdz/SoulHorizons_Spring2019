@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Attacks/Bolt")]
-public class BoltAttack : AttackData {
+public class BoltAttack : AttackData
+{
 	public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
         return new Vector2Int(xPos + 1, yPos); 
