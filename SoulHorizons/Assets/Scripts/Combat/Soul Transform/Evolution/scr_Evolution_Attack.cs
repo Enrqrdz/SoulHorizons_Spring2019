@@ -15,7 +15,7 @@ public class scr_Evolution_Attack : MonoBehaviour {
 	}
 	
 	void Update () {
-		int input = scr_InputManager.PlayCard();
+		int input = InputManager.ActionNumber();
 
 		switch (input)
 		{

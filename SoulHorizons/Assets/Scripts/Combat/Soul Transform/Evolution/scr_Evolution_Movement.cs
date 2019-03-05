@@ -9,6 +9,6 @@ public class scr_Evolution_Movement : scr_PlayerMovement {
     public void Start()
     {
         //fill the entity reference
-        entity = gameObject.GetComponent<scr_Entity>();
+        entity = gameObject.GetComponent<Entity>();
     }
 }

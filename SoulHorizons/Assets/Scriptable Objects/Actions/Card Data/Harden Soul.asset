@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf78764e95dc2ec43911e6cb84b96d79, type: 3}
+  m_Name: Harden Soul
+  m_EditorClassIdentifier: 
+  actionName: Harden Soul
+  art: {fileID: 21300000, guid: 3e0f60e3550be0949b01d856293399e7, type: 3}
+  element: 1
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1.8
+  description: Adds temporary health to the player.
+  HardenSoulSFX: {fileID: 8300000, guid: a175d60370961d74dbdaf067d70bb1f4, type: 3}
+  Shield_hp: 20

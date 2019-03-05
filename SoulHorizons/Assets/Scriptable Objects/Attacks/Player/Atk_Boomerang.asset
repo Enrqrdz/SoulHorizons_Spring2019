@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235b256c4f790a248b0f11ccabc6218c, type: 3}
+  m_Name: Atk_Boomerang
+  m_EditorClassIdentifier: 
+  incrementTime: 0.09
+  maxIncrementRange: 18
+  damage: 14
+  type: 1
+  hasPiercing: 1
+  particles: {fileID: 212286977064683536, guid: 6805b2aea64a7294da92797ced98bd29,
+    type: 3}
+  particlesOffset: {x: 0, y: 0.1, z: 0}
+  particleSpeed: 11
+  BoomerangSFX: {fileID: 8300000, guid: 891336a9e02794c4293c7dc420eb2507, type: 3}

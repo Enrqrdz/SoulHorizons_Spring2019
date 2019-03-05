@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class scr_Grid : MonoBehaviour{
-
     
-
-    public int xSizeMax; 
-    public int ySizeMax;
+    public int columnSizeMax;
+    public int rowSizeMax;
     [Tooltip("Use to move the center of the grid along the x axis")]
-    public float xOffset = 0;
+    public float columnOffset = 0;
     [Tooltip("Use to move the center of the grid along the y axis")]
-    public float yOffset = 0; 
+    public float rowOffset = 0; 
     public Vector2 tileSpacing;
     public scr_Tile[,] grid;
     public scr_Tile tile;
     private SpriteRenderer spriteR;
     public Sprite tile_sprites;
     private int spriteTracker = 0;
-    public scr_Entity[] activeEntities;
+    public Entity[] activeEntities;
     public Transform camera; 
 
-
-
-
     public static scr_Grid GridController;
+
+    public EncounterData encounter;
 
     private void Awake()
     {
@@ -34,6 +31,8 @@ public class scr_Grid : MonoBehaviour{
 
     private void Start()
     {
+        encounter = SaveManager.currentGame.GetCurrentEncounterData();
+
         InitEncounter(); 
     }
 
@@ -42,19 +41,18 @@ public class scr_Grid : MonoBehaviour{
     {
 
         //tile_sprites = Resources.LoadAll<Sprite>("tiles_spritesheet");
-        grid = new scr_Tile[xSizeMax, ySizeMax];
-        Vector2 gridCenter = new Vector2((tileSpacing.x * (xSizeMax-1) / 2), (tileSpacing.y * ySizeMax / 2));
-        print(gridCenter); 
+        grid = new scr_Tile[columnSizeMax, rowSizeMax];
+        Vector2 gridCenter = new Vector2((tileSpacing.x * (columnSizeMax-1) / 2), (tileSpacing.y * rowSizeMax / 2));
         camera.transform.position = new Vector3(gridCenter.x,gridCenter.y,camera.transform.position.z); 
-        for (int j = 0; j < ySizeMax; j++)
+        for (int j = 0; j < rowSizeMax; j++)
         {
-            for (int i = 0; i < xSizeMax; i++)
+            for (int i = 0; i < columnSizeMax; i++)
             {
                 scr_Tile tileToAdd = null; 
 
-                tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + xOffset, (j * tileSpacing.y) + yOffset, 0), Quaternion.identity);
+                tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + columnOffset, (j * tileSpacing.y) + rowOffset, 0), Quaternion.identity);
 
-                tileToAdd.territory = scr_SceneManager.globalSceneManager.currentEncounter.territoryColumn[i].territoryRow[j];
+                tileToAdd.territory = encounter.GetTerrorityAtXAndY(i, j);
                 tileToAdd.gridPositionX = i;
                 tileToAdd.gridPositionY = j;
 
@@ -85,8 +83,8 @@ public class scr_Grid : MonoBehaviour{
 
     public void SetNewGrid(int new_xSizeMax, int new_ySizeMax)
     {
-        xSizeMax = new_xSizeMax;
-        ySizeMax = new_ySizeMax;
+        columnSizeMax = new_xSizeMax;
+        rowSizeMax = new_ySizeMax;
         BuildGrid(); 
 
     }
@@ -95,17 +93,17 @@ public class scr_Grid : MonoBehaviour{
     public void InitEncounter()
     {
         //Set movement to true
-        scr_InputManager.disableInput = false;
-        xSizeMax = scr_SceneManager.globalSceneManager.currentEncounter.xWidth;
-        ySizeMax = scr_SceneManager.globalSceneManager.currentEncounter.yHeight;
+        InputManager.cannotInputAnything = false;
+        columnSizeMax = encounter.GetNumberOfColumns();
+        rowSizeMax = encounter.GetNumberOfRows();
         //calling in awake as a debug, should be called in Encounter
-        SetNewGrid(xSizeMax, ySizeMax);
-        activeEntities = new scr_Entity[scr_SceneManager.globalSceneManager.currentEncounter.entities.Length]; 
+        SetNewGrid(columnSizeMax, rowSizeMax);
+        activeEntities = new Entity[encounter.entities.Length]; 
         for(int x = 0; x < activeEntities.Length; x++)
         {
-            scr_Entity _entity = new scr_Entity();
-            _entity = (scr_Entity)Instantiate(scr_SceneManager.globalSceneManager.currentEncounter.entities[x]._entity, Vector3.zero, Quaternion.identity);
-            _entity.InitPosition(scr_SceneManager.globalSceneManager.currentEncounter.entities[x].x, scr_SceneManager.globalSceneManager.currentEncounter.entities[x].y);
+            Entity _entity = new Entity();
+            _entity = (Entity)Instantiate(encounter.entities[x].entity, Vector3.zero, Quaternion.identity);
+            _entity.InitPosition(encounter.entities[x].x, encounter.entities[x].y);
             activeEntities[x] = _entity;
         }
     }
@@ -185,7 +183,7 @@ public class scr_Grid : MonoBehaviour{
             grid[x, y].DePrime();
     }
 
-    public void SetTileOccupied(bool isOccupied, int x, int y, scr_Entity ent)
+    public void SetTileOccupied(bool isOccupied, int x, int y, Entity ent)
     {
         if (LocationOnGrid(x, y))
         {
@@ -217,31 +215,27 @@ public class scr_Grid : MonoBehaviour{
         {
             if (activeEntities[i].gameObject.activeSelf)
             {
-                if (activeEntities[i]._gridPos == attack.pos) 
+                if (activeEntities[i]._gridPos == attack.position) 
                 {
-                    //Debug.Log(activeEntities[i].entityTerritory.name + " " + attack.entity.entityTerritory.name);
                     if (activeEntities[i].type != attack.entity.type)
                     {
                         Debug.Log("ACTIVE ENTITY HIT!");
                         //Check if entity is invincible and assigns iframes accordingly
                         if (!activeEntities[i].isInvincible())
                         {
-                            activeEntities[i].HitByAttack(attack._attack);
+                            activeEntities[i].HitByAttack(attack.attack);
                             if (activeEntities[i].has_iframes)
                             {
                                 //Activate invincibility frames
                                 activeEntities[i].setInvincible(true, activeEntities[i].invulnTime);
-
                             }
                         }
                         attack.entityIsHit = true;
                         attack.entityHit = activeEntities[i];
-                        attack._attack.ImpactEffects();
+                        attack.attack.ImpactEffects();
                     }
-                    
                 }
             }
-          
         }
         return attack; 
     }
@@ -252,7 +246,7 @@ public class scr_Grid : MonoBehaviour{
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <returns></returns>
-    public scr_Entity GetEntityAtPosition(int x, int y)
+    public Entity GetEntityAtPosition(int x, int y)
     {
         if (LocationOnGrid(x, y))
         {
@@ -302,14 +296,14 @@ public class scr_Grid : MonoBehaviour{
 
     }
 
-    public void RemoveEntity(scr_Entity entity)
+    public void RemoveEntity(Entity entity)
     {
         float tempID = entity.gameObject.GetInstanceID();
         for (int i = 0; i < activeEntities.Length; i++){
             if (activeEntities[i].gameObject.GetInstanceID() == tempID)
             {
                 Debug.Log("help me");
-                scr_Entity[] temporaryEntities = new scr_Entity[activeEntities.Length - 1];
+                Entity[] temporaryEntities = new Entity[activeEntities.Length - 1];
                 for(int j = 0; j < activeEntities.Length; j++)
                 {
                     if (j >= i)
@@ -329,7 +323,6 @@ public class scr_Grid : MonoBehaviour{
             }
             else
             {
-                Debug.Log("else"); 
                 return;
             }
         }
@@ -341,10 +334,10 @@ public class scr_Grid : MonoBehaviour{
     {
         bool colFound = false;
         //Debug.Log("SEIZE!");
-        for (int i = 0; i < xSizeMax; i++)
+        for (int i = 0; i < columnSizeMax; i++)
         {
 
-            for (int j = 0; j < ySizeMax; j++)
+            for (int j = 0; j < rowSizeMax; j++)
             {
                 //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
                 if (grid[i, j].territory.name != TerrName.Player)
@@ -375,10 +368,10 @@ public class scr_Grid : MonoBehaviour{
         Debug.Log("RESEIZE");
         yield return new WaitForSeconds(waitTime);
         bool colFound = false;
-        for (int i = xSizeMax - 1; i >= 0; i--)
+        for (int i = columnSizeMax - 1; i >= 0; i--)
         {
 
-            for (int j = 0; j < ySizeMax; j++)
+            for (int j = 0; j < rowSizeMax; j++)
             {
                 //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
                 if (grid[i, j].territory.name != TerrName.Enemy)

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099033517750084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07005042, y: 1.01, z: 0}
+  m_LocalPosition: {x: 0.07005042, y: 0.81, z: 0}
   m_LocalScale: {x: 0.258915, y: 0.258915, z: 0.3}
   m_Children: []
   m_Father: {fileID: 4483777865337536}
@@ -65,9 +65,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 1324763931
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 109a9e50584eccd48b5a7e8b5e6623e7, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
   m_FlipX: 1
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5953397925229168129}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Enemy
+  m_TagString: ObstAcle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,8 +109,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116592492456940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 558.98376, y: 520.74756, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
+  m_LocalPosition: {x: 558.99, y: 520.83, z: 0}
+  m_LocalScale: {x: 0.24351601, y: 0.24351601, z: 0}
   m_Children:
   - {fileID: 4710732812831620}
   - {fileID: 4681608791784862}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   _gridPos: {x: 0, y: 0}
   _health:
     hp: 50
@@ -171,6 +171,7 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  isStunned: 0
   hurts_SFX:
   - {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
   die_SFX: {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
@@ -297,7 +298,7 @@ AudioSource:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243843424514397098, guid: 7117f9058e0f8104c8d7218cd2b06d74,
+  OutputAudioMixerGroup: {fileID: 243883424422922524, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -394,7 +395,7 @@ AudioSource:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243883424422922524, guid: 7117f9058e0f8104c8d7218cd2b06d74,
+  OutputAudioMixerGroup: {fileID: 243843424514397098, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -547,8 +548,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 0.3931559, g: 0.8962264, b: 0.39853984, a: 1}
@@ -626,8 +627,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

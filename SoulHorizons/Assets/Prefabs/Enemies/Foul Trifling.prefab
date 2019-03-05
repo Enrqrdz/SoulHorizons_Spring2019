@@ -65,8 +65,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 0.3931559, g: 0.8962264, b: 0.39853984, a: 1}
@@ -91,8 +91,8 @@ GameObject:
   - component: {fileID: 212410729078944208}
   - component: {fileID: 95383577856842134}
   - component: {fileID: 114046856536850596}
-  - component: {fileID: 114188394038170206}
   - component: {fileID: 82158913280631940}
+  - component: {fileID: 7637038731936168251}
   m_Layer: 0
   m_Name: SpriteRenderer
   m_TagString: Untagged
@@ -148,8 +148,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1324763931
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6585156582d3da34e806342ccad856f6, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
@@ -194,36 +194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 95383577856842134}
---- !u!114 &114188394038170206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099033517750084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7a47803631a964ba3f08d547d87350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity: {fileID: 114725702907161856}
-  anim: {fileID: 0}
-  basicAttackChance: 55
-  chargeAttackChance: 10
-  chargeTimeUpper: 2
-  chargeTimeLower: 1
-  movementIntervalLower: 3
-  movementIntervalUpper: 4
-  attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
-  chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
-  movements_SFX:
-  - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
-  - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
-  - {fileID: 8300000, guid: 06847d784b65279448930a7c65222bd1, type: 3}
-  attacks_SFX:
-  - {fileID: 8300000, guid: 0c68b39421bdcea4192b86975d94583e, type: 3}
-  - {fileID: 8300000, guid: d44b4747215832a4b9a521d7aaa072ac, type: 3}
-  - {fileID: 8300000, guid: 0427e5383a85e27468bcd9f6a1a31f21, type: 3}
 --- !u!82 &82158913280631940
 AudioSource:
   m_ObjectHideFlags: 0
@@ -320,6 +290,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7637038731936168251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099033517750084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0407a7f4e82a94ca65c5e99e39bb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 114725702907161856}
+  anim: {fileID: 0}
+  movementIntervalLower: 2
+  movementIntervalUpper: 3
+  attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
+  chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
+  movements_SFX:
+  - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
+  - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
+  - {fileID: 8300000, guid: 06847d784b65279448930a7c65222bd1, type: 3}
+  attacks_SFX:
+  - {fileID: 8300000, guid: 2a4b8d76122eff84a8b0dd06431dc0db, type: 3}
 --- !u!1 &1116592492456940
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,10 +325,10 @@ GameObject:
   - component: {fileID: 4483777865337536}
   - component: {fileID: 61906949573251334}
   - component: {fileID: 114725702907161856}
-  - component: {fileID: 114373111611885714}
+  - component: {fileID: 6450218370751255472}
   - component: {fileID: 82240855345996476}
   - component: {fileID: 82587730288405618}
-  - component: {fileID: 82985607249628794}
+  - component: {fileID: 82506920895334072}
   m_Layer: 0
   m_Name: Foul Trifling
   m_TagString: Enemy
@@ -402,7 +396,7 @@ MonoBehaviour:
     hp: 50
     shield: 0
     max_hp: 50
-  _ai: {fileID: 114373111611885714}
+  _ai: {fileID: 6450218370751255472}
   entityTerritory:
     name: 1
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
@@ -411,16 +405,15 @@ MonoBehaviour:
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
-  invulnTime: 0
+  invulnTime: 100
+  isStunned: 0
   hurts_SFX:
-  - {fileID: 8300000, guid: 8cc96daad9e40b34e89438f259c636ce, type: 3}
-  - {fileID: 8300000, guid: 47b6ba2ecd0b41046b04e996d8152611, type: 3}
-  - {fileID: 8300000, guid: 0b146d0b97f1b1c4cbf907bbf9e83713, type: 3}
-  die_SFX: {fileID: 8300000, guid: a3b03b2ed4235ae41bded89f6d7ca807, type: 3}
+  - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  die_SFX: {fileID: 8300000, guid: 091c1dad4393cda409ed1617bb1831a5, type: 3}
   anim: {fileID: 95383577856842134}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
---- !u!114 &114373111611885714
+--- !u!114 &6450218370751255472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,17 +422,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7a47803631a964ba3f08d547d87350, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a0407a7f4e82a94ca65c5e99e39bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  basicAttackChance: 55
-  chargeAttackChance: 10
-  chargeTimeUpper: 2
-  chargeTimeLower: 1
-  movementIntervalLower: 3
-  movementIntervalUpper: 4
+  movementIntervalLower: 1.8
+  movementIntervalUpper: 3
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:
@@ -447,9 +436,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
   - {fileID: 8300000, guid: 06847d784b65279448930a7c65222bd1, type: 3}
   attacks_SFX:
-  - {fileID: 8300000, guid: 0c68b39421bdcea4192b86975d94583e, type: 3}
-  - {fileID: 8300000, guid: d44b4747215832a4b9a521d7aaa072ac, type: 3}
-  - {fileID: 8300000, guid: 0427e5383a85e27468bcd9f6a1a31f21, type: 3}
+  - {fileID: 8300000, guid: 2a4b8d76122eff84a8b0dd06431dc0db, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -570,7 +557,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0.2
+  Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -644,7 +631,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &82985607249628794
+--- !u!82 &82506920895334072
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -855,8 +842,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

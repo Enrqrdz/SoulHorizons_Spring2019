@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100223d78fa814c23a6d3ce8904e2afc, type: 3}
+  m_Name: Basic Map
+  m_EditorClassIdentifier: 
+  numberOfColumns: 8
+  numberOfRows: 4
+  playerTile:
+    name: 0
+    TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+    TerrSprite: {fileID: 0}
+  enemyTile:
+    name: 1
+    TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+    TerrSprite: {fileID: 0}

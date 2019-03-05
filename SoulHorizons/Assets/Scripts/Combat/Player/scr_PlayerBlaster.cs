@@ -22,8 +22,8 @@ public class scr_PlayerBlaster : MonoBehaviour {
 	public float fireRate = 0.2f; //how often the player can fire the blaster
 	public float chargeCooldown = 0.4f; //we can use this instead of fire rate after a charged shot if we want a longer cooldown for charged shots
 	private bool readyToFire = true; //used to indicate if the blaster is ready to fire again
-	public Attack attack; //the attack that will be launched
-	private scr_Entity playerEntity;
+	public AttackData attack; //the attack that will be launched
+	private Entity playerEntity;
 
 	public SpriteRenderer baseProjectile;
 	public SpriteRenderer projectile1;
@@ -40,7 +40,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
     void Awake()
 	{
 		//objectPool_scr = GetComponent<scr_ObjectPool>();
-		playerEntity = GetComponent<scr_Entity>();
+		playerEntity = GetComponent<Entity>();
 	}
 	
 	void Start () {
@@ -52,8 +52,8 @@ public class scr_PlayerBlaster : MonoBehaviour {
 
     private bool blastLastFrame = false; //this is used to get detect "buttonUp" since we can only determine if the button is down or not
 	void Update () {
-		bool blastUp = blastLastFrame && !scr_InputManager.Blast(); //blastUp is true if the button was down(true) last frame and is not pressed this frame
-		blastLastFrame = scr_InputManager.Blast(); //update the blast last frame
+		bool blastUp = blastLastFrame && !InputManager.Blast(); //blastUp is true if the button was down(true) last frame and is not pressed this frame
+		blastLastFrame = InputManager.Blast(); //update the blast last frame
 
 		if (pressed)
 		{
@@ -61,7 +61,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 			//TODO:need to calculate charge level here for visual indicators that you have increased the charge level
 		}
 
-		if (scr_InputManager.Blast() && readyToFire)
+		if (InputManager.Blast() && readyToFire)
 		{
             if (BlasterCharge_SFX.isPlaying != true && timePressed < chargeTime1)
             {
@@ -71,7 +71,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
             pressed = true;
         }
 
-        if (scr_InputManager.Blast() && readyToFire)
+        if (InputManager.Blast() && readyToFire)
         {
             if (timePressed > chargeTime1)
             {
@@ -102,7 +102,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 				attack.damage = (int) Mathf.Round(damage*damageMultiplier);
 				//set the projectile sprite
 				attack.particles = baseProjectile;
-				scr_AttackController.attackController.AddNewAttack(attack, playerEntity._gridPos.x, playerEntity._gridPos.y, playerEntity);
+				AttackController.Instance.AddNewAttack(attack, playerEntity._gridPos.x, playerEntity._gridPos.y, playerEntity);
 				StartCoroutine(AttackCooldown(fireRate));
 			}
 			else
@@ -114,7 +114,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 				//set the projectile sprite
 				attack.particles = projectile1;
 				//proj.Fire(damage, 1, baseSpeed);
-				scr_AttackController.attackController.AddNewAttack(attack, playerEntity._gridPos.x, playerEntity._gridPos.y, playerEntity);
+				AttackController.Instance.AddNewAttack(attack, playerEntity._gridPos.x, playerEntity._gridPos.y, playerEntity);
 				StartCoroutine(AttackCooldown(chargeCooldown));
                 
 			}

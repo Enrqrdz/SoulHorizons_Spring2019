@@ -13,8 +13,9 @@ public class scr_EnemyAI_1 : scr_EntityAI
     public float movementIntervalLower;
     public float movementIntervalUpper;
     bool waiting = false;
-    public Attack attack1;
-    public Attack chargedAttack;
+    public AttackData attack1;
+    public AttackData chargedAttack;
+    public int numOfAttacks;
 
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;
@@ -24,7 +25,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
     private AudioClip attack_SFX;
     private bool canMove = true;
     private bool charging = false;
-    private int state = 2;
+    private int state = 3;
     private bool completedTask = true;
     private bool broken = false; //This is to check if something has caused their AI to stop working 
 
@@ -33,29 +34,16 @@ public class scr_EnemyAI_1 : scr_EntityAI
         anim = gameObject.GetComponentInChildren<Animator>();
     }
 
-    public override void Move()
-    {
-
-    }
-    public override void Attack()
-    {
-
-    }
     public override void UpdateAI()
     {
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (completedTask)
         {
-            StartCoroutine(Brain()); 
+            StartCoroutine(Brain());
         }
     }
 
-    public override void Die()
-    {
-        entity.Death();
-    }
-
-    void Movement()
+    public override void Move()
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Footsteps_SFX = SFX_Sources[0];
@@ -69,11 +57,9 @@ public class scr_EnemyAI_1 : scr_EntityAI
         int _temp = Random.Range(0, 2);                                         //Pick a number between 0 and 1
         int _x = entity._gridPos.x;
         int _y = entity._gridPos.y;
-        int _tries = 0; 
-        
-        
+        int _tries = 0;
 
-        while(_tries < 10)
+        while (_tries < 10)
         {
             _temp = Random.Range(0, 2);
             if (_temp == 0)                                                          //if that number == 0, then we're moving vertically 
@@ -106,11 +92,72 @@ public class scr_EnemyAI_1 : scr_EntityAI
         completedTask = true;
     }
 
+    int PickXCoord()
+    {
+        //must return int 
+        int _range = scr_Grid.GridController.columnSizeMax;
+        int _currPosX = entity._gridPos.x;
+
+        if (_currPosX == _range - 1)
+        {
+            return (_currPosX - 1);
+        }
+        else if (_currPosX == _range / 2)
+        {
+            return _currPosX + 1;
+        }
+        else
+        {
+            int _temp = Random.Range(0, 2);
+            if (_temp == 0)
+            {
+                return _currPosX + 1;
+            }
+            else if (_temp == 1)
+            {
+                return _currPosX - 1;
+            }
+
+            return 0;
+        }
+
+    }
+
+    int PickYCoord()
+    {
+        if (entity._gridPos.y == 0)   //AI is on y = 0 and can only move to 1 (down)                             
+        {
+            return 1;
+        }
+        else if (entity._gridPos.y == 1)    //AI is on y = 1 and can move either up or down
+        {
+            int _temp = Random.Range(0, 2);  //make a random number 0 or 1
+            if (_temp == 0)  //if this number is 0, move to 0 (up)
+            {
+                return 0;
+            }
+            else     //if this number is 1, move to 1 (down) 
+            {
+                return 2;
+            }
+        }
+        else    //otherwise, the AI is on 2 and can only move to 1 (up)
+        {
+            return 1;
+        }
+    }
+
+   
+
+    public override void Die()
+    {
+        entity.Death();
+    }
 
     void Attack1()
     {
         //make sure we do a check condition for the attack : if(chargedAttack.CheckCondition(entity))
-        scr_AttackController.attackController.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
+        AttackController.Instance.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
         int index2 = Random.Range(0, attacks_SFX.Length);
         attack_SFX = attacks_SFX[index2];
         Attack_SFX.clip = attack_SFX;
@@ -118,7 +165,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
     }
     void Attack2()
     {
-        scr_AttackController.attackController.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
+        AttackController.Instance.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
     }
     void StartAttack1()
     {
@@ -129,66 +176,9 @@ public class scr_EnemyAI_1 : scr_EntityAI
         anim.SetBool("Attack2", true);
     }
 
+ 
 
-
-
-
-    int PickXCoord()
-    {
-        //must return int 
-        int _range = scr_Grid.GridController.xSizeMax;
-        int _currPosX = entity._gridPos.x;
-
-        if(_currPosX == _range - 1)
-        {
-            return (_currPosX - 1); 
-        }
-        else if(_currPosX == _range / 2)
-        {
-            return _currPosX + 1; 
-        }
-        else
-        {
-            int _temp = Random.Range(0, 2);
-            if(_temp == 0)
-            {
-                return _currPosX + 1; 
-            }
-            else if(_temp == 1)
-            {
-                return _currPosX - 1; 
-            }
-
-            return 0;
-        }
-
-    }
-
-    int PickYCoord()
-    {
-        if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
-        {
-            return 1;
-        }
-        else if (entity._gridPos.y == 1)                        //AI is on y = 1 and can move either up or down
-        {
-            int _temp = Random.Range(0, 2);             //make a random number 0 or 1
-            if (_temp == 0)                              //if this number is 0, move to 0 (up)
-            {
-                return 0;
-            }
-            else                                        //if this number is 1, move to 1 (down) 
-            {
-                return 2;
-            }
-        }
-        else                                            //otherwise, the AI is on 2 and can only move to 1 (up)
-        {
-            return 1;
-        }
-    }
-
-    int AngerTest()                     //here is where we will decide whether or not the unit attacks, and if it does, what type of attack: returns a state # for the brain  
+    int AngerTest()  //here is where we will decide whether or not the unit attacks, and if it does, what type of attack: returns a state # for the brain  
     {
         //Do I attack?
         int _testVal = Random.Range(0, 100);
@@ -218,9 +208,8 @@ public class scr_EnemyAI_1 : scr_EntityAI
         {
             case 0:
                 completedTask = false; 
-                Movement();
-
-                state = 1; 
+                Move();
+                state = 3; 
                 break;
 
             case 1:
@@ -237,23 +226,46 @@ public class scr_EnemyAI_1 : scr_EntityAI
                 break;
 
             case 3:
-                completedTask = false;
-                yield return new WaitForSecondsRealtime(.75f); 
-                StartAttack1();
-                yield return new WaitForSecondsRealtime(2);
-                state = 0;
-                completedTask = true;
-                break;
+                if (numOfAttacks < 2)
+                {
+                    completedTask = false;
+                    yield return new WaitForSecondsRealtime(.75f);
+                    StartAttack1();
+                    yield return new WaitForSecondsRealtime(2);
+                    state = 4;
+                    completedTask = true;
+                    numOfAttacks++;
+                    break;
+                }
+                else
+                {
+                    state = 0;
+                    completedTask = true;
+                    numOfAttacks = 0;
+                    break;
+                }
+                
 
             case 4:
-                completedTask = false;
-                float _thisTime = Random.Range(chargeTimeLower, chargeTimeUpper);
-                yield return new WaitForSecondsRealtime(_thisTime); 
-                StartAttack2();
-                yield return new WaitForSecondsRealtime(2f);
-                state = 0;
-                completedTask = true;
-                break;
+                if (numOfAttacks < 2)
+                {
+                    completedTask = false;
+                    float _thisTime = Random.Range(chargeTimeLower, chargeTimeUpper);
+                    yield return new WaitForSecondsRealtime(_thisTime);
+                    StartAttack2();
+                    yield return new WaitForSecondsRealtime(2f);
+                    state = 3;
+                    completedTask = true;
+                    numOfAttacks++;
+                    break;
+                }
+                else
+                {
+                    state = 0;
+                    completedTask = true;
+                    numOfAttacks = 0;
+                    break;
+                }
         }
         yield return null; 
     }

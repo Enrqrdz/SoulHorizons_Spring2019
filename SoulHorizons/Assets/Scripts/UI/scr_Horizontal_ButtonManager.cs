@@ -28,11 +28,11 @@ public class scr_Horizontal_ButtonManager : MonoBehaviour {
         if (!axisPressed)
         {
             //just pressed the joystick
-            axis = scr_InputManager.MenuHorizontal();
+            axis = InputManager.MenuHorizontal();
             axisPressed = true;
         }
 
-        if(scr_InputManager.MenuHorizontal() == 0)
+        if(InputManager.MenuHorizontal() == 0)
         {
             //joystick is not pressed
             axisPressed = false;

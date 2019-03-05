@@ -1,27 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Colin 9/15/18
 
-/// <summary>
-/// Run this when the game starts.
-/// </summary>
-public class GameLaunch : MonoBehaviour {
-
-	void Start () {	
-	}
+public class GameLaunch : MonoBehaviour
+{
+    public RegionGenerator regionGenerator;
 
     public void NewGame()
     {
-        SaveLoad.NewGame();
+        SaveManager.NewSave();
+        SaveManager.currentGame.SetRegion(regionGenerator.GenerateRegion());
+
+        List<CardState> startingDeck = gameObject.GetComponent<ScriptableObjectFinder>().GetStartingDeck();
+        SaveManager.currentGame.inventory.AddCardToInventory(startingDeck);
+        SaveManager.currentGame.inventory.AddCardToDeck(startingDeck);
+
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.WORLDMAP);
     }
 
-    /// <summary>
-    /// Called by the play button
-    /// </summary>
-    public void Play()
+    public void Continue()
     {
-        SaveLoad.Load();
+        SaveManager.Load();
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.WORLDMAP);
     }
-
 }

@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1324763931
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 72bf3c1a018294d4d99c09d8c0d4e8ed, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
@@ -116,7 +116,6 @@ MonoBehaviour:
   aRInterval: 5
   movementIntervalLower: 3
   movementIntervalUpper: 5
-  dodgeChance: 60
   attacks_SFX:
   - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
 --- !u!82 &82002260226468596
@@ -326,11 +325,10 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  isStunned: 0
   hurts_SFX:
-  - {fileID: 8300000, guid: 39a19e3b71171d44f8674ea450365c72, type: 3}
-  - {fileID: 8300000, guid: 31756c889a7e09b4d83c7b70afcbde03, type: 3}
-  - {fileID: 8300000, guid: e154a2027eecbef4e9068d3de8ee3ae7, type: 3}
-  die_SFX: {fileID: 8300000, guid: 39a19e3b71171d44f8674ea450365c72, type: 3}
+  - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  die_SFX: {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
@@ -352,11 +350,10 @@ MonoBehaviour:
   hSChargeTime: 3
   arrowRain: {fileID: 11400000, guid: 320a8358f456ced43b8ea33ecfec776c, type: 2}
   aRInterval: 5
-  movementIntervalLower: 3
-  movementIntervalUpper: 5
-  dodgeChance: 60
+  movementIntervalLower: 2.5
+  movementIntervalUpper: 3.5
   attacks_SFX:
-  - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
+  - {fileID: 8300000, guid: d25492f55425f534994a68501fb4cc25, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -793,8 +790,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -872,8 +869,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -953785915
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
   m_Color: {r: 0.3931559, g: 0.8962264, b: 0.39853984, a: 1}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1255188bf28c8354c8ec89464331309e, type: 3}
+  m_Name: Atk_Meteor
+  m_EditorClassIdentifier: 
+  incrementTime: 0.2
+  maxIncrementRange: 3
+  damage: 10
+  type: 1
+  hasPiercing: 0
+  particles: {fileID: 212268602049623880, guid: 3306d589b86a9424794eedbb5ad7f1c7,
+    type: 3}
+  particlesOffset: {x: -0.2, y: 0, z: 0}
+  particleSpeed: 1
+  MeteorSFX: {fileID: 8300000, guid: 1f619785f2fe4234686f5d85676c839b, type: 3}

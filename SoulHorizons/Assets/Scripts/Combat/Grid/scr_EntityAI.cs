@@ -4,12 +4,10 @@ using UnityEngine;
 
 public abstract class scr_EntityAI : MonoBehaviour {
 
-    public scr_Entity entity;
+    public Entity entity;
     public Animator anim;
 
     public abstract void Move();
-
-    public abstract void Attack();
 
     public abstract void UpdateAI();
 

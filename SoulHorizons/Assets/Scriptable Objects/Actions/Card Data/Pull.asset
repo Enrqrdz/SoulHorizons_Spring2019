@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75285cb099550c94ea9789dfe32be5ee, type: 3}
+  m_Name: Pull
+  m_EditorClassIdentifier: 
+  actionName: Pull
+  art: {fileID: 21300000, guid: d151cc8744ac0714da4cd49c1143c43a, type: 3}
+  element: 0
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1
+  description: 'Pull''s an enemy in the same row one space closer
+
+    and stuns them briefly'
+  PullSFX: {fileID: 0}
+  pull: {fileID: 11400000, guid: ece247c5e701ec54fb1e4685a8e83af1, type: 2}

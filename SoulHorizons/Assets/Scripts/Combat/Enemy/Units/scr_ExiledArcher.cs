@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class scr_ExiledArcher : scr_EntityAI {
 
+    //AKA Bird Bow Boi
 
-    public Attack hunterShot;
+    public AttackData hunterShot;
     public float hSChargeTime;
     private bool hSOnCD = false;   //On Cooldown 
-    private float hSCooldownTime = 1.5f; 
+    private float hSCooldownTime = 1.5f;
 
-
-
-    public Attack arrowRain;
+    public AttackData arrowRain;
     public float aRInterval;
     public float movementIntervalLower;
     public float movementIntervalUpper;
-    public float dodgeChance; 
+
     private bool canArrowRain = true;
-    private bool broken = false;
-    private bool canMove = true; 
+    private bool canMove = true;
+    private bool goBackwards = false;
+    private int movePosition = 0;
 
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
@@ -30,21 +30,91 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[1];
-        anim = gameObject.GetComponentInChildren<Animator>();
+        anim = gameObject.GetComponentInChildren<Animator>(); 
     }
 
     public override void Move()
     {
-        
+        int xPos = entity._gridPos.x;
+        int yPos = entity._gridPos.y;
+        int xRange = scr_Grid.GridController.columnSizeMax;
+        int yRange = scr_Grid.GridController.rowSizeMax;
+
+        try
+        {
+            yPos = PickYCoord(yPos, movePosition, goBackwards);
+            xPos = PickXCoord(xPos, movePosition, goBackwards);
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+            {
+                entity.SetTransform(xPos, yPos);
+                if (movePosition < 3)
+                {
+                    movePosition++;
+                }
+                else
+                {
+                    movePosition = 0;
+                }
+                return;
+            }
+            else if(scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name)
+            {
+                goBackwards = !goBackwards;
+                yPos = PickYCoord(yPos, movePosition, goBackwards);
+                xPos = PickXCoord(xPos, movePosition, goBackwards);
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                {
+                    entity.SetTransform(xPos, yPos);   //move to new position
+                    if (movePosition < 3)
+                    {
+                        movePosition++;
+                    }
+                    else
+                    {
+                        movePosition = 0;
+                    }
+                    return;
+                }
+            }
+            else
+            {
+                goBackwards = !goBackwards;
+                movePosition = 3;
+                yPos = PickYCoord(yPos, movePosition, goBackwards);
+                xPos = PickXCoord(xPos, movePosition, goBackwards);
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                {
+                    entity.SetTransform(xPos, yPos);   //move to new position
+                    if (movePosition < 3)
+                    {
+                        movePosition++;
+                    }
+                    else
+                    {
+                        movePosition = 0;
+                    }
+                    return;
+                }
+            }
+        }
+        catch //If the new position is out of range of the grid, move the archer to the middle of the back column
+        {
+            yPos = yRange / 2;
+            xPos = xRange - 1;
+            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+            {
+                entity.SetTransform(xPos, yPos);   //move to new position
+                movePosition = 0;
+                goBackwards = false;
+                return;
+            }
+        }
     }
-    public override void Attack()
-    {
-        
-    }
+
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity); 
-        if(!hSOnCD  && HunterShotCheck())
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        if (!hSOnCD && HunterShotCheck())
         {
             StartCoroutine(HunterShot());
         }
@@ -52,15 +122,6 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             StartCoroutine(MovementClock());
         }
-
-
-        /*
-        if (canArrowRain)
-        {
-            StartCoroutine(ArrowRain(aRInterval)); 
-        }
-        */
-
     }
 
     public override void Die()
@@ -71,17 +132,27 @@ public class scr_ExiledArcher : scr_EntityAI {
     bool HunterShotCheck()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int playerY = player.GetComponent<scr_Entity>()._gridPos.y;
-        if(entity._gridPos.y == playerY)
+        int playerY = player.GetComponent<Entity>()._gridPos.y;
+        if (entity._gridPos.y == playerY)
         {
             return true;
         }
-        return false; 
+        return false;
     }
 
     void StartHunterShot()
     {
-        scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+        int randomVal;
+        randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
+        if (randomVal == 0 || randomVal == 5)
+        {
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
+        }
+        else
+        {
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+        }
     }
 
     private IEnumerator HunterShot()
@@ -93,144 +164,150 @@ public class scr_ExiledArcher : scr_EntityAI {
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
         anim.SetBool("Attack", true);
-        //scr_AttackController.attackController.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         yield return new WaitForSecondsRealtime(hSCooldownTime);
-        hSOnCD = false; 
+        hSOnCD = false;
     }
 
-    private IEnumerator ArrowRain(float _aRInterval)
+    private IEnumerator ArrowRain(float _aRInterval) //Maybe one day we'll put this in
     {
-        
         //TELEGRAPH 
-        canArrowRain = false; 
+        canArrowRain = false;
         yield return new WaitForSecondsRealtime(1f);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int playerXPos = player.GetComponent<scr_Entity>()._gridPos.x;
-        scr_AttackController.attackController.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.ySizeMax - 1, entity);
+        int playerXPos = player.GetComponent<Entity>()._gridPos.x;
+        AttackController.Instance.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
         yield return new WaitForSecondsRealtime(_aRInterval);
-        canArrowRain = true; 
+        canArrowRain = true;
     }
 
 
-    int PickXCoord()
+    int PickXCoord(int xPos, int movePosition, bool backwards)
     {
-        //must return int 
-        int _range = scr_Grid.GridController.xSizeMax;
-        int _currPosX = entity._gridPos.x;
-
-        if (_currPosX == _range - 1)
+        if (movePosition == 0)
         {
-            return (_currPosX - 1);
-        }
-        else if (_currPosX == _range / 2)
-        {
-            return _currPosX + 1;
-        }
-        else
-        {
-            int _temp = Random.Range(0, 2);
-            if (_temp == 0)
+            if (backwards == false)
             {
-                return _currPosX + 1;
-            }
-            else if (_temp == 1)
-            {
-                return _currPosX - 1;
-            }
-
-            return 0;
-        }
-
-    }
-
-    int PickYCoord()
-    {
-        if (entity._gridPos.y == 0)                             //AI is on y = 0 and can only move to 1 (down)                             
-        {
-            return 1;
-        }
-        else if (entity._gridPos.y == 1)                        //AI is on y = 1 and can move either up or down
-        {
-            int _temp = Random.Range(0, 2);             //make a random number 0 or 1
-            if (_temp == 0)                              //if this number is 0, move to 0 (up)
-            {
-                return 0;
-            }
-            else                                        //if this number is 1, move to 1 (down) 
-            {
-                return 2;
-            }
-        }
-        else                                            //otherwise, the AI is on 2 and can only move to 1 (up)
-        {
-            return 1;
-        }
-    }
-
-    void Movement()
-    {
-
-
-        //Decide if we are moving horiz or vert.
-        int _temp = Random.Range(0, 2);                                         //Pick a number between 0 and 1
-        int _x = entity._gridPos.x;
-        int _y = entity._gridPos.y;
-        int _tries = 0;
-
-
-
-        while (_tries < 10)
-        {
-            _temp = Random.Range(0, 2);
-            if (_temp == 0)                                                          //if that number == 0, then we're moving vertically 
-            {
-                _y = PickYCoord();
-
-            }
-            else if (_temp == 1)                                                     //if that number == 1, we're moving horizonally 
-            {
-                _x = PickXCoord();
-
-            }
-
-            if (!scr_Grid.GridController.CheckIfOccupied(_x, _y) && (scr_Grid.GridController.ReturnTerritory(_x, _y).name == entity.entityTerritory.name))
-            {
-                entity.SetTransform(_x, _y);                               //move to new position
-                return;
+                return xPos - 1;
             }
             else
             {
-                _tries++;
-                if (_tries >= 10)
-                {
-                    broken = true;
-                    Debug.Log("I think I am broken");
-                }
+                return xPos - 1;
             }
         }
+        else if (movePosition == 1)
+        {
+            if (backwards == false)
+            {
+                return xPos - 1;
+            }
+            else
+            {
+                return xPos + 1;
+            }
+        }
+        else if (movePosition == 2)
+        {
+            if (backwards == false)
+            {
+                return xPos + 1;
+            }
+            else
+            {
+                return xPos + 1;
+            }
+        }
+        else
+        {
+            if (backwards == false)
+            {
+                return xPos + 1;
+            }
+            else
+            {
+                return xPos + 1;
+            }
+        }
+
+    }
+
+    int PickYCoord(int yPos, int movePosition, bool backwards)
+    {
+
+        if (movePosition == 0)
+        {
+            if (backwards == false)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos + 1;
+            }
+        }
+        else if (movePosition == 1)
+        {
+            if (backwards == false)
+            {
+                return yPos + 1;
+            }
+            else
+            {
+                return yPos - 1;
+            }
+        }
+        else if (movePosition == 2)
+        {
+            if (backwards == false)
+            {
+                return yPos + 1;
+            }
+            else
+            {
+                return yPos - 1;
+            }
+        }
+        else
+        {
+            if (backwards == false)
+            {
+                return yPos - 1;
+            }
+            else
+            {
+                return yPos + 1;
+            }
+        }
+    }
+
+    int GetXLimit(int xPos)
+    {
+        int xRange = scr_Grid.GridController.columnSizeMax;
+        int xLimit = xPos;
+        int tempX = xPos;
+        for (int i = 0; i < xRange; i++)
+        {
+            tempX--;
+            if (scr_Grid.GridController.grid[xLimit, entity._gridPos.y].territory.name != TerrName.Player)
+            {
+                xLimit = tempX;
+            }
+            else
+            {
+                return xLimit;
+            }
+        }
+        return xLimit;
     }
 
     IEnumerator MovementClock()
     {
         if (canMove)
         {
-            Movement();
             float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-            canMove = false; 
+            canMove = false;
             yield return new WaitForSecondsRealtime(_movementInterval);
-            canMove = true; 
+            Move();
+            canMove = true;
         }
-    }
-
-    void DodgeAttackVertically(int x, int y)
-    {
-        int _y = y + 1;
-        
-        if(_y > scr_Grid.GridController.ySizeMax - 1)
-        {
-            _y = y - 2; 
-        }
-
-        entity.SetTransform(x, _y);
     }
 }

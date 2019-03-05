@@ -17,6 +17,13 @@ public struct Territory
         TerrColor = col;
         TerrSprite = spr;
     }
+
+    public Territory(Territory territoryToCopy)
+    {
+        name = territoryToCopy.name;
+        TerrColor = territoryToCopy.TerrColor;
+        TerrSprite = territoryToCopy.TerrSprite;
+    }
 }
 public class scr_Tile : MonoBehaviour{
 
@@ -38,7 +45,7 @@ public class scr_Tile : MonoBehaviour{
     public int gridPositionX;
     public int gridPositionY;
     public int queuedAttacks = 0;
-    public scr_Entity entityOnTile;
+    public Entity entityOnTile;
     
 
     Vector2 spriteSize = new Vector2 (1f,.85f);
