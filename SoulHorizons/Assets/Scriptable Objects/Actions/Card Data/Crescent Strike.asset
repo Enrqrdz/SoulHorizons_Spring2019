@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93af1115fa8ce5044b48ead3ecc6efb1, type: 3}
+  m_Name: Crescent Strike
+  m_EditorClassIdentifier: 
+  actionName: Crescent Strike
+  art: {fileID: 21300000, guid: 63023d068ef6d3947beff08d45db918f, type: 3}
+  element: 1
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1
+  description: 'Fires a projectile which attacks in a crescent in
+
+    front of the player'
+  CrescentSFX: {fileID: 0}
+  crescentAttack: {fileID: 11400000, guid: a7b8f94fde793f34c9a9220cd5799dbe, type: 2}

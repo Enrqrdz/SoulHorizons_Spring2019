@@ -25,12 +25,12 @@ public static class CardPool
     {
         for(int i = 0; i < cardPool.Count; i++)
         {
-            if(cardPool[i] == cardData)
+            if (cardPool[i] == cardData)
             {
                 return i;
             }
         }
-
+        
         throw new System.ArgumentException("cardData is not in cardPool", "cardData");
     }
 }

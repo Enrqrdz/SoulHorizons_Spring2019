@@ -9,7 +9,6 @@ using UnityEngine;
 public class atk_Meteor : AttackData {
     private AudioSource PlayCardSFX;
     public AudioClip MeteorSFX;
-
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
