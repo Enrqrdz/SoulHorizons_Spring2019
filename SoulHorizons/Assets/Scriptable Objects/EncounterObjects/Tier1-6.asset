@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
-  m_Name: Test
+  m_Name: Tier1-6
   m_EditorClassIdentifier: 
-  name: 0 -1 Tutorial
+  name: Tier 1-6
   sceneName: Encounter
-  tier: 0
+  tier: 1
   entities:
   - entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
     x: 1

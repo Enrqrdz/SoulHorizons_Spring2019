@@ -44,7 +44,7 @@ public class Entity : MonoBehaviour
         baseColor = spr.color;
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Hurt_SFX = SFX_Sources[1];
-        _health.max_hp = _health.hp;
+        //_health.max_hp = _health.hp;
     }
     public void Update()
     {

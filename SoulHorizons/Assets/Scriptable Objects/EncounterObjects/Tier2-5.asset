@@ -10,25 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
-  m_Name: Test3
+  m_Name: Tier2-5
   m_EditorClassIdentifier: 
-  name: 0 -1 Tutorial
+  name: Tier2-5
   sceneName: Encounter
-  tier: 1
+  tier: 2
   entities:
   - entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
     x: 1
     y: 1
-  - entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
+  - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
     x: 5
     y: 0
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
     x: 5
     y: 2
-  - entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
+  - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
     x: 4
     y: 1
-  mouseNum: 0
-  mushNum: 1
-  archerNum: 2
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}
