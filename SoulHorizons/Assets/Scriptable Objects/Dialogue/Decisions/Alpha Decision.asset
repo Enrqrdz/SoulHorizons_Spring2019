@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd098f78705ec44d85d4f82f797089f, type: 3}
+  m_Name: Alpha Decision
+  m_EditorClassIdentifier: 
+  choices:
+  - {fileID: 7760533648458878091, guid: cd719aaed1656c74195fc18d8144eabb, type: 3}
+  - {fileID: 9007858242002834172, guid: dae0ae410d480844baa7dfbc0e5aa0d5, type: 3}
+  - {fileID: 860951035537152835, guid: e163f5be415750145a38df3ff5d8d45c, type: 3}
+  - {fileID: 3682015086532858076, guid: 8aa0473a042ace24e878fb28b6129007, type: 3}
