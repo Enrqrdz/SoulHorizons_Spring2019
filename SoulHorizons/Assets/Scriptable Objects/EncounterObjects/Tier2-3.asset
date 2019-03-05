@@ -17,18 +17,18 @@ MonoBehaviour:
   tier: 2
   entities:
   - entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
-    x: 0
-    y: 0
+    x: 1
+    y: 1
   - entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
-    x: 0
-    y: 0
+    x: 5
+    y: 3
   - entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
-    x: 0
-    y: 0
+    x: 7
+    y: 1
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
-    x: 0
-    y: 0
+    x: 6
+    y: 2
   - entity: {fileID: 114725702907161856, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
-    x: 0
-    y: 0
+    x: 4
+    y: 1
   mapData: {fileID: 0}

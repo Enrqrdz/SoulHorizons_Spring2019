@@ -28,4 +28,10 @@ MonoBehaviour:
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
     x: 4
     y: 1
+  - entity: {fileID: 114725702907161856, guid: d1c5e4c1de720b64680765d836b159a9, type: 3}
+    x: 6
+    y: 3
+  - entity: {fileID: 114725702907161856, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
+    x: 6
+    y: 2
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}

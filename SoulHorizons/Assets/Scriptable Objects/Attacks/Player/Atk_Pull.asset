@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1675cbaf9102aa46b62db1f32c10a16, type: 3}
   m_Name: Atk_Pull
   m_EditorClassIdentifier: 
-  incrementTime: 0.1
+  incrementTime: 0.06
   maxIncrementRange: 100
   damage: 0
   type: 1

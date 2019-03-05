@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 4
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1.8
+  cooldown: 0.8
   description: 
   BlurSFX: {fileID: 8300000, guid: 93d3d9cc687f5e04ab58b052c4d14d1d, type: 3}
   duration: 3

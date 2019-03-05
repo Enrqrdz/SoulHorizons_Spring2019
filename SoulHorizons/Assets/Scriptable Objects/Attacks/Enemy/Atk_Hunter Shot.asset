@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b55c8d9be86884190a3e9db197dd00, type: 3}
   m_Name: Atk_Hunter Shot
   m_EditorClassIdentifier: 
-  incrementTime: 0.2
+  incrementTime: 0.1
   maxIncrementRange: 10
   damage: 10
   type: 0
-  piercing: 1
+  hasPiercing: 0
   particles: {fileID: 212160339734999984, guid: 7103f55527c3a4745b845ab6db5777e7,
     type: 3}
   particlesOffset: {x: -0.3, y: 0.4, z: 0}

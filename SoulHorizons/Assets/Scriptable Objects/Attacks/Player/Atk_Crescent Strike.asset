@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be64bcd7d0735846bb52c9537dd7770, type: 3}
   m_Name: Atk_Crescent Strike
   m_EditorClassIdentifier: 
-  incrementTime: 0.2
+  incrementTime: 0.12
   maxIncrementRange: 3
   damage: 10
   type: 1

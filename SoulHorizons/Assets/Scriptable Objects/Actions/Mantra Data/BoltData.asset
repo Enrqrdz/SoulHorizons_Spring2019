@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 1
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 0.8
+  cooldown: 0.7
   description: 
   boltAttack: {fileID: 11400000, guid: da7ee130257b5684b80a3a6892049468, type: 2}
   BoltSFX: {fileID: 8300000, guid: 2a977ea0e5cf5d24685663bc83a907a8, type: 3}
