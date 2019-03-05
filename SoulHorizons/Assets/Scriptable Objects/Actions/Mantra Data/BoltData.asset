@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BoltData
   m_EditorClassIdentifier: 
   actionName: Bolt
-  art: {fileID: 21300000, guid: d354c4b2dfb8aba43b705cc08858a2f6, type: 3}
+  art: {fileID: 21300000, guid: 4d963b5aa5ea33948bb2c699b7e91734, type: 3}
   element: 1
   transformChargeAmount: 5
   castingTime: 0

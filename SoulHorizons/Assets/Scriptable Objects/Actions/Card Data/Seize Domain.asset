@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Seize Domain
   m_EditorClassIdentifier: 
   actionName: Seize Domain
-  art: {fileID: 21300000, guid: 133a9b6a5e302e447b9394941a5c6d8d, type: 3}
+  art: {fileID: 21300000, guid: ea5b959632fe92a45bfeb16c59bf5265, type: 3}
   element: 0
   transformChargeAmount: 5
   castingTime: 0
