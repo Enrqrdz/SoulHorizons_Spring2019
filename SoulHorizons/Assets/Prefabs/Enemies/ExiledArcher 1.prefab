@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1324763931
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 72bf3c1a018294d4d99c09d8c0d4e8ed, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
@@ -116,7 +116,6 @@ MonoBehaviour:
   aRInterval: 5
   movementIntervalLower: 3
   movementIntervalUpper: 5
-  dodgeChance: 60
   attacks_SFX:
   - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
 --- !u!82 &82002260226468596
@@ -326,6 +325,7 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  isStunned: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
   die_SFX: {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
@@ -350,9 +350,8 @@ MonoBehaviour:
   hSChargeTime: 3
   arrowRain: {fileID: 11400000, guid: 320a8358f456ced43b8ea33ecfec776c, type: 2}
   aRInterval: 5
-  movementIntervalLower: 3
-  movementIntervalUpper: 5
-  dodgeChance: 60
+  movementIntervalLower: 2.5
+  movementIntervalUpper: 3.5
   attacks_SFX:
   - {fileID: 8300000, guid: d25492f55425f534994a68501fb4cc25, type: 3}
 --- !u!82 &82240855345996476

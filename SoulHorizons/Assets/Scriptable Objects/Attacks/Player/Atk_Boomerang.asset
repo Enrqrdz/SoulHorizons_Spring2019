@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235b256c4f790a248b0f11ccabc6218c, type: 3}
   m_Name: Atk_Boomerang
   m_EditorClassIdentifier: 
-  incrementTime: 0.2
+  incrementTime: 0.09
   maxIncrementRange: 18
-  damage: 10
+  damage: 14
   type: 1
   hasPiercing: 1
   particles: {fileID: 212286977064683536, guid: 6805b2aea64a7294da92797ced98bd29,

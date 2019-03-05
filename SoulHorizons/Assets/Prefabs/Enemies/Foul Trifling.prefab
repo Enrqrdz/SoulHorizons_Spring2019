@@ -149,7 +149,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1324763931
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6585156582d3da34e806342ccad856f6, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
@@ -406,6 +406,7 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 100
+  isStunned: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
   die_SFX: {fileID: 8300000, guid: 0bef3dbba36208f41aceaf0640cad822, type: 3}
@@ -426,8 +427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  movementIntervalLower: 3
-  movementIntervalUpper: 4
+  movementIntervalLower: 1.8
+  movementIntervalUpper: 3
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:
