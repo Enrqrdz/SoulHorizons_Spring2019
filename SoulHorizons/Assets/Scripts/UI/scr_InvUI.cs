@@ -16,7 +16,9 @@ public class scr_InvUI : MonoBehaviour {
     public Text deckNum;
     public float deckTextX = 600;
     public float deckTextY = 400;
-    // Use this for initialization
+    
+    [SerializeField]
+    private GameObject regionButton;
 
     void Start () {
         SetDeckText();
@@ -33,6 +35,8 @@ public class scr_InvUI : MonoBehaviour {
             SetCardGraphics();
             UpdateBanners();
         }
+
+        CheckForRegionInput();
     }
 
     public void DisplayUI()
@@ -137,4 +141,11 @@ public class scr_InvUI : MonoBehaviour {
         }
     }
 
+    public void CheckForRegionInput()
+    {
+        if(Input.GetButtonDown("PlayCard2_Button") || Input.GetKeyDown("i"))
+        {
+            regionButton.GetComponent<Button>().onClick.Invoke();
+        }
+    }
 }
