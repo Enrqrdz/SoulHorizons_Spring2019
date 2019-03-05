@@ -30,7 +30,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[1];
-        anim = gameObject.GetComponentInChildren<Animator>();
+        anim = gameObject.GetComponentInChildren<Animator>(); 
     }
 
     public override void Move()
@@ -57,7 +57,7 @@ public class scr_ExiledArcher : scr_EntityAI {
                 }
                 return;
             }
-            else
+            else if(scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name)
             {
                 goBackwards = !goBackwards;
                 yPos = PickYCoord(yPos, movePosition, goBackwards);
@@ -76,7 +76,26 @@ public class scr_ExiledArcher : scr_EntityAI {
                     return;
                 }
             }
-
+            else
+            {
+                goBackwards = !goBackwards;
+                movePosition = 3;
+                yPos = PickYCoord(yPos, movePosition, goBackwards);
+                xPos = PickXCoord(xPos, movePosition, goBackwards);
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                {
+                    entity.SetTransform(xPos, yPos);   //move to new position
+                    if (movePosition < 3)
+                    {
+                        movePosition++;
+                    }
+                    else
+                    {
+                        movePosition = 0;
+                    }
+                    return;
+                }
+            }
         }
         catch //If the new position is out of range of the grid, move the archer to the middle of the back column
         {
@@ -258,6 +277,26 @@ public class scr_ExiledArcher : scr_EntityAI {
                 return yPos + 1;
             }
         }
+    }
+
+    int GetXLimit(int xPos)
+    {
+        int xRange = scr_Grid.GridController.columnSizeMax;
+        int xLimit = xPos;
+        int tempX = xPos;
+        for (int i = 0; i < xRange; i++)
+        {
+            tempX--;
+            if (scr_Grid.GridController.grid[xLimit, entity._gridPos.y].territory.name != TerrName.Player)
+            {
+                xLimit = tempX;
+            }
+            else
+            {
+                return xLimit;
+            }
+        }
+        return xLimit;
     }
 
     IEnumerator MovementClock()

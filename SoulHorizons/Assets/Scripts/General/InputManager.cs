@@ -161,7 +161,7 @@ public static class InputManager
 
 	/// <summary>
 	/// Xbox one - X, Y, A, B buttons
-	/// Keyboard - q, w, e, r buttons
+	/// Keyboard - a, w, s, d buttons
 	/// </summary>
 	/// <returns>returns 0-3 the frame a play card button is pressed or -1 if none is pressed</returns>
 	public static int ActionNumber()
