@@ -7,8 +7,12 @@ public class scr_InvButtons : MonoBehaviour
     public void addCard()
     {
         ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
+        CardState cardState = myCard.GetCardState();
 
-        SaveManager.currentGame.inventory.AddCardToDeck(myCard.GetCardState());
+        InventoryState inv = SaveManager.currentGame.inventory;
+
+        if(inv.GetAmountOfCardInDeck(cardState) + 1 <= inv.GetAmountOfCardInInventory(cardState))
+            SaveManager.currentGame.inventory.AddCardToDeck(cardState);
     }
 
     public void removeCard()
