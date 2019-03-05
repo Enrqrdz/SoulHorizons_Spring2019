@@ -89,5 +89,29 @@ public class InventoryState
 
         return count;
     }
+
+    public int GetAmountOfCardInInventory(CardState cardState)
+    {
+        foreach(CardState card in cardInv)
+        {
+            if(card.IsTheSameCard(cardState))
+            {
+                return card.numberOfCopies;
+            }
+        }
+        return 0;
+    }
+
+    public int GetAmountOfCardInDeck(CardState cardState)
+    {
+        foreach(CardState card in deck)
+        {
+            if(card.IsTheSameCard(cardState))
+            {
+                return card.numberOfCopies;
+            }
+        }
+        return 0;
+    }
 }
 
