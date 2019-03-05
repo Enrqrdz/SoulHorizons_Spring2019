@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLaunch : MonoBehaviour 
+public class GameLaunch : MonoBehaviour
 {
     public RegionGenerator regionGenerator;
 
@@ -10,17 +10,12 @@ public class GameLaunch : MonoBehaviour
     {
         SaveManager.NewSave();
         SaveManager.currentGame.SetRegion(regionGenerator.GenerateRegion());
-
-        List<CardState> startingDeck = gameObject.GetComponent<ScriptableObjectFinder>().GetStartingDeck();
-        SaveManager.currentGame.inventory.AddCardToInventory(startingDeck);
-        SaveManager.currentGame.inventory.AddCardToDeck(startingDeck);
-
-        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.WORLDMAP);
     }
 
     public void Continue()
     {
         SaveManager.Load();
-        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.WORLDMAP);
     }
 }
