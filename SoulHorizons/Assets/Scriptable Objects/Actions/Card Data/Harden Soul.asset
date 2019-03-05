@@ -19,5 +19,5 @@ MonoBehaviour:
   castingTime: 0
   cooldown: 1.8
   description: Adds temporary health to the player.
-  HardenSoulSFX: {fileID: 8300000, guid: ab860179d3ba16f48bf234a47330a69e, type: 3}
+  HardenSoulSFX: {fileID: 8300000, guid: a175d60370961d74dbdaf067d70bb1f4, type: 3}
   Shield_hp: 20
