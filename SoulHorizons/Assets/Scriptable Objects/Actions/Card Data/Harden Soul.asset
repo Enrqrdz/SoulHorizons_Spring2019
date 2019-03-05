@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 1
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: Adds temporary health to the player.
   HardenSoulSFX: {fileID: 8300000, guid: ab860179d3ba16f48bf234a47330a69e, type: 3}
   Shield_hp: 20

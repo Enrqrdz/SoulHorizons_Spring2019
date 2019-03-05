@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Blur
   m_EditorClassIdentifier: 
   actionName: Blur
-  art: {fileID: 21300000, guid: dfbac7c3950fdef49b7dbdd17a1cf6bc, type: 3}
+  art: {fileID: 21300000, guid: 41dc233cf0bc0874abfcca85b430708b, type: 3}
   element: 4
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: 
   BlurSFX: {fileID: 8300000, guid: 93d3d9cc687f5e04ab58b052c4d14d1d, type: 3}
   duration: 3

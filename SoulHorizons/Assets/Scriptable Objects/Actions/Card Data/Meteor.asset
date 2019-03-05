@@ -17,6 +17,6 @@ MonoBehaviour:
   element: 0
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: 
   meteorAttack: {fileID: 11400000, guid: d457d8639677859488384b05e7cbbe5f, type: 2}

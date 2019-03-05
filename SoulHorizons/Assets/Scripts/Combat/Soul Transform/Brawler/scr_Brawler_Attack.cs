@@ -13,28 +13,28 @@ public class scr_Brawler_Attack : MonoBehaviour {
 	private float swipe_yOffset = 0.2f; //an offset to move the effect higher
     
     /*Fury Swipe */
-    private int meleeDamage = 8;
-	private float meleeCooldown = 0.4f; //have these on separate cooldowns, so you can melee attack with the projectile in motion
+    public int meleeDamage = 8;
+	public float meleeCooldown = 0.4f; //have these on separate cooldowns, so you can melee attack with the projectile in motion
 	private bool meleeReady = true;
     private bool leftSlash = false;     //Used to alternate slahes
 
 	/*Shoulder Dash */
-	private int shoulderDamage = 15;
+	public int shoulderDamage = 15;
 	private bool dashing = false; //set to true if dashing
-	private float moveFrequency = 0.35f; //the pause between movements in the dash attack; used with a corroutine
+	public float moveFrequency = 0.35f; //the pause between movements in the dash attack; used with a corroutine
 	Vector2Int startPos = new Vector2Int(); //the point the dash starts at
 
 	/*Tank Up */
 	//private float tankDefenseBoost = 0.2f; //need to subtract this from health damage modifier; CANCELED for now
-	private int tankShieldGain = 10;
-	private float tankCooldown = 8f;
+	public int tankShieldGain = 10;
+	public float tankCooldown = 8f;
 	private bool tankReady = true; //whether the tank move can be used currently
 
 	/*Heavy Slam */
-	private int slamDamage = 30; //the starting amount of damage dealt
+	public int slamDamage = 30; //the starting amount of damage dealt
     private int slamDamageMax; //Max Slam Damage Reference
-    private int slamDamageDeprecation = 10; //Slam deprecation per column movement
-	private float slamCooldown = 8f;    //Player Slam CD
+    public int slamDamageDeprecation = 10; //Slam deprecation per column movement
+	public float slamCooldown = 8f;    //Player Slam CD
 	private bool slamReady = true;
 	private float slamMoveCooldown  = 0.004f;
 

@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 4
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: Boomerang?
   boomerangAttack: {fileID: 11400000, guid: 516a5abe9795e4840892f7d41aaef1ee, type: 2}
   BoomerangSFX: {fileID: 8300000, guid: 891336a9e02794c4293c7dc420eb2507, type: 3}

@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 1
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1.5
+  cooldown: 1.8
   description: 
   Mend_hp: 10
   MendSFX: {fileID: 0}
