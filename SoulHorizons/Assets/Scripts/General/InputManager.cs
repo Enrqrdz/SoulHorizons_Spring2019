@@ -10,6 +10,8 @@ public static class InputManager
     public static bool cannotMove = false; //set to true to prevent the player from inputting movement
     private static float falseRadius = 0.2f;
 
+    private static bool cannotTransformForAlpha = true;
+
     /// <summary>
     /// Xbox one - L stick / D-pad
     /// Keyboard - AD
@@ -107,6 +109,11 @@ public static class InputManager
 	/// <returns>returns true if any of these buttons were pressed this frame</returns>
 	public static bool SoulFusion()
 	{
+        if (cannotTransformForAlpha)
+        {
+            return false;
+        }
+
 		if(cannotInputAnything)
 		{
 			return false;
@@ -121,7 +128,12 @@ public static class InputManager
 	/// <returns>returns either 1,2, or 3 to indicate a selection, or 0 if none was selected</returns>
 	public static int K_SoulFusion()
 	{
-		if(cannotInputAnything)
+        if (cannotTransformForAlpha)
+        {
+            return 0;
+        }
+
+        if (cannotInputAnything)
 		{
 			return 0;
 		}
