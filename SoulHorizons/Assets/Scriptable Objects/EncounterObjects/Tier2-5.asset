@@ -20,12 +20,12 @@ MonoBehaviour:
     x: 1
     y: 1
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
-    x: 5
+    x: 6
     y: 0
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
     x: 5
     y: 2
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
-    x: 4
+    x: 6
     y: 1
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}

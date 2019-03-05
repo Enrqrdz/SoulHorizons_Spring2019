@@ -366,6 +366,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
   - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
   - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
+  - {fileID: 11400000, guid: bdde5020c96aa4044b9e2c5cc83c7441, type: 2}
   cardPool:
   - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
   - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}

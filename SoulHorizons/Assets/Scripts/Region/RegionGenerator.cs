@@ -23,11 +23,11 @@ public class RegionGenerator : MonoBehaviour
                 {
                     newEncounter.tier = 0;
                 }
-                else if (i >= 1 && i <= 5)
+                else if (i >= 1 && i <= 4)
                 {
                     newEncounter.tier = 1;
                 }
-                else if (i > 5)
+                else if (i > 4)
                 {
                     newEncounter.tier = 2;
                 }

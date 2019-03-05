@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incrementTime: 0.01
   maxIncrementRange: 2
-  damage: 8
+  damage: 10
   type: 0
   hasPiercing: 0
   particles: {fileID: 212489909936821062, guid: 93dcc66df25d71d408deac69aa2070c0,

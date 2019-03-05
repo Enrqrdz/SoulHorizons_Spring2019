@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pull
   m_EditorClassIdentifier: 
   actionName: Pull
-  art: {fileID: 0}
+  art: {fileID: 21300000, guid: d151cc8744ac0714da4cd49c1143c43a, type: 3}
   element: 0
   transformChargeAmount: 5
   castingTime: 0
