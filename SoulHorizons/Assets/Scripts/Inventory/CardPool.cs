@@ -21,7 +21,7 @@ public static class CardPool
         return cardPool[index];
     }
 
-    public static int getIndexOfCardData(ActionData cardData)
+    public static int GetIndexOfCardData(ActionData cardData)
     {
         for(int i = 0; i < cardPool.Count; i++)
         {
@@ -32,5 +32,11 @@ public static class CardPool
         }
         
         throw new System.ArgumentException("cardData is not in cardPool", "cardData");
+    }
+
+    public static CardState GetRandomCard()
+    {
+        int r = Random.Range(0,cardPool.Count);
+        return new CardState(cardPool[r], 1);
     }
 }

@@ -17,7 +17,7 @@ public class CardState
 
     public CardState(ActionData cardData, int numberOfCopies)
     {
-        cardIndexInPool = CardPool.getIndexOfCardData(cardData);
+        cardIndexInPool = CardPool.GetIndexOfCardData(cardData);
         this.numberOfCopies = numberOfCopies;
     }
 

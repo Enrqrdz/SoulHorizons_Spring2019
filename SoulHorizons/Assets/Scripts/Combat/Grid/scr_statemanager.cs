@@ -61,21 +61,8 @@ public class scr_statemanager : MonoBehaviour {
         UpdateEffects();
         //END OF ENCOUNTER - NO MORE ENEMIES
 		if(!endCombat && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
-        {
-            RewardMessage.SetActive(true);
- 
-            endCombat = true;
-
-            try
-            {
-                SaveManager.currentGame.SetPlayerHealth(playerEntity._health.hp);
-            }
-            catch (NullReferenceException e)
-            {
-                Debug.Log("This is a " + e);
-            }
-
-            SaveManager.currentGame.SetCurrentEncounterCompleteToTrue();
+        {   
+            OnVictory();
         }
         if (endCombat)
         {
@@ -134,5 +121,26 @@ public class scr_statemanager : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(time);
         showEffect = false;
+    }
+
+    private void OnVictory()
+    {
+        CardState newCard = CardPool.GetRandomCard();
+        SaveManager.currentGame.inventory.AddCardToInventory(newCard);
+
+        RewardMessage.SetActive(true);
+
+        endCombat = true;
+
+        try
+        {
+            SaveManager.currentGame.SetPlayerHealth(playerEntity._health.hp);
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log("This is a " + e);
+        }
+
+        SaveManager.currentGame.SetCurrentEncounterCompleteToTrue();
     }
 }
