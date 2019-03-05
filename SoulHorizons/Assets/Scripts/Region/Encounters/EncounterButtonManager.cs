@@ -5,10 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class EncounterButtonManager : MonoBehaviour
+public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     EncounterState encounterState;
-    EncounterData encounter;
 
     public GameObject infoPanel;
 
@@ -22,13 +21,17 @@ public class EncounterButtonManager : MonoBehaviour
     {
         infoPanel.SetActive(false);
         eventSystem = GameObject.Find("/EventSystem");
-        mouseText.text = "x " + encounter.GetNumberOfMouses();
-        mushText.text = "x " + encounter.GetNumberOfMush();
-        archerText.text = "x " + encounter.GetNumberOfArchers();
+        mouseText.text = "x " + encounterState.GetEncounterData().GetNumberOfMouses();
+        mushText.text = "x " + encounterState.GetEncounterData().GetNumberOfMush();
+        archerText.text = "x " + encounterState.GetEncounterData().GetNumberOfArchers();
 
         if (encounterState.isCompleted)
         {
             gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red; 
+        }
+        else if (!encounterState.isAccessible)
+        {
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.gray; 
         }
         else
         {
@@ -36,24 +39,22 @@ public class EncounterButtonManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {        
-        if(eventSystem.GetComponent<EventSystem>().currentSelectedGameObject == this.gameObject)
-        {
-            infoPanel.SetActive(true);
-            Vector3 nodePosition = gameObject.transform.GetChild(0).transform.position;
-            Vector3 newPosition = new Vector3(nodePosition.x, nodePosition.y, Camera.main.transform.position.z);
-            Camera.main.transform.position = newPosition;
-        }
-        else
-        {
-            infoPanel.SetActive(false);
-        }
+    public void OnSelect(BaseEventData eventData)
+    {
+        infoPanel.SetActive(true);
+
+        Vector3 nodePosition = gameObject.transform.GetChild(0).transform.position;
+        Vector3 newPosition = new Vector3(nodePosition.x, nodePosition.y, Camera.main.transform.position.z);
+        Camera.main.GetComponent<CameraController>().SetDestination(newPosition);
     }
 
-    public void SetEncounterStateAndData(EncounterState newState, EncounterData newEncounter)
+    public void OnDeselect(BaseEventData eventData)
+    {
+        infoPanel.SetActive(false);
+    }
+
+    public void SetEncounterState(EncounterState newState)
     {
         encounterState = newState;
-        encounter = newEncounter;
     }
 }

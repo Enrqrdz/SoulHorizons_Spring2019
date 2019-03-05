@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -159,8 +159,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_FirstSelected: {fileID: 1877252476}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
@@ -228,12 +228,12 @@ PrefabInstance:
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: m_audioClip
-      value: 
+      value:
       objectReference: {fileID: 0}
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: OutputAudioMixerGroup
-      value: 
+      value:
       objectReference: {fileID: 243849955281638176, guid: 5fa349ee0e2b0fa4e865c4bb8f191b0b,
         type: 2}
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
@@ -244,13 +244,13 @@ PrefabInstance:
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: music
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: 71669c827d3f3494b9fd65d60e3d5d21, type: 3}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: buttonsSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 8e7b86a8ab80fd843bec269bbacfa925, type: 3}
+      value:
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
 --- !u!1001 &162552275
@@ -304,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 175848280}
   - component: {fileID: 175848281}
+  - component: {fileID: 175848282}
   m_Layer: 0
   m_Name: GameLauncher
   m_TagString: Untagged
@@ -335,9 +336,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d8dd6d9df87ca54ea9e986552cfe279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   regionGenerator: {fileID: 268632236}
+--- !u!114 &175848282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175848279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838a96d9ffae34d10bd64b3af6d749b5, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  encounterPool:
+  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
+  - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
+  - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
+  - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
+  - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
+  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
+  cardPool:
+  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
+  - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
+  - {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
+  - {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
+  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  - {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
+  - {fileID: 11400000, guid: b5cc732327c09eb4dbc1e89402e4fc43, type: 2}
+  - {fileID: 11400000, guid: c18df7fb756afc6458c1e54ba409df95, type: 2}
+  startingInventory: {fileID: 11400000, guid: c93a04a8ff38644dbb65fa16e9ed7886, type: 2}
 --- !u!1 &268632235
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +379,6 @@ GameObject:
   m_Component:
   - component: {fileID: 268632237}
   - component: {fileID: 268632236}
-  - component: {fileID: 268632238}
   m_Layer: 0
   m_Name: RegionGenerator
   m_TagString: Untagged
@@ -366,8 +396,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e113ad87e1843a4894a317571a2c63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   tiers: 10
   distanceBetweenTiers: 2.5
   connectionRange: 2
@@ -385,34 +415,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &268632238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268632235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838a96d9ffae34d10bd64b3af6d749b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  encounterPool:
-  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
-  - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
-  - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
-  - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
-  - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
-  - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
-  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
-  cardPool:
-  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
-  - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
-  - {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
-  - {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
-  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
-  - {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
-  startingInventory: {fileID: 11400000, guid: c93a04a8ff38644dbb65fa16e9ed7886, type: 2}
 --- !u!1 &306506421
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,8 +547,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Navigation:
     m_Mode: 3
     m_SelectOnUp: {fileID: 0}
@@ -584,7 +586,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1694904581}
@@ -595,7 +597,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -610,8 +612,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -647,8 +649,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Delegates:
   - eventID: 0
     callback:
@@ -662,7 +664,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -697,8 +699,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
   m_BlockingMask:
@@ -714,8 +716,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
@@ -818,8 +820,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 0.9607844, g: 0.8588236, b: 0.6666667, a: 1}
   m_RaycastTarget: 1
@@ -862,8 +864,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f16baffa14386e84d8bcb6755e36a18f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1 &747220505
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,8 +962,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1006,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1333149468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1037,8 +1039,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Navigation:
     m_Mode: 3
     m_SelectOnUp: {fileID: 0}
@@ -1076,7 +1078,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1694904581}
@@ -1087,7 +1089,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1102,8 +1104,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1139,8 +1141,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Delegates:
   - eventID: 0
     callback:
@@ -1154,7 +1156,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -1207,8 +1209,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8745099, b: 0.6784314, a: 1}
   m_RaycastTarget: 1
@@ -1289,8 +1291,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Navigation:
     m_Mode: 3
     m_SelectOnUp: {fileID: 0}
@@ -1328,7 +1330,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1343,8 +1345,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1380,8 +1382,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Delegates:
   - eventID: 0
     callback:
@@ -1395,7 +1397,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -1448,8 +1450,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8745099, b: 0.6784314, a: 1}
   m_RaycastTarget: 1
@@ -1471,7 +1473,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Game
+  m_Text: Play Game
 --- !u!222 &1600493737
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1496,8 +1498,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 932631f42cc16bc4d8a54553b78fa52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!82 &1694904583
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1642,8 +1644,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8745099, b: 0.6784314, a: 1}
   m_RaycastTarget: 1
@@ -1713,7 +1715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 254.48035, y: 366.86996}
+  m_AnchoredPosition: {x: 254.48035, y: 260}
   m_SizeDelta: {x: 414.61, y: 75.54999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877252478
@@ -1726,8 +1728,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Navigation:
     m_Mode: 3
     m_SelectOnUp: {fileID: 0}
@@ -1765,7 +1767,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1694904581}
@@ -1776,7 +1778,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1791,8 +1793,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1828,8 +1830,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Delegates:
   - eventID: 0
     callback:
@@ -1843,7 +1845,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,

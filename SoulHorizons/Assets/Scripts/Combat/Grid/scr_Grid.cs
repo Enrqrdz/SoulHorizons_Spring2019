@@ -16,7 +16,7 @@ public class scr_Grid : MonoBehaviour{
     private SpriteRenderer spriteR;
     public Sprite tile_sprites;
     private int spriteTracker = 0;
-    public scr_Entity[] activeEntities;
+    public Entity[] activeEntities;
     public Transform camera; 
 
     public static scr_Grid GridController;
@@ -31,7 +31,7 @@ public class scr_Grid : MonoBehaviour{
 
     private void Start()
     {
-        encounter = SaveManager.currentGame.GetCurrentEncounter();
+        encounter = SaveManager.currentGame.GetCurrentEncounterData();
 
         InitEncounter(); 
     }
@@ -93,16 +93,16 @@ public class scr_Grid : MonoBehaviour{
     public void InitEncounter()
     {
         //Set movement to true
-        scr_InputManager.cannotInput = false;
+        InputManager.cannotInputAnything = false;
         columnSizeMax = encounter.GetNumberOfColumns();
         rowSizeMax = encounter.GetNumberOfRows();
         //calling in awake as a debug, should be called in Encounter
         SetNewGrid(columnSizeMax, rowSizeMax);
-        activeEntities = new scr_Entity[encounter.entities.Length]; 
+        activeEntities = new Entity[encounter.entities.Length]; 
         for(int x = 0; x < activeEntities.Length; x++)
         {
-            scr_Entity _entity = new scr_Entity();
-            _entity = (scr_Entity)Instantiate(encounter.entities[x].entity, Vector3.zero, Quaternion.identity);
+            Entity _entity = new Entity();
+            _entity = (Entity)Instantiate(encounter.entities[x].entity, Vector3.zero, Quaternion.identity);
             _entity.InitPosition(encounter.entities[x].x, encounter.entities[x].y);
             activeEntities[x] = _entity;
         }
@@ -183,7 +183,7 @@ public class scr_Grid : MonoBehaviour{
             grid[x, y].DePrime();
     }
 
-    public void SetTileOccupied(bool isOccupied, int x, int y, scr_Entity ent)
+    public void SetTileOccupied(bool isOccupied, int x, int y, Entity ent)
     {
         if (LocationOnGrid(x, y))
         {
@@ -246,7 +246,7 @@ public class scr_Grid : MonoBehaviour{
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <returns></returns>
-    public scr_Entity GetEntityAtPosition(int x, int y)
+    public Entity GetEntityAtPosition(int x, int y)
     {
         if (LocationOnGrid(x, y))
         {
@@ -296,14 +296,14 @@ public class scr_Grid : MonoBehaviour{
 
     }
 
-    public void RemoveEntity(scr_Entity entity)
+    public void RemoveEntity(Entity entity)
     {
         float tempID = entity.gameObject.GetInstanceID();
         for (int i = 0; i < activeEntities.Length; i++){
             if (activeEntities[i].gameObject.GetInstanceID() == tempID)
             {
                 Debug.Log("help me");
-                scr_Entity[] temporaryEntities = new scr_Entity[activeEntities.Length - 1];
+                Entity[] temporaryEntities = new Entity[activeEntities.Length - 1];
                 for(int j = 0; j < activeEntities.Length; j++)
                 {
                     if (j >= i)

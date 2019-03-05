@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfe45dafc4f2104bb721b942ced1731, type: 3}
+  m_Name: Alpha Dialogue
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: 72886c43f6e863a458b9becdc993baa1, type: 2}
+  - {fileID: 11400000, guid: b2ee20b5486defc4c841bee45f6a7679, type: 2}
+  text:
+  - Greetings, Hunter! Welcome to the world of Soul Horizons!
+  - This world is filled with beings aligned with the six elements of The Primordials
+    our creators and caretakers.
+  - 'You are a Soul Hunter. A warrior tasked with maintaining peace and balance between
+    the elements and those who embody them. '
+  - 'To do this you must call upon the elements to strike down your foes. '
+  - This is where I come in. I will assist you in casting powerful spells of all kinds.
+    These spells have different ranges, patterns, and effects.
+  - Due to the nature of these powerful and wild magics, I am not able to accurately
+    keep track of these spells.
+  - The inscriptions will change positions on my pages, meaning that as you flip through
+    me to cast spells you may find them to be in a different order.
+  - The spells written in my pages can be adjusted at your discretion, and in your
+    travels you may even come across new spells that I am able to inscribe.
+  - Luckily for us your basic training should allow you to cast simple spells without
+    my help. These spells are called Mantras, and are available for you to use at
+    any time during battle.
+  - Anyways, I am sure you are quite eager to get on with your travels?
+  - Let's Go
+  decisions:
+  - {fileID: 11400000, guid: 74469f61a25a5f44ca7bd9096aafd7f9, type: 2}
+  decisionIndexes: 09000000
+  characterOnScreen: 0300000003000000030000000300000002000000020000000200000002000000020000000200000002000000
+  hasBeenFormatted: 1

@@ -13,27 +13,24 @@ public class scr_statemanager : MonoBehaviour {
     //public Text PlayerHealth;
     public Text Shield;
     public Text EffectText;
-    public Text StaminaText;
     private int hp = 100;
     bool endCombat = false;
     bool showEffect = false;
     string EffectString;
     GameObject player;
-    scr_Entity playerEntity;
+    Entity playerEntity;
     scr_PlayerMovement playerMovement;
 
     public int currentEncounterIndex;
 
-    // Use this for initialization
-    void Start () {
-        //rewardPanel.enabled = false; 
+    void Start ()
+    {
         player = GameObject.FindGameObjectWithTag("Player");
         EffectText.enabled = false;
         if (player != null)
         {
-            playerEntity = player.GetComponent<scr_Entity>();
+            playerEntity = player.GetComponent<Entity>();
             playerMovement = player.GetComponent<scr_PlayerMovement>();
-            //load the health from the GameState
 
             try
             {
@@ -43,41 +40,32 @@ public class scr_statemanager : MonoBehaviour {
             {
                 Debug.Log("This is a " + e);
             }
-            if (hp > 0) //make sure the health has been set previously
+            if (hp > 0)
             {
                 playerEntity._health.hp = hp;
             }
 
-            //make sure that movement is enabled
-            scr_InputManager.cannotInput = false;
-            scr_InputManager.cannotMove = false;
-
-            //load the stamina from the player
-            StaminaText.text = "Stamina: " + playerMovement.GetStaminaCharges();
+            InputManager.cannotInputAnything = false;
+            InputManager.cannotMove = false;
         }
+
         else
         {
             Debug.Log("PLAYER NOT FOUND");
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         UpdateHealth();
         UpdateEffects();
         //END OF ENCOUNTER - NO MORE ENEMIES
 		if(!endCombat && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
-            //Debug.Log("NO ENEMIES");
-            //scr_InputManager.disableInput = true;
             RewardMessage.SetActive(true);
-            //rewardPanel.enabled = true; 
+ 
             endCombat = true;
 
-            //GIVE REWARDS
-            SaveManager.currentGame.AddDust(50);
-
-            //save health
             try
             {
                 SaveManager.currentGame.SetPlayerHealth(playerEntity._health.hp);
@@ -86,9 +74,7 @@ public class scr_statemanager : MonoBehaviour {
             {
                 Debug.Log("This is a " + e);
             }
-            //Debug.Log("DUST AMOUNT: " + SaveLoad.currentGame.GetDustAmount());
 
-            //Set encounter to complete
             SaveManager.currentGame.SetCurrentEncounterCompleteToTrue();
         }
         if (endCombat)
@@ -117,15 +103,11 @@ public class scr_statemanager : MonoBehaviour {
             player.transform.Find("Shield").gameObject.SetActive(false);
         }
         Shield.text = "(+" + playerEntity._health.shield + ")";
-        //PlayerHealth.text = "Health: " + playerEntity._health.hp;
-        StaminaText.text = "Stamina: " + playerMovement.GetStaminaCharges();
+
         if(playerEntity._health.hp <= 0)
         {
-            //scr_InputManager.disableInput = true;
-            //RewardMessage.text = "Oh no you died! Press V to return to the Local Map";
-            scr_Pause.TogglePause();
+            Pause.TogglePause();
             DeathMessage.SetActive(true);
-            //rewardPanel.enabled = true; 
             endCombat = true;
         }
     }

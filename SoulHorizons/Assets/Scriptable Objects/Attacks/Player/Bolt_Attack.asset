@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5207fb031a91754a84461d852996af0, type: 3}
   m_Name: Bolt_Attack
   m_EditorClassIdentifier: 
-  incrementTime: 0.1
-  maxIncrementRange: 100
-  damage: 10
+  incrementTime: 0.05
+  maxIncrementRange: 7
+  damage: 8
   type: 1
   hasPiercing: 0
   particles: {fileID: 212919924544438062, guid: 07a4e007d8e532445b9b9db17fa90895,

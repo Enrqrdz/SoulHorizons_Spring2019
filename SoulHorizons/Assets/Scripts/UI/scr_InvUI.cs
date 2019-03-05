@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class scr_InvUI : MonoBehaviour {
 
-    public scr_CardUI[] cardUI;
+    public ActionUI[] cardUI;
     public List<GameObject> banners;
     public GameObject invPanel;
     public GameObject cardBanner;
     public GameObject BannerSpawn;
     public Canvas c;
     public Font UIFont;
-    public int minDeckSize = 30;
+    public int minDeckSize = 10;
     public Text deckNum;
     public float deckTextX = 600;
     public float deckTextY = 400;
-    // Use this for initialization
+    
+    [SerializeField]
+    private GameObject regionButton;
 
     void Start () {
         SetDeckText();
@@ -33,6 +35,8 @@ public class scr_InvUI : MonoBehaviour {
             SetCardGraphics();
             UpdateBanners();
         }
+
+        CheckForRegionInput();
     }
 
     public void DisplayUI()
@@ -43,7 +47,7 @@ public class scr_InvUI : MonoBehaviour {
         }
         else
         {
-            if (InventoryManager.getDeckSize() >= minDeckSize)
+            if (SaveManager.currentGame.inventory.GetDeckLength() >= minDeckSize)
             {
                 invPanel.SetActive(false);
                 UpdateBanners();
@@ -54,48 +58,46 @@ public class scr_InvUI : MonoBehaviour {
 
     void SetCardGraphics()
     {
+        List<CardState> cardInventory = SaveManager.currentGame.inventory.GetCardInventory();
+
         for (int i = 0; i < cardUI.Length; i++)
         {
-            if (i < InventoryManager.cardInv.Count)
+            if (i < cardInventory.Count)
             {
-                cardUI[i].SetName(InventoryManager.cardInv[i].Key.cardName); //set the name
-                cardUI[i].SetArt(InventoryManager.cardInv[i].Key.art); //set the card art
-                cardUI[i].SetElement(InventoryManager.cardInv[i].Key.element); //set the card element
+                ActionData cardData = cardInventory[i].GetActionData();
+                cardUI[i].SetCardState(new CardState(cardData, 1));
+                cardUI[i].SetName(cardData.actionName);
+                cardUI[i].SetArt(cardData.art);
+                cardUI[i].SetElement(cardData.element);
 
-                //Find how many of this card are in your current deck 
-                List<KeyValuePair<string, int>> myDeck = InventoryManager.deckList[InventoryManager.currentDeckIndex];
-                int index = -1;
-                for(int j = 0; j < myDeck.Count; j++)
+                int numberInDeck = 0;
+                List<CardState> deck = SaveManager.currentGame.inventory.GetDeck();
+               
+                for(int j = 0; j < deck.Count; j++)
                 {
-                    if(myDeck[j].Key == InventoryManager.cardInv[i].Key.cardName)
+                    if(deck[j].IsTheSameCard(cardInventory[i]))
                     {
-                        index = j;
+                        numberInDeck = deck[j].numberOfCopies;
                     }
                 }
-                if (index < 0) Debug.Log("CARD NOT FOUND");
-                cardUI[i].SetBackupName(InventoryManager.deckList[InventoryManager.currentDeckIndex][index].Value.ToString() + "/" + InventoryManager.cardInv[i].Value.ToString()); //Set the card amount currently in inventory
-            }
-            else
-            {
-                //MAKE CARD NOT SHOW UP
-            }
 
-           
-            
+                cardUI[i].SetBackupName(numberInDeck + "/" + cardInventory[i].numberOfCopies);
+            }
         }
     }
 
     void SetDeckText()
     {
-
         float tempX = BannerSpawn.transform.position.x;
         float tempY = BannerSpawn.transform.position.y;
-        foreach (KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
+        List<CardState> deck = SaveManager.currentGame.inventory.GetDeck();
+
+        foreach (CardState cardState in deck)
         {
             GameObject banner = Instantiate(cardBanner, new Vector3(tempX, tempY, 0), Quaternion.identity);
-            string tempTxt = "CardOverlay/" + pair.Key;
+            string tempTxt = "CardOverlay/" + cardState.GetActionData().actionName;
             banner.transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(tempTxt);
-            banner.transform.GetChild(3).GetComponent<Text>().text = pair.Key + ": " + pair.Value + "\n";
+            banner.transform.GetChild(3).GetComponent<Text>().text = cardState.GetActionData().actionName + ": " + cardState.numberOfCopies + "\n";
             banner.transform.SetParent(c.transform);         
             banners.Add(banner);
             tempY -= 75;
@@ -108,11 +110,13 @@ public class scr_InvUI : MonoBehaviour {
         float tempX = BannerSpawn.transform.position.x;
         float tempY = BannerSpawn.transform.position.y;
         int tempCount = 0;
-        foreach (KeyValuePair<string, int> pair in InventoryManager.deckList[InventoryManager.currentDeckIndex])
+        List<CardState> deck = SaveManager.currentGame.inventory.GetDeck();
+
+        foreach (CardState cardState in deck)
         {
-            string tempTxt = "CardOverlay/" + pair.Key;
+            string tempTxt = "CardOverlay/" + cardState.GetActionData().actionName;
             banners[tempCount].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(tempTxt);
-            banners[tempCount].transform.GetChild(3).GetComponent<Text>().text = pair.Key + ": " + pair.Value + "\n";
+            banners[tempCount].transform.GetChild(3).GetComponent<Text>().text = cardState.GetActionData().actionName + ": " + cardState.numberOfCopies + "\n";
             tempY -= 75;
             if (invPanel.activeSelf)
             {
@@ -125,16 +129,23 @@ public class scr_InvUI : MonoBehaviour {
             tempCount++;
         }
 
-        if (InventoryManager.getDeckSize() < minDeckSize)
+        if (SaveManager.currentGame.inventory.GetDeckLength() < minDeckSize)
         {
             scr_SceneManager.canSwitch = false;
-            deckNum.text = "<color=red>" + InventoryManager.getDeckSize() + "</color> / " + minDeckSize;
+            deckNum.text = "<color=red>" + SaveManager.currentGame.inventory.GetDeckLength() + "</color> / " + minDeckSize;
         }
         else
         {
             scr_SceneManager.canSwitch = true;
-            deckNum.text = InventoryManager.getDeckSize() + " / " + minDeckSize;
+            deckNum.text = SaveManager.currentGame.inventory.GetDeckLength() + " / " + minDeckSize;
         }
     }
 
+    public void CheckForRegionInput()
+    {
+        if(Input.GetButtonDown("PlayCard2_Button") || Input.GetKeyDown("i"))
+        {
+            regionButton.GetComponent<Button>().onClick.Invoke();
+        }
+    }
 }

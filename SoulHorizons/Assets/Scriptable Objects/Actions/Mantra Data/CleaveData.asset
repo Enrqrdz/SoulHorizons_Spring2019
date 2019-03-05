@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1a2f866bcb7a54b9cec3b941ce2e12, type: 3}
+  m_Name: CleaveData
+  m_EditorClassIdentifier: 
+  actionName: Cleave
+  art: {fileID: 21300000, guid: 22801f5d10197c84b8e1e65736783439, type: 3}
+  element: 4
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 0.8
+  description: 
+  attack: {fileID: 11400000, guid: 8500b5d9a2c71684591283e74b4216e5, type: 2}
+  CleaveSFX: {fileID: 8300000, guid: 351e1d4b2b5fe874bbda4baf48d09b84, type: 3}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Cleave_Attack
   m_EditorClassIdentifier: 
   incrementTime: 0.1
-  maxIncrementRange: 3
-  damage: 12
+  maxIncrementRange: 2
+  damage: 10
   type: 1
   hasPiercing: 1
   particles: {fileID: 212919924544438062, guid: 8820eb944250c78449d6afb4fc0c811f,
