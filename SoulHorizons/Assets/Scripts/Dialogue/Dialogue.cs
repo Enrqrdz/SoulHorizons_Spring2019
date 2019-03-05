@@ -15,4 +15,11 @@ public class Dialogue: ScriptableObject
 
     [Tooltip("Indexes for the decisions.")]
     public List<int> decisionIndexes = new List<int>();
+
+    //[HideInInspector]
+    public List<CharacterName> characterOnScreen = new List<CharacterName>();
+
+    [HideInInspector]
+    [Tooltip("DO NOT EDIT IF SCRIPT HAS BEEN FORMATTED")]
+    public bool hasBeenFormatted = false;
 }
