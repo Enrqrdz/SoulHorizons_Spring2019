@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crescent Strike
   m_EditorClassIdentifier: 
   actionName: Crescent Strike
-  art: {fileID: 21300000, guid: 63023d068ef6d3947beff08d45db918f, type: 3}
+  art: {fileID: 21300000, guid: df319957110914dd6b77d34d0a908c0b, type: 3}
   element: 1
   transformChargeAmount: 5
   castingTime: 0
