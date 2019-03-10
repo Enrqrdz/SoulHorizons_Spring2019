@@ -10,6 +10,7 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     EncounterState encounterState;
 
     public GameObject infoPanel;
+    public GameObject fogMask;
 
     public TextMeshPro mouseText;
     public TextMeshPro mushText;
@@ -28,14 +29,17 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
         if (encounterState.isCompleted)
         {
             gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red; 
+            fogMask.SetActive(true);
         }
-        else if (!encounterState.isAccessible)
+        else if (encounterState.isAccessible)
         {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.gray; 
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+            fogMask.SetActive(true);
         }
         else
         {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.gray; 
+            fogMask.SetActive(false);
         }
     }
 
