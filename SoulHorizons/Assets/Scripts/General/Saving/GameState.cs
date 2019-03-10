@@ -53,6 +53,11 @@ public class GameState
         currentEncounter = encounter;
     }
 
+    public EncounterState GetCurrentEncounterState()
+    {
+        return currentEncounter;
+    }
+
     public EncounterData GetCurrentEncounterData()
     {
         return currentEncounter.GetEncounterData();
