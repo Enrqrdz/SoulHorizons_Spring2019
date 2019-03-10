@@ -9,6 +9,7 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 {
     EncounterState encounterState;
 
+    public GameObject sprite;
     public GameObject infoPanel;
     public GameObject fogMask;
 
@@ -20,27 +21,12 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 
     void Start()
     {
-        infoPanel.SetActive(false);
         eventSystem = GameObject.Find("/EventSystem");
         mouseText.text = "x " + encounterState.GetEncounterData().GetNumberOfMouses();
         mushText.text = "x " + encounterState.GetEncounterData().GetNumberOfMush();
         archerText.text = "x " + encounterState.GetEncounterData().GetNumberOfArchers();
 
-        if (encounterState.isCompleted)
-        {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red; 
-            fogMask.SetActive(true);
-        }
-        else if (encounterState.isAccessible)
-        {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-            fogMask.SetActive(true);
-        }
-        else
-        {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.gray; 
-            fogMask.SetActive(false);
-        }
+        UpdateChildren();
     }
 
     public void OnSelect(BaseEventData eventData)
@@ -60,5 +46,29 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     public void SetEncounterState(EncounterState newState)
     {
         encounterState = newState;
+    }
+
+    private void UpdateChildren()
+    {
+        infoPanel.SetActive(false);
+
+        if (encounterState.isCompleted)
+        {
+            sprite.GetComponent<SpriteRenderer>().color = Color.red; 
+            fogMask.SetActive(true);
+            gameObject.GetComponent<Button>().interactable = true;
+        }
+        else if (encounterState.isAccessible)
+        {
+            sprite.GetComponent<SpriteRenderer>().color = Color.white;
+            fogMask.SetActive(true);
+            gameObject.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            sprite.GetComponent<SpriteRenderer>().color = Color.gray; 
+            fogMask.SetActive(false);
+            gameObject.GetComponent<Button>().interactable = false;
+        }
     }
 }
