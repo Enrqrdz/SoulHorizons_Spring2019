@@ -369,7 +369,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bdde5020c96aa4044b9e2c5cc83c7441, type: 2}
   cardPool:
   - {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
-  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
+  - {fileID: 11400000, guid: 76f7ee053452f9d44a55a338f48fa285, type: 2}
   - {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
   - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
   - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
