@@ -49,4 +49,9 @@ public static class EncounterPool
             encountersByTier.Add(new List<EncounterData>());
         }
     }
+
+    public static int GetMaxDifficulty()
+    {
+        return encountersByTier.Count - 1;
+    }
 }
