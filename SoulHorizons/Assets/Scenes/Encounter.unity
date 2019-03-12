@@ -7140,7 +7140,7 @@ MonoBehaviour:
     particle: {fileID: 0}
     particles: []
   numberOfActiveAttacks: 0
-  pauseReference: {fileID: 0}
+  pauseReference: {fileID: 1853791398}
 --- !u!1 &2121924710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7304582539461992430, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,
