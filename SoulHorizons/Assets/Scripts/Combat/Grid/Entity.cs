@@ -28,6 +28,13 @@ public class Entity : MonoBehaviour
     public float invulnTime;
     public bool isStunned = false;
     float invulnCounter = 0f;
+    public bool hasShield = false;
+    float shieldCounter = 0f;
+    int shieldProtection = 0; //the amount of damage the shield is reducing damage by
+    int shieldProtectionIncrement = 1; //the rate the damage reduction of the shield increasesby when you move
+    int shieldProtectionMax = 50;
+
+
 
     AudioSource Hurt_SFX;
     public AudioClip[] hurts_SFX;
@@ -44,7 +51,6 @@ public class Entity : MonoBehaviour
         baseColor = spr.color;
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Hurt_SFX = SFX_Sources[1];
-        //_health.max_hp = _health.hp;
     }
     public void Update()
     {
@@ -70,7 +76,16 @@ public class Entity : MonoBehaviour
                 setInvincible(false, 0f);
             }
         }
-       
+
+        if (shieldCounter > 0)
+        {
+            shieldCounter -= Time.deltaTime;
+            if (shieldCounter <= 0)
+            {
+                SetShield(false, 0f, 0, 0, 0);
+            }
+        }
+
     }
 
 
@@ -108,15 +123,22 @@ public class Entity : MonoBehaviour
         scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y,this);
         spr.sortingOrder = -_gridPos.y;
         AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this);
+
+        if(hasShield)
+        {
+            if(shieldProtection < shieldProtectionMax)
+            {
+                shieldProtection += shieldProtectionIncrement;
+            }
+        }
+
         if(atk != null)
         {
             if (!invincible)
             {
-                //Debug.Log("I'M HIT");
                 HitByAttack(atk);
                 if (has_iframes)
                 {
-                    //Activate invincibility frames
                     setInvincible(true, invulnTime);
                 }
             }
@@ -137,7 +159,7 @@ public class Entity : MonoBehaviour
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
 
-            _health.TakeDamage(_attack.damage);
+            _health.TakeDamage(_attack.damage - shieldProtection);
             StartCoroutine(HitClock(.3f));
             if (type == EntityType.Player)
             {
@@ -182,17 +204,37 @@ public class Entity : MonoBehaviour
         invincible = inv;
         if (inv)
         {
-            //Debug.Log("I'M INVINCIBLE");
             invulnCounter = time;
             spr.color = Color.gray;
         }
         else
         {
-            //Debug.Log("NOT INVINCIBLE");
             invulnCounter = 0f;
             invincible = false;
             spr.color = baseColor;
         }
+    }
+
+    public void SetShield (bool shield, float time, int protect, int increment, int incrementMax)
+    {
+        hasShield = shield;
+        shieldProtection = protect; //the amount of damage the shield is reducing damage by
+        shieldProtectionIncrement = increment; //the rate the damage reduction of the shield increasesby when you move
+        shieldProtectionMax = incrementMax;
+        if (shield)
+        {
+            shieldCounter = time;
+            spr.color = Color.gray;
+        }
+        else
+        {
+            shieldCounter = 0f;
+            shieldProtection = 0;
+            shieldProtectionIncrement = 0;
+            hasShield = false;
+            spr.color = baseColor;
+        }
+
     }
 
     public void Death()
