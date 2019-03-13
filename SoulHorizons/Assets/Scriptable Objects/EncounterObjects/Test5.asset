@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
   m_Name: Test5
   m_EditorClassIdentifier: 
+  type: 1
   name: 0 -1 Tutorial
   sceneName: Encounter
   tier: 2
@@ -28,7 +29,7 @@ MonoBehaviour:
   - entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
     x: 4
     y: 1
-  mouseNum: 0
-  mushNum: 0
-  archerNum: 3
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}
+  clearRadiusWhileUndiscovered: 0
+  clearRadiusWhileDiscovered: 1
+  clearRadiusWhileCompleted: 1

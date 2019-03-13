@@ -19,12 +19,17 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 
     private GameObject eventSystem; 
 
+    [Header("Encounter Type Sprites")]
+    public Sprite bossEncounter;
+    public Sprite combatEncounter;
+    public Sprite eventEncounter;
+    public Sprite outpostEncounter;
+    public Sprite restEncounter;
+    public Sprite treasureEncounter;
+
     void Start()
     {
         eventSystem = GameObject.Find("/EventSystem");
-        mouseText.text = "x " + encounterState.GetEncounterData().GetNumberOfMouses();
-        mushText.text = "x " + encounterState.GetEncounterData().GetNumberOfMush();
-        archerText.text = "x " + encounterState.GetEncounterData().GetNumberOfArchers();
 
         UpdateChildren();
     }
@@ -51,24 +56,74 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     private void UpdateChildren()
     {
         infoPanel.SetActive(false);
+        
+        Color spriteColor;
+        bool interactable;
+        float fogRadius;
 
         if (encounterState.isCompleted)
         {
-            sprite.GetComponent<SpriteRenderer>().color = Color.red; 
-            fogMask.SetActive(true);
-            gameObject.GetComponent<Button>().interactable = true;
+            spriteColor = Color.red; 
+            interactable = true;
+            fogRadius = encounterState.GetEncounterData().clearRadiusWhileCompleted;
         }
         else if (encounterState.isAccessible)
         {
-            sprite.GetComponent<SpriteRenderer>().color = Color.white;
-            fogMask.SetActive(true);
-            gameObject.GetComponent<Button>().interactable = true;
+            spriteColor = Color.white;
+            interactable = true;
+            fogRadius = encounterState.GetEncounterData().clearRadiusWhileDiscovered;
         }
         else
         {
-            sprite.GetComponent<SpriteRenderer>().color = Color.gray; 
-            fogMask.SetActive(false);
-            gameObject.GetComponent<Button>().interactable = false;
+            spriteColor = Color.gray; 
+            interactable = false;
+            fogRadius = encounterState.GetEncounterData().clearRadiusWhileUndiscovered;
         }
+
+        sprite.GetComponent<SpriteRenderer>().color = spriteColor; 
+        gameObject.GetComponent<Button>().interactable = interactable;
+        fogMask.transform.localScale = new Vector3(fogRadius, fogRadius, 0);
+
+        mouseText.text = "x " + encounterState.GetEncounterData().GetNumberOfMouses();
+        mushText.text = "x " + encounterState.GetEncounterData().GetNumberOfMush();
+        archerText.text = "x " + encounterState.GetEncounterData().GetNumberOfArchers();
+
+        SetSprite();
+    }
+
+    private void SetSprite()
+    {
+        Sprite newNodeSprite = sprite.GetComponent<SpriteRenderer>().sprite;
+
+        switch(encounterState.GetEncounterData().type)
+        {
+            case EncounterType.Boss:
+                newNodeSprite = bossEncounter;
+                break;
+                
+            case EncounterType.Combat:
+                newNodeSprite = combatEncounter;
+                break;
+
+            case EncounterType.Event:
+                newNodeSprite = eventEncounter;
+                break;
+
+            case EncounterType.Outpost:
+                newNodeSprite = outpostEncounter;
+                break;
+
+            case EncounterType.Rest:
+                newNodeSprite = restEncounter;
+                break;
+
+            case EncounterType.Treasure:
+                newNodeSprite = treasureEncounter;
+                break;
+
+            
+        }
+
+        sprite.GetComponent<SpriteRenderer>().sprite = newNodeSprite;
     }
 }

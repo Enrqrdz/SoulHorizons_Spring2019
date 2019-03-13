@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
   m_Name: Tier2-3
   m_EditorClassIdentifier: 
+  type: 1
   name: Tier2-3
   sceneName: Encounter
   tier: 2
@@ -32,3 +33,6 @@ MonoBehaviour:
     x: 0
     y: 0
   mapData: {fileID: 0}
+  clearRadiusWhileUndiscovered: 0
+  clearRadiusWhileDiscovered: 1
+  clearRadiusWhileCompleted: 1
