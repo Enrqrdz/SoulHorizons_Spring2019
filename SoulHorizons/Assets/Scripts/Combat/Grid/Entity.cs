@@ -126,7 +126,8 @@ public class Entity : MonoBehaviour
 
         if(hasShield)
         {
-            if(shieldProtection < shieldProtectionMax)
+            Debug.Log(shieldProtection);
+            if (shieldProtection < shieldProtectionMax)
             {
                 shieldProtection += shieldProtectionIncrement;
             }
@@ -159,7 +160,14 @@ public class Entity : MonoBehaviour
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
 
-            _health.TakeDamage(_attack.damage - shieldProtection);
+            if (_attack.damage - shieldProtection >= 0)
+            {
+                _health.TakeDamage(_attack.damage - shieldProtection);
+            }
+            else
+            {
+                _health.TakeDamage(0);
+            }
             StartCoroutine(HitClock(.3f));
             if (type == EntityType.Player)
             {
