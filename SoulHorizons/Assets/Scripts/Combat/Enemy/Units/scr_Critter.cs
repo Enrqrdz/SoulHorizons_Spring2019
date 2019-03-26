@@ -11,6 +11,7 @@ public class scr_Critter : scr_EntityAI
     bool taskComplete = true;
     bool isStuck = false;
     int state = 0;
+    int attempts = 0;
 
 
     AudioSource Footsteps_SFX;
@@ -116,31 +117,57 @@ public class scr_Critter : scr_EntityAI
 
         int xRange = scr_Grid.GridController.columnSizeMax;
 
-        if (!direction)
+        while (attempts < 10)
         {
-            xPos--;
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
+            if (!direction)
             {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                entity.SetTransform(xPos, yPos);
-                return;
+                xPos--;
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
+                {
+                    //if the tile is not occupied
+                    scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+                    entity.SetTransform(xPos, yPos);
+                    return;
+                }
             }
             else
             {
-                isStuck = true;
-                return;
+                xPos++;
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos < xRange)
+                {
+                    //if the tile is not occupied
+                    scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+                    entity.SetTransform(xPos, yPos);
+                    return;
+                }
             }
-        }
-        else
-        {
-            xPos++;
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos < xRange)
+
+            if (attempts >= 10)
             {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                entity.SetTransform(xPos, yPos);
-                return;
+                int rand = Random.Range(0, 1);
+
+                if (rand == 1)
+                {
+                    yPos--;
+                    if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
+                    {
+                        //if the tile is not occupied
+                        scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+                        entity.SetTransform(xPos, yPos);
+                        return;
+                    }
+                }
+                else
+                {
+                    yPos++;
+                    if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
+                    {
+                        //if the tile is not occupied
+                        scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+                        entity.SetTransform(xPos, yPos);
+                        return;
+                    }
+                }
             }
         }
     }

@@ -9,11 +9,9 @@ public class Atk_SoulBlight : AttackData
     public float duration = 6f;
     public int blightMainDamage = 6;
     public int blightSideDamage = 4;
-    int counter = 0;
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-
         return new Vector2Int(xPos + 1, yPos);
     }
 
@@ -36,51 +34,53 @@ public class Atk_SoulBlight : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-        Debug.Log(activeAttack.position.x + " " + activeAttack.position.y);
-        scr_Grid.GridController.grid[activeAttack.position.x, activeAttack.position.y].DeBuffTile(duration, blightMainDamage, damageRate);
+        Vector2 affectedTileCenter = new Vector2(activeAttack.position.x - 1, activeAttack.position.y);
+        Vector2 affectedTileNorth = new Vector2(affectedTileCenter.x, affectedTileCenter.y + 1);
+        Vector2 affectedTileSouth = new Vector2(affectedTileCenter.x, affectedTileCenter.y - 1);
+        Vector2 affectedTileEast = new Vector2(affectedTileCenter.x + 1, affectedTileCenter.y);
+        Vector2 affectedTileWest = new Vector2(affectedTileCenter.x - 1, affectedTileCenter.y);
+
+        Debug.Log(affectedTileCenter.x + ", " + affectedTileCenter.y);
+
+        scr_Grid.GridController.grid[(int)affectedTileCenter.x, (int)affectedTileCenter.y].DeBuffTile(duration, blightMainDamage, damageRate);
+
         try
         {
-            Debug.Log("1");
-            scr_Grid.GridController.grid[activeAttack.position.x + 1, activeAttack.position.y].DeBuffTile(duration, blightSideDamage, damageRate);
-        }
-        catch
-        { }
-        try
-        {
-            
-            if (scr_Grid.GridController.ReturnTerritory(activeAttack.position.x - 1, activeAttack.position.y).name == TerrName.Enemy)
+            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileNorth.x, (int)affectedTileNorth.y).name == TerrName.Enemy)
             {
-                Debug.Log("2");
-                scr_Grid.GridController.grid[activeAttack.position.x - 1, activeAttack.position.y].DeBuffTile(duration, blightSideDamage, damageRate);
-            }
-        }
-        catch
-        {
-            //not on the grid
-        }
-        try
-        {
-            
-            if (scr_Grid.GridController.ReturnTerritory(activeAttack.position.x, activeAttack.position.y - 1).name == TerrName.Enemy)
-            {
-                Debug.Log("3");
-                scr_Grid.GridController.grid[activeAttack.position.x, activeAttack.position.y - 1].DeBuffTile(duration, blightSideDamage, damageRate);
+                Debug.Log("North");
+                scr_Grid.GridController.grid[(int)affectedTileNorth.x, (int)affectedTileNorth.y].DeBuffTile(duration, blightSideDamage, damageRate);
             }
         }
         catch
         { }
         try
         {
-            
-            if (scr_Grid.GridController.ReturnTerritory(activeAttack.position.x, activeAttack.position.y + 1).name == TerrName.Enemy)
+            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileSouth.x, (int)affectedTileSouth.y).name == TerrName.Enemy)
             {
-                Debug.Log("4");
-                scr_Grid.GridController.grid[activeAttack.position.x , activeAttack.position.y + 1].DeBuffTile(duration, blightSideDamage, damageRate);
+                Debug.Log("South");
+                scr_Grid.GridController.grid[(int)affectedTileSouth.x, (int)affectedTileSouth.y].DeBuffTile(duration, blightSideDamage, damageRate);
             }
         }
         catch
         { }
-        
+        try
+        {
+            Debug.Log("East");
+            scr_Grid.GridController.grid[(int)affectedTileEast.x, (int)affectedTileEast.y].DeBuffTile(duration, blightSideDamage, damageRate);
+        }
+        catch
+        { }
+        try
+        {            
+            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileWest.x, (int)affectedTileWest.y).name == TerrName.Enemy)
+            {
+                Debug.Log("West");
+                scr_Grid.GridController.grid[(int)affectedTileWest.x, (int)affectedTileWest.y].DeBuffTile(duration, blightSideDamage, damageRate);
+            }
+        }
+        catch
+        {}     
     }
 
 

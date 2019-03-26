@@ -33,12 +33,12 @@ public class AttackController : MonoBehaviour {
         {
             bool attackIsAtMaxRange = activeAttacks[i].currentIncrement > activeAttacks[i].attack.maxIncrementRange;
             bool attackIsOnFinalTarget = !activeAttacks[i].attack.hasPiercing && activeAttacks[i].entityIsHit;
-            bool attackIsOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
+            bool attackIsNotOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
             bool attackHasMoved = activeAttacks[i].currentIncrement != 0;
 
             if (activeAttacks[i].CanAttackContinue())
             {
-                if (attackIsAtMaxRange || attackIsOnFinalTarget || attackIsOnGrid)
+                if (attackIsAtMaxRange || attackIsOnFinalTarget || attackIsNotOnGrid)
                 {
                     RemoveFromArray(i);
                     return;

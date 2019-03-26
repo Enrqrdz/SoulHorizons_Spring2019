@@ -19,8 +19,8 @@ MonoBehaviour:
   hasPiercing: 0
   particles: {fileID: 212286977064683536, guid: 657edad4b3569b845a6d196bb9d171ab,
     type: 3}
-  particlesOffset: {x: 0, y: 0, z: 0}
-  particleSpeed: 1
+  particlesOffset: {x: 0.4, y: 0.3, z: 0}
+  particleSpeed: 11
   damageRate: 1
   duration: 6
   blightMainDamage: 6
