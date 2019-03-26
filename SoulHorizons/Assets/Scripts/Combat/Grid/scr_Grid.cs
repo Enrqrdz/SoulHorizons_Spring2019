@@ -391,10 +391,7 @@ public class scr_Grid : MonoBehaviour{
             {
                 break;
             }
-
-
         }
-
     }
 
 }

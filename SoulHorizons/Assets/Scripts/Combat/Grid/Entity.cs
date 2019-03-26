@@ -35,7 +35,6 @@ public class Entity : MonoBehaviour
     int shieldProtectionMax = 50;
 
 
-
     AudioSource Hurt_SFX;
     public AudioClip[] hurts_SFX;
     private AudioClip hurt_SFX;
@@ -86,6 +85,7 @@ public class Entity : MonoBehaviour
             }
         }
 
+       
     }
 
 
@@ -124,7 +124,8 @@ public class Entity : MonoBehaviour
         spr.sortingOrder = -_gridPos.y;
         AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this);
 
-        if(hasShield)
+        
+        if (hasShield)
         {
             Debug.Log(shieldProtection);
             if (shieldProtection < shieldProtectionMax)
@@ -191,7 +192,14 @@ public class Entity : MonoBehaviour
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
 
-            _health.TakeDamage(damage);
+            if (damage - shieldProtection >= 0)
+            {
+                _health.TakeDamage(damage - shieldProtection);
+            }
+            else
+            {
+                _health.TakeDamage(0);
+            }
             StartCoroutine(HitClock(.3f));
             if (type == EntityType.Player)
             {
@@ -273,6 +281,12 @@ public class Entity : MonoBehaviour
         yield return new WaitForSecondsRealtime(hitTime);
         spr.color = baseColor;
         //Debug.Log("NOT RED");
+    }
+
+    IEnumerator DamageOverTime (float rate, int damage)
+    {       
+        yield return new WaitForSecondsRealtime(rate);
+        _health.TakeDamage(damage);
     }
 
 }

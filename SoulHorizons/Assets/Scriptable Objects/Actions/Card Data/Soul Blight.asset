@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f6df6b0080534aa06e4b2e18af226, type: 3}
+  m_Name: Soul Blight
+  m_EditorClassIdentifier: 
+  actionName: Soul Blight
+  art: {fileID: 0}
+  element: 1
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1
+  description: "Shoots a projectile that curses the land where it \nlands, dealing
+    damage to enemies that stand on\nit."
+  BlightSFX: {fileID: 0}
+  blightAttack: {fileID: 11400000, guid: e15fbf608238cd744a594b6fba0aa415, type: 2}

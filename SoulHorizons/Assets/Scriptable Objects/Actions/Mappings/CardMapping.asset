@@ -31,3 +31,9 @@ MonoBehaviour:
     cardObject: {fileID: 11400000, guid: c18df7fb756afc6458c1e54ba409df95, type: 2}
   - name: Static Shield
     cardObject: {fileID: 11400000, guid: 76f7ee053452f9d44a55a338f48fa285, type: 2}
+  - name: Soul Palm
+    cardObject: {fileID: 11400000, guid: 93690977f63fc3041a8a8b4dc0e0afd4, type: 2}
+  - name: Sword Cross
+    cardObject: {fileID: 11400000, guid: c5ff505325372e24fbe90adfc517f45a, type: 2}
+  - name: Soul Blight
+    cardObject: {fileID: 11400000, guid: 91f0fee6241d8ed40a6b25188a757482, type: 2}

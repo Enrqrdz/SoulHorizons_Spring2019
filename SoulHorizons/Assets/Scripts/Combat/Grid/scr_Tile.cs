@@ -37,6 +37,7 @@ public class scr_Tile : MonoBehaviour{
     
     public bool occupied;
     public bool harmful;
+    public bool helpful;
     public bool isPrimed;
     public bool isActive; 
     public Territory territory;
@@ -46,6 +47,10 @@ public class scr_Tile : MonoBehaviour{
     public int gridPositionY;
     public int queuedAttacks = 0;
     public Entity entityOnTile;
+    public int tileDamage = 0; //the damage the tile does to the player when they are on it
+    public float tileProtection = 0f; //the damage the tile protects the player from when they are on it.
+    public int tileBuff = 0; //the extra damage the player grants to the player.
+    public float tileAffectRate = 0f; // the rate the tile's buff/debuff affects the player
     
 
     Vector2 spriteSize = new Vector2 (1f,.85f);
@@ -62,7 +67,8 @@ public class scr_Tile : MonoBehaviour{
         spriteRenderer.size = spriteSize;
         isPrimed = false;                                                       //Sets a tile to about to be hit (yellow)
         isActive = false;                                                       //Sets a tile to do hit          (red)
-        harmful = false;                                                        //Sets tile to do persistent harm. May not be needed
+        harmful = false;                                                        //Sets tile to do persistent harm. 
+        helpful = false;                                                        //Sets tile to do persistent buffing.
         occupied = false;                                                       //Sets a tile to be occupied by an entity
         gridController = GameObject.FindGameObjectWithTag("GridController");    //Grid Controller
         grid = gridController.GetComponent<scr_Grid>();
@@ -101,8 +107,7 @@ public class scr_Tile : MonoBehaviour{
         if (!isActive)
         {   
             spriteRenderer.color = primeColor;
-        }
-        
+        }       
     }
     public void DePrime()
     {
@@ -147,11 +152,72 @@ public class scr_Tile : MonoBehaviour{
             {
                 isActive = false;
                 spriteRenderer.color = territory.TerrColor;
-            }
-            
-        }
-        
-         
+            }         
+        }  
     }
-   
+
+    public int GetTileDamage()
+    {
+        return tileDamage;
+    }
+
+    public int GetTileBuff()
+    {
+        return tileBuff;
+    }
+
+    public float GetTileProtection()
+    {
+        return tileProtection;
+    }
+
+    public float GetTileAffectRate ()
+    {
+        return tileAffectRate;
+    }
+    public void DeBuffTile (float duration, int damage, float rate)
+    {
+        harmful = true;
+        tileAffectRate = rate;
+        tileDamage = damage;
+        
+        StartCoroutine(DamageTile(rate, damage));
+        StartCoroutine(RevertTile(duration));
+    }
+
+    private IEnumerator DamageTile(float damageRate, int damage)
+    {
+        spriteRenderer.color = Color.gray;
+        while (harmful)
+        {
+            if (entityOnTile != null)
+            {
+                entityOnTile._health.TakeDamage(damage);
+            }
+            yield return new WaitForSeconds(damageRate);
+        }
+
+    }
+
+
+    public void BuffTile (float duration, int dmgBuff, int defBuff)
+    {
+        helpful = true;
+        tileBuff = dmgBuff;
+        tileProtection = defBuff;
+        spriteRenderer.color = Color.cyan;
+        StartCoroutine(RevertTile(duration));
+    }
+
+    private IEnumerator RevertTile (float waitTime)
+    {  
+        yield return new WaitForSeconds(waitTime);
+        tileBuff = 0;
+        tileDamage = 0;
+        tileProtection = 0;
+        tileAffectRate = 0;
+        harmful = false;
+        helpful = true;
+        spriteRenderer.color = territory.TerrColor;
+    }
 }
