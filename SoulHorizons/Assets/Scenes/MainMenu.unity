@@ -352,23 +352,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encounterPool:
-  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
+  - {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
+  - {fileID: 11400000, guid: 0daf5ed6577fed3478d5d53d94de8bec, type: 2}
+  - {fileID: 11400000, guid: 1d097024f7552484f8f0ca07847ef951, type: 2}
+  - {fileID: 11400000, guid: 911a290e5fb911743a9661095138f6e5, type: 2}
   - {fileID: 11400000, guid: 01728c33ecd9b4f51b815984871dc3eb, type: 2}
   - {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  - {fileID: 11400000, guid: 3901fb268d76ab34f9097f735546fe80, type: 2}
+  - {fileID: 11400000, guid: eff2b890c50553d4f8fdf87a04dcd485, type: 2}
+  - {fileID: 11400000, guid: a8c494adad22b4345a238a376d3c3ab5, type: 2}
+  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
+  - {fileID: 11400000, guid: e8092fb0cc76048438a86c3d673cf0aa, type: 2}
   - {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
   - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
   - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
-  - {fileID: 11400000, guid: d0b85bef7c2e34a6c8563b49720d6308, type: 2}
-  - {fileID: 11400000, guid: e8092fb0cc76048438a86c3d673cf0aa, type: 2}
+  - {fileID: 11400000, guid: bdde5020c96aa4044b9e2c5cc83c7441, type: 2}
   cardPool:
-  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
-  - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
-  - {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
-  - {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
-  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
   - {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
-  - {fileID: 11400000, guid: b5cc732327c09eb4dbc1e89402e4fc43, type: 2}
-  - {fileID: 11400000, guid: c18df7fb756afc6458c1e54ba409df95, type: 2}
+  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
+  - {fileID: 11400000, guid: cea6482a38d782849bc2d076fd4397c6, type: 2}
+  - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
+  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  - {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
   startingInventory: {fileID: 11400000, guid: c93a04a8ff38644dbb65fa16e9ed7886, type: 2}
 --- !u!1 &268632235
 GameObject:
@@ -400,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiers: 10
-  distanceBetweenTiers: 4
+  distanceBetweenTiers: 2.5
   connectionRange: 2
 --- !u!4 &268632237
 Transform:

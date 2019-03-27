@@ -149,17 +149,17 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1324763931
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6585156582d3da34e806342ccad856f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 149a0e1e22b716a4eb7ce85d2f0141fb, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.1874998, y: 4.125}
+  m_Size: {x: 3.2, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &95383577856842134
@@ -406,9 +406,10 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 100
+  isStunned: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
-  die_SFX: {fileID: 8300000, guid: 0bef3dbba36208f41aceaf0640cad822, type: 3}
+  die_SFX: {fileID: 8300000, guid: 091c1dad4393cda409ed1617bb1831a5, type: 3}
   anim: {fileID: 95383577856842134}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
@@ -426,8 +427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  movementIntervalLower: 3
-  movementIntervalUpper: 4
+  movementIntervalLower: 1.8
+  movementIntervalUpper: 3
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:

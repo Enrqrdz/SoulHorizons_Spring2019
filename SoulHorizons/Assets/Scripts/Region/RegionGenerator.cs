@@ -13,15 +13,24 @@ public class RegionGenerator : MonoBehaviour
         RegionState newRegion = new RegionState();
         newRegion.map = GenerateMap();
 
-        float difficultyIncreaseEachTier = (float) EncounterPool.GetMaxDifficulty() / (float) tiers;
-
         for(int i = 0; i < newRegion.map.rings.Count; i++)
         {
             foreach(Node node in newRegion.map.rings[i])
             {
                 EncounterState newEncounter = new EncounterState();
 
-                newEncounter.tier = Mathf.RoundToInt(i * difficultyIncreaseEachTier);
+                if (i < 1)
+                {
+                    newEncounter.tier = 0;
+                }
+                else if (i >= 1 && i <= 4)
+                {
+                    newEncounter.tier = 1;
+                }
+                else if (i > 4)
+                {
+                    newEncounter.tier = 2;
+                }
 
                 newEncounter.Randomize();
                 node.encounter = newEncounter;

@@ -12561,9 +12561,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 8300000, guid: bcb0076aa14357d488a306db0939f500, type: 3}
-  inventoryOpenSFX: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
+  inventoryOpenSFX: {fileID: 8300000, guid: 8ce300e61b7423247acc75067bfa9365, type: 3}
   inventoryAddSFX: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
-  inventoryCloseSFX: {fileID: 8300000, guid: 8ce300e61b7423247acc75067bfa9365, type: 3}
+  inventoryCloseSFX: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
 --- !u!82 &1934702851
 AudioSource:
   m_ObjectHideFlags: 0

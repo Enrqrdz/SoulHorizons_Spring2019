@@ -19,5 +19,5 @@ MonoBehaviour:
   castingTime: 0
   cooldown: 1.8
   description: 
-  Mend_hp: 10
+  Mend_hp: 6
   MendSFX: {fileID: 8300000, guid: 4765a356da86d7f459a072cd3a6a4bfa, type: 3}

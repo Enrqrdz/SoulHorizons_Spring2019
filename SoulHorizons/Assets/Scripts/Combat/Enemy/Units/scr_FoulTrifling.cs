@@ -164,7 +164,7 @@ public class scr_FoulTrifling : scr_EntityAI
     {
         AttackController.Instance.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
         int index2 = Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[index2];
+        attack_SFX = attacks_SFX[0];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
     }
@@ -172,7 +172,7 @@ public class scr_FoulTrifling : scr_EntityAI
     {
         AttackController.Instance.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
         int index2 = Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[index2];
+        attack_SFX = attacks_SFX[0];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
     }

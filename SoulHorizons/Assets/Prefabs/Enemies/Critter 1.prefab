@@ -66,14 +66,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1324763931
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fb425d5d7a061c04380871d56bb02ca7, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.1874998, y: 4.125}
+  m_Size: {x: 15.36, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -171,9 +171,10 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  isStunned: 0
   hurts_SFX:
-  - {fileID: 8300000, guid: 338c597140c217c42a56f6133edc5605, type: 3}
-  die_SFX: {fileID: 8300000, guid: 26fb9ff7413851e4d946785fba0d13c3, type: 3}
+  - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  die_SFX: {fileID: 8300000, guid: e8f86f352c7d3ec4aa8b9948ce4e9c48, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
@@ -191,10 +192,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  decisionTime: 3
-  decisionTimeLower: 1
+  movementIntervalLower: 0.75
+  movementIntervalUpper: 1.5
   movements_SFX:
-  - {fileID: 8300000, guid: 80b2c6c4ff0767047bd78791fc9bbbf7, type: 3}
+  - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}
   - {fileID: 8300000, guid: 115bedd7a324c7d45b9433d193e86bdc, type: 3}
   - {fileID: 8300000, guid: 330f9a63efbc6514aa5960292d26bd22, type: 3}
 --- !u!82 &82587730288405618
@@ -210,7 +211,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
