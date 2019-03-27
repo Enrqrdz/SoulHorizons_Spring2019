@@ -22,6 +22,7 @@ public class ActionManager : MonoBehaviour
     [SerializeField]
     private scr_SoulManager soulManager;
 
+    private bool readyToCastAction = true;
     private bool readyToCastAbility = true;
     private bool readyToCastMantra = true;
     private bool deckIsEnabled = true;
@@ -55,14 +56,14 @@ public class ActionManager : MonoBehaviour
         //decisionNumber will be either: -1,0,1,2,3
         int decisionNumber = InputManager.ActionNumber();
 
-        if (decisionNumber != -1)
+        if (decisionNumber != -1 && readyToCastAction)
         {
             bool decisionNumberIsACard = decisionNumber == 0 || decisionNumber == 1;
             bool decisionNumberIsAMantra = decisionNumber == 2 || decisionNumber == 3;
 
             if (decisionNumberIsACard && readyToCastAbility)
             {
-                PlayOrSwap(decisionNumber);
+                ActivateCard(decisionNumber);
             }
             if (decisionNumberIsAMantra && readyToCastMantra)
             {
@@ -74,48 +75,48 @@ public class ActionManager : MonoBehaviour
 
     private void ActivateMantra(int decisionNumber)
     {
+        //Decision number comes from input manager and will by 2 or 3
         //Index must be 0 or 1
         int index = decisionNumber - 2;
 
-        StartCoroutine(MantraCooldown(currentMantras.activeMantras[index].cooldown));
-        StartCoroutine(AbilityCooldown(globalCooldown));
-        soulManager.ChargeSoulTransform(currentMantras.activeMantras[index].element, currentMantras.activeMantras[index].transformChargeAmount);
-        playerAnimator.SetBool("Cast", true);
         currentMantras.Activate(index);
+
+        StartCoroutine(MantraCooldown(currentMantras.activeMantras[index].cooldown));
+        StartCoroutine(ActionCooldown(globalCooldown));
+
+        soulManager.ChargeSoulTransform(currentMantras.activeMantras[index].element, currentMantras.activeMantras[index].transformChargeAmount);
+
+        playerAnimator.SetBool("Cast", true);
 
         for (int i = 0; i < mantraUI.Length; i++)
         {
             mantraUI[i].StartCooldown(currentMantras.activeMantras[index].cooldown);
-            abilityUI[i].StartCooldown(globalCooldown);
+            if (readyToCastAbility)
+            {
+                abilityUI[i].StartCooldown(globalCooldown);
+            }
         }
     }
 
-    private void PlayOrSwap(int index)
+    private void ActivateCard(int index)
     {
-        if (InputManager.IsCardSwapPressed() && InputManager.IsDashPressed())
+        currentDeck.Activate(index);
+
+        StartCoroutine(AbilityCooldown(currentDeck.hand[index].cooldown));
+        StartCoroutine(ActionCooldown(globalCooldown));
+
+        soulManager.ChargeSoulTransform(currentDeck.hand[index].element, currentDeck.hand[index].transformChargeAmount);
+
+        playerAnimator.SetBool("Cast", true);
+
+        for (int i = 0; i < abilityUI.Length; i++)
         {
-            StartCoroutine(AbilityCooldown(currentDeck.backupHand[index].cooldown));
-            StartCoroutine(MantraCooldown(globalCooldown));
-            soulManager.ChargeSoulTransform(currentDeck.backupHand[index].element, currentDeck.backupHand[index].transformChargeAmount);
-            playerAnimator.SetBool("Cast", true);
-            currentDeck.ActivateBackup(index);
-        }
-        else if (InputManager.IsCardSwapPressed())
-        {
-            currentDeck.Swap(index);
-        }
-        else
-        {
-            for (int i = 0; i < abilityUI.Length; i++)
+            abilityUI[i].StartCooldown(currentDeck.hand[index].cooldown);
+
+            if (readyToCastMantra)
             {
-                abilityUI[i].StartCooldown(currentDeck.hand[index].cooldown);
                 mantraUI[i].StartCooldown(globalCooldown);
             }
-            StartCoroutine(AbilityCooldown(currentDeck.hand[index].cooldown));
-            StartCoroutine(MantraCooldown(globalCooldown));
-            soulManager.ChargeSoulTransform(currentDeck.hand[index].element, currentDeck.hand[index].transformChargeAmount);
-            playerAnimator.SetBool("Cast", true);
-            currentDeck.Activate(index);
         }
     }
 
@@ -161,6 +162,16 @@ public class ActionManager : MonoBehaviour
             {
                 Debug.Log("No Active Mantra UI set!");
             }
+        }
+    }
+
+    private IEnumerator ActionCooldown(float cooldown)
+    {
+        if (cooldown != 0)
+        {
+            readyToCastAction = false;
+            yield return new WaitForSeconds(cooldown);
+            readyToCastAction = true;
         }
     }
 

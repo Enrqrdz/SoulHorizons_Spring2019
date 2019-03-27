@@ -87,6 +87,7 @@ public class Deck : MonoBehaviour
 
     public void Shuffle(string list)
     {
+        Debug.Log("This is the list: " + list);
         if (list.Equals("deck"))
         {
             ShuffleHelper<ActionData>(deck);
@@ -138,14 +139,12 @@ public class Deck : MonoBehaviour
 
     void CheckHandSizeAndDraw()
     {
-        int i = 0;
-        foreach (ActionData item in hand)
+        for(int i = 0; i < handSize; i++)
         {
-            if(item == null)
+            if(hand[i] == null)
             {
                 Draw(i);
             }
-            i++;
         }
     }
     
@@ -156,10 +155,8 @@ public class Deck : MonoBehaviour
             hand[index] = deck[0];
             deck.RemoveAt(0);         
         }
-        else
-        {
-            Shuffle("discard into deck");
-        }
+
+        Shuffle("discard into deck");
     }
 
     public void Activate(int index)
@@ -176,9 +173,9 @@ public class Deck : MonoBehaviour
     {
         if (hand[index].castingTime != 0)
         {
-            InputManager.cannotInputAnything = true;
+            InputManager.canInputCards = false;
             yield return new WaitForSeconds(hand[index].castingTime);
-            InputManager.cannotInputAnything = false;
+            InputManager.canInputCards = true;
         }
 
         hand[index].Activate();

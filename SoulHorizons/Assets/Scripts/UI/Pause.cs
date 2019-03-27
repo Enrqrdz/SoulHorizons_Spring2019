@@ -3,33 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pause : MonoBehaviour {
-
+public class Pause : MonoBehaviour
+{
     private static bool isPaused = false;
+    private static bool pausePressed = false;
     public GameObject pausePanel;
 
     private void Update ()
     {
         PauseControl();
+
+        if (isPaused)
+        {
+            PauseGame();
+        }
+
+        else
+        {
+            PlayGame();
+        }
+
         ShowPausePanel();
-	}
+        
+    }
 
     private void PauseControl()
     {
         if (Input.GetButtonDown("Menu_Pause"))
         {
+            TogglePausePressed();
             TogglePause();
-
-            if (isPaused)
-            {
-                PauseGame();
-            }
-
-            else
-            {
-                PlayGame();
-            }
         }
+    }
+
+    public static void TogglePausePressed()
+    {
+        pausePressed = !pausePressed;
     }
 
     public static void TogglePause()
@@ -63,7 +72,7 @@ public class Pause : MonoBehaviour {
 
     private void ShowPausePanel()
     {
-        pausePanel.SetActive(isPaused);
+        pausePanel.SetActive(pausePressed);
     }
 
     public static bool GetPaused()

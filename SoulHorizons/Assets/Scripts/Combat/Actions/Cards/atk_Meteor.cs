@@ -16,7 +16,7 @@ public class atk_Meteor : AttackData {
         PlayCardSFX.Play();
         for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
         {
-            scr_Grid.GridController.PrimeNextTile(xPos, i);
+            //scr_Grid.GridController.PrimeNextTile(xPos, i);
             activeAtk.particles[i] = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.entity._gridPos.x, activeAtk.entity._gridPos.y) + new Vector3(0,2.5f,0), Quaternion.Euler(new Vector3(0,0,33)));
         }
         return new Vector2Int(xPos, yPos); 
@@ -39,11 +39,11 @@ public class atk_Meteor : AttackData {
         {
             case 0:
                 scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
-                return new Vector2Int(xPos, yPos + 1);
+                return new Vector2Int(xPos, yPos + 2);
 
             case 1:
                 scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
-                return new Vector2Int(xPos, yPos - 2);
+                return new Vector2Int(xPos, yPos + 1);
 
             case 2:
                 scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
@@ -79,6 +79,7 @@ public class atk_Meteor : AttackData {
                 activeAttack.particles[1].gameObject.SetActive(false);
                 break;
             case 3:
+                activeAttack.particles[2].transform.position = Vector3.MoveTowards(activeAttack.particles[2].transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.position) + activeAttack.attack.particlesOffset, (18f) * Time.deltaTime);
                 activeAttack.particles[2].gameObject.SetActive(false);
                 break;
         }
@@ -93,5 +94,6 @@ public class atk_Meteor : AttackData {
         Destroy(activeAttack.particles[0].gameObject);
         Destroy(activeAttack.particles[1].gameObject);
         Destroy(activeAttack.particles[2].gameObject);
+        Destroy(activeAttack.particles[3].gameObject);
     }
 }

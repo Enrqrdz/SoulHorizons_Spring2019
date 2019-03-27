@@ -9,7 +9,9 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 {
     EncounterState encounterState;
 
+    public GameObject sprite;
     public GameObject infoPanel;
+    public GameObject fogMask;
 
     public TextMeshPro mouseText;
     public TextMeshPro mushText;
@@ -17,26 +19,19 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 
     private GameObject eventSystem; 
 
+    [Header("Encounter Type Sprites")]
+    public Sprite bossEncounter;
+    public Sprite combatEncounter;
+    public Sprite eventEncounter;
+    public Sprite outpostEncounter;
+    public Sprite restEncounter;
+    public Sprite treasureEncounter;
+
     void Start()
     {
-        infoPanel.SetActive(false);
         eventSystem = GameObject.Find("/EventSystem");
-        mouseText.text = "x " + encounterState.GetEncounterData().GetNumberOfMouses();
-        mushText.text = "x " + encounterState.GetEncounterData().GetNumberOfMush();
-        archerText.text = "x " + encounterState.GetEncounterData().GetNumberOfArchers();
 
-        if (encounterState.isCompleted)
-        {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red; 
-        }
-        else if (!encounterState.isAccessible)
-        {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.gray; 
-        }
-        else
-        {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-        }
+        UpdateChildren();
     }
 
     public void OnSelect(BaseEventData eventData)
@@ -56,5 +51,79 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     public void SetEncounterState(EncounterState newState)
     {
         encounterState = newState;
+    }
+
+    private void UpdateChildren()
+    {
+        infoPanel.SetActive(false);
+        
+        Color spriteColor;
+        bool interactable;
+        float fogRadius;
+
+        if (encounterState.isCompleted)
+        {
+            spriteColor = Color.red; 
+            interactable = true;
+            fogRadius = encounterState.GetEncounterData().clearRadiusWhileCompleted;
+        }
+        else if (encounterState.isAccessible)
+        {
+            spriteColor = Color.white;
+            interactable = true;
+            fogRadius = encounterState.GetEncounterData().clearRadiusWhileDiscovered;
+        }
+        else
+        {
+            spriteColor = Color.gray; 
+            interactable = false;
+            fogRadius = encounterState.GetEncounterData().clearRadiusWhileUndiscovered;
+        }
+
+        sprite.GetComponent<SpriteRenderer>().color = spriteColor; 
+        gameObject.GetComponent<Button>().interactable = interactable;
+        fogMask.transform.localScale = new Vector3(fogRadius, fogRadius, 0);
+
+        mouseText.text = "x " + encounterState.GetEncounterData().GetNumberOfMouses();
+        mushText.text = "x " + encounterState.GetEncounterData().GetNumberOfMush();
+        archerText.text = "x " + encounterState.GetEncounterData().GetNumberOfArchers();
+
+        SetSprite();
+    }
+
+    private void SetSprite()
+    {
+        Sprite newNodeSprite = sprite.GetComponent<SpriteRenderer>().sprite;
+
+        switch(encounterState.GetEncounterData().type)
+        {
+            case EncounterType.Boss:
+                newNodeSprite = bossEncounter;
+                break;
+                
+            case EncounterType.Combat:
+                newNodeSprite = combatEncounter;
+                break;
+
+            case EncounterType.Event:
+                newNodeSprite = eventEncounter;
+                break;
+
+            case EncounterType.Outpost:
+                newNodeSprite = outpostEncounter;
+                break;
+
+            case EncounterType.Rest:
+                newNodeSprite = restEncounter;
+                break;
+
+            case EncounterType.Treasure:
+                newNodeSprite = treasureEncounter;
+                break;
+
+            
+        }
+
+        sprite.GetComponent<SpriteRenderer>().sprite = newNodeSprite;
     }
 }

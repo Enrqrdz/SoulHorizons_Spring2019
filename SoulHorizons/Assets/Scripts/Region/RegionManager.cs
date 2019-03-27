@@ -51,6 +51,7 @@ public class RegionManager : MonoBehaviour
     public void GenerateButtons()
     {
         buttons = new List<Button>();
+        int selectedEncounterIndex = 0;
 
         for(int i = 0; i < currentRegion.map.rings.Count; i++)
         {
@@ -69,11 +70,16 @@ public class RegionManager : MonoBehaviour
                 button.onClick.AddListener(delegate {GoToEncounter(node.encounter);});
 
                 buttons.Add(newButton.GetComponent<Button>());
+
+                if(node.GetEncounterState() == SaveManager.currentGame.GetCurrentEncounterState())
+                {
+                    selectedEncounterIndex = buttons.Count - 1;
+                }
             }
         }
 
         GameObject eventSystem = GameObject.Find("/EventSystem");
-        eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[0].gameObject;      
+        eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = buttons[selectedEncounterIndex].gameObject;      
     }
 
     private void CreateNodeConnections()

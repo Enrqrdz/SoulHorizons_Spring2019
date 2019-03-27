@@ -40,10 +40,14 @@ public class scr_statemanager : MonoBehaviour {
             {
                 Debug.Log("This is a " + e);
             }
-            if (hp > 0)
+
+
+            if (hp < 0)
             {
-                playerEntity._health.hp = hp;
+                hp = 0;
             }
+
+            playerEntity._health.hp = hp;
 
             InputManager.cannotInputAnything = false;
             InputManager.cannotMove = false;
@@ -93,7 +97,8 @@ public class scr_statemanager : MonoBehaviour {
 
         if(playerEntity._health.hp <= 0)
         {
-            Pause.TogglePause();
+            InputManager.cannotInputAnything = true;
+            InputManager.cannotMove = true;
             DeathMessage.SetActive(true);
             endCombat = true;
         }

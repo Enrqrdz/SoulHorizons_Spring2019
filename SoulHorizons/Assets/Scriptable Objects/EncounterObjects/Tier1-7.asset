@@ -30,5 +30,5 @@ MonoBehaviour:
     y: 1
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
     x: 4
-    y: 4
+    y: 3
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}
