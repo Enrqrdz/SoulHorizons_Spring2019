@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaitoriPosition
-{
-}
-
+//Raitori Boss Designed for 4x8 grid
 public class Raitori : scr_EntityAI
 {
     [Tooltip("Damage required before first phase transition")]
@@ -22,6 +19,9 @@ public class Raitori : scr_EntityAI
     private int height = 3;
 
     public Phase currentPhase;
+    private int transitionNumber;
+    private Vector2[] possibleHeadPositions;
+    private Vector2[] zigZagPattern;
 
     private int maxHealth;
     private int currentHealth;
@@ -37,11 +37,64 @@ public class Raitori : scr_EntityAI
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[1];
         maxHealth = entity._health.hp;
+
+        int xRange = scr_Grid.GridController.rowSizeMax - width;
+        int yRange = scr_Grid.GridController.columnSizeMax - height;
+
+        //All possible positions for Raitori
+        possibleHeadPositions = new[] { new Vector2(xRange - 2, yRange), new Vector2(xRange - 1, yRange), new Vector2(xRange, yRange),
+                            new Vector2(xRange - 2, yRange - 1), new Vector2(xRange - 1, yRange - 1), new Vector2(xRange, yRange - 1)};
     }
 
     public override void Move()
     {
-        throw new System.NotImplementedException();
+        int xPosition = entity._gridPos.x;
+        int yPosition = entity._gridPos.y;
+        Vector2[] currentPosition = new[] { new Vector2(xPosition, yPosition), new Vector2(xPosition + 1, yPosition),
+                                            new Vector2(xPosition, yPosition - 1), new Vector2(xPosition + 1, yPosition - 1),
+                                            new Vector2(xPosition, yPosition - 2), new Vector2(xPosition + 1, yPosition - 2),};
+
+        //Zig-Zag Movement Pattern for Raitori
+        zigZagPattern = new[] {possibleHeadPositions[0], possibleHeadPositions[4], possibleHeadPositions[2],
+                                possibleHeadPositions[5], possibleHeadPositions[1], possibleHeadPositions[3]};
+
+        for (int i = 0; i < zigZagPattern.Length; i++)
+        {
+            if (currentPosition[0] == zigZagPattern[i])
+            {
+                transitionNumber = i;
+                break;
+            }
+            else
+            {
+                //Designated position from designers
+                currentPosition[0] = zigZagPattern[1];
+                transitionNumber = 1;
+            }
+        }
+
+        try
+        {
+            if (scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
+            {
+                transitionNumber += 1;
+
+                if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name)
+                {
+                    entity.SetTransform((int)zigZagPattern[transitionNumber].x, (int)zigZagPattern[transitionNumber].y);
+                }
+                else
+                {
+                    transitionNumber += 2;
+                }
+            }
+        }
+
+        catch
+        {
+
+        }
+
     }
 
     public override void UpdateAI()
