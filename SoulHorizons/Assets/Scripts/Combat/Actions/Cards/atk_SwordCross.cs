@@ -122,18 +122,6 @@ public class atk_SwordCross : AttackData
             scr_Grid.GridController.ActivateTile(xPos, yPos);
             scr_Grid.GridController.PrimeNextTile(xPos, yPos);
             return new Vector2Int(xPos, yPos);
-            /* if (temp == 1)
-            {
-                scr_Grid.GridController.ActivateTile(xPos, yPos);
-                scr_Grid.GridController.PrimeNextTile(xPos + 1, yPos + 1);
-                return new Vector2Int(xPos + 1, yPos + 1);
-            }
-            else
-            {
-                scr_Grid.GridController.ActivateTile(xPos, yPos);
-                scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos + 1);
-                return new Vector2Int(xPos - 1, yPos + 1);
-            }*/
         }
     }
 

@@ -80,6 +80,25 @@ public class scr_Grid : MonoBehaviour{
         return grid[x, y].isActive; 
     }
 
+    public bool CheckIfHarmful(int x, int y)
+    {
+        return grid[x, y].harmful;
+    }
+
+    public bool CheckIfHelpful(int x, int y)
+    {
+        return grid[x, y].helpful;
+    }
+
+    public float GetTileBuff (int x, int y)
+    {
+        return grid[x, y].GetTileBuff(); 
+    }
+
+    public float GetTileDamage(int x, int y)
+    {
+        return grid[x, y].GetTileDamage();
+    }
 
     public void SetNewGrid(int new_xSizeMax, int new_ySizeMax)
     {

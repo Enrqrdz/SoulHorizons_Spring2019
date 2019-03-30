@@ -49,7 +49,7 @@ public class scr_Tile : MonoBehaviour{
     public Entity entityOnTile;
     public int tileDamage = 0; //the damage the tile does to the player when they are on it
     public float tileProtection = 0f; //the damage the tile protects the player from when they are on it.
-    public int tileBuff = 0; //the extra damage the player grants to the player.
+    public float tileBuff = 0f; //the extra damage the player grants to the player.
     public float tileAffectRate = 0f; // the rate the tile's buff/debuff affects the player
     
 
@@ -161,7 +161,7 @@ public class scr_Tile : MonoBehaviour{
         return tileDamage;
     }
 
-    public int GetTileBuff()
+    public float GetTileBuff()
     {
         return tileBuff;
     }
@@ -200,7 +200,7 @@ public class scr_Tile : MonoBehaviour{
     }
 
 
-    public void BuffTile (float duration, int dmgBuff, int defBuff)
+    public void BuffTile (float duration, float dmgBuff, float defBuff)
     {
         helpful = true;
         tileBuff = dmgBuff;

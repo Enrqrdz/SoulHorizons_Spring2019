@@ -37,3 +37,7 @@ MonoBehaviour:
     cardObject: {fileID: 11400000, guid: c5ff505325372e24fbe90adfc517f45a, type: 2}
   - name: Soul Blight
     cardObject: {fileID: 11400000, guid: 91f0fee6241d8ed40a6b25188a757482, type: 2}
+  - name: Meditation Circle
+    cardObject: {fileID: 11400000, guid: 7f6cecc3d5e2eba4fa85d29ae6d90608, type: 2}
+  - name: Guard Break
+    cardObject: {fileID: 11400000, guid: a0cfbf7eafd1fee4383ff463dbb14123, type: 2}
