@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encounterPool:
-  - {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
+  - {fileID: 11400000, guid: 8cb348fcbac28d24398ba2d084ff0f7a, type: 2}
   - {fileID: 11400000, guid: 0daf5ed6577fed3478d5d53d94de8bec, type: 2}
   - {fileID: 11400000, guid: 1d097024f7552484f8f0ca07847ef951, type: 2}
   - {fileID: 11400000, guid: 911a290e5fb911743a9661095138f6e5, type: 2}

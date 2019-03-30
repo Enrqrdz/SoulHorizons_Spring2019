@@ -289,10 +289,10 @@ MonoBehaviour:
   type: 0
   _gridPos: {x: 0, y: 0}
   _health:
-    hp: 75
-    shield: 0
-    max_hp: 75
-  _ai: {fileID: 0}
+    hp: 300
+    shield: 100
+    max_hp: 300
+  _ai: {fileID: 7482911898623937418}
   entityTerritory:
     name: 1
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
@@ -321,6 +321,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b679107095173184590d7ec9130442b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity: {fileID: 114725702907161856}
+  anim: {fileID: 0}
+  width: 2
+  height: 3
+  movementInterval: 2
+  attacks_SFX: []
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
