@@ -21,8 +21,8 @@ MonoBehaviour:
     x: 1
     y: 1
   - entity: {fileID: 114725702907161856, guid: 57ee90b32ac33b1409cdaf1764312423, type: 3}
-    x: 4
-    y: 3
+    x: 5
+    y: 0
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}
   clearRadiusWhileUndiscovered: 0
   clearRadiusWhileDiscovered: 1

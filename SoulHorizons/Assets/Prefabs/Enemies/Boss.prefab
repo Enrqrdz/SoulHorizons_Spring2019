@@ -290,7 +290,7 @@ MonoBehaviour:
   _gridPos: {x: 0, y: 0}
   _health:
     hp: 300
-    shield: 100
+    shield: 0
     max_hp: 300
   _ai: {fileID: 7482911898623937418}
   entityTerritory:
@@ -325,7 +325,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   width: 2
   height: 3
-  movementInterval: 2
+  movementInterval: 0.5
   attacks_SFX: []
 --- !u!82 &82240855345996476
 AudioSource:

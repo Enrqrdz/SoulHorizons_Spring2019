@@ -124,6 +124,57 @@ public class Entity : MonoBehaviour
         
     }
 
+    //NOTE: GridPosition is the origin of the large transform, or the bottom leftmost tile.
+    public void SetLargeTransform(Vector2Int gridPosition, int width, int height)
+    {
+        //Check if you are already on this tile
+        if (_gridPos == gridPosition)
+        {                                                                                                         //if we set transform, and we havent moved
+            return;                                                                                                                                    //return
+        }
+
+        //Animate movement
+        if (anim != null)
+        {
+            anim.SetInteger("Movement", 1);
+        }
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                scr_Grid.GridController.SetTileOccupied(false, _gridPos.x + i, _gridPos.y + j, this);
+            }
+        }
+        _gridPos = gridPosition;
+        spr.sortingOrder = -_gridPos.y;
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y, this);
+            }
+        }
+
+        //TODO 3-30: Set Instances for all positions
+        AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this);
+        if (atk != null)
+        {
+            if (!invincible)
+            {
+                //Debug.Log("I'M HIT");
+                HitByAttack(atk);
+                if (has_iframes)
+                {
+                    //Activate invincibility frames
+                    setInvincible(true, invulnTime);
+                }
+            }
+        }
+
+    }
+
     /// <summary>
     /// Takes an attack object and damages the entity if the attack's type is different from the entity's type.
     /// </summary>
