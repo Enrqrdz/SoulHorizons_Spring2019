@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be64bcd7d0735846bb52c9537dd7770, type: 3}
-  m_Name: Atk_Crescent Strike
+  m_Script: {fileID: 11500000, guid: ded27370048e04f4fa3a1adf8178a690, type: 3}
+  m_Name: Atk_Sword Cross
   m_EditorClassIdentifier: 
-  incrementTime: 0.12
-  maxIncrementRange: 4
-  damage: 10
+  incrementTime: 0.05
+  maxIncrementRange: 3
+  damage: 6
   type: 1
   hasPiercing: 1
-  particles: {fileID: 212286977064683536, guid: 6805b2aea64a7294da92797ced98bd29,
+  particles: {fileID: 822255763060273358, guid: 87623d81128ac5649825557a88a1a712,
     type: 3}
-  particlesOffset: {x: 0, y: 0.1, z: 0}
-  particleSpeed: 11
-  CrescentSFX: {fileID: 0}
+  particlesOffset: {x: 0, y: 0, z: 0}
+  particleSpeed: 1
+  SwordSFX: {fileID: 0}

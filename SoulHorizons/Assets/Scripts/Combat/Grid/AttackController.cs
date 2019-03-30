@@ -33,12 +33,13 @@ public class AttackController : MonoBehaviour {
         {
             bool attackIsAtMaxRange = activeAttacks[i].currentIncrement > activeAttacks[i].attack.maxIncrementRange;
             bool attackIsOnFinalTarget = !activeAttacks[i].attack.hasPiercing && activeAttacks[i].entityIsHit;
-            bool attackIsOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
+            bool attackIsNotOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
             bool attackHasMoved = activeAttacks[i].currentIncrement != 0;
+            bool attackHasPassedBuff = scr_Grid.GridController.CheckIfHelpful(activeAttacks[i].position.x, activeAttacks[i].position.y) == true;
 
             if (activeAttacks[i].CanAttackContinue())
             {
-                if (attackIsAtMaxRange || attackIsOnFinalTarget || attackIsOnGrid)
+                if (attackIsAtMaxRange || attackIsOnFinalTarget || attackIsNotOnGrid)
                 {
                     RemoveFromArray(i);
                     return;
@@ -49,6 +50,11 @@ public class AttackController : MonoBehaviour {
                     scr_Grid.GridController.DeactivateTile(activeAttacks[i].lastPosition.x, activeAttacks[i].lastPosition.y);
                 }
 
+                if (attackHasPassedBuff)
+                {
+                    float temp = (float)activeAttacks[i].attack.damage * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileBuff();
+                    activeAttacks[i].attack.damage = activeAttacks[i].attack.damage * (int)temp;
+                }
                 activeAttacks[i].lastPosition = activeAttacks[i].position;
                 activeAttacks[i].Clone(scr_Grid.GridController.AttackPosition(activeAttacks[i]));
                 activeAttacks[i].position = activeAttacks[i].attack.ProgressAttack(activeAttacks[i].position.x, activeAttacks[i].position.y, activeAttacks[i]);
