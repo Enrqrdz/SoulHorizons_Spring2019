@@ -13,6 +13,7 @@ public class ActionManager : MonoBehaviour
     public Animator playerAnimator;
     public float globalCooldown;
 
+
     [SerializeField]
     private AudioSource CardChange_SFX;
     [SerializeField]

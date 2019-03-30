@@ -87,7 +87,14 @@ public class scr_Grid : MonoBehaviour{
 
     public bool CheckIfHelpful(int x, int y)
     {
-        return grid[x, y].helpful;
+        try
+        {
+            return grid[x, y].helpful;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public float GetTileBuff (int x, int y)

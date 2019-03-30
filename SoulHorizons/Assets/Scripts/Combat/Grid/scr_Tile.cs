@@ -35,9 +35,14 @@ public class scr_Tile : MonoBehaviour{
     //public Color inactiveColor;
 
     
-    public bool occupied;
+   
     public bool harmful;
     public bool helpful;
+    public bool isOnFire;
+    public bool isFlooded;
+    public bool isPoisoned;
+
+    public bool occupied;
     public bool isPrimed;
     public bool isActive; 
     public Territory territory;
@@ -151,7 +156,22 @@ public class scr_Tile : MonoBehaviour{
             else
             {
                 isActive = false;
-                spriteRenderer.color = territory.TerrColor;
+                if (isOnFire)
+                {
+                    spriteRenderer.color = Color.red;
+                }
+                else if (isFlooded)
+                {
+                    spriteRenderer.color = Color.blue;
+                }
+                else if(isPoisoned)
+                {
+                    spriteRenderer.color = Color.gray;
+                }
+                else
+                {
+                    spriteRenderer.color = territory.TerrColor;
+                }
             }         
         }  
     }
@@ -175,19 +195,40 @@ public class scr_Tile : MonoBehaviour{
     {
         return tileAffectRate;
     }
-    public void DeBuffTile (float duration, int damage, float rate)
+    public void DeBuffTile (float duration, int damage, float rate, int type)
     {
         harmful = true;
         tileAffectRate = rate;
         tileDamage = damage;
+        
+        switch(type)
+        {
+            case 0: //Is Poisoned
+                isPoisoned = true;
+                spriteRenderer.color = Color.gray;
+                StartCoroutine(DamageTile(rate, damage));
+                StartCoroutine(RevertTile(duration));
+                break;
+            case 1: //Is on Fires
+                isOnFire = true;
+                spriteRenderer.color = Color.red;
+                StartCoroutine(DamageTile(rate, damage));
+                StartCoroutine(RevertTile(duration));
+                break;
+            case 2: //Is Flooded
+                isFlooded = true;
+                spriteRenderer.color = Color.blue;
+                StartCoroutine(RevertTile(duration));
+                break;
+
+        }
         
         StartCoroutine(DamageTile(rate, damage));
         StartCoroutine(RevertTile(duration));
     }
 
     private IEnumerator DamageTile(float damageRate, int damage)
-    {
-        spriteRenderer.color = Color.gray;
+    {       
         while (harmful)
         {
             if (entityOnTile != null)
