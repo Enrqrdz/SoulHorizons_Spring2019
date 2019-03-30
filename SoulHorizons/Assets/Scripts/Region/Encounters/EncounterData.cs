@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum EncounterType {Boss, Combat, Event, Outpost, Rest, Treasure};
+
 [CreateAssetMenu(fileName = "New Encounter", menuName = "Encounter")]
 [System.Serializable]
 public class EncounterData : ScriptableObject
 {
+    public EncounterType type = EncounterType.Combat;
+
     public new string name;
     public string sceneName = SceneNames.ENCOUNTER;
     public int tier;
@@ -16,6 +20,11 @@ public class EncounterData : ScriptableObject
 
     [SerializeField]
     private EncounterMapData mapData;
+
+    [Header("FogSettings")]
+    public float clearRadiusWhileUndiscovered = 0;
+    public float clearRadiusWhileDiscovered = 1;
+    public float clearRadiusWhileCompleted = 1;
 
     public int GetNumberOfMouses()
     {
