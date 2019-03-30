@@ -52,8 +52,16 @@ public class AttackController : MonoBehaviour {
 
                 if (attackHasPassedBuff)
                 {
-                    float temp = (float)activeAttacks[i].attack.damage * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileBuff();
-                    activeAttacks[i].attack.damage = activeAttacks[i].attack.damage * (int)temp;
+                    if(activeAttacks[i].attack.type == EntityType.Player)
+                    {
+                        float temp = (float)activeAttacks[i].attack.damage * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileBuff();
+                        activeAttacks[i].attack.damage = activeAttacks[i].attack.damage * (int)temp;
+                    }
+                    else if (activeAttacks[i].attack.type == EntityType.Enemy)
+                    {
+                        float temp = (float)activeAttacks[i].attack.damage * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileProtection();
+                        activeAttacks[i].attack.damage = activeAttacks[i].attack.damage * (int)temp;
+                    }
                 }
                 activeAttacks[i].lastPosition = activeAttacks[i].position;
                 activeAttacks[i].Clone(scr_Grid.GridController.AttackPosition(activeAttacks[i]));

@@ -38,9 +38,9 @@ public class scr_Tile : MonoBehaviour{
    
     public bool harmful;
     public bool helpful;
-    public bool isOnFire;
-    public bool isFlooded;
-    public bool isPoisoned;
+    public bool isOnFire = false;
+    public bool isFlooded = false;
+    public bool isPoisoned = false;
 
     public bool occupied;
     public bool isPrimed;
@@ -211,7 +211,7 @@ public class scr_Tile : MonoBehaviour{
                 break;
             case 1: //Is on Fires
                 isOnFire = true;
-                spriteRenderer.color = Color.red;
+                spriteRenderer.color = Color.magenta;
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
@@ -258,7 +258,10 @@ public class scr_Tile : MonoBehaviour{
         tileProtection = 0;
         tileAffectRate = 0;
         harmful = false;
-        helpful = true;
+        helpful = false;
+        isFlooded = false;
+        isPoisoned = false;
+        isOnFire = false;
         spriteRenderer.color = territory.TerrColor;
     }
 }
