@@ -238,7 +238,7 @@ public class Entity : MonoBehaviour
         shieldProtection = protect; //the amount of damage the shield is reducing damage by
         shieldProtectionIncrement = increment; //the rate the damage reduction of the shield increasesby when you move
         shieldProtectionMax = incrementMax;
-        if (shield)
+        if (shield == true)
         {
             shieldCounter = time;
             spr.color = Color.gray;

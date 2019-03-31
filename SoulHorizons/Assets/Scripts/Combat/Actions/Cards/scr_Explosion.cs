@@ -20,12 +20,38 @@ public class scr_Explosion : ActionData
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         //add attack to attack controller script
-        AttackController.Instance.AddNewAttack(ExplosionMain, player._gridPos.x + 3, player._gridPos.y, player);
-        AttackController.Instance.AddNewAttack(ExplosionSide, player._gridPos.x + 3, player._gridPos.y + 1, player);
-        AttackController.Instance.AddNewAttack(ExplosionMain, player._gridPos.x + 3, player._gridPos.y  - 1, player);
-        AttackController.Instance.AddNewAttack(ExplosionMain, player._gridPos.x + 4, player._gridPos.y, player);
-        AttackController.Instance.AddNewAttack(ExplosionMain, player._gridPos.x + 2, player._gridPos.y, player);
-        
+
+        try
+        {
+            AttackController.Instance.AddNewAttack(ExplosionMain, player._gridPos.x + 3, player._gridPos.y, player);
+        }
+        catch
+        { }
+        try
+        {
+            AttackController.Instance.AddNewAttack(ExplosionSide, player._gridPos.x + 3, player._gridPos.y + 1, player);
+        }
+        catch
+        { }
+        try
+        {
+            AttackController.Instance.AddNewAttack(ExplosionSide, player._gridPos.x + 3, player._gridPos.y - 1, player);
+        }
+        catch
+        { }
+        try
+        {
+            AttackController.Instance.AddNewAttack(ExplosionSide, player._gridPos.x + 4, player._gridPos.y, player);
+        }
+        catch
+        { }
+
+        try
+        {
+            AttackController.Instance.AddNewAttack(ExplosionSide, player._gridPos.x + 2, player._gridPos.y, player);
+        }
+        catch
+        { }   
     }
 
 }

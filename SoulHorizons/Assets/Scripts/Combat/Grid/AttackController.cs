@@ -59,6 +59,7 @@ public class AttackController : MonoBehaviour {
                     else
                     {
                         activeAttacks[i].attack.modifier = activeAttacks[i].attack.modifier * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileProtection();
+
                     }
                 }
                 activeAttacks[i].lastPosition = activeAttacks[i].position;

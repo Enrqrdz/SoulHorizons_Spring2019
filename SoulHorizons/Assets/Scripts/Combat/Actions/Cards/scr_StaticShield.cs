@@ -22,7 +22,6 @@ public class scr_StaticShield : ActionData
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         player.SetShield(true, duration, shieldProtection,shieldProtectionIncrement, shieldProtectionMax);
-        AttackController.Instance.AddNewAttack(StaticShield, player._gridPos.x, player._gridPos.y, player);
 
     }
 }
