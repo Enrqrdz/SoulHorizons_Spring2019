@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Meditation Circle
   m_EditorClassIdentifier: 
   actionName: Meditation Circle
-  art: {fileID: 0}
+  art: {fileID: 21300000, guid: 9e56aa5733e259a449137894b68c248b, type: 3}
   element: 1
   transformChargeAmount: 5
   castingTime: 0

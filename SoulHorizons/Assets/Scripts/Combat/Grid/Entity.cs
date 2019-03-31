@@ -116,11 +116,18 @@ public class Entity : MonoBehaviour
             anim.SetInteger("Movement", 1);
         }
 
-        //Check if tile is occupied
-        scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
-        _gridPos = new Vector2Int(x, y);
         
-        scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y,this);
+        if(scr_Grid.GridController.CheckIfOccupied(x,y) == false)
+        {
+            scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
+            _gridPos = new Vector2Int(x, y);
+            scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y, this);
+        }
+        else
+        {
+            return;
+        }
+
         spr.sortingOrder = -_gridPos.y;
         AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this);
 
