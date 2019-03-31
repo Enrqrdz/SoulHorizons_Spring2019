@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class scr_Grid : MonoBehaviour{
     
-    public int columnSizeMax;
-    public int rowSizeMax;
+
+    [HideInInspector]public int columnSizeMax;
+    [HideInInspector]public int rowSizeMax;
     [Tooltip("Use to move the center of the grid along the x axis")]
     public float columnOffset = 0;
     [Tooltip("Use to move the center of the grid along the y axis")]
@@ -14,7 +15,6 @@ public class scr_Grid : MonoBehaviour{
     public scr_Tile[,] grid;
     public scr_Tile tile;
     private SpriteRenderer spriteR;
-    public Sprite tile_sprites;
     private int spriteTracker = 0;
     public Entity[] activeEntities;
     public Transform camera; 
@@ -23,11 +23,12 @@ public class scr_Grid : MonoBehaviour{
 
     public EncounterData encounter;
 
+    public List<TileData> possibleTiles;
+
     private void Awake()
     {
         GridController = this;     
     }
-
 
     private void Start()
     {
@@ -57,9 +58,11 @@ public class scr_Grid : MonoBehaviour{
                 tileToAdd.gridPositionY = j;
 
                 spriteR = tileToAdd.GetComponent<SpriteRenderer>();
-                spriteR.sprite = tile_sprites;
+
+                int randomTileIndex = Random.Range(0, possibleTiles.Count);
+                spriteR.sprite = possibleTiles[randomTileIndex].backGroundSprite;
                 
-                if (tile_sprites == null) Debug.Log("MISSING SPRITE");
+                if (possibleTiles[randomTileIndex].backGroundSprite == null) Debug.Log("MISSING SPRITE");
 
                 grid[i, j] = tileToAdd;
 
@@ -419,5 +422,4 @@ public class scr_Grid : MonoBehaviour{
             }
         }
     }
-
 }
