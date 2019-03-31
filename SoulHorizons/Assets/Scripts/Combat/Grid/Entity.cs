@@ -17,6 +17,7 @@ public class Entity : MonoBehaviour
     public EntityType type;
 
     public Vector2Int _gridPos = new Vector2Int();
+    public Vector2Int[] gridPositions;
     public Health _health = new Health();
     public scr_EntityAI _ai;
     public Territory entityTerritory;
@@ -139,6 +140,8 @@ public class Entity : MonoBehaviour
             anim.SetInteger("Movement", 1);
         }
 
+        gridPositions = new Vector2Int[width*height];
+
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -153,20 +156,21 @@ public class Entity : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                scr_Grid.GridController.SetTileOccupied(true, _gridPos.x, _gridPos.y, this);
+                gridPositions[i * height + j] = new Vector2Int(gridPosition.x + i, gridPosition.y + j);
+                Debug.Log("Index: " + (i * height + j));
+                Debug.Log("Position: " + gridPositions[i * height + j]);
+                scr_Grid.GridController.SetTileOccupied(true, gridPosition.x, gridPosition.y, this);
             }
         }
 
-        //TODO 3-30: Set Instances for all positions
-
-        AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this); ;
+        AttackData atk = AttackController.Instance.MoveIntoAttackCheck(gridPositions[0], this);
 
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                gridPosition += new Vector2Int(i,j);
-                atk = AttackController.Instance.MoveIntoAttackCheck(gridPosition, this);
+
+                atk = AttackController.Instance.MoveIntoAttackCheck(gridPositions[i * height + j], this);
             }
         }
      
@@ -174,7 +178,6 @@ public class Entity : MonoBehaviour
         {
             if (!invincible)
             {
-                //Debug.Log("I'M HIT");
                 HitByAttack(atk);
                 if (has_iframes)
                 {

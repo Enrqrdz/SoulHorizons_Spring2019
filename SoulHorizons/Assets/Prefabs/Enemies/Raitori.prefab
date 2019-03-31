@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099033517750084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 11.4, z: 0}
-  m_LocalScale: {x: 1.2171273, y: 1.2171273, z: 0}
+  m_LocalPosition: {x: 22, y: 45, z: 0}
+  m_LocalScale: {x: 5.5, y: 7, z: 0}
   m_Children: []
   m_Father: {fileID: 4483777865337536}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 1324763931
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300018, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8f1da1f4f7e78f459edbb4fb7f43972, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 82587730288405618}
   - component: {fileID: 82526283423963634}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: Raitori
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 300
     shield: 0
@@ -325,7 +326,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   width: 2
   height: 3
-  movementInterval: 0.5
+  movementInterval: 2.5
   attacks_SFX: []
 --- !u!82 &82240855345996476
 AudioSource:
@@ -643,8 +644,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299905830135446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 28.7, z: 0}
-  m_LocalScale: {x: 1.1999999, y: 1.1999999, z: 0}
+  m_LocalPosition: {x: 13, y: 72, z: 0}
+  m_LocalScale: {x: 4, y: 3, z: 0}
   m_Children:
   - {fileID: 4360945645496908}
   - {fileID: 4976755501121300}
@@ -767,7 +768,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.62352943, g: 0.21176472, b: 0.227451, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -846,7 +847,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 53817f65cf9f68d42a99d43f4d826b16, type: 3}
-  m_Color: {r: 0.3931559, g: 0.8962264, b: 0.39853984, a: 1}
+  m_Color: {r: 0.35872886, g: 0.5176471, b: 0.29411766, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

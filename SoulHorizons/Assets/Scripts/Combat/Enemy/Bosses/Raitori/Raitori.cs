@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,6 +43,8 @@ public class Raitori : scr_EntityAI
         xPosition = entity._gridPos.x;
         yPosition = entity._gridPos.y;
         currentHeadPosition = new Vector2Int(xPosition, yPosition);
+
+        entity.SetLargeTransform(currentHeadPosition, width, height);
 
         //All possible positions for Raitori
         possibleHeadPositions = new[] {
@@ -91,13 +94,17 @@ public class Raitori : scr_EntityAI
             {
                 for (int j = 0; j < height; j++)
                 {
-                    scr_Grid.GridController.SetTileOccupied(true, (int)zigZagPattern[transitionNumber].x + i, (int)zigZagPattern[transitionNumber].y + j, this.entity);
+                    int xPosition = (int)zigZagPattern[transitionNumber].x + i;
+                    int yPosition = (int)zigZagPattern[transitionNumber].y + j;
+                    scr_Grid.GridController.SetTileOccupied(true, xPosition, yPosition, this.entity);
                 }
             }
         }
-        catch
+        catch(Exception e)
         {
+            Debug.Log(e);
             Debug.Log("Raitori position is off!");
+            Debug.Log("Transition Number: " + transitionNumber);
         }
     }
 
@@ -112,13 +119,13 @@ public class Raitori : scr_EntityAI
     public override void Move()
     {
         transitionNumber += 1;
+        transitionNumber %= zigZagPattern.Length;
         xPosition = (int)zigZagPattern[transitionNumber].x;
         yPosition = (int)zigZagPattern[transitionNumber].y;
         currentHeadPosition = new Vector2Int(xPosition, yPosition);
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name)
         {
-            transitionNumber %= zigZagPattern.Length;
             entity.SetLargeTransform(currentHeadPosition, width, height);
         }
         else
