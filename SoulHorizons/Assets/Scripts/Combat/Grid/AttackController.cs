@@ -52,8 +52,14 @@ public class AttackController : MonoBehaviour {
 
                 if (attackHasPassedBuff)
                 {
-                    float temp = (float)activeAttacks[i].attack.damage * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileBuff();
-                    activeAttacks[i].attack.damage = activeAttacks[i].attack.damage * (int)temp;
+                    if (activeAttacks[i].attack.type == EntityType.Player)
+                    {
+                        activeAttacks[i].attack.modifier = activeAttacks[i].attack.modifier * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileBuff();
+                    }
+                    else
+                    {
+                        activeAttacks[i].attack.modifier = activeAttacks[i].attack.modifier * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileProtection();
+                    }
                 }
                 activeAttacks[i].lastPosition = activeAttacks[i].position;
                 activeAttacks[i].Clone(scr_Grid.GridController.AttackPosition(activeAttacks[i]));
@@ -68,8 +74,8 @@ public class AttackController : MonoBehaviour {
     private void RemoveFromArray(int index)
     {
         //Attack end effects
+        activeAttacks[index].attack.modifier = 1;
         activeAttacks[index].attack.EndEffects(activeAttacks[index]);
-
         scr_Grid.GridController.DeactivateTile(activeAttacks[index].lastPosition.x, activeAttacks[index].lastPosition.y);
         scr_Grid.GridController.DeactivateTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
         scr_Grid.GridController.DePrimeTile(activeAttacks[index].position.x, activeAttacks[index].position.y);

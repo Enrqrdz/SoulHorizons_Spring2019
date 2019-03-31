@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e11cf085ae90844eb1140e4d922569c, type: 3}
   m_Name: Atk_Guard Break
   m_EditorClassIdentifier: 
-  incrementTime: 0.1
+  incrementTime: 0.5
   maxIncrementRange: 100
+  modifier: 1
   damage: 0
   type: 1
   hasPiercing: 0
