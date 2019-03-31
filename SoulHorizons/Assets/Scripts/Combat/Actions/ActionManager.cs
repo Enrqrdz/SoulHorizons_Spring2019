@@ -115,10 +115,8 @@ public class ActionManager : MonoBehaviour
 
             playerAnimator.SetBool("Cast", true);
 
-            Debug.Log("CoolDownPre");
             for (int i = 0; i < abilityUI.Length; i++)
             {
-                Debug.Log("Cooldown");
                 abilityUI[i].StartCooldown(activatedCard.cooldown);
 
                 if (readyToCastMantra)
