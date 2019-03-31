@@ -27,7 +27,7 @@ public class Raitori : scr_EntityAI
     private int transitionNumber;
     private Vector2Int[] possibleHeadPositions;
     private Vector2Int[] zigZagPattern;
-    private Vector2Int startingHeadPosition;
+    private Vector2Int currentHeadPosition;
 
     //Audio
     AudioSource Attack_SFX;
@@ -41,7 +41,7 @@ public class Raitori : scr_EntityAI
         yRange = scr_Grid.GridController.rowSizeMax - height;   //4 - 3
         xPosition = entity._gridPos.x;
         yPosition = entity._gridPos.y;
-        startingHeadPosition = new Vector2Int(xPosition, yPosition);
+        currentHeadPosition = new Vector2Int(xPosition, yPosition);
 
         //All possible positions for Raitori
         possibleHeadPositions = new[] {
@@ -58,17 +58,17 @@ public class Raitori : scr_EntityAI
         //Raitori origin must be on one of the designated positions
         for (int i = 0; i < zigZagPattern.Length; i++)
         {
-            if (startingHeadPosition == zigZagPattern[i])
+            if (currentHeadPosition == zigZagPattern[i])
             {
                 transitionNumber = i;
                 Debug.Log("\nTransition number: " + i);
-                Debug.Log("\nX: " + startingHeadPosition.x + "\tY: " + startingHeadPosition.y);
+                Debug.Log("\nX: " + currentHeadPosition.x + "\tY: " + currentHeadPosition.y);
                 break;
             }
             else if (i == zigZagPattern.Length - 1)
             {
                 //Arbitrary preference in position
-                startingHeadPosition = zigZagPattern[1];
+                currentHeadPosition = zigZagPattern[1];
                 transitionNumber = 1;
             }
         }
@@ -114,11 +114,12 @@ public class Raitori : scr_EntityAI
         transitionNumber += 1;
         xPosition = (int)zigZagPattern[transitionNumber].x;
         yPosition = (int)zigZagPattern[transitionNumber].y;
+        currentHeadPosition = new Vector2Int(xPosition, yPosition);
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name)
         {
             transitionNumber %= zigZagPattern.Length;
-            entity.SetTransform(xPosition, yPosition);
+            entity.SetLargeTransform(currentHeadPosition, width, height);
         }
         else
         {

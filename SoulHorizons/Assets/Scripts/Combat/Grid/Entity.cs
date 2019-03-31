@@ -128,9 +128,9 @@ public class Entity : MonoBehaviour
     public void SetLargeTransform(Vector2Int gridPosition, int width, int height)
     {
         //Check if you are already on this tile
-        if (_gridPos == gridPosition)
-        {                                                                                                         //if we set transform, and we havent moved
-            return;                                                                                                                                    //return
+        if (_gridPos == gridPosition || width <= 0 || height <= 0)
+        {                                                                                                        
+            return;                                                                                                                                    
         }
 
         //Animate movement
@@ -158,7 +158,18 @@ public class Entity : MonoBehaviour
         }
 
         //TODO 3-30: Set Instances for all positions
-        AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this);
+
+        AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this); ;
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                gridPosition += new Vector2Int(i,j);
+                atk = AttackController.Instance.MoveIntoAttackCheck(gridPosition, this);
+            }
+        }
+     
         if (atk != null)
         {
             if (!invincible)
