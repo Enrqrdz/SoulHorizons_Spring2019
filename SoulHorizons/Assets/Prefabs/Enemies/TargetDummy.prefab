@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1324763931
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c97c16614c2e20c4fb7fdae0c0d5e47e, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
@@ -171,9 +171,10 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  isStunned: 0
   hurts_SFX:
-  - {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
-  die_SFX: {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
+  - {fileID: 8300000, guid: 208dc7926836b9545aa96ff3a1b0c39a, type: 3}
+  die_SFX: {fileID: 8300000, guid: 2168c97c39f5c4f44a55a3276d1f424a, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}

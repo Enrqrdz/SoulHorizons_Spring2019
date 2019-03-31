@@ -117,6 +117,7 @@ MonoBehaviour:
   damageThreshold: 40
   movementIntervalLower: 3
   movementIntervalUpper: 4
+  movements_SFX: []
   attacks_SFX: []
 --- !u!82 &82002260226468596
 AudioSource:
@@ -328,7 +329,7 @@ MonoBehaviour:
   isStunned: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
-  die_SFX: {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  die_SFX: {fileID: 8300000, guid: 3ec0b15337fa1c942935a0ee79c719fb, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
@@ -353,7 +354,10 @@ MonoBehaviour:
   damageThreshold: 40
   movementIntervalLower: 2
   movementIntervalUpper: 4
-  attacks_SFX: []
+  movements_SFX:
+  - {fileID: 8300000, guid: 1a4946e1e2a704e46b3ca02361277021, type: 3}
+  attacks_SFX:
+  - {fileID: 8300000, guid: bbbc5be9e90d263468a163a7ca4ce84e, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0

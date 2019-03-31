@@ -250,7 +250,7 @@ PrefabInstance:
         type: 3}
       propertyPath: buttonsSFX
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 8e7b86a8ab80fd843bec269bbacfa925, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
 --- !u!1001 &162552275

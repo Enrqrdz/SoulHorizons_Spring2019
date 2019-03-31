@@ -432,11 +432,10 @@ MonoBehaviour:
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:
-  - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
-  - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
-  - {fileID: 8300000, guid: 06847d784b65279448930a7c65222bd1, type: 3}
+  - {fileID: 8300000, guid: d2c64de9a270ca64c8f56eb9d83acbf2, type: 3}
+  - {fileID: 8300000, guid: 689d0a78f054505488f1acfcc6679d1c, type: 3}
   attacks_SFX:
-  - {fileID: 8300000, guid: 2a4b8d76122eff84a8b0dd06431dc0db, type: 3}
+  - {fileID: 8300000, guid: 282a1d403f79ced42b7978407b9b807b, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -546,7 +545,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243883424422922524, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -643,7 +642,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243843424514397098, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
