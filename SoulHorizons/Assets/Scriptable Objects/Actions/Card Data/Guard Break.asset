@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Guard Break
   m_EditorClassIdentifier: 
   actionName: Guard Break
-  art: {fileID: 0}
+  art: {fileID: 21300000, guid: 8fdd86deb0855b64fb99a0e30ab20ad6, type: 3}
   element: 1
   transformChargeAmount: 5
   castingTime: 0
