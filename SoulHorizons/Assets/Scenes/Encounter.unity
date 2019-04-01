@@ -165,7 +165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -201, y: 228.4}
+  m_AnchoredPosition: {x: -201, y: 228.40039}
   m_SizeDelta: {x: -1709, y: 129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &93484413
@@ -4232,6 +4232,7 @@ GameObject:
   - component: {fileID: 2115534116}
   - component: {fileID: 2115534117}
   - component: {fileID: 2115534118}
+  - component: {fileID: 2115534119}
   m_Layer: 0
   m_Name: GridController
   m_TagString: GridController
@@ -4265,25 +4266,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a8b82f52b400447b6656b7dbcb6c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridGenerator: {fileID: 2115534119}
   columnSizeMax: 0
   rowSizeMax: 0
-  columnOffset: 0
-  rowOffset: 0
-  tileSpacing: {x: 0.7, y: 0.55}
-  tile: {fileID: 114124032091846856, guid: c0f8ab25b0d628140b13fe6f1ec791c8, type: 3}
   activeEntities: []
-  camera: {fileID: 222816441}
-  encounter: {fileID: 0}
-  possibleTiles:
-  - {fileID: 11400000, guid: 23fb156a1c7c1480ebfa981ecf9994b5, type: 2}
-  - {fileID: 11400000, guid: b7b68ffcafb1041f9a571bfd0b7219c1, type: 2}
-  - {fileID: 11400000, guid: 1f7741804062f438cb809486cddbdb10, type: 2}
-  - {fileID: 11400000, guid: 4709860bbe3b8409c871c1f0a82715d3, type: 2}
-  - {fileID: 11400000, guid: 80a555adeced54bf1b72f54b97ce2832, type: 2}
-  - {fileID: 11400000, guid: 8e0ebb98433564e3e973f309ecf9e5bd, type: 2}
-  - {fileID: 11400000, guid: b705fedcee6694e388aeab1f7ac596ad, type: 2}
-  - {fileID: 11400000, guid: eaff79bf050a14c1abdfbbc39db3dc1c, type: 2}
-  - {fileID: 11400000, guid: b7e34d3486ae54a25a559c284ced15f7, type: 2}
+  encounter: {fileID: 11400000, guid: 070edfbd403fd40fa9985cc2b9f07bfa, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4499,6 +4486,34 @@ MonoBehaviour:
     particles: []
   numberOfActiveAttacks: 0
   pauseReference: {fileID: 1853791398}
+--- !u!114 &2115534119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115534115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1404a9409b26d49d1952021a2b0fd501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 222816441}
+  tilePrefab: {fileID: 114124032091846856, guid: c0f8ab25b0d628140b13fe6f1ec791c8,
+    type: 3}
+  possibleTiles:
+  - {fileID: 11400000, guid: 23fb156a1c7c1480ebfa981ecf9994b5, type: 2}
+  - {fileID: 11400000, guid: b7b68ffcafb1041f9a571bfd0b7219c1, type: 2}
+  - {fileID: 11400000, guid: 1f7741804062f438cb809486cddbdb10, type: 2}
+  - {fileID: 11400000, guid: 4709860bbe3b8409c871c1f0a82715d3, type: 2}
+  - {fileID: 11400000, guid: 80a555adeced54bf1b72f54b97ce2832, type: 2}
+  - {fileID: 11400000, guid: 8e0ebb98433564e3e973f309ecf9e5bd, type: 2}
+  - {fileID: 11400000, guid: b705fedcee6694e388aeab1f7ac596ad, type: 2}
+  - {fileID: 11400000, guid: eaff79bf050a14c1abdfbbc39db3dc1c, type: 2}
+  - {fileID: 11400000, guid: b7e34d3486ae54a25a559c284ced15f7, type: 2}
+  tileSpacing: {x: 0.7, y: 0.55}
+  columnOffset: 0
+  rowOffset: 0
 --- !u!1 &2121924710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7304582539461992430, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,
@@ -4561,7 +4576,7 @@ PrefabInstance:
     - target: {fileID: 7304582539461992431, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7304582539461992431, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,
         type: 3}
