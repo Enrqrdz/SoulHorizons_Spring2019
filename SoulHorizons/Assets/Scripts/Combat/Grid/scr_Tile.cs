@@ -35,8 +35,14 @@ public class scr_Tile : MonoBehaviour{
     //public Color inactiveColor;
 
     
-    public bool occupied;
+   
     public bool harmful;
+    public bool helpful;
+    public bool isOnFire;
+    public bool isFlooded;
+    public bool isPoisoned;
+
+    public bool occupied;
     public bool isPrimed;
     public bool isActive; 
     public Territory territory;
@@ -46,6 +52,10 @@ public class scr_Tile : MonoBehaviour{
     public int gridPositionY;
     public int queuedAttacks = 0;
     public Entity entityOnTile;
+    public int tileDamage = 0; //the damage the tile does to the player when they are on it
+    public float tileProtection = 0f; //the damage the tile protects the player from when they are on it.
+    public float tileBuff = 0f; //the extra damage the player grants to the player.
+    public float tileAffectRate = 0f; // the rate the tile's buff/debuff affects the player
     
 
     Vector2 spriteSize = new Vector2 (1f,.85f);
@@ -62,7 +72,8 @@ public class scr_Tile : MonoBehaviour{
         spriteRenderer.size = spriteSize;
         isPrimed = false;                                                       //Sets a tile to about to be hit (yellow)
         isActive = false;                                                       //Sets a tile to do hit          (red)
-        harmful = false;                                                        //Sets tile to do persistent harm. May not be needed
+        harmful = false;                                                        //Sets tile to do persistent harm. 
+        helpful = false;                                                        //Sets tile to do persistent buffing.
         occupied = false;                                                       //Sets a tile to be occupied by an entity
         gridController = GameObject.FindGameObjectWithTag("GridController");    //Grid Controller
         grid = gridController.GetComponent<scr_Grid>();
@@ -101,8 +112,7 @@ public class scr_Tile : MonoBehaviour{
         if (!isActive)
         {   
             spriteRenderer.color = primeColor;
-        }
-        
+        }       
     }
     public void DePrime()
     {
@@ -146,12 +156,109 @@ public class scr_Tile : MonoBehaviour{
             else
             {
                 isActive = false;
-                spriteRenderer.color = territory.TerrColor;
-            }
-            
+                if (isOnFire)
+                {
+                    spriteRenderer.color = Color.red;
+                }
+                else if (isFlooded)
+                {
+                    spriteRenderer.color = Color.blue;
+                }
+                else if(isPoisoned)
+                {
+                    spriteRenderer.color = Color.gray;
+                }
+                else
+                {
+                    spriteRenderer.color = territory.TerrColor;
+                }
+            }         
+        }  
+    }
+
+    public int GetTileDamage()
+    {
+        return tileDamage;
+    }
+
+    public float GetTileBuff()
+    {
+        return tileBuff;
+    }
+
+    public float GetTileProtection()
+    {
+        return tileProtection;
+    }
+
+    public float GetTileAffectRate ()
+    {
+        return tileAffectRate;
+    }
+    public void DeBuffTile (float duration, int damage, float rate, int type)
+    {
+        harmful = true;
+        tileAffectRate = rate;
+        tileDamage = damage;
+        
+        switch(type)
+        {
+            case 0: //Is Poisoned
+                isPoisoned = true;
+                spriteRenderer.color = Color.gray;
+                StartCoroutine(DamageTile(rate, damage));
+                StartCoroutine(RevertTile(duration));
+                break;
+            case 1: //Is on Fires
+                isOnFire = true;
+                spriteRenderer.color = Color.red;
+                StartCoroutine(DamageTile(rate, damage));
+                StartCoroutine(RevertTile(duration));
+                break;
+            case 2: //Is Flooded
+                isFlooded = true;
+                spriteRenderer.color = Color.blue;
+                StartCoroutine(RevertTile(duration));
+                break;
+
         }
         
-         
+        StartCoroutine(DamageTile(rate, damage));
+        StartCoroutine(RevertTile(duration));
     }
-   
+
+    private IEnumerator DamageTile(float damageRate, int damage)
+    {       
+        while (harmful)
+        {
+            if (entityOnTile != null)
+            {
+                entityOnTile._health.TakeDamage(damage);
+            }
+            yield return new WaitForSeconds(damageRate);
+        }
+
+    }
+
+
+    public void BuffTile (float duration, float dmgBuff, float defBuff)
+    {
+        helpful = true;
+        tileBuff = dmgBuff;
+        tileProtection = defBuff;
+        spriteRenderer.color = Color.cyan;
+        StartCoroutine(RevertTile(duration));
+    }
+
+    private IEnumerator RevertTile (float waitTime)
+    {  
+        yield return new WaitForSeconds(waitTime);
+        tileBuff = 0;
+        tileDamage = 0;
+        tileProtection = 0;
+        tileAffectRate = 0;
+        harmful = false;
+        helpful = true;
+        spriteRenderer.color = territory.TerrColor;
+    }
 }

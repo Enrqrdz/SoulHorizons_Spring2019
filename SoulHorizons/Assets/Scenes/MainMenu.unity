@@ -374,6 +374,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e8c6f7a1bd0d7b1498c3aef680b1ddec, type: 2}
   - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
   - {fileID: 11400000, guid: bdde628268dc5e844bc4742398f37cb1, type: 2}
+  - {fileID: 11400000, guid: c5ff505325372e24fbe90adfc517f45a, type: 2}
+  - {fileID: 11400000, guid: 76f7ee053452f9d44a55a338f48fa285, type: 2}
+  - {fileID: 11400000, guid: 93690977f63fc3041a8a8b4dc0e0afd4, type: 2}
+  - {fileID: 11400000, guid: 91f0fee6241d8ed40a6b25188a757482, type: 2}
+  - {fileID: 11400000, guid: c18df7fb756afc6458c1e54ba409df95, type: 2}
+  - {fileID: 11400000, guid: 7f6cecc3d5e2eba4fa85d29ae6d90608, type: 2}
+  - {fileID: 11400000, guid: a0cfbf7eafd1fee4383ff463dbb14123, type: 2}
+  - {fileID: 11400000, guid: b5cc732327c09eb4dbc1e89402e4fc43, type: 2}
   startingInventory: {fileID: 11400000, guid: c93a04a8ff38644dbb65fa16e9ed7886, type: 2}
 --- !u!1 &268632235
 GameObject:

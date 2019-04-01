@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ea195506d2e5e49b0fc30df8b97942, type: 3}
+  m_Name: Soul Palm
+  m_EditorClassIdentifier: 
+  actionName: Soul Palm
+  art: {fileID: 0}
+  element: 0
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1
+  description: Slams two rows infront of the player with a Soul Hand
+  PalmSFX: {fileID: 0}
+  palmAttack: {fileID: 11400000, guid: b446ad1b863c9ea4da4a633d247ca0ae, type: 2}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a172ebadc68c4c04f81a213f4cbdce18, type: 3}
+  m_Name: Guard Break
+  m_EditorClassIdentifier: 
+  actionName: Guard Break
+  art: {fileID: 0}
+  element: 1
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1
+  description: 'Teleport Quickly in front of the first enemy in a row
+
+    and stun them briefly'
+  BreakSFX: {fileID: 0}
+  BreakAttack: {fileID: 11400000, guid: 0328deb545d62334f9c1f9e700e2b3a1, type: 2}

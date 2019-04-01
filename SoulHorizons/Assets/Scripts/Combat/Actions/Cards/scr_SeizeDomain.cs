@@ -15,7 +15,6 @@ public class scr_SeizeDomain : ActionData
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = SeizeDomainSFX;
         PlayCardSFX.Play();
-        Debug.Log("SEIZE!");
         scr_Grid.GridController.seizeDomain(duration);
     }
 }

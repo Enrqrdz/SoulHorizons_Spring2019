@@ -62,7 +62,7 @@ public class atk_CrescentStrike : AttackData
     {
         int tempX = xPos - playerX;
         int tempY = yPos - playerY;
-        if (tempX <= 1)
+        if (tempX <= 1 && yPos > playerY)
         {
             scr_Grid.GridController.PrimeNextTile(xPos + 1, yPos);
             scr_Grid.GridController.ActivateTile(xPos, yPos);
