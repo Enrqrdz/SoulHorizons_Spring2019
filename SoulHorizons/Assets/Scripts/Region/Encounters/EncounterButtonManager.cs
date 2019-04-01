@@ -51,6 +51,7 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     public void SetEncounterState(EncounterState newState)
     {
         encounterState = newState;
+        UpdateChildren();
     }
 
     private void UpdateChildren()
