@@ -60,17 +60,13 @@ public class scr_Tile : MonoBehaviour{
     
 
     Vector2 spriteSize = new Vector2 (1f,.85f);
-    SpriteRenderer spriteRenderer;
-     
-
     
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         territory.TerrColor.a = 1f;
-        spriteRenderer.color = territory.TerrColor;
-        spriteRenderer.drawMode = SpriteDrawMode.Sliced;
-        spriteRenderer.size = spriteSize;
+        
+        SetSpriteRendererSettings();
+
         isPrimed = false;                                                       //Sets a tile to about to be hit (yellow)
         isActive = false;                                                       //Sets a tile to do hit          (red)
         harmful = false;                                                        //Sets tile to do persistent harm. 
@@ -82,6 +78,18 @@ public class scr_Tile : MonoBehaviour{
          
         
     }
+
+    private void SetSpriteRendererSettings()
+    {
+        SetSpriteRendererColor(territory.TerrColor);
+
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().drawMode = SpriteDrawMode.Sliced;
+        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().drawMode = SpriteDrawMode.Sliced;
+
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().size = spriteSize;
+        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().size = spriteSize;
+    }
+
     private void Update()
     {
         if (isActive && entityOnTile != null)
@@ -104,7 +112,7 @@ public class scr_Tile : MonoBehaviour{
     {
         territory.name = newName;
         territory.TerrColor = newColor;
-        spriteRenderer.color = territory.TerrColor;
+        SetSpriteRendererColor(territory.TerrColor);
     }
 
     public void Prime()
@@ -112,21 +120,21 @@ public class scr_Tile : MonoBehaviour{
         isPrimed = true;
         if (!isActive)
         {   
-            spriteRenderer.color = primeColor;
+            SetSpriteRendererColor(primeColor);
         }       
     }
     public void DePrime()
     {
         isPrimed = false;
         if (!isPrimed)
-            spriteRenderer.color = territory.TerrColor; 
+            SetSpriteRendererColor(territory.TerrColor); 
     }
     public void Activate()
     {
         queuedAttacks++; 
         isPrimed = false; 
         isActive = true; 
-        spriteRenderer.color = activeColor;
+        SetSpriteRendererColor(activeColor);
     }
     public void Activate(ActiveAttack activeAttack)
     {
@@ -135,11 +143,11 @@ public class scr_Tile : MonoBehaviour{
         isActive = true;
         if(activeAttack.entity.type == EntityType.Player)
         {
-            spriteRenderer.color = playerActiveColor;
+            SetSpriteRendererColor(playerActiveColor);
         }
         else if (activeAttack.entity.type == EntityType.Enemy)
         {
-            spriteRenderer.color = activeColor;
+            SetSpriteRendererColor(activeColor);
         }
         
     }
@@ -159,23 +167,23 @@ public class scr_Tile : MonoBehaviour{
                 isActive = false;
                 if (isOnFire)
                 {
-                    spriteRenderer.color = Color.red;
+                    SetSpriteRendererColor(Color.red);
                 }
                 else if (isFlooded)
                 {
-                    spriteRenderer.color = Color.blue;
+                    SetSpriteRendererColor(Color.blue);
                 }
                 else if(isPoisoned)
                 {
-                    spriteRenderer.color = Color.gray;
+                    SetSpriteRendererColor(Color.gray);
                 }
                 else if(isMeditation)
                 {
-                    spriteRenderer.color = Color.cyan;
+                    SetSpriteRendererColor(Color.cyan);
                 }
                 else
                 {
-                    spriteRenderer.color = territory.TerrColor;
+                    SetSpriteRendererColor(territory.TerrColor);
                 }
             }         
         }  
@@ -210,19 +218,19 @@ public class scr_Tile : MonoBehaviour{
         {
             case 0: //Is Poisoned
                 isPoisoned = true;
-                spriteRenderer.color = Color.gray;
+                SetSpriteRendererColor(Color.gray);
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
             case 1: //Is on Fires
                 isOnFire = true;
-                spriteRenderer.color = Color.magenta;
+                SetSpriteRendererColor(Color.magenta);
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
             case 2: //Is Flooded
                 isFlooded = true;
-                spriteRenderer.color = Color.blue;
+                SetSpriteRendererColor(Color.blue);
                 StartCoroutine(RevertTile(duration));
                 break;
 
@@ -252,7 +260,7 @@ public class scr_Tile : MonoBehaviour{
         isMeditation = true;
         tileBuff = dmgBuff;
         tileProtection = defBuff;
-        spriteRenderer.color = Color.cyan;
+        SetSpriteRendererColor(Color.cyan);
         StartCoroutine(RevertTile(duration));
     }
 
@@ -269,6 +277,18 @@ public class scr_Tile : MonoBehaviour{
         isFlooded = false;
         isPoisoned = false;
         isMeditation = false;
-        spriteRenderer.color = territory.TerrColor;
+        SetSpriteRendererColor(territory.TerrColor);
+    }
+
+    public void SetSprites(TileData tileData)
+    {
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = tileData.backGroundSprite;
+        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = tileData.foreGroundSprite;
+    }
+
+    private void SetSpriteRendererColor(Color newColor)
+    {
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = newColor;
+        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = newColor;
     }
 }

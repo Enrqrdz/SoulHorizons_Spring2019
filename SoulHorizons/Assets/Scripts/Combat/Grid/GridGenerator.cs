@@ -36,10 +36,8 @@ public class GridGenerator : MonoBehaviour
                 tileToAdd.gridPositionX = i;
                 tileToAdd.gridPositionY = j;
 
-                SpriteRenderer spriteR = tileToAdd.GetComponent<SpriteRenderer>();
-
                 int randomTileIndex = Random.Range(0, possibleTiles.Count);
-                spriteR.sprite = possibleTiles[randomTileIndex].backGroundSprite;
+                tileToAdd.SetSprites(possibleTiles[randomTileIndex]);
                 
                 if (possibleTiles[randomTileIndex].backGroundSprite == null) Debug.Log("MISSING SPRITE");
 
