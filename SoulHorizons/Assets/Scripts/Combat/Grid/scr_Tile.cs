@@ -41,6 +41,7 @@ public class scr_Tile : MonoBehaviour{
     public bool isOnFire;
     public bool isFlooded;
     public bool isPoisoned;
+    public bool isMeditation;
 
     public bool occupied;
     public bool isPrimed;
@@ -168,6 +169,10 @@ public class scr_Tile : MonoBehaviour{
                 {
                     spriteRenderer.color = Color.gray;
                 }
+                else if(isMeditation)
+                {
+                    spriteRenderer.color = Color.cyan;
+                }
                 else
                 {
                     spriteRenderer.color = territory.TerrColor;
@@ -211,7 +216,7 @@ public class scr_Tile : MonoBehaviour{
                 break;
             case 1: //Is on Fires
                 isOnFire = true;
-                spriteRenderer.color = Color.red;
+                spriteRenderer.color = Color.magenta;
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
@@ -244,6 +249,7 @@ public class scr_Tile : MonoBehaviour{
     public void BuffTile (float duration, float dmgBuff, float defBuff)
     {
         helpful = true;
+        isMeditation = true;
         tileBuff = dmgBuff;
         tileProtection = defBuff;
         spriteRenderer.color = Color.cyan;
@@ -258,7 +264,11 @@ public class scr_Tile : MonoBehaviour{
         tileProtection = 0;
         tileAffectRate = 0;
         harmful = false;
-        helpful = true;
+        helpful = false;
+        isOnFire = false;
+        isFlooded = false;
+        isPoisoned = false;
+        isMeditation = false;
         spriteRenderer.color = territory.TerrColor;
     }
 }

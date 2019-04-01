@@ -158,19 +158,20 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Takes an attack object and damages the entity if the attack's type is different from the entity's type.
     /// </summary>
-    /// <param name="_attack"></param>
-    public void HitByAttack(AttackData _attack)
+    /// <param name="attack"></param>
+    public void HitByAttack(AttackData attack)
     {
-        if (_attack.type != type)
+        if (attack.type != type)
         {
             int index = Random.Range(0, hurts_SFX.Length);
             hurt_SFX = hurts_SFX[index];
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
 
-            if (_attack.damage - shieldProtection >= 0)
+            float tempDamage = attack.damage * attack.modifier;
+            if (tempDamage - shieldProtection >= 0)
             {
-                _health.TakeDamage(_attack.damage - shieldProtection);
+                _health.TakeDamage((int)tempDamage - shieldProtection);
             }
             else
             {
@@ -244,7 +245,7 @@ public class Entity : MonoBehaviour
         shieldProtection = protect; //the amount of damage the shield is reducing damage by
         shieldProtectionIncrement = increment; //the rate the damage reduction of the shield increasesby when you move
         shieldProtectionMax = incrementMax;
-        if (shield)
+        if (shield == true)
         {
             shieldCounter = time;
             spr.color = Color.gray;

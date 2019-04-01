@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/ExplosionMiddle")]
-
-public class atk_ExplosionMain : AttackData
+[CreateAssetMenu(menuName = "Attacks/Rock Fall")]
+public class atk_RockFall : AttackData
 {
-    public int fireDamage = 4;
+    public GameObject rock;
+
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
-        scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
         return new Vector2Int(xPos, yPos);
     }
 
@@ -32,6 +30,7 @@ public class atk_ExplosionMain : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-        scr_Grid.GridController.grid[activeAttack.position.x, activeAttack.position.y].DeBuffTile(6f, 3, 1, 1);
+
+        Instantiate(rock, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y), Quaternion.identity);
     }
 }
