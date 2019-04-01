@@ -214,7 +214,7 @@ public class scr_Tile : MonoBehaviour{
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
-            case 1: //Is on Fires
+            case 1: //Is on Fire
                 isOnFire = true;
                 spriteRenderer.color = Color.magenta;
                 StartCoroutine(DamageTile(rate, damage));

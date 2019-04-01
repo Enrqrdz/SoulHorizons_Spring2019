@@ -12,6 +12,7 @@ public class ActionManager : MonoBehaviour
     public ActionIconUI[] upcomingCardsUI;
     public GameObject handPanel;
     public Animator playerAnimator;
+    public Entity player;
     public float globalCooldown;
 
     public Sprite shuffleArt;
@@ -41,6 +42,7 @@ public class ActionManager : MonoBehaviour
     {
         AudioSource SFX_Source = GetComponent<AudioSource>();
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         CardChange_SFX = SFX_Source;
         UpdateGUI();
         SetMantraGraphics();
@@ -50,7 +52,10 @@ public class ActionManager : MonoBehaviour
     {
         if (deckIsEnabled == true)
         {
-            GetUserInput();
+            if (player.isStunned == false)
+            {
+                GetUserInput();
+            }
             UpdateGUI();
         }
     }
