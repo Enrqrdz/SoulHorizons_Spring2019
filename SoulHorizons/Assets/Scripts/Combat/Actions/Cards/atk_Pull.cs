@@ -42,6 +42,7 @@ public class atk_Pull : AttackData
                 if (!scr_Grid.GridController.CheckIfOccupied(entityXPos, entityYPos) && (scr_Grid.GridController.ReturnTerritory(entityXPos, entityYPos).name != TerrName.Player))
                 {
                     //if the tile is not occupied
+                    scr_Grid.GridController.SetTileOccupied(false, entityXPos++, entityYPos, activeAttack.entityHit);          //set it to be occupied  
                     scr_Grid.GridController.SetTileOccupied(true, entityXPos, entityYPos, activeAttack.entityHit);          //set it to be occupied  
                     activeAttack.entityHit.SetTransform(entityXPos, entityYPos);
                     activeAttack.entityHit.gotStunned(stunTime);

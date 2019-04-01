@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class scr_RockBehavior : scr_EntityAI
 {
-
-
-
     private void Start()
     {
         

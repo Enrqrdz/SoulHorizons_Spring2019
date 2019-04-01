@@ -9,6 +9,8 @@ public class atk_ExplosionMain : AttackData
     public int fireDamage = 4;
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
+        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
+        scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
         return new Vector2Int(xPos, yPos);
     }
 
@@ -30,6 +32,6 @@ public class atk_ExplosionMain : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-        scr_Grid.GridController.grid[activeAttack.position.x - 1, activeAttack.position.y].DeBuffTile(6f, 3, 1, 1);
+        scr_Grid.GridController.grid[activeAttack.position.x, activeAttack.position.y].DeBuffTile(6f, 3, 1, 1);
     }
 }

@@ -16,9 +16,9 @@ MonoBehaviour:
   numberOfRows: 4
   playerTile:
     name: 0
-    TerrColor: {r: 0.6117647, g: 0.38039216, b: 0.32156864, a: 1}
+    TerrColor: {r: 1, g: 1, b: 1, a: 1}
     TerrSprite: {fileID: 0}
   enemyTile:
     name: 1
-    TerrColor: {r: 0.18431373, g: 0.05490196, b: 0.050980393, a: 1}
+    TerrColor: {r: 1, g: 0.54901963, b: 0.92941177, a: 1}
     TerrSprite: {fileID: 0}

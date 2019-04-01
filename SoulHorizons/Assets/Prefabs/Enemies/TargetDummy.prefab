@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   type: 0
   _gridPos: {x: 0, y: 0}
   _health:
@@ -172,6 +172,7 @@ MonoBehaviour:
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 208dc7926836b9545aa96ff3a1b0c39a, type: 3}
   die_SFX: {fileID: 8300000, guid: 2168c97c39f5c4f44a55a3276d1f424a, type: 3}
@@ -188,8 +189,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 195948f997208e5488dc9520e904ac69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
 --- !u!82 &82587730288405618
@@ -715,9 +716,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f0fc37ea925cd8409d057b1b4265a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   pivot: {fileID: 1650102032847892}
   bluePivot: {fileID: 0}
-  healthDisplay: {fileID: 0}
-  shieldDisplay: {fileID: 0}
+  targetEntity: {fileID: 114725702907161856}
