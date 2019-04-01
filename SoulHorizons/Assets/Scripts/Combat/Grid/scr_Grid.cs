@@ -2,28 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_Grid : MonoBehaviour{
-    
+public class scr_Grid : MonoBehaviour
+{
+    public GridGenerator gridGenerator;
 
     [HideInInspector]public int columnSizeMax;
     [HideInInspector]public int rowSizeMax;
-    [Tooltip("Use to move the center of the grid along the x axis")]
-    public float columnOffset = 0;
-    [Tooltip("Use to move the center of the grid along the y axis")]
-    public float rowOffset = 0; 
-    public Vector2 tileSpacing;
     public scr_Tile[,] grid;
-    public scr_Tile tile;
-    private SpriteRenderer spriteR;
-    private int spriteTracker = 0;
     public Entity[] activeEntities;
-    public Transform camera; 
 
     public static scr_Grid GridController;
 
     public EncounterData encounter;
-
-    public List<TileData> possibleTiles;
 
     private void Awake()
     {
@@ -32,45 +22,10 @@ public class scr_Grid : MonoBehaviour{
 
     private void Start()
     {
-        encounter = SaveManager.currentGame.GetCurrentEncounterData();
+        if(SaveManager.IsSaveLoaded())
+            encounter = SaveManager.currentGame.GetCurrentEncounterData();
 
         InitEncounter(); 
-    }
-
-    //Build Grid Tiles
-    private void BuildGrid()
-    {
-
-        //tile_sprites = Resources.LoadAll<Sprite>("tiles_spritesheet");
-        grid = new scr_Tile[columnSizeMax, rowSizeMax];
-        Vector2 gridCenter = new Vector2((tileSpacing.x * (columnSizeMax-1) / 2), (tileSpacing.y * rowSizeMax / 2));
-        camera.transform.position = new Vector3(gridCenter.x,gridCenter.y,camera.transform.position.z); 
-        for (int j = 0; j < rowSizeMax; j++)
-        {
-            for (int i = 0; i < columnSizeMax; i++)
-            {
-                scr_Tile tileToAdd = null; 
-
-                tileToAdd = (scr_Tile)Instantiate(tile, new Vector3((i * tileSpacing.x) + columnOffset, (j * tileSpacing.y) + rowOffset, 0), Quaternion.identity);
-
-                tileToAdd.territory = encounter.GetTerrorityAtXAndY(i, j);
-                tileToAdd.gridPositionX = i;
-                tileToAdd.gridPositionY = j;
-
-                spriteR = tileToAdd.GetComponent<SpriteRenderer>();
-
-                int randomTileIndex = Random.Range(0, possibleTiles.Count);
-                spriteR.sprite = possibleTiles[randomTileIndex].backGroundSprite;
-                
-                if (possibleTiles[randomTileIndex].backGroundSprite == null) Debug.Log("MISSING SPRITE");
-
-                grid[i, j] = tileToAdd;
-
-                spriteTracker++;
-            }
-        }
-        spriteTracker = 0;
-
     }
 
     public bool CheckIfOccupied(int x, int y)
@@ -114,8 +69,7 @@ public class scr_Grid : MonoBehaviour{
     {
         columnSizeMax = new_xSizeMax;
         rowSizeMax = new_ySizeMax;
-        BuildGrid(); 
-
+        grid = gridGenerator.GenerateGrid(encounter); 
     }
 
     //BUG - AT START TILES DON'T COUNT AS OCCUPIED, AFTER INIT SET TILES TO OCCUPIED FOR INITIALIZED ENTITIES
