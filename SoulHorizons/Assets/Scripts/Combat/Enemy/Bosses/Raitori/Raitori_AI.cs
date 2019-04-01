@@ -3,19 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Raitori Boss Designed for 4x8 grid
-public class Raitori : scr_EntityAI
-{
-    //Properties
-    [SerializeField]
-    [Tooltip("Width in number of tiles")]
-    private int width = 2;
-    [SerializeField]
-    [Tooltip("Height in number of tiles")]
-    private int height = 3;
-    private int maxHealth;
-    private int currentHealth;
 
+public class Raitori_AI : scr_EntityAI
+{
+    public Raitori_Properties Raitori;
+    
     //Attacks
 
     //Movement
@@ -37,35 +29,47 @@ public class Raitori : scr_EntityAI
 
     private void Start()
     {
-        maxHealth = entity._health.hp;
-        xRange = scr_Grid.GridController.columnSizeMax - width; //8 - 2
-        yRange = scr_Grid.GridController.rowSizeMax - height;   //4 - 3
+        SetInitialVariables();
+        SetPossibleHeadPositions();
+        SetZigZagPattern();
+        SetTransitionNumber();
+    }
+
+    private void SetInitialVariables()
+    {
+        xRange = scr_Grid.GridController.columnSizeMax - Raitori.width; //8 - 2
+        yRange = scr_Grid.GridController.rowSizeMax - Raitori.height;   //4 - 3
         xPosition = entity._gridPos.x;
         yPosition = entity._gridPos.y;
         currentHeadPosition = new Vector2Int(xPosition, yPosition);
+    }
 
-        entity.SetLargeTransform(currentHeadPosition, width, height);
-
+    private void SetPossibleHeadPositions()
+    {
         //All possible positions for Raitori
         possibleHeadPositions = new[] {
                                         new Vector2Int(xRange - 2, yRange), new Vector2Int(xRange - 1, yRange), new Vector2Int(xRange, yRange),
                                         new Vector2Int(xRange - 2, yRange - 1), new Vector2Int(xRange - 1, yRange - 1), new Vector2Int(xRange, yRange - 1)
                                       };
+    }
 
+    private void SetZigZagPattern()
+    {
         //Zig-Zag Movement Pattern for Raitori
         zigZagPattern = new[] {
                                 possibleHeadPositions[0], possibleHeadPositions[4], possibleHeadPositions[2],
                                 possibleHeadPositions[5], possibleHeadPositions[1], possibleHeadPositions[3]
                               };
+    }
 
+    private void SetTransitionNumber()
+    {
         //Raitori origin must be on one of the designated positions
         for (int i = 0; i < zigZagPattern.Length; i++)
         {
             if (currentHeadPosition == zigZagPattern[i])
             {
                 transitionNumber = i;
-                Debug.Log("\nTransition number: " + i);
-                Debug.Log("\nX: " + currentHeadPosition.x + "\tY: " + currentHeadPosition.y);
                 break;
             }
             else if (i == zigZagPattern.Length - 1)
@@ -90,9 +94,9 @@ public class Raitori : scr_EntityAI
     {
         try
         {
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < Raitori.width; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < Raitori.height; j++)
                 {
                     int xPosition = (int)zigZagPattern[transitionNumber].x + i;
                     int yPosition = (int)zigZagPattern[transitionNumber].y + j;
@@ -126,7 +130,7 @@ public class Raitori : scr_EntityAI
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name)
         {
-            entity.SetLargeTransform(currentHeadPosition, width, height);
+            entity.SetLargeTransform(currentHeadPosition, Raitori.width, Raitori.height);
         }
         else
         {

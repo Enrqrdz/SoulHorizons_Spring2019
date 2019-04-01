@@ -19,7 +19,6 @@ public class scr_FoulTrifling : scr_EntityAI
     private AudioClip attack_SFX;
 
     private int state = 0;
-
     private bool completedTask = true;
     private bool isStuck = false;
     private bool xDirection = false; //false means left, true means right
