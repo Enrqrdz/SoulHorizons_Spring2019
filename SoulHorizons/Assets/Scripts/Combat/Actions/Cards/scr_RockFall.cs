@@ -15,7 +15,7 @@ public class scr_RockFall : ActionData
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         //add attack to attack controller script
-        if (player._gridPos.x + 2 < scr_Grid.GridController.columnSizeMax)
+        if (player._gridPos.x + 2 < scr_Grid.GridController.columnSizeMax - 1)
         {
             AttackController.Instance.AddNewAttack(RockFallAttack, player._gridPos.x + 2, player._gridPos.y, player);
         }
