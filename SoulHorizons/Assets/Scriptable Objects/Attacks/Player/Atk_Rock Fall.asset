@@ -20,6 +20,6 @@ MonoBehaviour:
   hasPiercing: 1
   particles: {fileID: 8385705152263727838, guid: 0a360395bef6a6d4783b110bdf073041,
     type: 3}
-  particlesOffset: {x: -0.2, y: 0, z: 0}
+  particlesOffset: {x: -0.1, y: 0, z: 0}
   particleSpeed: 11
   rock: {fileID: 1116592492456940, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}

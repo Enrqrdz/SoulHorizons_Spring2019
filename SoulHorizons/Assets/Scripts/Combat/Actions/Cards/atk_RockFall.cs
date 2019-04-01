@@ -36,11 +36,13 @@ public class atk_RockFall : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-       if (activeAttack.entityIsHit == false)
+        Debug.Log(startX + ", " + startY);
+        if (activeAttack.entityIsHit == false)
         {
             Instantiate(rock, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y), Quaternion.identity);
             scr_Grid.GridController.SetTileOccupied(false, activeAttack.position.x, activeAttack.position.y, rock.GetComponent<Entity>());
-            rock.GetComponent<Entity>().InitPosition(startX, startY);
+            rock.GetComponent<Entity>().InitPosition(activeAttack.position.x, activeAttack.position.y);
+            //rock.GetComponent<Entity>().SetTransform(xLocation, yLocation);
         }
     }
 }

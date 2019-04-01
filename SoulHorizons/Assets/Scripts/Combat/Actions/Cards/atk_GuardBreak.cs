@@ -47,7 +47,10 @@ public class atk_GuardBreak : AttackData
             player.isStunned = false;
         }
         catch
-        { }
+        {
+            player.SetTransform(playerX, playerY);
+            player.isStunned = false;
+        }
 
     }
 }
