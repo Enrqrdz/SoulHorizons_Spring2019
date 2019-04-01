@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Explosion
   m_EditorClassIdentifier: 
   actionName: Explosion
-  art: {fileID: 0}
+  art: {fileID: 21300000, guid: fc537ff82ea35cc469c5b37b525b9505, type: 3}
   element: 0
   transformChargeAmount: 5
   castingTime: 0

@@ -18,8 +18,9 @@ MonoBehaviour:
   damage: 0
   type: 1
   hasPiercing: 0
-  particles: {fileID: 0}
-  particlesOffset: {x: 0, y: 0, z: 0}
+  particles: {fileID: 212160339734999984, guid: adcd5b01c4cd3da49bb80cfb90445fdc,
+    type: 3}
+  particlesOffset: {x: 0.4, y: 0.3, z: 0}
   particleSpeed: 1
   stunTime: 1.5
   timeTeleported: 0.25

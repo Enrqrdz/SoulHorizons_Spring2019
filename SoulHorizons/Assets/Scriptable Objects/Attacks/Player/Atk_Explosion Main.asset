@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incrementTime: 1
   maxIncrementRange: 1
+  modifier: 1
   damage: 10
   type: 1
   hasPiercing: 1
-  particles: {fileID: 0}
+  particles: {fileID: 212268602049623880, guid: 3306d589b86a9424794eedbb5ad7f1c7,
+    type: 3}
   particlesOffset: {x: 0, y: 0, z: 0}
   particleSpeed: 1
   fireDamage: 4

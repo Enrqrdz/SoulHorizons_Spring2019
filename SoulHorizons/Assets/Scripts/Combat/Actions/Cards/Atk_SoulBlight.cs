@@ -6,7 +6,7 @@ using UnityEngine;
 public class Atk_SoulBlight : AttackData
 {
     public float damageRate = 1f;
-    public float duration = 6f;
+    public float blightDuration = 6f;
     public int blightMainDamage = 6;
     public int blightSideDamage = 4;
 
@@ -42,14 +42,14 @@ public class Atk_SoulBlight : AttackData
 
         Debug.Log(affectedTileCenter.x + ", " + affectedTileCenter.y);
 
-        scr_Grid.GridController.grid[(int)affectedTileCenter.x, (int)affectedTileCenter.y].DeBuffTile(duration, blightMainDamage, damageRate, 0);
+        scr_Grid.GridController.grid[(int)affectedTileCenter.x, (int)affectedTileCenter.y].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
 
         try
         {
             if (scr_Grid.GridController.ReturnTerritory((int)affectedTileNorth.x, (int)affectedTileNorth.y).name == TerrName.Enemy)
             {
                 Debug.Log("North");
-                scr_Grid.GridController.grid[(int)affectedTileNorth.x, (int)affectedTileNorth.y].DeBuffTile(duration, blightSideDamage, damageRate, 0);
+                scr_Grid.GridController.grid[(int)affectedTileNorth.x, (int)affectedTileNorth.y].DeBuffTile(blightDuration, blightSideDamage, damageRate, 0);
             }
         }
         catch
@@ -59,7 +59,7 @@ public class Atk_SoulBlight : AttackData
             if (scr_Grid.GridController.ReturnTerritory((int)affectedTileSouth.x, (int)affectedTileSouth.y).name == TerrName.Enemy)
             {
                 Debug.Log("South");
-                scr_Grid.GridController.grid[(int)affectedTileSouth.x, (int)affectedTileSouth.y].DeBuffTile(duration, blightSideDamage, damageRate , 0);
+                scr_Grid.GridController.grid[(int)affectedTileSouth.x, (int)affectedTileSouth.y].DeBuffTile(blightDuration, blightSideDamage, damageRate , 0);
             }
         }
         catch
@@ -67,7 +67,10 @@ public class Atk_SoulBlight : AttackData
         try
         {
             Debug.Log("East");
-            scr_Grid.GridController.grid[(int)affectedTileEast.x, (int)affectedTileEast.y].DeBuffTile(duration, blightSideDamage, damageRate, 0);
+            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileEast.x, (int)affectedTileEast.y).name == TerrName.Enemy)
+            {
+                scr_Grid.GridController.grid[(int)affectedTileEast.x, (int)affectedTileEast.y].DeBuffTile(blightDuration, blightSideDamage, damageRate, 0);
+            }
         }
         catch
         { }
@@ -76,7 +79,7 @@ public class Atk_SoulBlight : AttackData
             if (scr_Grid.GridController.ReturnTerritory((int)affectedTileWest.x, (int)affectedTileWest.y).name == TerrName.Enemy)
             {
                 Debug.Log("West");
-                scr_Grid.GridController.grid[(int)affectedTileWest.x, (int)affectedTileWest.y].DeBuffTile(duration, blightSideDamage, damageRate, 0);
+                scr_Grid.GridController.grid[(int)affectedTileWest.x, (int)affectedTileWest.y].DeBuffTile(blightDuration, blightSideDamage, damageRate, 0);
             }
         }
         catch

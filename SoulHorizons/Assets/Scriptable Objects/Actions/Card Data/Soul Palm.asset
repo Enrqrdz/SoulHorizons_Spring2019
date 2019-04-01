@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soul Palm
   m_EditorClassIdentifier: 
   actionName: Soul Palm
-  art: {fileID: 0}
+  art: {fileID: 21300000, guid: 17889c1912bcadc4c88883c8cd74ec53, type: 3}
   element: 0
   transformChargeAmount: 5
   castingTime: 0

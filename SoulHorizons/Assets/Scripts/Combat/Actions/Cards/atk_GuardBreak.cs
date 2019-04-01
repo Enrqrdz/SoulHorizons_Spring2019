@@ -23,11 +23,13 @@ public class atk_GuardBreak : AttackData
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
+        activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
+        activeAttack.particle.sortingOrder = -activeAttack.position.y;
     }
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-       
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
@@ -37,16 +39,18 @@ public class atk_GuardBreak : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-
         try
         {
             activeAttack.entityHit.gotStunned(stunTime);
             player.SetTransform(activeAttack.position.x - 1, activeAttack.position.y);
-            player.gotStunned(timeTeleported);
             player.SetTransform(playerX, playerY);
+            player.isStunned = false;
         }
         catch
-        { }
+        {
+            player.SetTransform(playerX, playerY);
+            player.isStunned = false;
+        }
 
     }
 }
