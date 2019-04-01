@@ -7,11 +7,16 @@ using UnityEngine;
 public class ActionManager : MonoBehaviour
 {
     public static ActionManager Instance { get; private set; }
-	public ActionUI[] abilityUI;
-    public ActionUI[] mantraUI;
+	public ActionIconUI[] abilityUI;
+    public ActionIconUI[] mantraUI;
+    public ActionIconUI[] upcomingCardsUI;
     public GameObject handPanel;
     public Animator playerAnimator;
+    public Entity player;
     public float globalCooldown;
+
+    public Sprite shuffleArt;
+
 
     [SerializeField]
     private AudioSource CardChange_SFX;
@@ -37,6 +42,7 @@ public class ActionManager : MonoBehaviour
     {
         AudioSource SFX_Source = GetComponent<AudioSource>();
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         CardChange_SFX = SFX_Source;
         UpdateGUI();
         SetMantraGraphics();
@@ -46,7 +52,10 @@ public class ActionManager : MonoBehaviour
     {
         if (deckIsEnabled == true)
         {
-            GetUserInput();
+            if (player.isStunned == false)
+            {
+                GetUserInput();
+            }
             UpdateGUI();
         }
     }
@@ -100,22 +109,25 @@ public class ActionManager : MonoBehaviour
 
     private void ActivateCard(int index)
     {
-        currentDeck.Activate(index);
+        ActionData activatedCard = currentDeck.Activate(index);
 
-        StartCoroutine(AbilityCooldown(currentDeck.hand[index].cooldown));
-        StartCoroutine(ActionCooldown(globalCooldown));
-
-        soulManager.ChargeSoulTransform(currentDeck.hand[index].element, currentDeck.hand[index].transformChargeAmount);
-
-        playerAnimator.SetBool("Cast", true);
-
-        for (int i = 0; i < abilityUI.Length; i++)
+        if(activatedCard != null)
         {
-            abilityUI[i].StartCooldown(currentDeck.hand[index].cooldown);
+            StartCoroutine(AbilityCooldown(activatedCard.cooldown));
+            StartCoroutine(ActionCooldown(globalCooldown));
 
-            if (readyToCastMantra)
+            soulManager.ChargeSoulTransform(activatedCard.element, activatedCard.transformChargeAmount);
+
+            playerAnimator.SetBool("Cast", true);
+
+            for (int i = 0; i < abilityUI.Length; i++)
             {
-                mantraUI[i].StartCooldown(globalCooldown);
+                abilityUI[i].StartCooldown(activatedCard.cooldown);
+
+                if (readyToCastMantra)
+                {
+                    mantraUI[i].StartCooldown(globalCooldown);
+                }
             }
         }
     }
@@ -131,19 +143,27 @@ public class ActionManager : MonoBehaviour
         {
             if (currentDeck.hand[i] != null) //the slot in the hand may not have been refilled if the cooldown is not finished
             {
-                abilityUI[i].SetName(currentDeck.hand[i].actionName);
                 abilityUI[i].SetArt(currentDeck.hand[i].art);
-                abilityUI[i].SetElement(currentDeck.hand[i].element);
             }
-
-            //update the backup hand slot
-            if (currentDeck.backupHand[i] != null)
+            else if(currentDeck.hand[i] == null)
             {
-                abilityUI[i].SetBackupName(currentDeck.backupHand[i].actionName);
+                abilityUI[i].SetArt(shuffleArt);
+            }
+        }
+
+        IEnumerator enumerator = currentDeck.GetDeckEnumerator();
+
+        for(int i = 0; i < upcomingCardsUI.Length; i++)
+        {
+            if(enumerator.MoveNext())
+            {
+                upcomingCardsUI[i].SetActive(true);
+                ActionData card = (ActionData) enumerator.Current;
+                upcomingCardsUI[i].SetArt(card.art);
             }
             else
             {
-                abilityUI[i].SetBackupName(null);
+                upcomingCardsUI[i].SetActive(false);
             }
         }
     }
@@ -154,9 +174,7 @@ public class ActionManager : MonoBehaviour
         {
             if(currentMantras.activeMantras[i] != null)
             {
-                mantraUI[i].SetName(currentMantras.activeMantras[i].actionName);
                 mantraUI[i].SetArt(currentMantras.activeMantras[i].art);
-                mantraUI[i].SetElement(currentMantras.activeMantras[i].element);
             }
             else
             {

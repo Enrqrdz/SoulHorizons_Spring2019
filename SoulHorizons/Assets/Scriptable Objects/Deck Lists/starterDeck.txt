@@ -1,4 +1,4 @@
-Blur: 2
+Soul Blight: 2
 Harden Soul: 2
 Mend: 2
 Seize Domain: 2

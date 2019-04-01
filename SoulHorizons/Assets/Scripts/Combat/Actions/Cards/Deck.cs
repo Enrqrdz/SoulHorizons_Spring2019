@@ -6,40 +6,16 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    public static Deck Instance { get; private set; }
+    private const int handSize = 2;
 
-    [SerializeField]
-    private List<ActionData> deck = new List<ActionData>();
-    [SerializeField]
+    private Queue<ActionData> deck = new Queue<ActionData>();
     private List<ActionData> discard = new List<ActionData>();
-    [SerializeField]
-	private int deckSize = 10;
-    [SerializeField]
-    private int handSize = 2;
-
     public List<ActionData> hand = new List<ActionData>();
-    public List<ActionData> backupHand = new List<ActionData>();
-    public CardDictionary cardMapping;
-    public TextAsset deckTextList;
-    public List<KeyValuePair<string, int>> cardList = new List<KeyValuePair<string, int>>();
 
     public void Awake()
     {
-        IntiializeSingleton();
         AllocateHandSlots();
-        IntializeDeck();
-    }
-
-    private void IntiializeSingleton()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        LoadDeck();
     }
 
     private void AllocateHandSlots()
@@ -47,13 +23,7 @@ public class Deck : MonoBehaviour
         for (int i = 0; i < handSize; i++)
         {
             hand.Add(null);
-            backupHand.Add(null);
         }
-    }
-
-    private void IntializeDeck()
-    {
-        LoadDeck();
     }
 
     public void LoadDeck()
@@ -71,69 +41,34 @@ public class Deck : MonoBehaviour
             //add that card to the list a number of times equal to the quantity
             for (int i = 0; i < cardState.numberOfCopies; i++)
             {
-                deck.Add(nextCard);
+                discard.Add(nextCard);
             }
-            cardList.Add(new KeyValuePair<string, int>(nextCard.actionName, cardState.numberOfCopies));
         }
 
-        if (deck.Count != deckSize)
-        {
-            Debug.Log("DeckSize is " + deckSize + ", but " + deck.Count + " cards were added to the deck");
-        }
-
-        ShuffleHelper<ActionData>(deck);
+        ShuffleDiscardIntoDeck();
         CheckHandSizeAndDraw();
     }
 
-    public void Shuffle(string list)
+    public void ShuffleDiscardIntoDeck()
     {
-        Debug.Log("This is the list: " + list);
-        if (list.Equals("deck"))
-        {
-            ShuffleHelper<ActionData>(deck);
-        }
-        else if(list.Equals("discard"))
-        {
-            ShuffleHelper<ActionData>(discard);
-            return;
-        }
-        else if(list.Equals("discard into deck"))
-        {
-            foreach (ActionData card in discard)
-            {
-                deck.Add(card);
-                discard.Remove(card);
-            }
-            ShuffleHelper<ActionData>(deck);
-        }
-        else if(list.Equals("all"))
-        {
-            foreach (ActionData card in discard)
-            {
-                deck.Add(card);
-                discard.Remove(card);
-            }
-            foreach (ActionData card in hand)
-            {
-                deck.Add(card);
-                hand.Remove(card);
-            }
+        ShuffleHelper<ActionData>(discard);
 
-            ShuffleHelper<ActionData>(deck);
-            CheckHandSizeAndDraw();
+        foreach(ActionData card in discard)
+        {
+            deck.Enqueue(card);
         }
+
+        discard.Clear();
     }
 
     void ShuffleHelper<T>(List<T> list)
     {
-        int n = list.Count;
-        while (n > 1)
+        for( int i = 0; i < list.Count; i ++)
         {
-            n--;
-            int k = Random.Range(0, n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
+             int j = Random.Range(i, list.Count );
+             T temporary = list[i];
+             list[i] = list[j];
+             list[j] = temporary;
         }
     }
 
@@ -152,21 +87,25 @@ public class Deck : MonoBehaviour
     {
         if (deck.Count > 0)
         {
-            hand[index] = deck[0];
-            deck.RemoveAt(0);         
+            hand[index] = deck.Dequeue();        
         }
-
-        Shuffle("discard into deck");
     }
 
-    public void Activate(int index)
+    public ActionData Activate(int index)
     {
-        if (hand[index] == null)
+        ActionData activatedCard = hand[index];
+        
+        if (activatedCard == null)
         {
-            return;
+            ShuffleDiscardIntoDeck();
+            CheckHandSizeAndDraw();
+        }
+        else
+        {
+            StartCoroutine(ActivateHelper(index));
         }
 
-        StartCoroutine(ActivateHelper(index));
+        return activatedCard;
     }
 
     private IEnumerator ActivateHelper(int index)
@@ -181,55 +120,12 @@ public class Deck : MonoBehaviour
         hand[index].Activate();
         discard.Add(hand[index]);
         hand[index] = null;
-        //make sure hand size is correct
+
         CheckHandSizeAndDraw();
     }
 
-    public void ActivateBackup(int index)
+    public IEnumerator GetDeckEnumerator()
     {
-        if (backupHand[index] == null)
-        {
-            return;
-        }
-        StartCoroutine(ActivateBackupHelper(index));
-    }
-
-    private IEnumerator ActivateBackupHelper(int index)
-    {
-        ActionData cardToPlay = backupHand[index];
-        //wait however long is required
-        if (cardToPlay.castingTime != 0)
-        {
-            //start initial effects and stop player input
-            InputManager.canInputCards = false;
-            yield return new WaitForSeconds(cardToPlay.castingTime);
-        }
-        InputManager.canInputCards = true;
-        backupHand[index].Activate();
-        discard.Add(cardToPlay);
-        //hand.Remove(cardToPlay);
-        backupHand[index] = null;
-    }
-
-    /// <summary>
-    /// Swaps the card at the given index in the hand with the backup slot for that card. If the backup slot is empty,
-    /// the card is moved to the backup slot, then a new card is drawn to replace it.
-    /// </summary>
-    /// <param name="index"></param>
-    public void Swap(int index)
-    {
-        //swap the card at this index with the card in its backup slot
-        ActionData temp = backupHand[index];
-        backupHand[index] = hand[index];
-        
-        if (temp  == null)
-        {
-            //there was no card in the backup slot; need to draw a new card at this index in the hand
-            Draw(index);
-        }
-        else
-        {
-            hand[index] = temp;
-        }
+        return deck.GetEnumerator();
     }
 }

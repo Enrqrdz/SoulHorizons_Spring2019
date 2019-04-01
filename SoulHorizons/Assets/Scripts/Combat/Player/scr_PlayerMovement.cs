@@ -51,7 +51,7 @@ public class scr_PlayerMovement : scr_EntityAI
             axisPressed = false;
         }
 
-        if (scr_Grid.GridController.LocationOnGrid(_x, _y) &&  scr_Grid.GridController.ReturnTerritory(_x,_y).name == entity.entityTerritory.name)
+        if (scr_Grid.GridController.LocationOnGrid(_x, _y) &&  scr_Grid.GridController.ReturnTerritory(_x,_y).name == entity.entityTerritory.name && !scr_Grid.GridController.CheckIfOccupied(_x, _y))
         {
             entity.SetTransform(_x, _y);
         }

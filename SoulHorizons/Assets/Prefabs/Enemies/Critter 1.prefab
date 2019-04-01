@@ -172,6 +172,7 @@ MonoBehaviour:
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
   die_SFX: {fileID: 8300000, guid: e8f86f352c7d3ec4aa8b9948ce4e9c48, type: 3}
@@ -725,5 +726,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 1650102032847892}
   bluePivot: {fileID: 0}
-  healthDisplay: {fileID: 0}
-  shieldDisplay: {fileID: 0}
+  targetEntity: {fileID: 114725702907161856}

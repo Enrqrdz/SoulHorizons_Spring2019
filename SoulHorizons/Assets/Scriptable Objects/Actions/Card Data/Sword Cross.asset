@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9db278a2c3d7e1418dcf77e47c89a39, type: 3}
+  m_Name: Sword Cross
+  m_EditorClassIdentifier: 
+  actionName: Sword Cross
+  art: {fileID: 21300000, guid: 055fad1decaacc944abf1ffa4cd72486, type: 3}
+  element: 1
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1
+  description: 'Summon Four Soul Swords of Revealing
+
+    Light that slash in an X'
+  SwordSFX: {fileID: 0}
+  swordAttack: {fileID: 11400000, guid: d9a7be153488c5c44bd5337238942283, type: 2}

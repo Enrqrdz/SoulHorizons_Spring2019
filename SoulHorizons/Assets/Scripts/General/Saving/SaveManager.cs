@@ -66,4 +66,9 @@ public static class SaveManager
 
          return bf;
     }
+
+    public static bool IsSaveLoaded()
+    {
+        return (currentGame != null);
+    }
 }

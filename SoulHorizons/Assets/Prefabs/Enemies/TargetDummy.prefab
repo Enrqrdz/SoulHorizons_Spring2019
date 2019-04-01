@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1324763931
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c97c16614c2e20c4fb7fdae0c0d5e47e, type: 3}
   m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
@@ -171,6 +171,8 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  isStunned: 0
+  hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
   die_SFX: {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
@@ -718,5 +720,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 1650102032847892}
   bluePivot: {fileID: 0}
-  healthDisplay: {fileID: 0}
-  shieldDisplay: {fileID: 0}
+  targetEntity: {fileID: 114725702907161856}
