@@ -24,7 +24,7 @@ public class scr_MeditationCircle : ActionData
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         scr_Grid.GridController.grid[player._gridPos.x, player._gridPos.y].BuffTile(activeDuration, damageMultiplier, damageReducer);
-        GameObject MedCircleAnimation = Instantiate(MedCircleAnim, new Vector2(player._gridPos.x-0.3f, player._gridPos.y-0.2f),Quaternion.identity);
+        GameObject MedCircleAnimation = Instantiate(MedCircleAnim, new Vector2(player.transform.position.x, player.transform.position.y+0.3f),Quaternion.identity);
         Destroy(MedCircleAnimation, activeDuration);
     }
 }
