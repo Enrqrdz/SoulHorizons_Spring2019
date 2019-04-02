@@ -21,7 +21,7 @@ MonoBehaviour:
   description: 'Enchants the tile under the player, causing any attacks
 
     the player sends through it to have increased damage'
-  MeditationSFX: {fileID: 0}
+  MeditationSFX: {fileID: 8300000, guid: 4765a356da86d7f459a072cd3a6a4bfa, type: 3}
   activeDuration: 6
   damageMultiplier: 1.2
   damageReducer: 0.25

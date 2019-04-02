@@ -20,7 +20,7 @@ MonoBehaviour:
   cooldown: 1
   description: "Gives the player a shield of electricity that \ngets stronger as they
     move"
-  shieldSFX: {fileID: 0}
+  shieldSFX: {fileID: 8300000, guid: 553ebe5d4d858134a9becd5e9b08b045, type: 3}
   StaticShield: {fileID: 11400000, guid: 2e08d8dc578e2064ea89edf255986237, type: 2}
   shieldProtection: 0
   shieldProtectionIncrement: 1

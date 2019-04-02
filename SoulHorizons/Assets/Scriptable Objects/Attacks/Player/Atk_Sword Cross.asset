@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incrementTime: 0.05
   maxIncrementRange: 3
+  modifier: 1
   damage: 6
   type: 1
   hasPiercing: 1
@@ -21,4 +22,4 @@ MonoBehaviour:
     type: 3}
   particlesOffset: {x: 0, y: 0, z: 0}
   particleSpeed: 1
-  SwordSFX: {fileID: 0}
+  SwordSFX: {fileID: 8300000, guid: 87fa4948881007d468ac76538be41624, type: 3}

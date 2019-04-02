@@ -13,12 +13,11 @@ public class Scr_SwordCross : ActionData
 
     public override void Activate()
     {
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = SwordSFX;
         PlayCardSFX.Play();
-
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map
