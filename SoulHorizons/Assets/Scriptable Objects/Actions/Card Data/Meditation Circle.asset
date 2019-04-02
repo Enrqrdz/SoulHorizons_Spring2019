@@ -22,6 +22,8 @@ MonoBehaviour:
 
     the player sends through it to have increased damage'
   MeditationSFX: {fileID: 0}
+  MedCircleAnim: {fileID: 5424082413182407754, guid: f5d828cf751d45b48854f5fb94d1f281,
+    type: 3}
   activeDuration: 6
   damageMultiplier: 1.2
   damageReducer: 0.25
