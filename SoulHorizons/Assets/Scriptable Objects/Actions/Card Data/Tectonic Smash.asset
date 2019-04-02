@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcbbbccb4ffbf8a4e85eba8c0eab32dc, type: 3}
+  m_Name: Tectonic Smash
+  m_EditorClassIdentifier: 
+  actionName: 
+  art: {fileID: 0}
+  element: 0
+  transformChargeAmount: 5
+  castingTime: 0
+  cooldown: 1
+  description: 
+  SmashSFX: {fileID: 0}
+  Smash: {fileID: 0}
