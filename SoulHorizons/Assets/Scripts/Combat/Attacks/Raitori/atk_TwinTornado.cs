@@ -35,7 +35,6 @@ public class atk_TwinTornado : AttackData
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
         activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (4.5f) * Time.deltaTime);
-        activeAttack.particle.transform.Rotate(Vector3.forward * 100f);
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)

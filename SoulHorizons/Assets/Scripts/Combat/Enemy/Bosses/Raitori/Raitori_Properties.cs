@@ -38,7 +38,9 @@ public class Raitori_Properties:MonoBehaviour
     //Ranged attack that throws the player into the air.
     public AttackData GustGale;
     public float gustGaleWindUpTime;
+    public float gustGaleKnockUpTime;
     public float gustGaleCooldownTime;
+    public int gustGaleFallDamage;
     [HideInInspector]
     public bool gustGaleIsActive;
 

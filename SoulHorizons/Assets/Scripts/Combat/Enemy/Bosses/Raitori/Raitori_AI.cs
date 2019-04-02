@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -19,9 +18,12 @@ public class Raitori_AI : scr_EntityAI
     private Vector2Int[] possibleHeadPositions;
     private Vector2Int[] zigZagPattern;
     private Vector2Int currentHeadPosition;
+
+    //Attacks
     private int playerPositionX = 1;
     private int playerPositionY = 1;
     private int tornadoNumber;
+    private int gustGaleColumnNumber;
 
     //Audio
     AudioSource Attack_SFX;
@@ -100,6 +102,10 @@ public class Raitori_AI : scr_EntityAI
         if(Raitori.twinTornadoIsActive == false && (transitionNumber == 2 || transitionNumber == 3))
         {
             StartCoroutine(TwinTornado());
+        }
+        if (Raitori.gustGaleIsActive == false && (transitionNumber == 1 || transitionNumber == 4))
+        {
+            StartCoroutine(GustGale());
         }
     }
 
@@ -359,7 +365,7 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeTwinTornado();
         Raitori.twinTornadoIsActive = true;
-        yield return new WaitForSecondsRealtime(Raitori.stormStrikeWindUpTime);
+        yield return new WaitForSecondsRealtime(Raitori.twinTornadoWindUpTime);
         //int index = Random.Range(0, attacks_SFX.Length);
         //attack_SFX = attacks_SFX[index];
         //Attack_SFX.clip = attack_SFX;
@@ -385,6 +391,66 @@ public class Raitori_AI : scr_EntityAI
     {
         AttackController.Instance.AddNewAttack(Raitori.TwinTornado, zigZagPattern[tornadoNumber].x - 1, zigZagPattern[tornadoNumber].y, entity);
         AttackController.Instance.AddNewAttack(Raitori.TwinTornado, zigZagPattern[tornadoNumber].x - 1, zigZagPattern[tornadoNumber].y + 2, entity);
+    }
+
+    private IEnumerator GustGale()
+    {
+        Raitori.gustGaleIsActive = true;
+        PrimeGustGale();
+        yield return new WaitForSecondsRealtime(Raitori.gustGaleWindUpTime);
+        //int index = Random.Range(0, attacks_SFX.Length);
+        //attack_SFX = attacks_SFX[index];
+        //Attack_SFX.clip = attack_SFX;
+        //Attack_SFX.Play();
+        //anim.SetBool("Attack", true);
+        StartGustGale();
+        yield return new WaitForSecondsRealtime(Raitori.GustGale.incrementTime * scr_Grid.GridController.rowSizeMax);
+        DePrimeGustGale();
+        yield return new WaitForSecondsRealtime(Raitori.gustGaleKnockUpTime);
+        Knockup();
+        yield return new WaitForSecondsRealtime(Raitori.gustGaleCooldownTime);
+        Raitori.gustGaleIsActive = false;
+    }
+
+    private void PrimeGustGale()
+    {
+        //TODO 4/2/19: Make a function in scr_Grid to keep track of column territory numbers.
+        gustGaleColumnNumber = UnityEngine.Random.Range(0,5);
+
+        for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
+        {
+            scr_Grid.GridController.PrimeNextTile(gustGaleColumnNumber, i);
+        }
+    }
+
+    private void StartGustGale()
+    {
+        AttackController.Instance.AddNewAttack(Raitori.GustGale, gustGaleColumnNumber, scr_Grid.GridController.rowSizeMax - 1, entity);
+    }
+
+    private void DePrimeGustGale()
+    {
+        for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
+        {
+            scr_Grid.GridController.DePrimeTile(gustGaleColumnNumber, i);
+        }
+    }
+
+    private void Knockup()
+    {
+        for (int i = 0; i < scr_Grid.GridController.activeEntities.Length; i++)
+        {
+            if (scr_Grid.GridController.activeEntities[i].type == EntityType.Player)
+            {
+                if (scr_Grid.GridController.activeEntities[i].isStunned == true)
+                {
+                    scr_Grid.GridController.activeEntities[i].isStunned = false;
+                    scr_Grid.GridController.activeEntities[i]._health.TakeDamage(Raitori.gustGaleFallDamage);
+                    scr_Grid.GridController.activeEntities[i].spr.color = Color.white;
+                    break;
+                }
+            }
+        }
     }
 
     private void SetTilesOccupied()

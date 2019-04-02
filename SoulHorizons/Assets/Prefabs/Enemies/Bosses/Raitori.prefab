@@ -357,9 +357,11 @@ MonoBehaviour:
   twinTornadoWindUpTime: 1
   twinTornadoCooldown: 4
   twinTornadoIsActive: 0
-  GustGale: {fileID: 0}
-  gustGaleWindUpTime: 0
-  gustGaleCooldownTime: 0
+  GustGale: {fileID: 11400000, guid: 68ed2d1040eef484db9acee5ddd810f9, type: 2}
+  gustGaleWindUpTime: 1
+  gustGaleKnockUpTime: 1.5
+  gustGaleCooldownTime: 6
+  gustGaleFallDamage: 10
   gustGaleIsActive: 0
   FeatherRend: {fileID: 0}
   featherRendWindUpTime: 0
