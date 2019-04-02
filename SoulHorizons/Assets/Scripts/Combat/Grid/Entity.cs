@@ -85,8 +85,7 @@ public class Entity : MonoBehaviour
                 SetShield(false, 0f, 0, 0, 0);
             }
         }
-
-       
+      
     }
 
 
@@ -281,19 +280,32 @@ public class Entity : MonoBehaviour
         while (duration >= 0)
         {
             _health.TakeDamage(damage);
-            StartCoroutine(TakeDamageAfterTime(damageRate));
+            StartCoroutine(GenericClock(damageRate));
             duration -= damageRate;
+            Debug.Log("shit");
         }
     }
 
-     IEnumerator TakeDamageAfterTime (float damageTime)
+     IEnumerator GenericClock (float waitTime)
      {
-        yield return new WaitForSecondsRealtime(damageTime);
+        yield return new WaitForSecondsRealtime(waitTime);
      }
+
+    public void HealOverTime(float duration, float healRate, int healAmount)
+    {
+        while (duration >= 0)
+        {
+            _health.Heal(healAmount);
+            StartCoroutine(GenericClock(healRate));
+            duration -= healRate;
+            Debug.Log("Nice");
+        }
+    }
 
 
     public IEnumerator gotStunned(float stunTime)
     {
+        Debug.Log("Got Stunned");
         isStunned = true;
         yield return new WaitForSecondsRealtime(stunTime);
         isStunned = false;
@@ -344,6 +356,18 @@ public class Health{
         }
         //Debug.Log("MY HP: " + hp);  This was bothering me, uncomment if you desire 
 
+    }
+
+    public void Heal(int healAmount)
+    {
+        if(hp + healAmount < max_hp)
+        {
+            hp += healAmount;
+        }
+        else
+        {
+            hp = max_hp;
+        }
     }
 
 }

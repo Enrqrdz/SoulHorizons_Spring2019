@@ -508,6 +508,7 @@ MonoBehaviour:
   - {fileID: 1654060201}
   handPanel: {fileID: 1533865064}
   playerAnimator: {fileID: 0}
+  player: {fileID: 0}
   globalCooldown: 0.2
   shuffleArt: {fileID: 21300000, guid: 1ed445c41053042adb1f0c72f420d50f, type: 3}
   CardChange_SFX: {fileID: 0}

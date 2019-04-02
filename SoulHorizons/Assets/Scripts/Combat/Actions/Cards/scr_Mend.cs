@@ -16,11 +16,8 @@ public class scr_Mend : ActionData
         PlayCardSFX.clip = MendSFX;
         PlayCardSFX.Play();
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
-        player._health.hp += Mend_hp;
-        if(player._health.hp > player._health.max_hp)
-        {
-            player._health.hp = player._health.max_hp;
-        }
+
+        player._health.Heal(Mend_hp);
 
     }
 }
