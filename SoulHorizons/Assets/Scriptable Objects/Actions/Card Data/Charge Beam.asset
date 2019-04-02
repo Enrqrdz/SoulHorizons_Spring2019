@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26594d1dcaaf8f34090c62df5be38fd0, type: 3}
   m_Name: Charge Beam
   m_EditorClassIdentifier: 
-  actionName: 
+  actionName: ChargeBeam
   art: {fileID: 21300000, guid: df564e949628e5841a28875e650266fe, type: 3}
   element: 3
   transformChargeAmount: 5
