@@ -353,9 +353,9 @@ MonoBehaviour:
   birdBashWindUpTime: 1
   birdBashCooldownTime: 4
   birdBashIsActive: 0
-  TwinTornado: {fileID: 0}
-  twinTornadoWindUpTime: 0
-  twinTornadoCooldown: 0
+  TwinTornado: {fileID: 11400000, guid: e864d2025b2fb8642ad3e7282a02a125, type: 2}
+  twinTornadoWindUpTime: 1
+  twinTornadoCooldown: 4
   twinTornadoIsActive: 0
   GustGale: {fileID: 0}
   gustGaleWindUpTime: 0

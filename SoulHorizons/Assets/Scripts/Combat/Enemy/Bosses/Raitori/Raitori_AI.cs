@@ -21,6 +21,7 @@ public class Raitori_AI : scr_EntityAI
     private Vector2Int currentHeadPosition;
     private int playerPositionX = 1;
     private int playerPositionY = 1;
+    private int tornadoNumber;
 
     //Audio
     AudioSource Attack_SFX;
@@ -95,6 +96,10 @@ public class Raitori_AI : scr_EntityAI
         if (Raitori.birdBashIsActive == false && (scr_Grid.GridController.ReturnTerritory(currentHeadPosition.x - 1, currentHeadPosition.y).name == TerrName.Player))
         {
             StartCoroutine(BirdBash());
+        }
+        if(Raitori.twinTornadoIsActive == false && (transitionNumber == 2 || transitionNumber == 3))
+        {
+            StartCoroutine(TwinTornado());
         }
     }
 
@@ -348,6 +353,38 @@ public class Raitori_AI : scr_EntityAI
     private void StartBirdBash()
     {
         AttackController.Instance.AddNewAttack(Raitori.BirdBash, zigZagPattern[transitionNumber].x - 1, zigZagPattern[transitionNumber].y, entity);
+    }
+
+    private IEnumerator TwinTornado()
+    {
+        PrimeTwinTornado();
+        Raitori.twinTornadoIsActive = true;
+        yield return new WaitForSecondsRealtime(Raitori.stormStrikeWindUpTime);
+        //int index = Random.Range(0, attacks_SFX.Length);
+        //attack_SFX = attacks_SFX[index];
+        //Attack_SFX.clip = attack_SFX;
+        //Attack_SFX.Play();
+        //anim.SetBool("Attack", true);
+        StartTwinTornado();
+        yield return new WaitForSecondsRealtime(Raitori.twinTornadoCooldown);
+        Raitori.twinTornadoIsActive = false;
+    }
+
+    private void PrimeTwinTornado()
+    {
+        tornadoNumber = transitionNumber;
+
+        for (int i = 0; i < Raitori.TwinTornado.maxIncrementRange; i++)
+        {
+            scr_Grid.GridController.PrimeNextTile(zigZagPattern[tornadoNumber].x - 1 - i, zigZagPattern[tornadoNumber].y);
+            scr_Grid.GridController.PrimeNextTile(zigZagPattern[transitionNumber].x - 1 - i, zigZagPattern[tornadoNumber].y + 2);
+        }
+    }
+
+    private void StartTwinTornado()
+    {
+        AttackController.Instance.AddNewAttack(Raitori.TwinTornado, zigZagPattern[tornadoNumber].x - 1, zigZagPattern[tornadoNumber].y, entity);
+        AttackController.Instance.AddNewAttack(Raitori.TwinTornado, zigZagPattern[tornadoNumber].x - 1, zigZagPattern[tornadoNumber].y + 2, entity);
     }
 
     private void SetTilesOccupied()
