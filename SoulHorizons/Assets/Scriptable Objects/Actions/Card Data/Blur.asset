@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Blur
   art: {fileID: 21300000, guid: 41dc233cf0bc0874abfcca85b430708b, type: 3}
-  element: 4
+  element: 1
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 0.8

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5bdc4f46733164883b55bd82297605, type: 3}
   m_Name: Explosion
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   actionName: Explosion
   art: {fileID: 21300000, guid: fc537ff82ea35cc469c5b37b525b9505, type: 3}
   element: 0
