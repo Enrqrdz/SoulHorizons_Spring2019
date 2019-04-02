@@ -37,10 +37,10 @@ public class atk_TectonicSmash : AttackData
             int entityXPos = activeAttack.entityHit._gridPos.x;
             int entityYPos = activeAttack.entityHit._gridPos.y;
 
-            if (!scr_Grid.GridController.CheckIfOccupied(entityXPos + 1, entityYPos) && scr_Grid.GridController.LocationOnGrid(entityXPos + 1, entityYPos) && (scr_Grid.GridController.ReturnTerritory(entityXPos + 1, entityYPos).name != TerrName.Player))
+            if (scr_Grid.GridController.LocationOnGrid(entityXPos + 1, entityYPos) && (scr_Grid.GridController.ReturnTerritory(entityXPos + 1, entityYPos).name != TerrName.Player))
             {
               
-                if (activeAttack.entityHit.type == EntityType.Enemy)
+                if (!scr_Grid.GridController.CheckIfOccupied(entityXPos + 1, entityYPos) && activeAttack.entityHit.type == EntityType.Enemy)
                 {
                     scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
                     scr_Grid.GridController.SetTileOccupied(true, entityXPos++, entityYPos, activeAttack.entityHit);
@@ -49,13 +49,17 @@ public class atk_TectonicSmash : AttackData
                     Debug.Log(activeAttack.entityHit._gridPos.x + ", " + activeAttack.entityHit._gridPos.y);
                     return;
                 }
-                else
+                else if (scr_Grid.GridController.CheckIfOccupied(entityXPos + 1, entityYPos) && activeAttack.entityHit.type == EntityType.Obstacle)
                 {
                     Debug.Log("Commin straight from the underground");
                     scr_Grid.GridController.SetTileOccupied(false, entityXPos--, entityYPos, activeAttack.entityHit);
                     Entity hitByRock = scr_Grid.GridController.GetEntityAtPosition(entityXPos, entityYPos);
                     hitByRock._health.TakeDamage(rockCollisionDamage);
                     activeAttack.entityHit.Death();
+                }
+                else
+                {
+                    activeAttack.entityHit.gotStunned(stunTime);
                 }
             }
             else

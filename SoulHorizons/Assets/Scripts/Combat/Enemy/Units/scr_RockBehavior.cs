@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_RockBehavior : scr_EntityAI
 {
-    public int collisionDamage;
+    public int collisionDamage = 10;
     private void Start()
     {
         
@@ -20,6 +20,8 @@ public class scr_RockBehavior : scr_EntityAI
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         
     }
+
+    
 
     public override void Die()
     {

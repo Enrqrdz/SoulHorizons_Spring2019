@@ -31,17 +31,20 @@ public class scr_Tile : MonoBehaviour{
     public Color primeColor;
     public Color activeColor;
     public Color playerActiveColor;
-    public Color playerPrimeColor; 
+    public Color playerPrimeColor;
+    public Color BlightedColor;
+    public Color FireColor;
+    public Color FloodedColor;
     //public Color inactiveColor;
 
     
    
-    public bool harmful;
-    public bool helpful;
-    public bool isOnFire;
-    public bool isFlooded;
-    public bool isPoisoned;
-    public bool isMeditation;
+    public bool harmful = false;
+    public bool helpful = false;
+    public bool isOnFire = false;
+    public bool isFlooded = false;
+    public bool isPoisoned = false;
+    public bool isMeditation = false;
 
     public bool occupied;
     public bool isPrimed;
@@ -167,15 +170,15 @@ public class scr_Tile : MonoBehaviour{
                 isActive = false;
                 if (isOnFire)
                 {
-                    SetSpriteRendererColor(Color.red);
+                    SetSpriteRendererColor(FireColor);
                 }
                 else if (isFlooded)
                 {
-                    SetSpriteRendererColor(Color.blue);
+                    SetSpriteRendererColor(FloodedColor);
                 }
                 else if(isPoisoned)
                 {
-                    SetSpriteRendererColor(Color.gray);
+                    SetSpriteRendererColor(BlightedColor);
                 }
                 else if(isMeditation)
                 {
@@ -218,26 +221,26 @@ public class scr_Tile : MonoBehaviour{
         {
             case 0: //Is Poisoned
                 isPoisoned = true;
-                SetSpriteRendererColor(Color.gray);
+                SetSpriteRendererColor(BlightedColor);
+                Debug.Log("Shits all nasty");
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
             case 1: //Is on Fire
                 isOnFire = true;
-                SetSpriteRendererColor(Color.magenta);
-                StartCoroutine(DamageTile(rate, damage));
+                SetSpriteRendererColor(FireColor);
+                Debug.Log("Shits on fire");
+                StartCoroutine(DamageTile(rate, damage));           
                 StartCoroutine(RevertTile(duration));
                 break;
             case 2: //Is Flooded
                 isFlooded = true;
-                SetSpriteRendererColor(Color.blue);
+                Debug.Log("Shits flooded");
+                SetSpriteRendererColor(FloodedColor);
                 StartCoroutine(RevertTile(duration));
                 break;
 
         }
-        
-        StartCoroutine(DamageTile(rate, damage));
-        StartCoroutine(RevertTile(duration));
     }
 
     private IEnumerator DamageTile(float damageRate, int damage)

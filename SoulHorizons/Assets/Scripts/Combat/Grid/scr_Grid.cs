@@ -38,6 +38,11 @@ public class scr_Grid : MonoBehaviour
         return grid[x, y].isActive; 
     }
 
+    public bool CheckIfFlooded(int x, int y)
+    {
+        return grid[x, y].isFlooded;
+    }
+
     public bool CheckIfHarmful(int x, int y)
     {
         return grid[x, y].harmful;

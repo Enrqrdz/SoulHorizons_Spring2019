@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/ExplosionMiddle")]
-
-public class atk_ExplosionMain : AttackData
+[CreateAssetMenu(menuName = "Attacks/Water Prison")]
+public class Atk_WaterPrison : AttackData
 {
-    public int fireDamage = 4;
+    public float floodedDuration = 4f;
+    public float damageRate = 2;
+    public int damageEachTick = 3;
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
-        scr_Grid.GridController.ActivateTile(xPos, yPos, activeAtk);
-        return new Vector2Int(xPos, yPos);
+        return new Vector2Int(xPos + 1, yPos);
     }
 
+    //--Effects Methods--
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
         activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
@@ -32,6 +32,12 @@ public class atk_ExplosionMain : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-        scr_Grid.GridController.grid[activeAttack.position.x - 1, activeAttack.position.y].DeBuffTile(6f, 3, 1, 1);
+        scr_Grid.GridController.grid[activeAttack.position.x - 1, activeAttack.position.y].DeBuffTile(floodedDuration, 0, 0, 2);
+        if (activeAttack.entityIsHit == true)
+        {
+            activeAttack.entityHit.TakeDamageOverTime(floodedDuration, damageRate, damageEachTick);
+            return;
+        }
+
     }
 }

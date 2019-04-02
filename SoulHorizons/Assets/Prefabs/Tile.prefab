@@ -50,6 +50,9 @@ MonoBehaviour:
   activeColor: {r: 0.4245283, g: 0, b: 0, a: 0.83137256}
   playerActiveColor: {r: 0, g: 0.14015627, b: 1, a: 1}
   playerPrimeColor: {r: 0, g: 0, b: 0, a: 0}
+  BlightedColor: {r: 0.5471698, g: 0.5445888, b: 0.5445888, a: 0.69411767}
+  FireColor: {r: 0.9622642, g: 0.3461882, b: 0.17702031, a: 0.6862745}
+  FloodedColor: {r: 0.031149892, g: 0.46838263, b: 0.9433962, a: 0.7764706}
   harmful: 0
   helpful: 0
   isOnFire: 0

@@ -39,17 +39,16 @@ public class atk_GuardBreak : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
+        player.SetTransform(playerX, playerY);
+        player.isStunned = false;
         try
         {
             activeAttack.entityHit.gotStunned(stunTime);
             player.SetTransform(activeAttack.position.x - 1, activeAttack.position.y);
-            player.SetTransform(playerX, playerY);
-            player.isStunned = false;
+            
         }
         catch
         {
-            player.SetTransform(playerX, playerY);
-            player.isStunned = false;
         }
 
     }

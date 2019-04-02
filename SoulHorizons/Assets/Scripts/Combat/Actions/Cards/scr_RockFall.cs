@@ -8,6 +8,8 @@ using UnityEngine;
 public class scr_RockFall : ActionData
 {
     public AttackData RockFallAttack;
+    private AudioSource PlayCardSFX;
+    public AudioClip RockFallSFX;
 
     public override void Activate()
     {
