@@ -194,7 +194,67 @@ public class Raitori_AI : scr_EntityAI
 
     private void StartStormStrike()
     {
-        AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY, entity);
+        switch (Raitori_Stages.Instance.currentPhase)
+        {
+            case Phase.Stage1:
+                if (playerPositionX > 0)
+                {
+                    AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX - 1, playerPositionY, entity);
+                }
+
+                AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY, entity);
+                AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX + 1, playerPositionY, entity);
+                break;
+
+            case Phase.Stage2:
+                if (playerPositionX > 0)
+                {
+                    AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX - 1, playerPositionY, entity);
+                }
+                if (playerPositionY > 0)
+                {
+                    AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY - 1, entity);
+                }
+                if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                {
+                    AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY + 1, entity);
+                }
+
+                AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY, entity);
+                AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX + 1, playerPositionY, entity);
+                break;
+
+            case Phase.Stage3:
+                if (playerPositionX > 0)
+                {
+                    AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX - 1, playerPositionY, entity);
+                    if (playerPositionY > 0)
+                    {
+                        AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX - 1, playerPositionY - 1, entity);
+                        AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX + 1, playerPositionY - 1, entity);
+
+                        if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                        {
+                            AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX - 1, playerPositionY + 1, entity);
+                            AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX + 1, playerPositionY + 1, entity);
+                        }
+                    }
+                }
+                if (playerPositionY > 0)
+                {
+                    AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY - 1, entity);
+                }
+                if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                {
+                    AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY + 1, entity);
+                }
+
+                AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY, entity);
+                AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX + 1, playerPositionY, entity);
+                break;
+            default:
+                break;
+        }
     }
 
     public void DePrimeStormStrike()

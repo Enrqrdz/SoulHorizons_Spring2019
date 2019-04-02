@@ -62,18 +62,18 @@ public class scr_Brawler_Attack : MonoBehaviour {
 
 	private void OnEnable()
 	{
-		if(bearUI.gameObject != null)
-        {
-            bearUI.gameObject.SetActive(true);
-        }
+	//	if(bearUI.gameObject != null)
+      //  {
+        //    bearUI.gameObject.SetActive(true);
+        //}
 	}
 
 	private void OnDisable()
 	{
-        if (bearUI.gameObject != null)
-        {
-            bearUI.gameObject.SetActive(false);
-        }
+     //   if (bearUI.gameObject != null)
+      //  {
+       //     bearUI.gameObject.SetActive(false);
+        //}
     }
 	
 	void Update ()
