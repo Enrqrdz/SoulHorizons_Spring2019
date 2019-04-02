@@ -18,7 +18,7 @@ MonoBehaviour:
   damage: 0
   type: 1
   hasPiercing: 0
-  particles: {fileID: 212160339734999984, guid: adcd5b01c4cd3da49bb80cfb90445fdc,
+  particles: {fileID: 2663870242515422873, guid: 2482e85deb8619c4fa6de2109282b28e,
     type: 3}
   particlesOffset: {x: 0.4, y: 0.3, z: 0}
   particleSpeed: 1

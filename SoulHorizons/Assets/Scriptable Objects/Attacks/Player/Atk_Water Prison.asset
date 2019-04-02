@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235e65fa6bbc9ac4ca44d7951ed47cfb, type: 3}
+  m_Name: Atk_Water Prison
+  m_EditorClassIdentifier: 
+  incrementTime: 0.2
+  maxIncrementRange: 10
+  modifier: 1
+  damage: 0
+  type: 1
+  hasPiercing: 0
+  particles: {fileID: 212160339734999984, guid: adcd5b01c4cd3da49bb80cfb90445fdc,
+    type: 3}
+  particlesOffset: {x: 0.3, y: 0.4, z: 0}
+  particleSpeed: 11
+  floodedDuration: 4
+  damageRate: 2
+  damageEachTick: 3

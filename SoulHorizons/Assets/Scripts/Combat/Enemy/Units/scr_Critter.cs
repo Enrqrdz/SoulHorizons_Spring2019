@@ -114,7 +114,7 @@ public class scr_Critter : scr_EntityAI
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
         Footsteps_SFX.Play();
-
+        attempts = 0;
         int xRange = scr_Grid.GridController.columnSizeMax;
 
         while (attempts < 10)
@@ -142,6 +142,7 @@ public class scr_Critter : scr_EntityAI
                 }
             }
 
+            attempts++;
             if (attempts >= 10)
             {
                 int rand = Random.Range(0, 1);

@@ -24,6 +24,7 @@ public class Entity : MonoBehaviour
     public SpriteRenderer spr;
     Color baseColor;
     public float lerpSpeed;
+
     public bool has_iframes;
     public bool invincible = false;
     public float invulnTime;
@@ -34,7 +35,7 @@ public class Entity : MonoBehaviour
     int shieldProtection = 0; //the amount of damage the shield is reducing damage by
     int shieldProtectionIncrement = 1; //the rate the damage reduction of the shield increasesby when you move
     int shieldProtectionMax = 50;
-
+    bool isBeingDamagedOverTime = false;
 
     AudioSource Hurt_SFX;
     public AudioClip[] hurts_SFX;
@@ -85,8 +86,7 @@ public class Entity : MonoBehaviour
                 SetShield(false, 0f, 0, 0, 0);
             }
         }
-
-       
+      
     }
 
     public void InitPosition(int x, int y)
@@ -117,7 +117,7 @@ public class Entity : MonoBehaviour
         }
 
         
-        if(scr_Grid.GridController.CheckIfOccupied(x,y) == false)
+        if(scr_Grid.GridController.CheckIfOccupied(x,y) == false && scr_Grid.GridController.CheckIfFlooded(_gridPos.x,_gridPos.y) == false)
         {
             scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
             _gridPos = new Vector2Int(x, y);
@@ -337,8 +337,37 @@ public class Entity : MonoBehaviour
         //scr_Grid.GridController.RemoveEntity(this);  
     }
 
+    public void TakeDamageOverTime (float duration, float damageRate, int damage)
+    {
+        while (duration >= 0)
+        {
+            _health.TakeDamage(damage);
+            StartCoroutine(GenericClock(damageRate));
+            duration -= damageRate;
+            Debug.Log("shit");
+        }
+    }
+
+     IEnumerator GenericClock (float waitTime)
+     {
+        yield return new WaitForSecondsRealtime(waitTime);
+     }
+
+    public void HealOverTime(float duration, float healRate, int healAmount)
+    {
+        while (duration >= 0)
+        {
+            _health.Heal(healAmount);
+            StartCoroutine(GenericClock(healRate));
+            duration -= healRate;
+            Debug.Log("Nice");
+        }
+    }
+
+
     public IEnumerator gotStunned(float stunTime)
     {
+        Debug.Log("Got Stunned");
         isStunned = true;
         yield return new WaitForSecondsRealtime(stunTime);
         isStunned = false;
@@ -389,6 +418,18 @@ public class Health{
         }
         //Debug.Log("MY HP: " + hp);  This was bothering me, uncomment if you desire 
 
+    }
+
+    public void Heal(int healAmount)
+    {
+        if(hp + healAmount < max_hp)
+        {
+            hp += healAmount;
+        }
+        else
+        {
+            hp = max_hp;
+        }
     }
 
 }
