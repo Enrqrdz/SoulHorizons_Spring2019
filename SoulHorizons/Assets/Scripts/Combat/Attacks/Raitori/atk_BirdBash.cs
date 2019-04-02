@@ -2,33 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(menuName = "Attacks/HunterShot")]
-public class atk_HunterShot : AttackData {
-
+[CreateAssetMenu(menuName = "Attacks/Bosses/Raitori/BirdBash")]
+public class atk_BirdBash : AttackData
+{
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        for(int i = yPos; i >= 0; i--)
-        {
-            scr_Grid.GridController.PrimeNextTile(xPos - i, yPos);
-        }
         return new Vector2Int(xPos, yPos);
     }
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        return LinearForward_ProgressAttack(xPos, yPos, activeAtk);
+        return ProgressBirdBash(xPos, yPos, activeAtk);
     }
 
-    Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
+    Vector2Int ProgressBirdBash(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos);
         scr_Grid.GridController.ActivateTile(xPos, yPos);
-        return new Vector2Int(xPos - 1, yPos);
+        if (yPos >= scr_Grid.GridController.rowSizeMax)
+        {
+            return new Vector2Int(xPos, yPos);
+        }
+        return new Vector2Int(xPos, yPos + 1);
     }
+
     public override bool CheckCondition(Entity _ent)
     {
-        return true; 
+        return true;
     }
 
     //--Effects Methods--
