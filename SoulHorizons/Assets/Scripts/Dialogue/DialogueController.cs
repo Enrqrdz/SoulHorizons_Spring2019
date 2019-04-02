@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+[RequireComponent(typeof(AudioSource))]
 
 public class DialogueController : MonoBehaviour
 {
@@ -16,9 +17,12 @@ public class DialogueController : MonoBehaviour
     private bool decisionIsBeingMade = false;
     private List<IConsequence> consequences = new List<IConsequence>();
 
+    AudioSource Dialogue_SFX;
+    public AudioClip dialogue_SFX;
+
     private void Start()
     {
-        if(dialogue.hasBeenFormatted == false)
+        if (dialogue.hasBeenFormatted == false)
         {
             FormatScript();
         }
@@ -159,6 +163,9 @@ public class DialogueController : MonoBehaviour
     {
         if (conversationIndex < dialogue.text.Count - 1)
         {
+            AudioSource Dialogue_SFX = GetComponent<AudioSource>();
+            Dialogue_SFX.clip = dialogue_SFX;
+            Dialogue_SFX.Play();
             conversationIndex++;
         }
     }

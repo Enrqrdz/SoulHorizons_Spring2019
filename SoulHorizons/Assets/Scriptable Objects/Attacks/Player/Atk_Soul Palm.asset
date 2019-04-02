@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Atk_Soul Palm
   m_EditorClassIdentifier: 
   incrementTime: 0.1
-  maxIncrementRange: 6
+  maxIncrementRange: 14
+  modifier: 1
   damage: 5
   type: 1
   hasPiercing: 1
@@ -21,4 +22,4 @@ MonoBehaviour:
     type: 3}
   particlesOffset: {x: 0, y: 0.1, z: 0}
   particleSpeed: 1
-  CrescentSFX: {fileID: 0}
+  PalmSFX: {fileID: 8300000, guid: 7c2dda9d2d517ee418941112f06c492d, type: 3}

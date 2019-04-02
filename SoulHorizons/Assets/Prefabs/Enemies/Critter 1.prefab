@@ -197,8 +197,6 @@ MonoBehaviour:
   movementIntervalUpper: 1.5
   movements_SFX:
   - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}
-  - {fileID: 8300000, guid: 115bedd7a324c7d45b9433d193e86bdc, type: 3}
-  - {fileID: 8300000, guid: 330f9a63efbc6514aa5960292d26bd22, type: 3}
 --- !u!82 &82587730288405618
 AudioSource:
   m_ObjectHideFlags: 0

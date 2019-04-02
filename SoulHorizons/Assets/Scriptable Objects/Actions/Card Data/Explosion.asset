@@ -23,6 +23,6 @@ MonoBehaviour:
     3 tiles away from the player. Sets fire
 
     to the tiles afterwards'
-  ExplosionSFX: {fileID: 0}
+  ExplosionSFX: {fileID: 8300000, guid: 79dcc315777159844a3ed2bf50049bbe, type: 3}
   ExplosionMain: {fileID: 11400000, guid: 0a96da3e79857294fa8055f52133a4f8, type: 2}
   ExplosionSide: {fileID: 11400000, guid: 27c6ff4f9f46c444cba548bc1409de9d, type: 2}
