@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Atk_Boomerang
   m_EditorClassIdentifier: 
   incrementTime: 0.1
-  maxIncrementRange: 18
+  maxIncrementRange: 8
   modifier: 1
   damage: 8
   type: 1

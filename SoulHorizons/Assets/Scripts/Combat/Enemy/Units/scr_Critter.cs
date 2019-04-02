@@ -31,39 +31,33 @@ public class scr_Critter : scr_EntityAI
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
         Footsteps_SFX.Play();
-
+        attempts = 0;
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
 
-        try
+        while (attempts < 10)
         {
-            yPos = PickYCoord(yPos);
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-            {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                entity.SetTransform(xPos, yPos);
-                return;
-            }
-        }
+          yPos = PickYCoord(yPos);
+          if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+           {
+              //if the tile is not occupied
+               scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
+               entity.SetTransform(xPos, yPos);
+               return;
+           }
 
-        catch
-        {
-            yPos = PickYCoord(yPos);
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-            {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                entity.SetTransform(xPos, yPos);
-                return;
-            }
+           attempts++;
+           if (attempts >= 10)
+           {
+              return;
+           }
         }
     }
 
     public override void UpdateAI()
     {
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
-        if (taskComplete)
+        if (taskComplete == true)
         {
             StartCoroutine(Brain());
         }
@@ -145,30 +139,8 @@ public class scr_Critter : scr_EntityAI
             attempts++;
             if (attempts >= 10)
             {
-                int rand = Random.Range(0, 1);
-
-                if (rand == 1)
-                {
-                    yPos--;
-                    if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
-                    {
-                        //if the tile is not occupied
-                        scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                        entity.SetTransform(xPos, yPos);
-                        return;
-                    }
-                }
-                else
-                {
-                    yPos++;
-                    if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
-                    {
-                        //if the tile is not occupied
-                        scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                        entity.SetTransform(xPos, yPos);
-                        return;
-                    }
-                }
+                isStuck = true;
+                return;
             }
         }
     }
@@ -199,7 +171,16 @@ public class scr_Critter : scr_EntityAI
         {
             case 0:                                  //Move to a new Row
                 taskComplete = false;
-                Move();
+                try
+                {
+                    Move();
+                }
+                catch
+                {
+                    state = 2;
+                    taskComplete = true;
+                    break;
+                }
                 state = 2;
                 float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
                 yield return new WaitForSecondsRealtime(moveInterval);
