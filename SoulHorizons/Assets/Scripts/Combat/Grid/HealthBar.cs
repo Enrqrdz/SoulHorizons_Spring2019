@@ -5,12 +5,18 @@ using UnityEngine.UI;
 using TMPro; 
 
 
-public class HealthBar : MonoBehaviour {
+public class HealthBar : MonoBehaviour 
+{
+    [Header("Must Be Set")]
+    public GameObject greenPivot;
+    public GameObject bluePivot;
+    public Entity targetEntity;
+
+    [Header("Options")]
+    public Color flashColor = Color.red;
+    public float flashTime = .1f;
 
     float health, maxHealth, shield;
-
-    public GameObject pivot, bluePivot;
-    public Entity targetEntity;
 
     private float shieldThreshold = 100f;
     private float lerpRate = 0.01f; 
@@ -24,12 +30,16 @@ public class HealthBar : MonoBehaviour {
 	
 	void Update () 
     {
+        bool healthChanged = false;
+         
         if(targetEntity != null)
         {
+            healthChanged = (health != targetEntity._health.hp);
+
             health = targetEntity._health.hp;
             maxHealth = targetEntity._health.max_hp;
             shield = targetEntity._health.shield;
-            pivot.transform.localScale = new Vector3(health/maxHealth, 1,1);
+            greenPivot.transform.localScale = new Vector3(health/maxHealth, 1,1);
 
             if(bluePivot != null)
             {
@@ -44,5 +54,27 @@ public class HealthBar : MonoBehaviour {
                 }
             }  
         }      
+
+        if(healthChanged)
+        {
+            StartCoroutine("Flash");
+        }
+    }
+
+    public IEnumerator Flash()
+    {
+        SpriteRenderer greenPivotSR = greenPivot.GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer bluePivotSR = bluePivot.GetComponentInChildren<SpriteRenderer>();
+
+        Color greenPivotColor = greenPivotSR.color;
+        Color bluePivotColor = bluePivotSR.color;
+
+        greenPivotSR.color = flashColor;
+        bluePivotSR.color = flashColor;
+
+        yield return new WaitForSeconds(flashTime);
+
+        greenPivotSR.color = greenPivotColor;
+        bluePivotSR.color = bluePivotColor;
     }
 }

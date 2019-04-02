@@ -88,7 +88,6 @@ public class Entity : MonoBehaviour
        
     }
 
-
     public void InitPosition(int x, int y)
     {
         _gridPos = new Vector2Int(x, y);

@@ -28,9 +28,9 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     private void Start()
     {
+        anim = gameObject.GetComponentInChildren<Animator>();
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Attack_SFX = SFX_Sources[1];
-        anim = gameObject.GetComponentInChildren<Animator>(); 
+        Attack_SFX = SFX_Sources[1]; 
     }
 
     public override void Move()

@@ -11,6 +11,8 @@ public class RegionGenerator : MonoBehaviour
 
     public RegionState GenerateRegion()
     {
+        bool trainingEncounterPlaced = false;
+
         RegionState newRegion = new RegionState();
         newRegion.map = GenerateMap();
 
@@ -23,7 +25,8 @@ public class RegionGenerator : MonoBehaviour
             {
                 EncounterState newEncounter = new EncounterState();
 
-                int encounterDifficulty = RandRoundUpOrDown(i * diffcultyPerTier);
+                int encounterDifficulty = Mathf.CeilToInt(i * diffcultyPerTier);
+
                 newEncounter.tier = encounterDifficulty;
 
                 newEncounter.Randomize();
@@ -76,13 +79,5 @@ public class RegionGenerator : MonoBehaviour
         }
 
         return map;
-    }
-
-    private int RandRoundUpOrDown(float toBeRounded)
-    {
-        if(Random.value < .5)
-            return Mathf.FloorToInt(toBeRounded);
-        else    
-            return Mathf.CeilToInt(toBeRounded);
     }
 }
