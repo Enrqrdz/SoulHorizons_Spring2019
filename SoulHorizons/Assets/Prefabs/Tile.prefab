@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3271fb5619811f148bb3d31d11701244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primeColor: {r: 1, g: 0.88550174, b: 0, a: 1}
-  activeColor: {r: 0.4245283, g: 0, b: 0, a: 0.83137256}
+  primeColor: {r: 1, g: 0.0708677, b: 0, a: 1}
+  activeColor: {r: 0.42352942, g: 0, b: 0, a: 1}
   playerActiveColor: {r: 0, g: 0.14015627, b: 1, a: 1}
   playerPrimeColor: {r: 0, g: 0, b: 0, a: 0}
   harmful: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   isActive: 0
   territory:
     name: 0
-    TerrColor: {r: 0, g: 0, b: 0, a: 0}
+    TerrColor: {r: 1, g: 1, b: 1, a: 0}
     TerrSprite: {fileID: 0}
   gridPositionX: 0
   gridPositionY: 0

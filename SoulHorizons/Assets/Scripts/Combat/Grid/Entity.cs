@@ -17,6 +17,7 @@ public class Entity : MonoBehaviour
     public EntityType type;
 
     public Vector2Int _gridPos = new Vector2Int();
+    public Vector2Int[] gridPositions;
     public Health _health = new Health();
     public scr_EntityAI _ai;
     public Territory entityTerritory;
@@ -152,6 +153,68 @@ public class Entity : MonoBehaviour
             }
         }
         
+    }
+
+    //NOTE: GridPosition is the origin of the large transform, or the bottom leftmost tile.
+    public void SetLargeTransform(Vector2Int gridPosition, int width, int height)
+    {
+        //Check if you are already on this tile
+        if (_gridPos == gridPosition || width <= 0 || height <= 0)
+        {                                                                                                        
+            return;                                                                                                                                    
+        }
+
+        //Animate movement
+        if (anim != null)
+        {
+            anim.SetInteger("Movement", 1);
+        }
+
+        gridPositions = new Vector2Int[width*height];
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                scr_Grid.GridController.SetTileOccupied(false, _gridPos.x + i, _gridPos.y + j, this);
+            }
+        }
+        _gridPos = gridPosition;
+        spr.sortingOrder = -_gridPos.y;
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                gridPositions[i * height + j] = new Vector2Int(gridPosition.x + i, gridPosition.y + j);
+                scr_Grid.GridController.SetTileOccupied(true, gridPosition.x, gridPosition.y, this);
+            }
+        }
+
+        AttackData atk = AttackController.Instance.MoveIntoAttackCheck(gridPositions[0], this);
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+
+                atk = AttackController.Instance.MoveIntoAttackCheck(gridPositions[i * height + j], this);
+            }
+        }
+     
+        if (atk != null)
+        {
+            if (!invincible)
+            {
+                HitByAttack(atk);
+                if (has_iframes)
+                {
+                    //Activate invincibility frames
+                    setInvincible(true, invulnTime);
+                }
+            }
+        }
+
     }
 
     /// <summary>

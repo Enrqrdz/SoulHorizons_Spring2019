@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incrementTime: 6
   maxIncrementRange: 1
+  modifier: 1
   damage: 15
   type: 1
   hasPiercing: 1
   particles: {fileID: 0}
   particlesOffset: {x: 0, y: 0, z: 0}
   particleSpeed: 1
-  CrescentSFX: {fileID: 0}
+  CrescentSFX: {fileID: 8300000, guid: 553ebe5d4d858134a9becd5e9b08b045, type: 3}

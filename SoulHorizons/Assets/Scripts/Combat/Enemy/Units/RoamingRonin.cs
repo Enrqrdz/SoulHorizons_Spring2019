@@ -27,15 +27,20 @@ public class RoamingRonin : scr_EntityAI
     int state = 0;
     bool completedTask = true;
 
+    AudioSource[] SFX_Sources;
     AudioSource Attack_SFX;
+    AudioSource Footsteps_SFX;
+    public AudioClip[] movements_SFX;
+    private AudioClip movement_SFX;
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
 
     void Start()
     {
-        anim = gameObject.GetComponentInChildren<Animator>();
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Attack_SFX = SFX_Sources[1];
+        Footsteps_SFX = SFX_Sources[0];
+        Attack_SFX = SFX_Sources[0];
+        anim = gameObject.GetComponentInChildren<Animator>();
         maxHealth = entity._health.hp;
         Debug.Log("Well Met!");
     }
@@ -144,6 +149,11 @@ public class RoamingRonin : scr_EntityAI
 
     public void MoveBack()
     {
+        int index = Random.Range(0, movements_SFX.Length);
+        movement_SFX = movements_SFX[index];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
+
         int randomDir;
         randomDir = Random.Range(0, 2);
         int xPos = entity._gridPos.x;
@@ -203,6 +213,11 @@ public class RoamingRonin : scr_EntityAI
 
     void RangedAttack()
     {
+        int index = Random.Range(0, attacks_SFX.Length);
+        attack_SFX = attacks_SFX[index];
+        Attack_SFX.clip = attack_SFX;
+        Attack_SFX.Play();
+
         Debug.Log("Air Slash");
         if (attackPhase == 0)
         {
@@ -232,6 +247,11 @@ public class RoamingRonin : scr_EntityAI
 
     void MeleeAttack()
     {
+        int index = Random.Range(0, attacks_SFX.Length);
+        attack_SFX = attacks_SFX[index];
+        Attack_SFX.clip = attack_SFX;
+        Attack_SFX.Play();
+
         Debug.Log("BACK SLASH");
         if (attackPhase == 0)
         {

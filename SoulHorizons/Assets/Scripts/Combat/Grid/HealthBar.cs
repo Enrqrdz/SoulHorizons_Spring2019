@@ -24,6 +24,11 @@ public class HealthBar : MonoBehaviour
 	void Start () 
     {
         OnStart();
+        
+        health = targetEntity._health.hp;
+        maxHealth = targetEntity._health.max_hp;
+        shield = targetEntity._health.shield;
+        greenPivot.transform.localScale = new Vector3(health/maxHealth, 1,1);
 	}
 
     public virtual void OnStart(){}
