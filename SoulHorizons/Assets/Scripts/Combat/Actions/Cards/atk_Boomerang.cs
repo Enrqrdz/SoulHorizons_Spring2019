@@ -8,6 +8,12 @@ public class atk_Boomerang : AttackData
 {
     private AudioSource PlayCardSFX;
     public AudioClip BoomerangSFX;
+    Entity player;
+
+    public int boomerangForwardDistance = 3;
+    int playerX;
+    int playerY;
+    bool backwards;
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
@@ -16,6 +22,11 @@ public class atk_Boomerang : AttackData
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
     {
         activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position),Quaternion.identity);
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+        backwards = false;
 
         if (PlayCardSFX == null)
         {
@@ -49,7 +60,49 @@ public class atk_Boomerang : AttackData
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        
+        int tempX = xPos - playerX;
+        int tempY = yPos - playerY;
+        Debug.Log(backwards);
+        if (tempX <= boomerangForwardDistance - 1 && backwards == false)
+        {
+            backwards = false;
+            scr_Grid.GridController.PrimeNextTile(xPos + 1, yPos);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos + 1, yPos);
+        }
+        else if (tempX == boomerangForwardDistance && yPos < player._gridPos.y && backwards == false)
+        {
+            backwards = true;
+            scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos, yPos + 1);
+        }
+        else if (tempX == boomerangForwardDistance && yPos > player._gridPos.y && backwards == false)
+        {
+            backwards = true;
+            scr_Grid.GridController.PrimeNextTile(xPos, yPos - 1);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos, yPos - 1);
+        }
+        else
+        {
+            backwards = true;
+            scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos - 1, yPos);
+        }
+    }
+
+    public override void ProgressEffects(ActiveAttack activeAttack)
+    {
+        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
+        activeAttack.particle.transform.Rotate(0, 0, 30,Space.Self);
+        activeAttack.particle.sortingOrder = -activeAttack.position.y;
+    }
+}
+
+
+/*
         if(activeAtk.currentIncrement < scr_Grid.GridController.columnSizeMax - 1)
         {
             xPos++;
@@ -64,13 +117,4 @@ public class atk_Boomerang : AttackData
         {
             xPos--;
             return new Vector2Int(xPos, yPos); 
-        }
-    }
-
-    public override void ProgressEffects(ActiveAttack activeAttack)
-    {
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
-        activeAttack.particle.transform.Rotate(0, 0, 30,Space.Self);
-        activeAttack.particle.sortingOrder = -activeAttack.position.y;
-    }
-}
+        } */
