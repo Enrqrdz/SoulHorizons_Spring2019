@@ -12,14 +12,14 @@ public class atk_GustGale : AttackData
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        return LinearForward_ProgressAttack(xPos, yPos, activeAtk);
+        return GustGaleProgress(xPos, yPos, activeAtk);
     }
 
-    Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
+    Vector2Int GustGaleProgress(int xPos, int yPos, ActiveAttack activeAtk)
     {
         scr_Grid.GridController.ActivateTile(xPos, yPos);
 
-        if(yPos - 1 > 0)
+        if(yPos > 0)
         {
             return new Vector2Int(xPos, yPos - 1);
         }
@@ -51,7 +51,7 @@ public class atk_GustGale : AttackData
             if (scr_Grid.GridController.activeEntities[i].type == EntityType.Player)
             {
                 scr_Grid.GridController.activeEntities[i].isStunned = true;
-                scr_Grid.GridController.activeEntities[i].spr.color = Color.gray;
+                scr_Grid.GridController.activeEntities[i].spr.color = Color.blue;
                 break;
             }
         }

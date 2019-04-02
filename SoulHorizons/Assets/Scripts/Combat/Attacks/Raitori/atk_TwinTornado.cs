@@ -12,10 +12,10 @@ public class atk_TwinTornado : AttackData
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        return LinearForward_ProgressAttack(xPos, yPos, activeAtk);
+        return TwinTornadoProgress(xPos, yPos, activeAtk);
     }
 
-    Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
+    Vector2Int TwinTornadoProgress(int xPos, int yPos, ActiveAttack activeAtk)
     {
         scr_Grid.GridController.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos - 1, yPos);

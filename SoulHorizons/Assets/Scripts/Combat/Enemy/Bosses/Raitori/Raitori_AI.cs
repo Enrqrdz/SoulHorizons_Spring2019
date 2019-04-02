@@ -24,6 +24,7 @@ public class Raitori_AI : scr_EntityAI
     private int playerPositionY = 1;
     private int tornadoNumber;
     private int gustGaleColumnNumber;
+    private Vector2Int RendCenter;
 
     //Audio
     AudioSource Attack_SFX;
@@ -106,6 +107,10 @@ public class Raitori_AI : scr_EntityAI
         if (Raitori.gustGaleIsActive == false && (transitionNumber == 1 || transitionNumber == 4))
         {
             StartCoroutine(GustGale());
+        }
+        if(Raitori.featherRendIsActive == false && ((scr_Grid.GridController.ReturnTerritory(currentHeadPosition.x - 1, currentHeadPosition.y).name == TerrName.Player)) && Raitori.birdBashIsActive == true && (Raitori_Stages.Instance.currentPhase == Phase.Stage2 || Raitori_Stages.Instance.currentPhase == Phase.Stage3))
+        {
+            StartCoroutine(FeatherRend());
         }
     }
 
@@ -415,7 +420,7 @@ public class Raitori_AI : scr_EntityAI
     private void PrimeGustGale()
     {
         //TODO 4/2/19: Make a function in scr_Grid to keep track of column territory numbers.
-        gustGaleColumnNumber = UnityEngine.Random.Range(0,5);
+        gustGaleColumnNumber = UnityEngine.Random.Range(0,4);
 
         for (int i = 0; i < scr_Grid.GridController.rowSizeMax; i++)
         {
@@ -451,6 +456,52 @@ public class Raitori_AI : scr_EntityAI
                 }
             }
         }
+    }
+
+    private IEnumerator FeatherRend()
+    {
+        Raitori.gustGaleIsActive = true;
+        PrimeFeatherRend();
+        yield return new WaitForSecondsRealtime(Raitori.featherRendWindUpTime);
+        //int index = Random.Range(0, attacks_SFX.Length);
+        //attack_SFX = attacks_SFX[index];
+        //Attack_SFX.clip = attack_SFX;
+        //Attack_SFX.Play();
+        //anim.SetBool("Attack", true);
+        StartFeatherRend();
+        yield return new WaitForSecondsRealtime(Raitori.FeatherRend.incrementTime);
+        DePrimeFeatherRend();
+        yield return new WaitForSecondsRealtime(Raitori.featherRendCooldownTime);
+        Raitori.featherRendIsActive = false;
+    }
+
+    private void PrimeFeatherRend()
+    {
+        RendCenter = new Vector2Int(currentHeadPosition.x - 2, currentHeadPosition.y + 0);
+        scr_Grid.GridController.PrimeNextTile(RendCenter.x, RendCenter.y);          //Center
+        scr_Grid.GridController.PrimeNextTile(RendCenter.x - 1, RendCenter.y + 1);  //TopLeft
+        scr_Grid.GridController.PrimeNextTile(RendCenter.x - 1, RendCenter.y - 1);  //BottomLeft
+        scr_Grid.GridController.PrimeNextTile(RendCenter.x + 1, RendCenter.y + 1);  //TopRight
+        scr_Grid.GridController.PrimeNextTile(RendCenter.x + 1, RendCenter.y - 1);  //BottomRight
+    }
+
+    private void StartFeatherRend()
+    {
+        AttackController.Instance.AddNewAttack(Raitori.FeatherRend, RendCenter.x, RendCenter.y, entity);
+        AttackController.Instance.AddNewAttack(Raitori.FeatherRend, RendCenter.x-1, RendCenter.y+1, entity);
+        AttackController.Instance.AddNewAttack(Raitori.FeatherRend, RendCenter.x-1, RendCenter.y-1, entity);
+        AttackController.Instance.AddNewAttack(Raitori.FeatherRend, RendCenter.x+1, RendCenter.y+1, entity);
+        AttackController.Instance.AddNewAttack(Raitori.FeatherRend, RendCenter.x+1, RendCenter.y-1, entity);
+    }
+
+    private void DePrimeFeatherRend()
+    {
+        RendCenter = new Vector2Int(currentHeadPosition.x - 2, currentHeadPosition.y + 0);
+        scr_Grid.GridController.DePrimeTile(RendCenter.x, RendCenter.y);
+        scr_Grid.GridController.DePrimeTile(RendCenter.x - 1, RendCenter.y + 1);
+        scr_Grid.GridController.DePrimeTile(RendCenter.x - 1, RendCenter.y - 1);
+        scr_Grid.GridController.DePrimeTile(RendCenter.x + 1, RendCenter.y + 1);
+        scr_Grid.GridController.DePrimeTile(RendCenter.x + 1, RendCenter.y - 1);
     }
 
     private void SetTilesOccupied()

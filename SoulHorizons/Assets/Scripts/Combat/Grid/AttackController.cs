@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackController : MonoBehaviour {
     public static AttackController Instance { get; private set; }
 
-    public ActiveAttack[] activeAttacks = new ActiveAttack[20]; 
+    public ActiveAttack[] activeAttacks = new ActiveAttack[100]; 
     public int numberOfActiveAttacks = 0;
     public Pause pauseReference;
 

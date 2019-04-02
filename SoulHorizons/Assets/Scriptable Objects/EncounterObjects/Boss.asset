@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   type: 0
-  name: Tier 0-1
+  name: Boss
   sceneName: Encounter
-  tier: 0
+  tier: 3
   entities:
   - entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
     x: 1
