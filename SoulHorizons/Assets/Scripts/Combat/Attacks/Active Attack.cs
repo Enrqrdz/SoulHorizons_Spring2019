@@ -20,7 +20,7 @@ public class ActiveAttack
 
     public ActiveAttack(AttackData atk, int x, int y, Entity ent)
     {
-        particles = new SpriteRenderer[5];
+        particles = new SpriteRenderer[10];
         attack = atk;
         position.x = x;
         position.y = y;
