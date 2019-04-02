@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Explosion
   art: {fileID: 0}
-  element: 0
+  element: 2
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1
