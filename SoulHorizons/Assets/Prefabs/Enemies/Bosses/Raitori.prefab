@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099033517750084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22, y: 45, z: 0}
+  m_LocalPosition: {x: 25, y: 50, z: 0}
   m_LocalScale: {x: 5.5, y: 7, z: 0}
   m_Children: []
   m_Father: {fileID: 4483777865337536}
@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 114725702907161856}
   - component: {fileID: 7482911898623937418}
   - component: {fileID: 914252712182664076}
+  - component: {fileID: 4485503777478676393}
   - component: {fileID: 82240855345996476}
   - component: {fileID: 82587730288405618}
   - component: {fileID: 82526283423963634}
@@ -343,6 +344,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 2
   height: 3
+  StormStrikes: {fileID: 11400000, guid: 8a96aacdaa1b772448ef786868017ef8, type: 2}
+  stormStrikeWindUpTime: 2
+  stormStrikeCooldown: 5
+  stormStrikesIsActive: 0
+  stormStrikePhase: 0
+  BirdBash: {fileID: 11400000, guid: 069175def9c3ee2449bd26751fa99a63, type: 2}
+  birdBashWindUpTime: 1
+  birdBashCooldownTime: 4
+  birdBashIsActive: 0
+  TwinTornado: {fileID: 0}
+  twinTornadoWindUpTime: 0
+  twinTornadoCooldown: 0
+  twinTornadoIsActive: 0
+  GustGale: {fileID: 0}
+  gustGaleWindUpTime: 0
+  gustGaleCooldownTime: 0
+  gustGaleIsActive: 0
+  FeatherRend: {fileID: 0}
+  featherRendWindUpTime: 0
+  featherRendCooldownTime: 0
+  featherRendIsActive: 0
+  ConductiveSpark: {fileID: 0}
+  conductiveSparkWindUpTime: 0
+  conductiveSparkCooldownTime: 0
+  conductiveSparkIsActive: 0
+  ThunderDefense: {fileID: 0}
+  thunderDefenseWindUpTime: 0
+  thunderDefenseCooldownTime: 0
+  thunderDefenseIsActive: 0
+--- !u!114 &4485503777478676393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116592492456940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc71b3633fa51441b813ad92b60fd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Raitori: {fileID: 114725702907161856}
+  currentPhase: 0
+  introTime: 3.6
+  transitionTime: 1.2
+  transition1Requirement: 100
+  transition1Value: 0
+  transition2Requirement: 100
+  transition2Value: 0
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0

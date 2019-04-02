@@ -7,8 +7,6 @@ using UnityEngine;
 public class Raitori_AI : scr_EntityAI
 {
     public Raitori_Properties Raitori;
-    
-    //Attacks
 
     //Movement
     public float movementInterval;
@@ -21,6 +19,8 @@ public class Raitori_AI : scr_EntityAI
     private Vector2Int[] possibleHeadPositions;
     private Vector2Int[] zigZagPattern;
     private Vector2Int currentHeadPosition;
+    private int playerPositionX = 1;
+    private int playerPositionY = 1;
 
     //Audio
     AudioSource Attack_SFX;
@@ -88,6 +88,206 @@ public class Raitori_AI : scr_EntityAI
         {
             StartCoroutine(Movement());
         }
+        if (Raitori.stormStrikesIsActive == false)
+        {
+            StartCoroutine(StormStrikes());
+        }
+        if (Raitori.birdBashIsActive == false && (scr_Grid.GridController.ReturnTerritory(currentHeadPosition.x - 1, currentHeadPosition.y).name == TerrName.Player))
+        {
+            StartCoroutine(BirdBash());
+        }
+    }
+
+    private IEnumerator StormStrikes()
+    {
+        PrimeStormStrike();
+        Raitori.stormStrikesIsActive = true;
+        yield return new WaitForSecondsRealtime(Raitori.stormStrikeWindUpTime);
+        //int index = Random.Range(0, attacks_SFX.Length);
+        //attack_SFX = attacks_SFX[index];
+        //Attack_SFX.clip = attack_SFX;
+        //Attack_SFX.Play();
+        //anim.SetBool("Attack", true);
+        StartStormStrike();
+        yield return new WaitForSecondsRealtime(Raitori.StormStrikes.incrementTime + .15f);
+        DePrimeStormStrike();
+        yield return new WaitForSecondsRealtime(Raitori.stormStrikeCooldown);
+        Raitori.stormStrikesIsActive = false;
+    }
+
+    private void PrimeStormStrike()
+    {
+        for (int i = 0; i < scr_Grid.GridController.activeEntities.Length; i++)
+        {
+            if (scr_Grid.GridController.activeEntities[i].type == EntityType.Player)
+            {
+                playerPositionX = scr_Grid.GridController.activeEntities[i]._gridPos.x;
+                playerPositionY = scr_Grid.GridController.activeEntities[i]._gridPos.y;
+                break;
+            }
+        }
+
+        Raitori.stormStrikePhase = Raitori_Stages.Instance.currentPhase;
+
+        switch (Raitori_Stages.Instance.currentPhase)
+        {
+            case Phase.Stage1:
+                if (playerPositionX > 0)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX - 1, playerPositionY);
+                }
+
+                scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY);
+                scr_Grid.GridController.PrimeNextTile(playerPositionX + 1, playerPositionY);
+                break;
+
+            case Phase.Stage2:
+                if (playerPositionX > 0)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX - 1, playerPositionY);
+                }
+                if (playerPositionY > 0)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY - 1);
+                }
+                if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY + 1);
+                }
+
+                scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY);
+                scr_Grid.GridController.PrimeNextTile(playerPositionX + 1, playerPositionY);
+                break;
+
+            case Phase.Stage3:
+                if (playerPositionX > 0)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX - 1, playerPositionY);
+                    if (playerPositionY > 0)
+                    {
+                        scr_Grid.GridController.PrimeNextTile(playerPositionX - 1, playerPositionY - 1);
+                        scr_Grid.GridController.PrimeNextTile(playerPositionX + 1, playerPositionY - 1);
+
+                        if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                        {
+                            scr_Grid.GridController.PrimeNextTile(playerPositionX - 1, playerPositionY + 1);
+                            scr_Grid.GridController.PrimeNextTile(playerPositionX + 1, playerPositionY + 1);
+                        }
+                    }
+                }
+                if (playerPositionY > 0)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY - 1);
+                }
+                if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY + 1);
+                }
+
+                scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY);
+                scr_Grid.GridController.PrimeNextTile(playerPositionX + 1, playerPositionY);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void StartStormStrike()
+    {
+        AttackController.Instance.AddNewAttack(Raitori.StormStrikes, playerPositionX, playerPositionY, entity);
+    }
+
+    public void DePrimeStormStrike()
+    {
+        switch (Raitori.stormStrikePhase)
+        {
+            case Phase.Stage1:
+                if (playerPositionX > 0)
+                {
+                    scr_Grid.GridController.DePrimeTile(playerPositionX - 1, playerPositionY);
+                }
+
+                scr_Grid.GridController.DePrimeTile(playerPositionX, playerPositionY);
+                scr_Grid.GridController.DePrimeTile(playerPositionX + 1, playerPositionY);
+                break;
+
+            case Phase.Stage2:
+                if (playerPositionX > 0)
+                {
+                    scr_Grid.GridController.DePrimeTile(playerPositionX - 1, playerPositionY);
+                }
+                if (playerPositionY > 0)
+                {
+                    scr_Grid.GridController.DePrimeTile(playerPositionX, playerPositionY - 1);
+                }
+                if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                {
+                    scr_Grid.GridController.DePrimeTile(playerPositionX, playerPositionY + 1);
+                }
+
+                scr_Grid.GridController.DePrimeTile(playerPositionX, playerPositionY);
+                scr_Grid.GridController.DePrimeTile(playerPositionX + 1, playerPositionY);
+                break;
+
+            case Phase.Stage3:
+                if (playerPositionX > 0)
+                {
+                    scr_Grid.GridController.DePrimeTile(playerPositionX - 1, playerPositionY);
+                    if (playerPositionY > 0)
+                    {
+                        scr_Grid.GridController.DePrimeTile(playerPositionX - 1, playerPositionY - 1);
+                        scr_Grid.GridController.DePrimeTile(playerPositionX + 1, playerPositionY - 1);
+
+                        if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                        {
+                            scr_Grid.GridController.DePrimeTile(playerPositionX - 1, playerPositionY + 1);
+                            scr_Grid.GridController.DePrimeTile(playerPositionX + 1, playerPositionY + 1);
+                        }
+                    }
+                }
+                if (playerPositionY > 0)
+                {
+                    scr_Grid.GridController.PrimeNextTile(playerPositionX, playerPositionY - 1);
+                }
+                if (playerPositionY < scr_Grid.GridController.rowSizeMax)
+                {
+                    scr_Grid.GridController.DePrimeTile(playerPositionX, playerPositionY + 1);
+                }
+
+                scr_Grid.GridController.DePrimeTile(playerPositionX, playerPositionY);
+                scr_Grid.GridController.DePrimeTile(playerPositionX + 1, playerPositionY);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private IEnumerator BirdBash()
+    {
+        PrimeBirdBash();
+        Raitori.birdBashIsActive = true;
+        yield return new WaitForSecondsRealtime(Raitori.birdBashWindUpTime);
+        //int index = Random.Range(0, attacks_SFX.Length);
+        //attack_SFX = attacks_SFX[index];
+        //Attack_SFX.clip = attack_SFX;
+        //Attack_SFX.Play();
+        //anim.SetBool("Attack", true);
+        StartBirdBash();
+        yield return new WaitForSecondsRealtime(Raitori.birdBashCooldownTime);
+        Raitori.birdBashIsActive = false;
+    }
+
+    private void PrimeBirdBash()
+    {
+        for (int i = 0; i < Raitori.BirdBash.maxIncrementRange; i++)
+        {
+            scr_Grid.GridController.PrimeNextTile(zigZagPattern[transitionNumber].x - 1, zigZagPattern[transitionNumber].y + i);
+        }
+    }
+
+    private void StartBirdBash()
+    {
+        AttackController.Instance.AddNewAttack(Raitori.BirdBash, zigZagPattern[transitionNumber].x - 1, zigZagPattern[transitionNumber].y, entity);
     }
 
     private void SetTilesOccupied()

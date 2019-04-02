@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98f657a6e12e4925adeb4fc9d25247c, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   name: Tier 0-1
   sceneName: Encounter
   tier: 0

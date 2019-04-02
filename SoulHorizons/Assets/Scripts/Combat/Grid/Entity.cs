@@ -188,8 +188,6 @@ public class Entity : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 gridPositions[i * height + j] = new Vector2Int(gridPosition.x + i, gridPosition.y + j);
-                Debug.Log("Index: " + (i * height + j));
-                Debug.Log("Position: " + gridPositions[i * height + j]);
                 scr_Grid.GridController.SetTileOccupied(true, gridPosition.x, gridPosition.y, this);
             }
         }

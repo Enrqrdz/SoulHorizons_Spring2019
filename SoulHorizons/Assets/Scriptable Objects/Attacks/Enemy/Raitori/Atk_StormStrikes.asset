@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71c73ee026149245bb4fd5610a81b72, type: 3}
+  m_Name: Atk_StormStrikes
+  m_EditorClassIdentifier: 
+  incrementTime: 0.15
+  maxIncrementRange: 1
+  modifier: 1
+  damage: 10
+  type: 0
+  hasPiercing: 0
+  particles: {fileID: 212286977064683536, guid: 0805ecfd91705e94f91520ff787d3c04,
+    type: 3}
+  particlesOffset: {x: 0, y: 2.5, z: 0}
+  particleSpeed: 1
+  stage_manager: {fileID: 4485503777478676393, guid: 57ee90b32ac33b1409cdaf1764312423,
+    type: 3}
