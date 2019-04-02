@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfc9f610738384429f47e9b81f2e981, type: 3}
   m_Name: Atk_UpdraftSide
   m_EditorClassIdentifier: 
-  incrementTime: 0
-  maxIncrementRange: 10
+  incrementTime: 0.1
+  maxIncrementRange: 1
   modifier: 1
-  damage: 0
-  type: 0
+  damage: 4
+  type: 1
   hasPiercing: 0
-  particles: {fileID: 0}
-  particlesOffset: {x: 0, y: 0, z: 0}
-  particleSpeed: 1
+  particles: {fileID: 3803691869454490975, guid: a4ef091d62cd7aa4a82a01765e4f2f82,
+    type: 3}
+  particlesOffset: {x: 0.3, y: 0.4, z: 0}
+  particleSpeed: 11

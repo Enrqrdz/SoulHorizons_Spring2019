@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbbbccb4ffbf8a4e85eba8c0eab32dc, type: 3}
   m_Name: Tectonic Smash
   m_EditorClassIdentifier: 
-  actionName: 
-  art: {fileID: 0}
+  actionName: Tectonic Smash
+  art: {fileID: 21300000, guid: b21dc80d71214a3408f6a180eb9eb575, type: 3}
   element: 0
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1
   description: 
   SmashSFX: {fileID: 0}
-  Smash: {fileID: 0}
+  Smash: {fileID: 11400000, guid: 75756a6d8f308e747a27669146646ae3, type: 2}

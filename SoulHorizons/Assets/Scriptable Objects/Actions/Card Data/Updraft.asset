@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39af78318788f5c4b9a786b820794352, type: 3}
   m_Name: Updraft
   m_EditorClassIdentifier: 
-  actionName: 
-  art: {fileID: 0}
-  element: 0
+  actionName: Updraft
+  art: {fileID: 21300000, guid: b726545315dfb274ca430af528d7a9f5, type: 3}
+  element: 4
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 1
   description: 
-  UpdraftMain: {fileID: 0}
-  UpdraftSide: {fileID: 0}
+  UpdraftMain: {fileID: 11400000, guid: 817633858d4fe364d88495271090b5d1, type: 2}
+  UpdraftSide: {fileID: 11400000, guid: 379193c4257100546a487b34c33b0cfb, type: 2}
   UpdraftSFX: {fileID: 0}

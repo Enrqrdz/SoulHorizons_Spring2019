@@ -52,19 +52,25 @@ public class atk_TectonicSmash : AttackData
                 else if (scr_Grid.GridController.CheckIfOccupied(entityXPos + 1, entityYPos) && activeAttack.entityHit.type == EntityType.Obstacle)
                 {
                     Debug.Log("Commin straight from the underground");
-                    scr_Grid.GridController.SetTileOccupied(false, entityXPos--, entityYPos, activeAttack.entityHit);
-                    Entity hitByRock = scr_Grid.GridController.GetEntityAtPosition(entityXPos, entityYPos);
+                    scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
+                    Entity hitByRock = scr_Grid.GridController.GetEntityAtPosition(entityXPos+1, entityYPos);
                     hitByRock._health.TakeDamage(rockCollisionDamage);
                     activeAttack.entityHit.Death();
                 }
-                else
+                else //if (!scr_Grid.GridController.CheckIfOccupied(entityXPos + 1, entityYPos) && activeAttack.entityHit.type == EntityType.Obstacle)
                 {
                     activeAttack.entityHit.gotStunned(stunTime);
+                    scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
+                    scr_Grid.GridController.SetTileOccupied(true, entityXPos++, entityYPos, activeAttack.entityHit);
+                    activeAttack.entityHit.SetTransform(entityXPos++, entityYPos);
                 }
             }
             else
             {
                 activeAttack.entityHit.gotStunned(stunTime);
+                scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
+                scr_Grid.GridController.SetTileOccupied(true, entityXPos++, entityYPos, activeAttack.entityHit);
+                activeAttack.entityHit.SetTransform(entityXPos++, entityYPos);
             }
         }
     }
