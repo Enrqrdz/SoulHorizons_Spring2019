@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class RegionGenerator : MonoBehaviour
 {
+    [Header("Options")]
     public int tiers = 10;
     public float distanceBetweenTiers = 10;
     public float connectionRange = 10;
 
     public RegionState GenerateRegion()
     {
+        bool trainingEncounterPlaced = false;
+
         RegionState newRegion = new RegionState();
         newRegion.map = GenerateMap();
+
+        int maxDifficulty = EncounterPool.GetMaxDifficulty();
+        float diffcultyPerTier = (float) maxDifficulty / tiers;
 
         for(int i = 0; i < newRegion.map.rings.Count; i++)
         {
@@ -19,23 +25,18 @@ public class RegionGenerator : MonoBehaviour
             {
                 EncounterState newEncounter = new EncounterState();
 
-                if (i < 1)
-                {
-                    newEncounter.tier = 0;
-                }
-                else if (i >= 1 && i <= 4)
-                {
-                    newEncounter.tier = 1;
-                }
-                else if (i > 4)
-                {
-                    newEncounter.tier = 2;
-                }
+                int encounterDifficulty = Mathf.CeilToInt(i * diffcultyPerTier);
+
+                newEncounter.tier = encounterDifficulty;
 
                 newEncounter.Randomize();
                 node.encounter = newEncounter;
             }
         }
+
+        int randInt = Random.Range(0, newRegion.map.rings[newRegion.map.rings.Count - 1].Count);
+        newRegion.map.rings[newRegion.map.rings.Count - 1][randInt].encounter.type = EncounterType.Boss;
+        newRegion.map.rings[newRegion.map.rings.Count - 1][randInt].encounter.Randomize();
 
         return newRegion;
     }

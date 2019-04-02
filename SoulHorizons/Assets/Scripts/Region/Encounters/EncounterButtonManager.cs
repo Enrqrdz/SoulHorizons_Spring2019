@@ -40,7 +40,7 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 
         Vector3 nodePosition = gameObject.transform.GetChild(0).transform.position;
         Vector3 newPosition = new Vector3(nodePosition.x, nodePosition.y, Camera.main.transform.position.z);
-        Camera.main.GetComponent<CameraController>().SetDestination(newPosition);
+        Camera.main.GetComponent<CameraController>().AddDestination(newPosition);
     }
 
     public void OnDeselect(BaseEventData eventData)
@@ -51,6 +51,7 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     public void SetEncounterState(EncounterState newState)
     {
         encounterState = newState;
+        UpdateChildren();
     }
 
     private void UpdateChildren()

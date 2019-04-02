@@ -5,23 +5,28 @@ using UnityEngine;
 public static class EncounterPool
 {
     private static List<List<EncounterData>> encountersByTier = new List<List<EncounterData>>();
+    private static List<EncounterData> bossEncounters = new List<EncounterData>();
 
     public static void AddEncounter(EncounterData newEncounter)
     {
-        if(IsNewTier(newEncounter.tier))
-            CreateTier(newEncounter.tier);
+        if(newEncounter.type == EncounterType.Combat)
+        {
+            if(IsNewTier(newEncounter.tier))
+                CreateTier(newEncounter.tier);
 
-        encountersByTier[newEncounter.tier].Add(newEncounter);
+            encountersByTier[newEncounter.tier].Add(newEncounter);
+        }
+        else if(newEncounter.type == EncounterType.Boss)
+        {
+            bossEncounters.Add(newEncounter);
+        }
     }
 
     public static void AddEncounter(List<EncounterData> newEncounters)
     {
         foreach(EncounterData newEncounter in newEncounters)
         {
-            if(IsNewTier(newEncounter.tier))
-                CreateTier(newEncounter.tier);
-
-            encountersByTier[newEncounter.tier].Add(newEncounter);
+            AddEncounter(newEncounter);
         }
     }
 
@@ -30,9 +35,19 @@ public static class EncounterPool
         return encountersByTier[encounterTier][encounterIndex];
     }
 
+    public static EncounterData GetBossEncounterByIndex(int encounterIndex)
+    {
+        return bossEncounters[encounterIndex];
+    }
+
     public static int GetRandomEncounterIndexOfTier(int tier)
     {
         return Random.Range(0, encountersByTier[tier].Count);
+    }
+
+    public static int GetRandomBossEncounterIndex(int tier)
+    {
+        return Random.Range(0, bossEncounters.Count);
     }
   
     private static bool IsNewTier(int tier)

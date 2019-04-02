@@ -199,30 +199,39 @@ public class scr_Grid : MonoBehaviour
     /// <returns></returns>
     public ActiveAttack AttackPosition(ActiveAttack attack)
     {
-        for(int i=0; i < activeEntities.Length; i++)
+        for (int i=0; i < activeEntities.Length; i++)
         {
-            if (activeEntities[i].gameObject.activeSelf)
+            bool hitsMultiTiled = false;
+            bool hitsSingleTiled = activeEntities[i]._gridPos == attack.position;
+
+            if (activeEntities[i].gridPositions != null)
             {
-                if (activeEntities[i]._gridPos == attack.position) 
+                for(int j = 0; j < activeEntities[i].gridPositions.Length; j++)
                 {
-                    if (activeEntities[i].type != attack.entity.type)
+                    hitsMultiTiled = activeEntities[i].gridPositions[j] == attack.position;
+                    if (hitsMultiTiled)
+                        break;
+                }
+            }
+
+            if ((activeEntities[i].gameObject.activeSelf) && 
+                (hitsSingleTiled || hitsMultiTiled) &&
+                (activeEntities[i].type != attack.entity.type))
+            {
+                Debug.Log("ACTIVE ENTITY HIT!");
+                //Check if entity is invincible and assigns iframes accordingly
+                if (!activeEntities[i].isInvincible())
+                {
+                    activeEntities[i].HitByAttack(attack.attack);
+                    if (activeEntities[i].has_iframes)
                     {
-                        Debug.Log("ACTIVE ENTITY HIT!");
-                        //Check if entity is invincible and assigns iframes accordingly
-                        if (!activeEntities[i].isInvincible())
-                        {
-                            activeEntities[i].HitByAttack(attack.attack);
-                            if (activeEntities[i].has_iframes)
-                            {
-                                //Activate invincibility frames
-                                activeEntities[i].setInvincible(true, activeEntities[i].invulnTime);
-                            }
-                        }
-                        attack.entityIsHit = true;
-                        attack.entityHit = activeEntities[i];
-                        attack.attack.ImpactEffects();
+                        //Activate invincibility frames
+                        activeEntities[i].setInvincible(true, activeEntities[i].invulnTime);
                     }
                 }
+                attack.entityIsHit = true;
+                attack.entityHit = activeEntities[i];
+                attack.attack.ImpactEffects();
             }
         }
         return attack; 

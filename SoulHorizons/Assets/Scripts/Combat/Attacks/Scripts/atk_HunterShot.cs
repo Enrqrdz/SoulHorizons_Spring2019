@@ -8,12 +8,11 @@ public class atk_HunterShot : AttackData {
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-       
         for(int i = yPos; i >= 0; i--)
         {
             scr_Grid.GridController.PrimeNextTile(xPos - i, yPos);
         }
-        return new Vector2Int(xPos, yPos); 
+        return new Vector2Int(xPos, yPos);
     }
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
@@ -23,8 +22,6 @@ public class atk_HunterShot : AttackData {
 
     Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-
-
         scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos);
         scr_Grid.GridController.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos - 1, yPos);

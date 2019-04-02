@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Seize Domain
   art: {fileID: 21300000, guid: ea5b959632fe92a45bfeb16c59bf5265, type: 3}
-  element: 0
+  element: 1
   transformChargeAmount: 5
   castingTime: 0
   cooldown: 0.3

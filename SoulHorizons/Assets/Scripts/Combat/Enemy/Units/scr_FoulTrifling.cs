@@ -11,6 +11,7 @@ public class scr_FoulTrifling : scr_EntityAI
     public AttackData chargedAttack;
     private int attackCounter = 0; // keeps track of how many tiles the entity has moved before it can attack , if it reaches 3 then it attempts to do a charge attack
 
+    AudioSource[] SFX_Sources;
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;
     public AudioClip[] movements_SFX;
@@ -19,7 +20,6 @@ public class scr_FoulTrifling : scr_EntityAI
     private AudioClip attack_SFX;
 
     private int state = 0;
-
     private bool completedTask = true;
     private bool isStuck = false;
     private bool xDirection = false; //false means left, true means right
@@ -27,6 +27,9 @@ public class scr_FoulTrifling : scr_EntityAI
 
     public void Start()
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Footsteps_SFX = SFX_Sources[0];
+        Attack_SFX = SFX_Sources[1];
         anim = gameObject.GetComponentInChildren<Animator>();
     }
 
@@ -44,6 +47,12 @@ public class scr_FoulTrifling : scr_EntityAI
 
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
+
+
+        int index = Random.Range(0, movements_SFX.Length);
+        movement_SFX = movements_SFX[index];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
 
 
         if (!xDirection)
@@ -81,6 +90,10 @@ public class scr_FoulTrifling : scr_EntityAI
 
     void MoveAlongColumn(int xPos, int yPos, bool direction)
     {
+        int index = Random.Range(0, movements_SFX.Length);
+        movement_SFX = movements_SFX[index];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
 
         if (direction)
         {
@@ -162,19 +175,28 @@ public class scr_FoulTrifling : scr_EntityAI
 
     void Attack1()
     {
-        AttackController.Instance.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
-        int index2 = Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[0];
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Attack_SFX = SFX_Sources[0];
+
+        int index = Random.Range(0, attacks_SFX.Length);
+        attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
+
+        AttackController.Instance.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
+
     }
     void Attack2()
     {
-        AttackController.Instance.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
-        int index2 = Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[0];
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Attack_SFX = SFX_Sources[0];
+
+        int index = Random.Range(0, attacks_SFX.Length);
+        attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
+
+        AttackController.Instance.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
     }
     void StartAttack1()
     {

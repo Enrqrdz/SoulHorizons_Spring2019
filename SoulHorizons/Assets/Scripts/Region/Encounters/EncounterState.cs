@@ -8,6 +8,7 @@ public class EncounterState
 {
     public int tier;
     public bool isCompleted, isAccessible;
+    public EncounterType type = EncounterType.Combat;
 
     private int encounterIndexInPool;
 
@@ -28,11 +29,18 @@ public class EncounterState
 
     public EncounterData GetEncounterData()
     {
-        return EncounterPool.GetEncounterByTierAndIndex(tier, encounterIndexInPool);
+        if(type == EncounterType.Boss)
+            return EncounterPool.GetBossEncounterByIndex(encounterIndexInPool);
+        else
+            return EncounterPool.GetEncounterByTierAndIndex(tier, encounterIndexInPool);
+        
     }
 
     public void Randomize()
     {
-        encounterIndexInPool = EncounterPool.GetRandomEncounterIndexOfTier(tier);
+        if(type == EncounterType.Boss)
+            encounterIndexInPool = EncounterPool.GetRandomBossEncounterIndex(tier);
+        else
+            encounterIndexInPool = EncounterPool.GetRandomEncounterIndexOfTier(tier);
     }
 }

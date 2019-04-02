@@ -122,7 +122,7 @@ public class scr_Tile : MonoBehaviour{
     {
         isPrimed = true;
         if (!isActive)
-        {   
+        {
             SetSpriteRendererColor(primeColor);
         }       
     }

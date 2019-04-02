@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Atk_Crescent Strike
   m_EditorClassIdentifier: 
   incrementTime: 0.12
-  maxIncrementRange: 4
+  maxIncrementRange: -2
+  modifier: 1
   damage: 10
   type: 1
   hasPiercing: 1
@@ -21,4 +22,4 @@ MonoBehaviour:
     type: 3}
   particlesOffset: {x: 0, y: 0.1, z: 0}
   particleSpeed: 11
-  CrescentSFX: {fileID: 0}
+  CrescentSFX: {fileID: 8300000, guid: 8ca56eef43fc888478c2dc5436987794, type: 3}

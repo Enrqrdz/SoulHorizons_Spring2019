@@ -7,8 +7,10 @@ public class CameraController : MonoBehaviour
     public float cameraSpeed;
 
     private bool isMoving = false;
-    private Vector3 destination;
+    private Queue<Vector3> destinationQueue = new Queue<Vector3>();
     private int lerpTime = 0;
+    private float waitTime;
+    private bool isWaiting = false;
 
     void FixedUpdate()
     {
@@ -19,21 +21,42 @@ public class CameraController : MonoBehaviour
     {
         if(isMoving)
         {
-            transform.position = Vector3.Lerp(transform.position, destination, lerpTime * cameraSpeed);
+            transform.position = Vector3.Lerp(transform.position, destinationQueue.Peek(), lerpTime * cameraSpeed);
+            
             lerpTime ++;
 
-            if(transform.position == destination)
+            if(Vector3.Distance(transform.position ,destinationQueue.Peek()) <= .1 && !isWaiting)
             {
-                isMoving = false;
-                lerpTime = 0;
+                Invoke("OnReachingDestination", waitTime);
+                isWaiting = true;
             }
         }
     }
 
-    public void SetDestination(Vector3 newDestination)
+    public void AddDestination(Vector3 newDestination)
     {
-        destination = newDestination;
+        newDestination.z = transform.position.z;
+        destinationQueue.Enqueue(newDestination);
         isMoving = true;
         lerpTime = 0;
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
+
+    private void OnReachingDestination()
+    {
+        destinationQueue.Dequeue();
+        isMoving = (destinationQueue.Count != 0);
+        lerpTime = 0;
+        waitTime = 0f;
+        isWaiting = false;
+    }
+
+    public void SetWaitTime(float newTime)
+    {
+        waitTime = newTime;
     }
 }

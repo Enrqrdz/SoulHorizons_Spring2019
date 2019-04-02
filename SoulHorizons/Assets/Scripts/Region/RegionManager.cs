@@ -23,6 +23,8 @@ public class RegionManager : MonoBehaviour
     private List<Button> buttons;
     private GameObject encounterMap;
 
+    private Vector3 bossLocation;
+
     void Start()
     {
         currentRegion = SaveManager.currentGame.GetRegion();
@@ -75,6 +77,11 @@ public class RegionManager : MonoBehaviour
                 {
                     selectedEncounterIndex = buttons.Count - 1;
                 }
+
+                if(node.GetEncounterState().GetEncounterData().type == EncounterType.Boss)
+                {
+                    bossLocation = node.position;
+                }
             }
         }
 
@@ -114,5 +121,13 @@ public class RegionManager : MonoBehaviour
         {
             inventoryButton.GetComponent<Button>().onClick.Invoke();
         }
+    }
+
+    public void BossCameraSequence()
+    {
+        CameraController camController = Camera.main.GetComponent<CameraController>();
+
+        camController.AddDestination(bossLocation);   
+        camController.SetWaitTime(1f);
     }
 }

@@ -250,7 +250,7 @@ PrefabInstance:
         type: 3}
       propertyPath: buttonsSFX
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 8e7b86a8ab80fd843bec269bbacfa925, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
 --- !u!1001 &162552275
@@ -367,6 +367,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: faea4d198d1434abb81ef2c6e376a52a, type: 2}
   - {fileID: 11400000, guid: 2cc6ef4e3021747a6a140f9b4ea98f54, type: 2}
   - {fileID: 11400000, guid: bdde5020c96aa4044b9e2c5cc83c7441, type: 2}
+  - {fileID: 11400000, guid: 8cb348fcbac28d24398ba2d084ff0f7a, type: 2}
   cardPool:
   - {fileID: 11400000, guid: 9a2394a7abbf0414b83bc12cf15df52e, type: 2}
   - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
@@ -1292,7 +1293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 252.20007, y: 75.30997}
+  m_AnchoredPosition: {x: 252.20007, y: 75.30994}
   m_SizeDelta: {x: 419.19, y: 76.29001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1547103028
