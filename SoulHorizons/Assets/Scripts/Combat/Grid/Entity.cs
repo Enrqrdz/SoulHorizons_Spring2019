@@ -117,7 +117,7 @@ public class Entity : MonoBehaviour
         }
 
         
-        if(scr_Grid.GridController.CheckIfOccupied(x,y) == false && scr_Grid.GridController.CheckIfFlooded(_gridPos.x,_gridPos.y) == false)
+        if(scr_Grid.GridController.CheckIfOccupied(x,y) == false && scr_Grid.GridController.CheckIfFlooded(_gridPos.x, _gridPos.y) == false)
         {
             scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
             _gridPos = new Vector2Int(x, y);

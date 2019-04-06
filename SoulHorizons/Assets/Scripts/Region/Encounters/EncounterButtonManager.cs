@@ -10,14 +10,10 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     EncounterState encounterState;
 
     public GameObject sprite;
-    public GameObject infoPanel;
     public GameObject fogMask;
 
-    public TextMeshPro mouseText;
-    public TextMeshPro mushText;
-    public TextMeshPro archerText; 
-
     private GameObject eventSystem; 
+    private GameObject locationIndicator;
 
     [Header("Encounter Type Sprites")]
     public Sprite bossEncounter;
@@ -30,13 +26,14 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     void Start()
     {
         eventSystem = GameObject.Find("/EventSystem");
+        locationIndicator = GameObject.Find("LocationIndicator");
 
         UpdateChildren();
     }
 
     public void OnSelect(BaseEventData eventData)
     {
-        infoPanel.SetActive(true);
+        locationIndicator.transform.position = transform.position;
 
         Vector3 nodePosition = gameObject.transform.GetChild(0).transform.position;
         Vector3 newPosition = new Vector3(nodePosition.x, nodePosition.y, Camera.main.transform.position.z);
@@ -45,7 +42,6 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 
     public void OnDeselect(BaseEventData eventData)
     {
-        infoPanel.SetActive(false);
     }
 
     public void SetEncounterState(EncounterState newState)
@@ -56,8 +52,6 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
 
     private void UpdateChildren()
     {
-        infoPanel.SetActive(false);
-        
         Color spriteColor;
         bool interactable;
         float fogRadius;
@@ -84,10 +78,6 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
         sprite.GetComponent<SpriteRenderer>().color = spriteColor; 
         gameObject.GetComponent<Button>().interactable = interactable;
         fogMask.transform.localScale = new Vector3(fogRadius, fogRadius, 0);
-
-        mouseText.text = "x " + encounterState.GetEncounterData().GetNumberOfMouses();
-        mushText.text = "x " + encounterState.GetEncounterData().GetNumberOfMush();
-        archerText.text = "x " + encounterState.GetEncounterData().GetNumberOfArchers();
 
         SetSprite();
     }
