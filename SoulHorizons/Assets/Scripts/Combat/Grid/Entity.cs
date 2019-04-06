@@ -29,6 +29,7 @@ public class Entity : MonoBehaviour
     public bool invincible = false;
     public float invulnTime;
     public bool isStunned = false;
+    public bool isImmobile = false;
     float invulnCounter = 0f;
     public bool hasShield = false;
     float shieldCounter = 0f;
@@ -116,8 +117,8 @@ public class Entity : MonoBehaviour
             anim.SetInteger("Movement", 1);
         }
 
-        
-        if(scr_Grid.GridController.CheckIfOccupied(x,y) == false && scr_Grid.GridController.CheckIfFlooded(_gridPos.x, _gridPos.y) == false)
+
+        if (scr_Grid.GridController.CheckIfOccupied(x, y) == false  && isImmobile == false)
         {
             scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
             _gridPos = new Vector2Int(x, y);
@@ -348,7 +349,21 @@ public class Entity : MonoBehaviour
         }
     }
 
-     IEnumerator GenericClock (float waitTime)
+
+    public IEnumerator Teleport (float waitTime, int damage, int playerX, int playerY, Entity enemy)
+    {
+        enemy._health.TakeDamage(damage);
+        enemy.isStunned = true;
+        //isImmobile = true;
+        Debug.Log("Starting Teleport");
+        yield return new WaitForSecondsRealtime(waitTime);
+        SetTransform(playerX, playerY);
+        Debug.Log("UnTelport!");
+        enemy.isStunned = false;
+        //isImmobile = false;
+    }
+
+     public IEnumerator GenericClock (float waitTime)
      {
         yield return new WaitForSecondsRealtime(waitTime);
      }
