@@ -9,7 +9,7 @@ public class FogController : MonoBehaviour
     public Vector3 topLeftCorner, bottomRightCorner;
 
     [Header("Options")]
-    private int cloudNumber = 10000;
+    private int cloudNumber = 1000;
     private float maxForce = 10f;
 
     private GameObject[] clouds;
