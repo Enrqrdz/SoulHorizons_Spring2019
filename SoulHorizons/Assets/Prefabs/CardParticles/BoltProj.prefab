@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4680169753079232}
   - component: {fileID: 212919924544438062}
+  - component: {fileID: 3041963261227863414}
   m_Layer: 0
   m_Name: BoltProj
   m_TagString: Untagged
@@ -68,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d354c4b2dfb8aba43b705cc08858a2f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8fd964dd7393ca42a109718adce7646, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -79,3 +80,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3041963261227863414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349167395671920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805b1827e8b333f4099199fa73ec4b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 8
