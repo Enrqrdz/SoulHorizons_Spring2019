@@ -7,7 +7,8 @@ public class atk_RoninMelee : AttackData
 {
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos--, yPos);
+        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
+        scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
         return new Vector2Int(xPos, yPos);
     }
 
@@ -18,9 +19,8 @@ public class atk_RoninMelee : AttackData
 
     Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos);
         scr_Grid.GridController.ActivateTile(xPos, yPos);
-        return new Vector2Int(xPos - 1, yPos);
+        return new Vector2Int(xPos, yPos + 1);
     }
     public override bool CheckCondition(Entity entitiy)
     {
@@ -36,7 +36,7 @@ public class atk_RoninMelee : AttackData
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-        activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (4.5f) * Time.deltaTime);
+        
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
