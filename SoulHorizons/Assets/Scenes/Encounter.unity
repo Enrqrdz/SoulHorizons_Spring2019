@@ -4157,7 +4157,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: bdde5020c96aa4044b9e2c5cc83c7441, type: 2}
+  encounter: {fileID: 11400000, guid: 1d097024f7552484f8f0ca07847ef951, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
