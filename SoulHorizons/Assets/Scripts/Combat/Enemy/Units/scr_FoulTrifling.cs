@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class scr_FoulTrifling : scr_EntityAI
 {
-    public float movementIntervalLower;
-    public float movementIntervalUpper;
+    public float movementInterval;
 
     public AttackData attack1;
     public AttackData chargedAttack;
@@ -108,8 +107,6 @@ public class scr_FoulTrifling : scr_EntityAI
         {
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
                 entity.SetTransform(xPos, yPos);
                 return;
             }
@@ -215,8 +212,7 @@ public class scr_FoulTrifling : scr_EntityAI
             case 0:
                 completedTask = false;
                 Move();
-                float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(moveInterval);
+                yield return new WaitForSecondsRealtime(movementInterval);
                 attackCounter++;
                 AttackManager();
                 state = 1;
@@ -233,8 +229,7 @@ public class scr_FoulTrifling : scr_EntityAI
                     AttackManager();
 
                     MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, yDirection);
-                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
-                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    yield return new WaitForSecondsRealtime(movementInterval);
                     if (entity._gridPos.y == 0)
                     {
                         break;
@@ -248,8 +243,7 @@ public class scr_FoulTrifling : scr_EntityAI
                 }
                 completedTask = true;
                 state = 0;
-                float moveInterval3 = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(moveInterval3);
+                yield return new WaitForSecondsRealtime(movementInterval);
                 break;
         }
         yield return null;
