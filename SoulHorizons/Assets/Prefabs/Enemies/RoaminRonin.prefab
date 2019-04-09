@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099033517750084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 11.4, z: 0}
-  m_LocalScale: {x: 1.2171273, y: 1.2171273, z: 0}
+  m_LocalPosition: {x: 7, y: 11.7, z: 1.5}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 0}
   m_Children: []
   m_Father: {fileID: 4483777865337536}
   m_RootOrder: 0
@@ -114,9 +114,11 @@ MonoBehaviour:
   rangedAttack2: {fileID: 11400000, guid: c2d7c507dae93d5439aa740b57027cd2, type: 2}
   meleeAttack: {fileID: 11400000, guid: 1d27b68b86f71e64a90b0920170dfd83, type: 2}
   meleeAttack2: {fileID: 11400000, guid: 3ff8a7628620f0b41afda589643d6364, type: 2}
+  width: 2
+  height: 2
   damageThreshold: 40
-  movementIntervalLower: 3
-  movementIntervalUpper: 4
+  movementInterval: 0
+  rangedAttackInterval: 0
   movements_SFX: []
   attacks_SFX: []
 --- !u!82 &82002260226468596
@@ -312,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 75
     shield: 0
@@ -327,6 +330,7 @@ MonoBehaviour:
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
@@ -352,9 +356,11 @@ MonoBehaviour:
   rangedAttack2: {fileID: 11400000, guid: 3ff8a7628620f0b41afda589643d6364, type: 2}
   meleeAttack: {fileID: 11400000, guid: a93ae82a0daa6e3429f492125eee5a97, type: 2}
   meleeAttack2: {fileID: 11400000, guid: c2d7c507dae93d5439aa740b57027cd2, type: 2}
+  width: 2
+  height: 2
   damageThreshold: 40
-  movementIntervalLower: 2
-  movementIntervalUpper: 4
+  movementInterval: 0.75
+  rangedAttackInterval: 1
   movements_SFX:
   - {fileID: 8300000, guid: 1a4946e1e2a704e46b3ca02361277021, type: 3}
   attacks_SFX:
@@ -665,7 +671,7 @@ PrefabInstance:
     - target: {fileID: 6893167082605971954, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6893167082605971954, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class RoamingRonin : scr_EntityAI
@@ -18,12 +19,25 @@ public class RoamingRonin : scr_EntityAI
     int maxHealth = 0;
     int currHealth = 0;
 
+    public int width = 2; //Takes up 2 spaces horizontally
+    public int height = 2; // takes up 2 spaces vertically
+    int xRange = 0;
+    int yRange = 0;
+    int transitionNumber;
+    Vector2Int[] possibleHeadPositions;
+    Vector2Int[] movePattern;
+    Vector2Int currentHeadPosition;
+    int xPosition;
+    int yPosition;
+
     int attackPhase = 0; //0 for normal phase, 1 for broken armor phase
     public int damageThreshold = 40; //when Ronin reaches 40% health, switch to next phase
     bool gonnaMelee = false;
 
-    public float movementIntervalLower;
-    public float movementIntervalUpper;
+    public float movementInterval = .75f;
+    float movementIntervalModfier = 0;
+    public float rangedAttackInterval = 1f;
+
     int state = 0;
     bool completedTask = true;
 
@@ -35,14 +49,21 @@ public class RoamingRonin : scr_EntityAI
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
 
+    Entity player; 
+
     void Start()
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Footsteps_SFX = SFX_Sources[0];
         Attack_SFX = SFX_Sources[0];
         anim = gameObject.GetComponentInChildren<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+
         maxHealth = entity._health.hp;
-        Debug.Log("Well Met!");
+        xRange = scr_Grid.GridController.columnSizeMax - width; //8 - 2
+        yRange = scr_Grid.GridController.rowSizeMax - height;   //4 - 2
+        SetPossibleHeadPositions();
+        SetMovePattern();
     }
 
     public override void UpdateAI()
@@ -57,129 +78,115 @@ public class RoamingRonin : scr_EntityAI
 
     }
 
-    public override void Move()
+    private void SetPossibleHeadPositions()
     {
-        int xPos = entity._gridPos.x;
-        int yPos = entity._gridPos.y;
-        int tries = 0;
+        //All possible positions for Raitori
+        possibleHeadPositions = new[] {
+                                        new Vector2Int(xRange - 2, yRange), new Vector2Int(xRange - 1, yRange), new Vector2Int(xRange, yRange),
+                                        new Vector2Int(xRange - 2, yRange - 2), new Vector2Int(xRange - 1, yRange - 2), new Vector2Int(xRange, yRange - 2),
+                                        new Vector2Int(xRange - 2, yRange - 1), new Vector2Int(xRange - 1, yRange - 1), new Vector2Int(xRange, yRange - 1),
+                                      };
+    }
 
-        while (tries < 10)
+    private void SetMovePattern()
+    {
+        //Zig-Zag Movement Pattern for Raitori
+        movePattern = new[] {
+                                possibleHeadPositions[2], possibleHeadPositions[8], possibleHeadPositions[5],
+                                possibleHeadPositions[4], possibleHeadPositions[7], possibleHeadPositions[1],
+                              };
+    }
+
+    private void SetTransitionNumber()
+    {
+        //Ronin origin must be on one of the designated positions
+        for (int i = 0; i < movePattern.Length; i++)
         {
-            if (gonnaMelee)
+            if (currentHeadPosition == movePattern[i])
             {
-                xPos = PickXCoord(xPos);
+                transitionNumber = i;
+                break;
             }
-            else
+            else if (i == movePattern.Length - 1)
             {
-                yPos = PickYCoord(yPos);
-            }
-
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-            {
-                entity.SetTransform(xPos, yPos);
-                return;
-            }
-            else
-            {
-                tries++;
-                if (tries >= 10)
-                {
-                    xPos = PickXCoord(xPos);
-                    if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-                    {
-                        entity.SetTransform(xPos, yPos);
-                        return;
-                    }
-                }
-
+                //Arbitrary preference in position
+                currentHeadPosition = movePattern[1];
+                transitionNumber = 1;
             }
         }
-
     }
+
+    public override void Move()
+    {
+        transitionNumber += 1;
+        transitionNumber %= movePattern.Length;
+        xPosition = (int)movePattern[transitionNumber].x;
+        yPosition = (int)movePattern[transitionNumber].y;
+        currentHeadPosition = new Vector2Int(xPosition, yPosition);
+
+        if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name && scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
+        {
+            entity.SetLargeTransform(currentHeadPosition, width, height);
+        }
+        else
+        {
+            transitionNumber += 2;  //This will effectively skip three zig-zag positions before the next check
+        }
+    }
+
 
     public override void Die()
     {
         entity.Death();
     }
 
-    public int PickXCoord(int xPos)
+    public void GoToMelee()
     {
-
-        if (!gonnaMelee)
+        int playerY = player.GetComponent<Entity>()._gridPos.y;      
+        if (playerY == 0)
         {
-            xPos++;
+            xPosition = (int)possibleHeadPositions[3].x;
+            yPosition = (int)possibleHeadPositions[3].y;
+        }
+        else if(playerY <= scr_Grid.GridController.rowSizeMax / 2)
+        {
+            xPosition = (int)possibleHeadPositions[6].x;
+            yPosition = (int)possibleHeadPositions[6].y;
         }
         else
         {
-            int xRange = scr_Grid.GridController.columnSizeMax;
-            int tempX = xPos;
-            for (int i = 0; i < xRange; i++)
-            {
-                tempX--;
-                if (scr_Grid.GridController.grid[tempX, entity._gridPos.y].territory.name != TerrName.Player)
-                {
-                    xPos = tempX;
-                }
-                else
-                {
-                    return xPos;
-                }
-            }
+            xPosition = (int)possibleHeadPositions[0].x;
+            yPosition = (int)possibleHeadPositions[0].y;
         }
-        return xPos;
-    }
 
-    public int PickYCoord(int yPos)
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int playerYPos = player.GetComponent<Entity>()._gridPos.y;
-        if (!gonnaMelee)
+        currentHeadPosition = new Vector2Int(xPosition, yPosition);
+
+        if (scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            if (yPos != playerYPos)
-            {
-                yPos = playerYPos;
-            }
-            return yPos;
+            entity.SetLargeTransform(currentHeadPosition, width, height);
         }
         else
         {
-            return yPos;
+            return;
         }
+
     }
 
     public void MoveBack()
     {
-        int index = Random.Range(0, movements_SFX.Length);
-        movement_SFX = movements_SFX[index];
-        Footsteps_SFX.clip = movement_SFX;
-        Footsteps_SFX.Play();
+        transitionNumber = 5;
+        transitionNumber %= movePattern.Length;
+        xPosition = (int)movePattern[transitionNumber].x;
+        yPosition = (int)movePattern[transitionNumber].y;
+        currentHeadPosition = new Vector2Int(xPosition, yPosition);
 
-        int randomDir;
-        randomDir = Random.Range(0, 2);
-        int xPos = entity._gridPos.x;
-        int yPos = entity._gridPos.y;
-
-        if (randomDir == 0)
+        if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name && scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            xPos++;
-            yPos--;
+            entity.SetLargeTransform(currentHeadPosition, width, height);
         }
         else
         {
-            xPos++;
-            yPos++;
-        }
-        try
-        {
-            if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-            {
-                entity.SetTransform(xPos, yPos);
-                return;
-            }
-        }
-        catch
-        {
-            MoveBack();
+            transitionNumber += 2;  //This will effectively skip three zig-zag positions before the next check
         }
     }
 
@@ -189,6 +196,8 @@ public class RoamingRonin : scr_EntityAI
         if (currHealth <= healthWhenArmorBreaks)
         {
             attackPhase = 1;
+            movementIntervalModfier = .25f;
+            entity.spr.color = Color.red;
         }
         else
         {
@@ -213,7 +222,7 @@ public class RoamingRonin : scr_EntityAI
 
     void RangedAttack()
     {
-        int index = Random.Range(0, attacks_SFX.Length);
+        int index = UnityEngine.Random.Range(0, attacks_SFX.Length);
         attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
@@ -233,21 +242,20 @@ public class RoamingRonin : scr_EntityAI
     {
         //insert animation here
         anim.SetBool("RoninMelee", true);
-        Move();
         if (attackPhase == 0)
         {
-            AttackController.Instance.AddNewAttack(meleeAttack, entity._gridPos.x, entity._gridPos.y, entity);
+            AttackController.Instance.AddNewAttack(meleeAttack, currentHeadPosition.x - 1, currentHeadPosition.y, entity);
         }
         else
         {
-            AttackController.Instance.AddNewAttack(meleeAttack2, entity._gridPos.x, entity._gridPos.y, entity);
+            AttackController.Instance.AddNewAttack(meleeAttack2, currentHeadPosition.x - 1, currentHeadPosition.y, entity);
         }
 
     }
 
     void MeleeAttack()
     {
-        int index = Random.Range(0, attacks_SFX.Length);
+        int index = UnityEngine.Random.Range(0, attacks_SFX.Length);
         attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
@@ -263,6 +271,39 @@ public class RoamingRonin : scr_EntityAI
         }
     }
 
+    private void SetTilesOccupied()
+    {
+        try
+        {
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    int xPosition = (int)movePattern[transitionNumber].x + i;
+                    int yPosition = (int)movePattern[transitionNumber].y + j;
+                    scr_Grid.GridController.SetTileOccupied(true, xPosition, yPosition, this.entity);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+            Debug.Log("Ronin position is off!");
+            Debug.Log("Transition Number: " + transitionNumber);
+        }
+    }
+
+
+    bool CheckIfInMeleeRange()
+    {
+        if (scr_Grid.GridController.ReturnTerritory(player._gridPos.x + 1, player._gridPos.y).name == entity.entityTerritory.name)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 
     private IEnumerator Brain()
     {
@@ -270,39 +311,46 @@ public class RoamingRonin : scr_EntityAI
         {
             case 0:
                 completedTask = false;
-                float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(_movementInterval);
+                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
                 Move();
                 state = 1;
                 completedTask = true;
                 break;
             case 1:
                 completedTask = false;
-                gonnaMelee = true;
+                gonnaMelee = CheckIfInMeleeRange();
                 yield return new WaitForSecondsRealtime(0.75f);
-                state = 2;
+                if (gonnaMelee == true)
+                {
+                    state = 2;
+                }
+                else
+                {
+                    state = 4;
+                }
                 completedTask = true;
                 break;
             case 2:
                 completedTask = false;
+                GoToMelee();
+                yield return new WaitForSecondsRealtime(.25f);
                 StartMeleeAttack();
                 state = 3;
+                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
                 gonnaMelee = false;
                 completedTask = true;
                 break;
             case 3:
                 completedTask = false;
-                float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(moveInterval);
+                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
                 MoveBack();
                 state = 4;
                 completedTask = true;
                 break;
             case 4:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(.75f);
+                yield return new WaitForSecondsRealtime(rangedAttackInterval);
                 StartRangedAttack();
-                yield return new WaitForSecondsRealtime(2);
                 state = 0;
                 completedTask = true;
                 break;
@@ -311,3 +359,44 @@ public class RoamingRonin : scr_EntityAI
         yield return null;
     }
 }
+
+
+/*public override void Move()
+{
+    int xPos = entity._gridPos.x;
+    int yPos = entity._gridPos.y;
+    int tries = 0;
+
+    while (tries < 10)
+    {
+        if (gonnaMelee)
+        {
+            xPos = PickXCoord(xPos);
+        }
+        else
+        {
+            yPos = PickYCoord(yPos);
+        }
+
+        if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+        {
+            entity.SetTransform(xPos, yPos);
+            return;
+        }
+        else
+        {
+            tries++;
+            if (tries >= 10)
+            {
+                xPos = PickXCoord(xPos);
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                {
+                    entity.SetTransform(xPos, yPos);
+                    return;
+                }
+            }
+
+        }
+    }
+
+}*/
