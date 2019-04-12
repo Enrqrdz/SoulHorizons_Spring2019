@@ -2811,7 +2811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 292.3
+      value: 219.6
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchorMin.x
@@ -4157,7 +4157,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  encounter: {fileID: 11400000, guid: bdde5020c96aa4044b9e2c5cc83c7441, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0

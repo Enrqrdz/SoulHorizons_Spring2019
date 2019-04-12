@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/RoninMelee")]
-public class atk_RoninMelee : AttackData
+[CreateAssetMenu(menuName = "Attacks/CritterScratch")]
+public class atk_CritterScratch : AttackData
 {
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
         return new Vector2Int(xPos, yPos);
     }
 
@@ -20,7 +18,7 @@ public class atk_RoninMelee : AttackData
     Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
         scr_Grid.GridController.ActivateTile(xPos, yPos);
-        return new Vector2Int(xPos, yPos + 1);
+        return new Vector2Int(xPos, yPos);
     }
     public override bool CheckCondition(Entity entitiy)
     {
@@ -36,7 +34,7 @@ public class atk_RoninMelee : AttackData
 
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-        
+
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)

@@ -23,3 +23,5 @@ MonoBehaviour:
     and stun them briefly'
   BreakSFX: {fileID: 8300000, guid: e774e6f4e55b8374ca2110985fcba946, type: 3}
   BreakAttack: {fileID: 11400000, guid: 0328deb545d62334f9c1f9e700e2b3a1, type: 2}
+  GuardbreakDamage: 5
+  teleportTime: 0.5

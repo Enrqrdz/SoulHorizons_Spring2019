@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class scr_Critter : scr_EntityAI
 {
-    public float movementIntervalLower = .75f;
-    public float movementIntervalUpper = 1.5f;
+    public float movementInterval = .75f;
+    public float attackInterval = .25f;
+    public AttackData Scratch;
     bool leftOrRight = false; //false left, true right
     bool taskComplete = true;
     bool isStuck = false;
+    bool canAttack = false;
     int state = 0;
     int attempts = 0;
 
@@ -31,27 +33,34 @@ public class scr_Critter : scr_EntityAI
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
         Footsteps_SFX.Play();
-        attempts = 0;
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
 
-        while (attempts < 10)
-        {
-          yPos = PickYCoord(yPos);
-          if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-           {
-              //if the tile is not occupied
-               scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-               entity.SetTransform(xPos, yPos);
-               return;
-           }
 
-           attempts++;
-           if (attempts >= 10)
-           {
-              return;
-           }
+        while (attempts < 20)
+        {
+            yPos = PickYCoord(yPos);
+            try
+            {
+                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
+                {
+                    //if the tile is not occupied
+                    entity.SetTransform(xPos, yPos);
+                    return;
+                }
+                else
+                {
+                    attempts++;
+                    Move();
+                }
+            }
+            catch
+            {
+                attempts++;
+                Move();
+            }
         }
+        return;
     }
 
     public override void UpdateAI()
@@ -61,6 +70,12 @@ public class scr_Critter : scr_EntityAI
         {
             StartCoroutine(Brain());
         }
+        if(canAttack == true)
+        {
+            StartCoroutine(ScratchAttack(attackInterval));
+            canAttack = false;
+        }
+        
     }
 
     public override void Die()
@@ -108,40 +123,56 @@ public class scr_Critter : scr_EntityAI
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
         Footsteps_SFX.Play();
-        attempts = 0;
         int xRange = scr_Grid.GridController.columnSizeMax;
-
-        while (attempts < 10)
+        try
         {
-            if (!direction)
+            while (attempts < 20)
             {
-                xPos--;
-                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
+                if (!direction)
                 {
-                    //if the tile is not occupied
-                    scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                    entity.SetTransform(xPos, yPos);
-                    return;
+                    xPos--;
+                    if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos > xLimit)
+                    {
+                        //if the tile is not occupied
+                        entity.SetTransform(xPos, yPos);
+                        return;
+                    }
+                    else
+                    {
+                        attempts++;
+                        if(attempts >= 20)
+                        {
+                            isStuck = true;
+                        }
+                        return;
+                    }
                 }
-            }
-            else
-            {
-                xPos++;
-                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos < xRange)
+                else
                 {
-                    //if the tile is not occupied
-                    scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
-                    entity.SetTransform(xPos, yPos);
-                    return;
+                    xPos++;
+                    if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name) && xPos < xRange)
+                    {
+                        //if the tile is not occupied
+                        entity.SetTransform(xPos, yPos);
+                        return;
+                    }
+                    else
+                    {
+                        attempts++;
+                        if (attempts >= 20)
+                        {
+                            isStuck = true;
+                        }
+                        return;
+                    }
                 }
             }
 
-            attempts++;
-            if (attempts >= 10)
-            {
-                isStuck = true;
-                return;
-            }
+        }
+        catch
+        {
+            isStuck = true;
+            return;
         }
     }
 
@@ -165,35 +196,48 @@ public class scr_Critter : scr_EntityAI
         return xLimit;
     }
 
+    IEnumerator ScratchAttack (float attackInterval)
+    {
+        scr_Grid.GridController.PrimeNextTile(entity._gridPos.x - 1, entity._gridPos.y);
+        AttackController.Instance.AddNewAttack(Scratch, entity._gridPos.x - 1, entity._gridPos.y, entity);
+        yield return new WaitForSecondsRealtime(attackInterval);       
+        scr_Grid.GridController.DePrimeTile(entity._gridPos.x - 1, entity._gridPos.y);
+    }
+
+    bool CheckAbleToAttack ()
+    {
+        if(scr_Grid.GridController.ReturnTerritory(entity._gridPos.x - 1, entity._gridPos.y).name == TerrName.Player)
+        {
+            return true;
+        }
+        return false;
+    }
+
     IEnumerator Brain()
     {
         switch (state)
         {
             case 0:                                  //Move to a new Row
                 taskComplete = false;
-                try
-                {
-                    Move();
-                }
-                catch
-                {
-                    state = 2;
-                    taskComplete = true;
-                    break;
-                }
-                state = 2;
-                float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(moveInterval);
+                attempts = 0;
+                Move();
+                state = 1;
+                yield return new WaitForSecondsRealtime(movementInterval);
+                canAttack = CheckAbleToAttack();
                 taskComplete = true;
+                
                 break;
 
-            case 2: //Move along the row
+            case 1: //Move along the row
                 taskComplete = false;
+                attempts = 0;
+                Debug.Log(state);
                 int startPos = entity._gridPos.x;
-                int xRange = scr_Grid.GridController.columnSizeMax-1;
+                int xRange = scr_Grid.GridController.columnSizeMax;
                 int xLimit = GetXLimit(startPos);
-                int random = Random.Range(0, 2);
-                if (random == 0)
+                int random = Random.Range(0, 3);
+                
+                if (random == 1)
                 {
                     leftOrRight = false;
                 }
@@ -203,17 +247,8 @@ public class scr_Critter : scr_EntityAI
                 }
                 for (int i = 0; i < xRange; i++) //moves along the row either left or right then 
                 {
-                    try
-                    {
-                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
-                    }
-                    catch
-                    {
-                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, !leftOrRight);
-                        leftOrRight = !leftOrRight;
-                    }
-                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
-                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
+                    yield return new WaitForSecondsRealtime(movementInterval);
                     if (entity._gridPos.x == startPos)
                     {
                         leftOrRight = !leftOrRight;
@@ -224,26 +259,18 @@ public class scr_Critter : scr_EntityAI
                         break;
                     }
                 }
+                canAttack = CheckAbleToAttack();
                 for (int i = 0; i < xRange; i++)
                 {
-                    try
-                    {
-                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
-                    }
-                    catch
-                    {
-                        MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, !leftOrRight);
-                        leftOrRight = !leftOrRight;
-                    }
-                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
-                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
+                    yield return new WaitForSecondsRealtime(movementInterval);
                     if (entity._gridPos.x == startPos)
                     {
+                        leftOrRight = !leftOrRight;
                         break;
                     }
                     if (isStuck)
                     {
-                        isStuck = false;
                         break;
                     }
                 }
