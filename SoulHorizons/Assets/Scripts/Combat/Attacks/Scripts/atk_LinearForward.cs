@@ -17,7 +17,7 @@ public class atk_LinearForward : AttackData {
     {
 
 
-        scr_Grid.GridController.PrimeNextTile(xPos - 1,yPos);
+        //scr_Grid.GridController.PrimeNextTile(xPos - 1,yPos);
         scr_Grid.GridController.ActivateTile(xPos, yPos); 
         return new Vector2Int(xPos - 1, yPos); 
     }

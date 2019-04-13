@@ -231,7 +231,6 @@ public class scr_Critter : scr_EntityAI
             case 1: //Move along the row
                 taskComplete = false;
                 attempts = 0;
-                Debug.Log(state);
                 int startPos = entity._gridPos.x;
                 int xRange = scr_Grid.GridController.columnSizeMax;
                 int xLimit = GetXLimit(startPos);
