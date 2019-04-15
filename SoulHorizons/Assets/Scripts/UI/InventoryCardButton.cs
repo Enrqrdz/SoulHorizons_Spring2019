@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InventoryCardButton : MonoBehaviour
 {
+    public GameObject cardInfoPanel;
+
     public void OnClicked()
     {
         if(Input.GetButton("PlayCard3_Button"))
@@ -13,6 +15,10 @@ public class InventoryCardButton : MonoBehaviour
         else if(Input.GetButton("PlayCard4_Button"))
         {
             removeCard();
+        }
+        else if(Input.GetButton("PlayCard1_Button"))
+        {
+            inpectCard();
         }
     }
 
@@ -32,5 +38,10 @@ public class InventoryCardButton : MonoBehaviour
         ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
 
         SaveManager.currentGame.inventory.RemoveCardFromDeck(new CardState(myCard.GetCardData(), 1));
+    }
+
+    public void inpectCard()
+    {
+
     }
 }

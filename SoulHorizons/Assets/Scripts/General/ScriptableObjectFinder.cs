@@ -10,8 +10,17 @@ public class ScriptableObjectFinder : MonoBehaviour
 
     public void Start()
     {
-        EncounterPool.AddEncounter(encounterPool);
-        CardPool.AddCard(cardPool);
+        if(!EncounterPool.IsLoaded())
+        {
+            EncounterPool.AddEncounter(encounterPool);
+            EncounterPool.SetLoaded(true);
+        }
+
+        if(!CardPool.IsLoaded())
+        {
+            CardPool.AddCard(cardPool);
+            CardPool.SetLoaded(true);
+        }
     }
 
     public List<CardState> GetStartingDeck()
