@@ -80,7 +80,6 @@ public class RoamingRonin : scr_EntityAI
 
     private void SetPossibleHeadPositions()
     {
-        //All possible positions for Raitori
         possibleHeadPositions = new[] {
                                         new Vector2Int(xRange - 2, yRange), new Vector2Int(xRange - 1, yRange), new Vector2Int(xRange, yRange),
                                         new Vector2Int(xRange - 2, yRange - 2), new Vector2Int(xRange - 1, yRange - 2), new Vector2Int(xRange, yRange - 2),
@@ -90,7 +89,6 @@ public class RoamingRonin : scr_EntityAI
 
     private void SetMovePattern()
     {
-        //Zig-Zag Movement Pattern for Raitori
         movePattern = new[] {
                                 possibleHeadPositions[2], possibleHeadPositions[8], possibleHeadPositions[5],
                                 possibleHeadPositions[4], possibleHeadPositions[7], possibleHeadPositions[1],
@@ -226,7 +224,7 @@ public class RoamingRonin : scr_EntityAI
         attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
-
+        PrimeAttackTiles(rangedAttack, entity._gridPos.x, entity._gridPos.y);
         Debug.Log("Air Slash");
         if (attackPhase == 0)
         {

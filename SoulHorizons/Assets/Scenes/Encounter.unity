@@ -2799,7 +2799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -157.54999
+      value: -157.5498
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3957,11 +3957,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 143.70001
+      value: 143.7002
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 165.62
+      value: 165.62012
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4157,7 +4157,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: 1d097024f7552484f8f0ca07847ef951, type: 2}
+  encounter: {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -123,12 +123,7 @@ public class scr_FoulTrifling : scr_EntityAI
 
     void AttackManager()
     {
-        int random = Random.Range(1, 10);
-        if (random < 7)
-        {
-            StartAttack1();
-        }
-
+        entity.isImmobile = true;
         if (attackCounter >= 3)
         {
             int rand = Random.Range(0, 2);
@@ -141,6 +136,15 @@ public class scr_FoulTrifling : scr_EntityAI
                 attackCounter = 0;
             }
         }
+        else
+        {
+            int random = Random.Range(1, 10);
+            if (random < 7)
+            {
+                StartAttack1();
+            }
+        }
+       
     }
 
     void GetYDirection(int yPos)
@@ -192,26 +196,14 @@ public class scr_FoulTrifling : scr_EntityAI
     void StartAttack1()
     {
         anim.SetBool("Attack", true);
-        PrimeAttackTiles(attack1);
+        PrimeAttackTiles(attack1, entity._gridPos.x, entity._gridPos.y);
     }
     void StartAttack2()
     {
         anim.SetBool("Attack2", true);
-        PrimeAttackTiles(chargedAttack);
+        PrimeAttackTiles(chargedAttack, entity._gridPos.x, entity._gridPos.y);
     }
 
-    void PrimeAttackTiles (AttackData attack)
-    {
-        for(int i = 0; i < attack.maxIncrementRange; i++)
-        {
-            if (scr_Grid.GridController.IsTileUnoccupied(entity._gridPos.x - 1 - i, entity._gridPos.y) == true)
-                scr_Grid.GridController.PrimeNextTile(entity._gridPos.x - 1 - i, entity._gridPos.y);
-            else
-            {
-                break;
-            }
-        }
-    }
     private IEnumerator Brain()
     {
         switch (state)
@@ -220,8 +212,6 @@ public class scr_FoulTrifling : scr_EntityAI
                 completedTask = false;
                 Move();
                 yield return new WaitForSecondsRealtime(movementInterval);
-                attackCounter++;
-                AttackManager();
                 state = 1;
                 completedTask = true;
                 break;
@@ -236,6 +226,7 @@ public class scr_FoulTrifling : scr_EntityAI
                     attackCounter++;
                     AttackManager();
                     yield return new WaitForSecondsRealtime(movementInterval);
+                    entity.isImmobile = false;
                     if (entity._gridPos.y == 0)
                     {
                         break;
@@ -249,6 +240,9 @@ public class scr_FoulTrifling : scr_EntityAI
                 completedTask = true;
                 state = 0;
                 yield return new WaitForSecondsRealtime(movementInterval);
+                entity.isImmobile = false;
+                break;
+            case 2:
                 break;
         }
         yield return null;

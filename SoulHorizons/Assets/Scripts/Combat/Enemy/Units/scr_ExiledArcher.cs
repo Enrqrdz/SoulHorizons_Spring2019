@@ -14,14 +14,14 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public AttackData arrowRain;
     public float aRInterval;
-    public float movementIntervalLower;
-    public float movementIntervalUpper;
+    public float movementInterval;
 
     private bool canArrowRain = true;
     private bool canMove = true;
     private bool goBackwards = false;
     private int movePosition = 0;
 
+    int hunterShotDecider = 1;
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
@@ -116,6 +116,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (!hSOnCD && HunterShotCheck())
         {
+            hunterShotDecider = Random.Range(0, 6);
             StartCoroutine(HunterShot());
         }
         if (canMove)
@@ -144,8 +145,11 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int randomVal;
         randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
-        if (randomVal == 0 || randomVal == 5)
+        Debug.Log(hunterShotDecider + "Penis");
+        if (hunterShotDecider == 0 || hunterShotDecider == 6)
         {
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
         }
@@ -164,6 +168,9 @@ public class scr_ExiledArcher : scr_EntityAI {
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
         anim.SetBool("Attack", true);
+        yield return new WaitForSecondsRealtime(.85f);
+        Debug.Log(hunterShotDecider);
+        PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
         yield return new WaitForSecondsRealtime(hSCooldownTime);
         hSOnCD = false;
     }
@@ -303,9 +310,8 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         if (canMove)
         {
-            float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
             canMove = false;
-            yield return new WaitForSecondsRealtime(_movementInterval);
+            yield return new WaitForSecondsRealtime(movementInterval);
             Move();
             canMove = true;
         }

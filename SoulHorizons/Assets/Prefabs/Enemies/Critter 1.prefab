@@ -196,7 +196,7 @@ MonoBehaviour:
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
   movementInterval: 0.75
-  attackInterval: 0.25
+  attackInterval: 0.005
   Scratch: {fileID: 11400000, guid: 33acc9c802efedd448937f725254233f, type: 2}
   movements_SFX:
   - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}

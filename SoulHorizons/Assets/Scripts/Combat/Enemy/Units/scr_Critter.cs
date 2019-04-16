@@ -198,10 +198,10 @@ public class scr_Critter : scr_EntityAI
 
     IEnumerator ScratchAttack (float attackInterval)
     {
-        scr_Grid.GridController.PrimeNextTile(entity._gridPos.x - 1, entity._gridPos.y);
+        PrimeAttackTiles(Scratch, entity._gridPos.x - 1, entity._gridPos.y);
         AttackController.Instance.AddNewAttack(Scratch, entity._gridPos.x - 1, entity._gridPos.y, entity);
-        yield return new WaitForSecondsRealtime(attackInterval);       
-        scr_Grid.GridController.DePrimeTile(entity._gridPos.x - 1, entity._gridPos.y);
+        yield return new WaitForSecondsRealtime(attackInterval);      
+
     }
 
     bool CheckAbleToAttack ()
