@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiers: 10
-  distanceBetweenTiers: 2.5
+  distanceBetweenTiers: 4
   connectionRange: 2
 --- !u!4 &268632237
 Transform:
