@@ -126,11 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 9164578934188407989}
-  infoPanel: {fileID: 0}
   fogMask: {fileID: 8582986284544875261}
-  mouseText: {fileID: 0}
-  mushText: {fileID: 0}
-  archerText: {fileID: 0}
   bossEncounter: {fileID: 21300018, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
   combatEncounter: {fileID: 21300012, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
   eventEncounter: {fileID: 21300000, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
@@ -177,7 +173,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4169810591208422046}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
