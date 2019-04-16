@@ -22,7 +22,7 @@ public class GridGenerator : MonoBehaviour
 
         Vector2 gridCenter = new Vector2((tileSpacing.x * (columnSize-1) / 2), (tileSpacing.y * rowSize / 2));
 
-        cameraTransform.transform.position = new Vector3(gridCenter.x,gridCenter.y,cameraTransform.transform.position.z); 
+        cameraTransform.transform.position = new Vector3(gridCenter.x, cameraTransform.transform.position.y,cameraTransform.transform.position.z); 
 
         for (int j = 0; j < rowSize; j++)
         {
