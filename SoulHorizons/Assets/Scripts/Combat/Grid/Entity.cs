@@ -16,6 +16,8 @@ public class Entity : MonoBehaviour
 {
     public EntityType type;
 
+    public int height = 1;
+    public int width = 1;
     public Vector2Int _gridPos = new Vector2Int();
     public Vector2Int[] gridPositions;
     public Health _health = new Health();
@@ -111,6 +113,11 @@ public class Entity : MonoBehaviour
             return;                                                                                                                                    //return
         }
 
+        if(height > 1 || width > 1)
+        {
+            SetLargeTransform(new Vector2Int(x, y));
+        }
+
         //Animate movement
         if (anim != null)
         {
@@ -157,7 +164,7 @@ public class Entity : MonoBehaviour
     }
 
     //NOTE: GridPosition is the origin of the large transform, or the bottom leftmost tile.
-    public void SetLargeTransform(Vector2Int gridPosition, int width, int height)
+    public void SetLargeTransform(Vector2Int gridPosition)
     {
         //Check if you are already on this tile
         if (_gridPos == gridPosition || width <= 0 || height <= 0)

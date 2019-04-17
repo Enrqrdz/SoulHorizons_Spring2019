@@ -313,6 +313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  height: 2
+  width: 2
   _gridPos: {x: 0, y: 0}
   gridPositions: []
   _health:

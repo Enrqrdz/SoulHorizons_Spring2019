@@ -41,8 +41,8 @@ public class Raitori_AI : scr_EntityAI
 
     private void SetInitialVariables()
     {
-        xRange = scr_Grid.GridController.columnSizeMax - Raitori.width; //8 - 2
-        yRange = scr_Grid.GridController.rowSizeMax - Raitori.height;   //4 - 3
+        xRange = scr_Grid.GridController.columnSizeMax - entity.width; //8 - 2
+        yRange = scr_Grid.GridController.rowSizeMax - entity.height;   //4 - 3
         xPosition = entity._gridPos.x;
         yPosition = entity._gridPos.y;
         currentHeadPosition = new Vector2Int(xPosition, yPosition);
@@ -508,9 +508,9 @@ public class Raitori_AI : scr_EntityAI
     {
         try
         {
-            for (int i = 0; i < Raitori.width; i++)
+            for (int i = 0; i < entity.width; i++)
             {
-                for (int j = 0; j < Raitori.height; j++)
+                for (int j = 0; j < entity.height; j++)
                 {
                     int xPosition = (int)zigZagPattern[transitionNumber].x + i;
                     int yPosition = (int)zigZagPattern[transitionNumber].y + j;
@@ -544,7 +544,7 @@ public class Raitori_AI : scr_EntityAI
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name)
         {
-            entity.SetLargeTransform(currentHeadPosition, Raitori.width, Raitori.height);
+            entity.SetLargeTransform(currentHeadPosition, entity.width, entity.height);
         }
         else
         {

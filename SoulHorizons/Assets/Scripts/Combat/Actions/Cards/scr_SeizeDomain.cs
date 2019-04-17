@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/SeizeDomain")]
@@ -15,13 +16,13 @@ public class scr_SeizeDomain : ActionData
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = SeizeDomainSFX;
         PlayCardSFX.Play();
-        SeizeDomain.Instance.Activate(duration);
+        DomainManager.Instance.Activate(duration);
     }
 }
 
-public class SeizeDomain : MonoBehaviour
+public class DomainManager : MonoBehaviour
 {
-    public static SeizeDomain Instance;
+    public static DomainManager Instance;
 
     private int numberOfColumns;
     private int numberOfRows;
@@ -63,27 +64,111 @@ public class SeizeDomain : MonoBehaviour
         }
     }
 
+
+    //This begins a recursive chain to attempt the following movements:
+    // 1) x+1, y
+    // 2) x+1, y+1
+    // 3) x+1, y-1
+    // 4) x+2, y...
+    // 5) Repeat
+    // n) Base Case any open position, if not, kill the entity.
+
     public void Activate(float duration)
     {
-        //Either 4 or 5
         playerColumns.Add(adjacentColumn);
 
         for(int j = 0; j < numberOfRows; j++)
         {
-            if(scr_Grid.GridController.grid[adjacentColumn, j].territory.name != TerrName.Player)
+            if(scr_Grid.GridController.grid[adjacentColumn, j].entityOnTile.type != EntityType.Player)
             {
-                //Push back, if not, push up, if not, push down, if not push backx2, repeat.
+                PushBack(adjacentColumn, j);
             }
             scr_Grid.GridController.SetTileTerritory(adjacentColumn, j, TerrName.Player, scr_TileDict.colorDict[TerrName.Player]);
         }
     }
 
-    private void Move()
+    private void PushBack(int x, int y)
     {
+        
+        int newX = x + 1;
 
+        if(newX < scr_Grid.GridController.columnSizeMax)
+        {
+            if (scr_Grid.GridController.CheckIfOccupied(newX, y) == false)
+            {
+                scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(newX, y);
+            }
+            else
+            {
+                PushUp(newX, y);
+            }
+        }
+        else
+        {
+            MoveSomewhereAvailable(x, y);
+        }
     }
 
+    private void PushUp(int x, int y)
+    {
+        int newY = y;
 
+        if (newY < scr_Grid.GridController.rowSizeMax - 1)
+        {
+            newY = y + 1;
+        }
+
+        if (scr_Grid.GridController.CheckIfOccupied(x, newY) == false)
+        {
+            scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(x, newY);
+        }
+        else
+        {
+            PushDown(x, y);
+        }
+    }
+
+    private void PushDown(int x, int y)
+    {
+        int newY = y;
+
+        if (newY > 0)
+        {
+            newY = y - 1;
+        }
+
+        if (scr_Grid.GridController.CheckIfOccupied(x, newY) == false)
+        {
+            scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(x, newY);
+        }
+        else
+        {
+            PushBack(x,y);
+        }
+    }
+
+    private void MoveSomewhereAvailable(int x, int y)
+    {
+        bool foundSomewhere = false;
+
+        for(int i = playerColumns[adjacentColumn]; i < numberOfColumns; i++)
+        {
+            for(int j = 0; j < numberOfRows; j++)
+            {
+                if(scr_Grid.GridController.CheckIfOccupied(i,j) == false)
+                {
+                    foundSomewhere = true;
+                    scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(i, j);
+                }
+            }
+        }
+
+        //Only called if the entity is not able to move anywhere on the grid
+        if(foundSomewhere == false)
+        {
+            scr_Grid.GridController.grid[x, y].entityOnTile.Death();
+        }
+    }
 
     public void Deactivate()
     {
