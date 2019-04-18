@@ -561,8 +561,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
 --- !u!82 &283017073
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3593,7 +3593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -61.100037
+      value: -61.100098
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4120,6 +4120,7 @@ GameObject:
   - component: {fileID: 2115534117}
   - component: {fileID: 2115534118}
   - component: {fileID: 2115534119}
+  - component: {fileID: 2115534120}
   m_Layer: 0
   m_Name: GridController
   m_TagString: GridController
@@ -4157,7 +4158,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: bdde5020c96aa4044b9e2c5cc83c7441, type: 2}
+  encounter: {fileID: 11400000, guid: 8cb348fcbac28d24398ba2d084ff0f7a, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4401,6 +4402,19 @@ MonoBehaviour:
   tileSpacing: {x: 0.7, y: 0.55}
   columnOffset: 0
   rowOffset: 0
+--- !u!114 &2115534120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115534115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2116221a681e9bb47ae33743d3b442c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColumns: 
 --- !u!1 &2121924710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7304582539461992430, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,

@@ -544,7 +544,7 @@ public class Raitori_AI : scr_EntityAI
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name)
         {
-            entity.SetLargeTransform(currentHeadPosition, entity.width, entity.height);
+            entity.SetLargeTransform(currentHeadPosition);
         }
         else
         {
