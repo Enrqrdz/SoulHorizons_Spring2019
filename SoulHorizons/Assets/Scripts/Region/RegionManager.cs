@@ -28,12 +28,17 @@ public class RegionManager : MonoBehaviour
     {        
         if(SaveManager.IsSaveLoaded())
         {
-            currentRegion = regionGenerator.GenerateRegion();
-            SaveManager.currentGame.SetRegion(currentRegion);
+            currentRegion = SaveManager.currentGame.GetRegion();
+            if(currentRegion == null)
+            {
+                currentRegion = regionGenerator.GenerateRegion();
+                SaveManager.currentGame.SetRegion(currentRegion);
+            }
         }
         else
         {
             currentRegion = regionGenerator.GenerateRegion();
+            SaveManager.currentGame.SetRegion(currentRegion);
         }
 
         encounterMap = new GameObject("Map");

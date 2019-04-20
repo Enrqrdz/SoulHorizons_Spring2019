@@ -8,7 +8,8 @@ public class GameLaunch : MonoBehaviour
     {
         SaveManager.NewSave();
 
-        List<CardState> startingDeck = gameObject.GetComponent<ScriptableObjectFinder>().GetStartingDeck();
+        ScriptableObjectFinder finder = GameObject.Find("ScriptableObjectFinder").GetComponent<ScriptableObjectFinder>();
+        List<CardState> startingDeck = finder.GetStartingDeck();
         SaveManager.currentGame.inventory.AddCardToInventory(startingDeck);
         SaveManager.currentGame.inventory.AddCardToDeck(startingDeck);
 

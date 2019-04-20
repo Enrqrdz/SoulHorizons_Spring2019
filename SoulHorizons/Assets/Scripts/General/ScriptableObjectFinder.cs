@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class ScriptableObjectFinder : MonoBehaviour
 {
+    private static GameObject finder;
+
     public List<EncounterData> encounterPool = new List<EncounterData>();
     public List<ActionData> cardPool = new List<ActionData>();
     public StartingInventory startingInventory;
 
-    public void Start()
+    public void Awake()
+    {
+        if(finder == null)
+        {
+            finder = gameObject;
+            DontDestroyOnLoad(gameObject);
+            LoadPools();
+        }
+        else    
+            Destroy(gameObject);
+       
+    }
+
+    private void LoadPools()
     {
         if(!EncounterPool.IsLoaded())
         {
