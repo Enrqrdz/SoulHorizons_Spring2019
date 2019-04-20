@@ -177,7 +177,7 @@ MonoBehaviour:
     TerrColor: {r: 1, g: 1, b: 1, a: 1}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212424679629100636}
-  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
+  hitShader: {fileID: 0}
   lerpSpeed: 250
   has_iframes: 1
   invincible: 0
@@ -435,7 +435,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 36952d6bc34f6244db8a4d1f577bc80f, type: 2}
+  - {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

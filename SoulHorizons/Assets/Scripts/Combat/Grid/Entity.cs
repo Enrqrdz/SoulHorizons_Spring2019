@@ -24,8 +24,8 @@ public class Entity : MonoBehaviour
     public scr_EntityAI _ai;
     public Territory entityTerritory;
     public SpriteRenderer spr;
-    public Material hitMaterial;
-    private Material baseMaterial;
+    public Shader hitShader;
+    private Shader baseShader;
     Color baseColor;
     public float lerpSpeed;
     private float hitFlashTimer = .01f;
@@ -56,7 +56,7 @@ public class Entity : MonoBehaviour
     {
         deathManager = GameObject.Find("DeathSFXManager");
         baseColor = spr.color;
-        baseMaterial = spr.material;
+        baseShader = spr.material.shader;
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Hurt_SFX = SFX_Sources[1];
     }
@@ -401,10 +401,10 @@ public class Entity : MonoBehaviour
 
     IEnumerator HitClock(float hitTime)
     {
-        spr.material = hitMaterial;
+        spr.material.shader = hitShader;
         //Debug.Log("I'M RED");
         yield return new WaitForSecondsRealtime(hitTime);
-        spr.material = baseMaterial;
+        spr.material.shader = baseShader;
         //Debug.Log("NOT RED");
     }
 
