@@ -309,6 +309,7 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0

@@ -114,8 +114,6 @@ MonoBehaviour:
   rangedAttack2: {fileID: 11400000, guid: c2d7c507dae93d5439aa740b57027cd2, type: 2}
   meleeAttack: {fileID: 11400000, guid: 1d27b68b86f71e64a90b0920170dfd83, type: 2}
   meleeAttack2: {fileID: 11400000, guid: 3ff8a7628620f0b41afda589643d6364, type: 2}
-  width: 2
-  height: 2
   damageThreshold: 40
   movementInterval: 0
   rangedAttackInterval: 0
@@ -327,6 +325,7 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
@@ -358,8 +357,6 @@ MonoBehaviour:
   rangedAttack2: {fileID: 11400000, guid: 3ff8a7628620f0b41afda589643d6364, type: 2}
   meleeAttack: {fileID: 11400000, guid: a93ae82a0daa6e3429f492125eee5a97, type: 2}
   meleeAttack2: {fileID: 11400000, guid: c2d7c507dae93d5439aa740b57027cd2, type: 2}
-  width: 2
-  height: 2
   damageThreshold: 40
   movementInterval: 0.75
   rangedAttackInterval: 1

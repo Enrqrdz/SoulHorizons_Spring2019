@@ -24,8 +24,11 @@ public class Entity : MonoBehaviour
     public scr_EntityAI _ai;
     public Territory entityTerritory;
     public SpriteRenderer spr;
+    public Material hitMaterial;
+    private Material baseMaterial;
     Color baseColor;
     public float lerpSpeed;
+    private float hitFlashTimer = .01f;
 
     public bool has_iframes;
     public bool invincible = false;
@@ -53,6 +56,7 @@ public class Entity : MonoBehaviour
     {
         deathManager = GameObject.Find("DeathSFXManager");
         baseColor = spr.color;
+        baseMaterial = spr.material;
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Hurt_SFX = SFX_Sources[1];
     }
@@ -247,7 +251,7 @@ public class Entity : MonoBehaviour
             {
                 _health.TakeDamage(0);
             }
-            StartCoroutine(HitClock(.3f));
+            StartCoroutine(HitClock(hitFlashTimer));
             if (type == EntityType.Player)
             {
                 //camera shake
@@ -278,7 +282,7 @@ public class Entity : MonoBehaviour
             {
                 _health.TakeDamage(0);
             }
-            StartCoroutine(HitClock(.3f));
+            StartCoroutine(HitClock(hitFlashTimer));
             if (type == EntityType.Player)
             {
                 //camera shake
@@ -397,10 +401,10 @@ public class Entity : MonoBehaviour
 
     IEnumerator HitClock(float hitTime)
     {
-        spr.color = Color.red;
+        spr.material = hitMaterial;
         //Debug.Log("I'M RED");
         yield return new WaitForSecondsRealtime(hitTime);
-        spr.color = baseColor;
+        spr.material = baseMaterial;
         //Debug.Log("NOT RED");
     }
 

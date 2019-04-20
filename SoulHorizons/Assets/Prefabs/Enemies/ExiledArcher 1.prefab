@@ -310,7 +310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 75
     shield: 0
@@ -321,11 +324,13 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
@@ -728,11 +733,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.2
       objectReference: {fileID: 0}
-    - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
-        type: 3}
-      propertyPath: targetEntity
-      value: 
-      objectReference: {fileID: 114725702907161856}
     - target: {fileID: 6890958084846689348, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_IsActive
@@ -743,6 +743,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+        type: 3}
+      propertyPath: targetEntity
+      value: 
+      objectReference: {fileID: 114725702907161856}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}
 --- !u!4 &908514017464375694 stripped
