@@ -19,8 +19,6 @@ public class FogController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("test");
-
         float verticalDistancePerRow = (topLeftCorner.y - bottomRightCorner.y) / numberOfRows;
 
         for(int i = 0; i < numberOfRows; i++)

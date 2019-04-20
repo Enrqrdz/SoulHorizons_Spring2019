@@ -2,12 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_InvButtons : MonoBehaviour
+public class InventoryCardButton : MonoBehaviour
 {
+    public void OnClicked()
+    {
+        if(Input.GetButton("PlayCard3_Button"))
+        {
+            addCard();
+        }
+        else if(Input.GetButton("PlayCard4_Button"))
+        {
+            removeCard();
+        }
+    }
+
     public void addCard()
     {
         ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
-        CardState cardState = myCard.GetCardState();
+        CardState cardState = new CardState(myCard.GetCardData(), 1);
 
         InventoryState inv = SaveManager.currentGame.inventory;
 
@@ -19,6 +31,6 @@ public class scr_InvButtons : MonoBehaviour
     {
         ActionUI myCard = gameObject.transform.parent.gameObject.GetComponent<ActionUI>();
 
-        SaveManager.currentGame.inventory.RemoveCardFromDeck(myCard.GetCardState());
+        SaveManager.currentGame.inventory.RemoveCardFromDeck(new CardState(myCard.GetCardData(), 1));
     }
 }
