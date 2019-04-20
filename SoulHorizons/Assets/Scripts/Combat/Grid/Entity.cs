@@ -356,7 +356,7 @@ public class Entity : MonoBehaviour
         enemy.isStunned = true;
         //isImmobile = true;
         Debug.Log("Starting Teleport");
-        yield return new WaitForSecondsRealtime(waitTime);
+        yield return new WaitForSeconds(waitTime);
         SetTransform(playerX, playerY);
         Debug.Log("UnTelport!");
         enemy.isStunned = false;
@@ -365,7 +365,7 @@ public class Entity : MonoBehaviour
 
      public IEnumerator GenericClock (float waitTime)
      {
-        yield return new WaitForSecondsRealtime(waitTime);
+        yield return new WaitForSeconds(waitTime);
      }
 
     public void HealOverTime(float duration, float healRate, int healAmount)
@@ -384,7 +384,7 @@ public class Entity : MonoBehaviour
     {
         Debug.Log("Got Stunned");
         isStunned = true;
-        yield return new WaitForSecondsRealtime(stunTime);
+        yield return new WaitForSeconds(stunTime);
         isStunned = false;
     }
 
@@ -392,14 +392,14 @@ public class Entity : MonoBehaviour
     {
         spr.color = Color.red;
         //Debug.Log("I'M RED");
-        yield return new WaitForSecondsRealtime(hitTime);
+        yield return new WaitForSeconds(hitTime);
         spr.color = baseColor;
         //Debug.Log("NOT RED");
     }
 
     IEnumerator DamageOverTime (float rate, int damage)
     {       
-        yield return new WaitForSecondsRealtime(rate);
+        yield return new WaitForSeconds(rate);
         _health.TakeDamage(damage);
     }
 

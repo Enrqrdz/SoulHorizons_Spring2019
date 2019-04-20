@@ -7,6 +7,7 @@ public class atk_HunterShot : AttackData {
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
+        //scr_Grid.GridController.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos, yPos);
     }
 

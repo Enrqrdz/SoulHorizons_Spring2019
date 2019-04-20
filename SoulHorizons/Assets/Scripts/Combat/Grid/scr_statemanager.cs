@@ -124,7 +124,7 @@ public class scr_statemanager : MonoBehaviour {
 
     private IEnumerator EffectTime(float time)
     {
-        yield return new WaitForSecondsRealtime(time);
+        yield return new WaitForSeconds(time);
         showEffect = false;
     }
 

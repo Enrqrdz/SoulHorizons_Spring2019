@@ -205,8 +205,6 @@ public class RoamingRonin : scr_EntityAI
 
     void StartRangedAttack()
     {
-        //insert animation here
-        anim.SetBool("RoninRanged", true);
         if (attackPhase == 0)
         {
             AttackController.Instance.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y, entity);
@@ -309,7 +307,7 @@ public class RoamingRonin : scr_EntityAI
         {
             case 0:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
+                yield return new WaitForSeconds(movementInterval - movementIntervalModfier);
                 Move();
                 state = 1;
                 completedTask = true;
@@ -317,7 +315,7 @@ public class RoamingRonin : scr_EntityAI
             case 1:
                 completedTask = false;
                 gonnaMelee = CheckIfInMeleeRange();
-                yield return new WaitForSecondsRealtime(0.75f);
+                yield return new WaitForSeconds(0.75f);
                 if (gonnaMelee == true)
                 {
                     state = 2;
@@ -331,70 +329,30 @@ public class RoamingRonin : scr_EntityAI
             case 2:
                 completedTask = false;
                 GoToMelee();
-                yield return new WaitForSecondsRealtime(.25f);
+                PrimeAttackTiles(meleeAttack, entity._gridPos.x, entity._gridPos.y);
+                yield return new WaitForSeconds(.25f);
                 StartMeleeAttack();
                 state = 3;
-                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
+                yield return new WaitForSeconds(movementInterval - movementIntervalModfier);
                 gonnaMelee = false;
                 completedTask = true;
                 break;
             case 3:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
+                yield return new WaitForSeconds(movementInterval - movementIntervalModfier);
                 MoveBack();
                 state = 4;
                 completedTask = true;
                 break;
             case 4:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(rangedAttackInterval);
+                PrimeAttackTiles(rangedAttack, entity._gridPos.x, entity._gridPos.y);
+                yield return new WaitForSeconds(rangedAttackInterval);
                 StartRangedAttack();
                 state = 0;
                 completedTask = true;
                 break;
-
         }
         yield return null;
     }
 }
-
-
-/*public override void Move()
-{
-    int xPos = entity._gridPos.x;
-    int yPos = entity._gridPos.y;
-    int tries = 0;
-
-    while (tries < 10)
-    {
-        if (gonnaMelee)
-        {
-            xPos = PickXCoord(xPos);
-        }
-        else
-        {
-            yPos = PickYCoord(yPos);
-        }
-
-        if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-        {
-            entity.SetTransform(xPos, yPos);
-            return;
-        }
-        else
-        {
-            tries++;
-            if (tries >= 10)
-            {
-                xPos = PickXCoord(xPos);
-                if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
-                {
-                    entity.SetTransform(xPos, yPos);
-                    return;
-                }
-            }
-
-        }
-    }
-
-}*/

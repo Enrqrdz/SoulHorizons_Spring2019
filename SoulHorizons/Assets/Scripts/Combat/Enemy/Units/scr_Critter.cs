@@ -200,7 +200,7 @@ public class scr_Critter : scr_EntityAI
     {
         PrimeAttackTiles(Scratch, entity._gridPos.x - 1, entity._gridPos.y);
         AttackController.Instance.AddNewAttack(Scratch, entity._gridPos.x - 1, entity._gridPos.y, entity);
-        yield return new WaitForSecondsRealtime(attackInterval);      
+        yield return new WaitForSeconds(attackInterval);      
 
     }
 
@@ -222,7 +222,7 @@ public class scr_Critter : scr_EntityAI
                 attempts = 0;
                 Move();
                 state = 1;
-                yield return new WaitForSecondsRealtime(movementInterval);
+                yield return new WaitForSeconds(movementInterval);
                 canAttack = CheckAbleToAttack();
                 taskComplete = true;
                 
@@ -247,7 +247,7 @@ public class scr_Critter : scr_EntityAI
                 for (int i = 0; i < xRange; i++) //moves along the row either left or right then 
                 {
                     MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
-                    yield return new WaitForSecondsRealtime(movementInterval);
+                    yield return new WaitForSeconds(movementInterval);
                     if (entity._gridPos.x == startPos)
                     {
                         leftOrRight = !leftOrRight;
@@ -262,7 +262,7 @@ public class scr_Critter : scr_EntityAI
                 for (int i = 0; i < xRange; i++)
                 {
                     MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
-                    yield return new WaitForSecondsRealtime(movementInterval);
+                    yield return new WaitForSeconds(movementInterval);
                     if (entity._gridPos.x == startPos)
                     {
                         leftOrRight = !leftOrRight;

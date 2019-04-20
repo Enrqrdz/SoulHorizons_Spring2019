@@ -118,16 +118,16 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeStormStrike();
         Raitori.stormStrikesIsActive = true;
-        yield return new WaitForSecondsRealtime(Raitori.stormStrikeWindUpTime);
+        yield return new WaitForSeconds(Raitori.stormStrikeWindUpTime);
         //int index = Random.Range(0, attacks_SFX.Length);
         //attack_SFX = attacks_SFX[index];
         //Attack_SFX.clip = attack_SFX;
         //Attack_SFX.Play();
         //anim.SetBool("Attack", true);
         StartStormStrike();
-        yield return new WaitForSecondsRealtime(Raitori.StormStrikes.incrementTime + .15f);
+        yield return new WaitForSeconds(Raitori.StormStrikes.incrementTime + .15f);
         DePrimeStormStrike();
-        yield return new WaitForSecondsRealtime(Raitori.stormStrikeCooldown);
+        yield return new WaitForSeconds(Raitori.stormStrikeCooldown);
         Raitori.stormStrikesIsActive = false;
     }
 
@@ -342,14 +342,14 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeBirdBash();
         Raitori.birdBashIsActive = true;
-        yield return new WaitForSecondsRealtime(Raitori.birdBashWindUpTime);
+        yield return new WaitForSeconds(Raitori.birdBashWindUpTime);
         //int index = Random.Range(0, attacks_SFX.Length);
         //attack_SFX = attacks_SFX[index];
         //Attack_SFX.clip = attack_SFX;
         //Attack_SFX.Play();
         //anim.SetBool("Attack", true);
         StartBirdBash();
-        yield return new WaitForSecondsRealtime(Raitori.birdBashCooldownTime);
+        yield return new WaitForSeconds(Raitori.birdBashCooldownTime);
         Raitori.birdBashIsActive = false;
     }
 
@@ -370,14 +370,14 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeTwinTornado();
         Raitori.twinTornadoIsActive = true;
-        yield return new WaitForSecondsRealtime(Raitori.twinTornadoWindUpTime);
+        yield return new WaitForSeconds(Raitori.twinTornadoWindUpTime);
         //int index = Random.Range(0, attacks_SFX.Length);
         //attack_SFX = attacks_SFX[index];
         //Attack_SFX.clip = attack_SFX;
         //Attack_SFX.Play();
         //anim.SetBool("Attack", true);
         StartTwinTornado();
-        yield return new WaitForSecondsRealtime(Raitori.twinTornadoCooldown);
+        yield return new WaitForSeconds(Raitori.twinTornadoCooldown);
         Raitori.twinTornadoIsActive = false;
     }
 
@@ -402,18 +402,18 @@ public class Raitori_AI : scr_EntityAI
     {
         Raitori.gustGaleIsActive = true;
         PrimeGustGale();
-        yield return new WaitForSecondsRealtime(Raitori.gustGaleWindUpTime);
+        yield return new WaitForSeconds(Raitori.gustGaleWindUpTime);
         //int index = Random.Range(0, attacks_SFX.Length);
         //attack_SFX = attacks_SFX[index];
         //Attack_SFX.clip = attack_SFX;
         //Attack_SFX.Play();
         //anim.SetBool("Attack", true);
         StartGustGale();
-        yield return new WaitForSecondsRealtime(Raitori.GustGale.incrementTime * scr_Grid.GridController.rowSizeMax);
+        yield return new WaitForSeconds(Raitori.GustGale.incrementTime * scr_Grid.GridController.rowSizeMax);
         DePrimeGustGale();
-        yield return new WaitForSecondsRealtime(Raitori.gustGaleKnockUpTime);
+        yield return new WaitForSeconds(Raitori.gustGaleKnockUpTime);
         Knockup();
-        yield return new WaitForSecondsRealtime(Raitori.gustGaleCooldownTime);
+        yield return new WaitForSeconds(Raitori.gustGaleCooldownTime);
         Raitori.gustGaleIsActive = false;
     }
 
@@ -462,16 +462,16 @@ public class Raitori_AI : scr_EntityAI
     {
         Raitori.gustGaleIsActive = true;
         PrimeFeatherRend();
-        yield return new WaitForSecondsRealtime(Raitori.featherRendWindUpTime);
+        yield return new WaitForSeconds(Raitori.featherRendWindUpTime);
         //int index = Random.Range(0, attacks_SFX.Length);
         //attack_SFX = attacks_SFX[index];
         //Attack_SFX.clip = attack_SFX;
         //Attack_SFX.Play();
         //anim.SetBool("Attack", true);
         StartFeatherRend();
-        yield return new WaitForSecondsRealtime(Raitori.FeatherRend.incrementTime);
+        yield return new WaitForSeconds(Raitori.FeatherRend.incrementTime);
         DePrimeFeatherRend();
-        yield return new WaitForSecondsRealtime(Raitori.featherRendCooldownTime);
+        yield return new WaitForSeconds(Raitori.featherRendCooldownTime);
         Raitori.featherRendIsActive = false;
     }
 
@@ -529,7 +529,7 @@ public class Raitori_AI : scr_EntityAI
     private IEnumerator Movement()
     {
         canMove = false;
-        yield return new WaitForSecondsRealtime(movementInterval);
+        yield return new WaitForSeconds(movementInterval);
         Move();
         canMove = true;
     }

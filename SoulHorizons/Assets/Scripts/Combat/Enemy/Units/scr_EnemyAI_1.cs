@@ -220,7 +220,7 @@ public class scr_EnemyAI_1 : scr_EntityAI
             case 2:
                 completedTask = false;
                 float _movementInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(_movementInterval);
+                yield return new WaitForSeconds(_movementInterval);
                 state = 0;
                 completedTask = true; 
                 break;
@@ -229,9 +229,9 @@ public class scr_EnemyAI_1 : scr_EntityAI
                 if (numOfAttacks < 2)
                 {
                     completedTask = false;
-                    yield return new WaitForSecondsRealtime(.75f);
+                    yield return new WaitForSeconds(.75f);
                     StartAttack1();
-                    yield return new WaitForSecondsRealtime(2);
+                    yield return new WaitForSeconds(2);
                     state = 4;
                     completedTask = true;
                     numOfAttacks++;
@@ -251,9 +251,9 @@ public class scr_EnemyAI_1 : scr_EntityAI
                 {
                     completedTask = false;
                     float _thisTime = Random.Range(chargeTimeLower, chargeTimeUpper);
-                    yield return new WaitForSecondsRealtime(_thisTime);
+                    yield return new WaitForSeconds(_thisTime);
                     StartAttack2();
-                    yield return new WaitForSecondsRealtime(2f);
+                    yield return new WaitForSeconds(2f);
                     state = 3;
                     completedTask = true;
                     numOfAttacks++;

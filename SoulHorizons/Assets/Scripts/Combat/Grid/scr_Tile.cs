@@ -97,9 +97,6 @@ public class scr_Tile : MonoBehaviour{
     {
         if (isActive && entityOnTile != null)
         {
-            //Debug.Log("OW!!!!");
-            //TEMPORARY HARDCODED VALUE, GET ATTACK ASSOCIATED WITH ACTIVATED TILE AND GET DAMAGE FROM THAT
-            //entityOnTile._health.TakeDamage(1);
             isActive = false; //So it only hits once and not every frame, can change if it's multi hit, add that functionality later
         }
 
@@ -222,20 +219,17 @@ public class scr_Tile : MonoBehaviour{
             case 0: //Is Poisoned
                 isPoisoned = true;
                 SetSpriteRendererColor(BlightedColor);
-                Debug.Log("Shits all nasty");
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
             case 1: //Is on Fire
                 isOnFire = true;
                 SetSpriteRendererColor(FireColor);
-                Debug.Log("Shits on fire");
                 StartCoroutine(DamageTile(rate, damage));           
                 StartCoroutine(RevertTile(duration));
                 break;
             case 2: //Is Flooded
                 isFlooded = true;
-                Debug.Log("Shits flooded");
                 SetSpriteRendererColor(FloodedColor);
                 StartCoroutine(RevertTile(duration));
                 break;

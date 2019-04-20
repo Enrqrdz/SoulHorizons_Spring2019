@@ -211,7 +211,7 @@ public class scr_FoulTrifling : scr_EntityAI
             case 0:
                 completedTask = false;
                 Move();
-                yield return new WaitForSecondsRealtime(movementInterval);
+                yield return new WaitForSeconds(movementInterval);
                 state = 1;
                 completedTask = true;
                 break;
@@ -225,7 +225,7 @@ public class scr_FoulTrifling : scr_EntityAI
                     MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, yDirection);
                     attackCounter++;
                     AttackManager();
-                    yield return new WaitForSecondsRealtime(movementInterval);
+                    yield return new WaitForSeconds(movementInterval);
                     entity.isImmobile = false;
                     if (entity._gridPos.y == 0)
                     {
@@ -239,7 +239,7 @@ public class scr_FoulTrifling : scr_EntityAI
                 }
                 completedTask = true;
                 state = 0;
-                yield return new WaitForSecondsRealtime(movementInterval);
+                yield return new WaitForSeconds(movementInterval);
                 entity.isImmobile = false;
                 break;
             case 2:

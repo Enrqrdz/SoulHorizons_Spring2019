@@ -139,7 +139,7 @@ public class scr_PlayerBlaster : MonoBehaviour {
 
     private IEnumerator MultiplierReset(float resetTime)
     {
-        yield return new WaitForSecondsRealtime(resetTime);
+        yield return new WaitForSeconds(resetTime);
     }
 
     //Set the damage multiplier to a certain number for an amount of time
