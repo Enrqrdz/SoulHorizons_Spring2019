@@ -26,16 +26,18 @@ public class RegionManager : MonoBehaviour
 
     void Start()
     {        
-        if(SaveManager.IsSaveLoaded())
+        if(!SaveManager.IsSaveLoaded())
         {
-            currentRegion = SaveManager.currentGame.GetRegion();
-            if(currentRegion == null)
-            {
-                currentRegion = regionGenerator.GenerateRegion();
-                SaveManager.currentGame.SetRegion(currentRegion);
-            }
+            SaveManager.NewSave();
+
+            ScriptableObjectFinder finder = GameObject.Find("ScriptableObjectFinder").GetComponent<ScriptableObjectFinder>();
+            List<CardState> startingDeck = finder.GetStartingDeck();
+            SaveManager.currentGame.inventory.AddCardToInventory(startingDeck);
+            SaveManager.currentGame.inventory.AddCardToDeck(startingDeck);
         }
-        else
+
+        currentRegion = SaveManager.currentGame.GetRegion();
+        if(currentRegion == null)
         {
             currentRegion = regionGenerator.GenerateRegion();
             SaveManager.currentGame.SetRegion(currentRegion);
