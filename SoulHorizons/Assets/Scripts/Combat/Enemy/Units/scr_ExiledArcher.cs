@@ -21,7 +21,9 @@ public class scr_ExiledArcher : scr_EntityAI {
     private bool goBackwards = false;
     private int movePosition = 0;
 
-    private int hunterShotDecider;
+    [HideInInspector]
+    public int hunterShotDecider;
+
     AudioSource Attack_SFX;
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
@@ -127,16 +129,21 @@ public class scr_ExiledArcher : scr_EntityAI {
         randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
         Debug.Log(hunterShotDecider + "ActualAttack");
         
-        if (hunterShotDecider == 0 || hunterShotDecider == 6)
+        if (randomVal == 0 || randomVal == 6)
         {
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
         }
         else
         {
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         }
     }
+
+    
 
     private IEnumerator HunterShot()
     {
@@ -148,7 +155,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         Attack_SFX.Play();
         anim.SetBool("Attack", true);
         Debug.Log(hunterShotDecider + "Coroutine");
-        if (hunterShotDecider == 0 || hunterShotDecider == 6)
+        /*if (hunterShotDecider == 0 || hunterShotDecider == 6)
         {
             yield return new WaitForSeconds(.85f);
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
@@ -158,7 +165,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             yield return new WaitForSeconds(.85f);
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
-        }
+        }*/
         yield return new WaitForSeconds(hSCooldownTime);
         hSOnCD = false;
     }
