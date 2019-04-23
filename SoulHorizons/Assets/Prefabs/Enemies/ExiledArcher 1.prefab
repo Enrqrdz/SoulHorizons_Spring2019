@@ -93,8 +93,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b30cb5074d4cadc40b8b84e8568d4dcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   anim: {fileID: 95959456289832174}
 --- !u!114 &114659336639739948
 MonoBehaviour:
@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13869927532815448b29eb182919dbc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
   hunterShot: {fileID: 11400000, guid: 96c867f804731764db7981afb6e89a3c, type: 2}
@@ -115,6 +115,8 @@ MonoBehaviour:
   arrowRain: {fileID: 11400000, guid: 320a8358f456ced43b8ea33ecfec776c, type: 2}
   aRInterval: 5
   movementInterval: 0
+  SFX_Sources: []
+  movements_SFX: []
   attacks_SFX:
   - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
 --- !u!82 &82002260226468596
@@ -228,7 +230,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -306,8 +308,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   type: 0
   _gridPos: {x: 0, y: 0}
   gridPositions: []
@@ -344,8 +346,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13869927532815448b29eb182919dbc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
   hunterShot: {fileID: 11400000, guid: 96c867f804731764db7981afb6e89a3c, type: 2}
@@ -353,8 +355,15 @@ MonoBehaviour:
   arrowRain: {fileID: 11400000, guid: 320a8358f456ced43b8ea33ecfec776c, type: 2}
   aRInterval: 5
   movementInterval: 2.5
+  SFX_Sources:
+  - {fileID: 82240855345996476}
+  - {fileID: 82240855345996476, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
+  - {fileID: 82240855345996476, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
+  movements_SFX:
+  - {fileID: 8300000, guid: f5b38e9c3c02bfc479d50f0c38163efd, type: 3}
   attacks_SFX:
   - {fileID: 8300000, guid: d25492f55425f534994a68501fb4cc25, type: 3}
+  - {fileID: 8300000, guid: b976a4af7f206084d9c2514315c76698, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -728,12 +737,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.2
       objectReference: {fileID: 0}
-    - target: {fileID: 6890958084846689348, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+    - target: {fileID: 6890664168625193128, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6890664168625193128, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+    - target: {fileID: 6890958084846689348, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -741,7 +750,7 @@ PrefabInstance:
     - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: targetEntity
-      value: 
+      value:
       objectReference: {fileID: 114725702907161856}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}

@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   type: 0
   _gridPos: {x: 0, y: 0}
   gridPositions: []
@@ -176,7 +176,7 @@ MonoBehaviour:
   isImmobile: 0
   hasShield: 0
   hurts_SFX:
-  - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}
   die_SFX: {fileID: 8300000, guid: e8f86f352c7d3ec4aa8b9948ce4e9c48, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
@@ -191,15 +191,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49b4527ed80ff73418bacbccda8c4cb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
   movementInterval: 0.75
-  attackInterval: 0.005
+  attackInterval: 0.25
   Scratch: {fileID: 11400000, guid: 33acc9c802efedd448937f725254233f, type: 2}
   movements_SFX:
-  - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}
+  - {fileID: 0}
 --- !u!82 &82587730288405618
 AudioSource:
   m_ObjectHideFlags: 0
@@ -561,7 +561,7 @@ PrefabInstance:
     - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: targetEntity
-      value: 
+      value:
       objectReference: {fileID: 114725702907161856}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}

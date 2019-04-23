@@ -9,7 +9,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public AttackData hunterShot;
     public float hSChargeTime;
-    private bool hSOnCD = false;   //On Cooldown 
+    private bool hSOnCD = false;   //On Cooldown
     private float hSCooldownTime = 1.5f;
 
     public AttackData arrowRain;
@@ -23,8 +23,12 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     [HideInInspector]
     public int hunterShotDecider;
+    public AudioSource[] SFX_Sources;
 
     AudioSource Attack_SFX;
+    AudioSource Footsteps_SFX;
+    public AudioClip[] movements_SFX;
+    private AudioClip movement_SFX;
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
 
@@ -34,11 +38,17 @@ public class scr_ExiledArcher : scr_EntityAI {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[1];
         hunterShotDecider = Random.Range(0, 6);
-        Debug.Log(hunterShotDecider + " Start");
+        Footsteps_SFX = SFX_Sources[0];
     }
 
     public override void Move()
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Footsteps_SFX = SFX_Sources[0];
+        int index = Random.Range(0, movements_SFX.Length);
+        movement_SFX = movements_SFX[index];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
         int xRange = scr_Grid.GridController.columnSizeMax;
@@ -60,7 +70,7 @@ public class scr_ExiledArcher : scr_EntityAI {
                 }
                 return;
             }
-            else 
+            else
             {
                 goBackwards = !goBackwards;
                 newPosition = PickMovePosition(xPos, yPos, movePosition, goBackwards);
@@ -128,31 +138,37 @@ public class scr_ExiledArcher : scr_EntityAI {
         int randomVal;
         randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
         Debug.Log(hunterShotDecider + "ActualAttack");
-        
+
         if (randomVal == 0 || randomVal == 6)
         {
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[1];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
         }
         else
         {
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[0];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         }
     }
 
-    
+
 
     private IEnumerator HunterShot()
     {
         hSOnCD = true;
         yield return new WaitForSeconds(hSChargeTime);
-        int index = Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[index];
-        Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
         anim.SetBool("Attack", true);
         Debug.Log(hunterShotDecider + "Coroutine");
         /*if (hunterShotDecider == 0 || hunterShotDecider == 6)
@@ -172,7 +188,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     private IEnumerator ArrowRain(float _aRInterval) //Maybe one day we'll put this in
     {
-        //TELEGRAPH 
+        //TELEGRAPH
         canArrowRain = false;
         yield return new WaitForSeconds(1f);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -197,7 +213,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         }
         else if (movePosition == 1)
         {
-            if (backwards == false) 
+            if (backwards == false)
             {
                 return new Vector2(xPos - 1, yPos + 1);
             }
