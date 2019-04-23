@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  height: 1
+  width: 1
   _gridPos: {x: 3, y: 2}
   gridPositions: []
   _health:
@@ -168,11 +170,13 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
   lerpSpeed: 100
   has_iframes: 0
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}

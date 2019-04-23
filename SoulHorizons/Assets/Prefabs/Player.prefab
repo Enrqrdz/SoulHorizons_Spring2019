@@ -163,7 +163,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 100
     shield: 0
@@ -174,11 +177,13 @@ MonoBehaviour:
     TerrColor: {r: 1, g: 1, b: 1, a: 1}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212424679629100636}
+  hitShader: {fileID: 0}
   lerpSpeed: 250
   has_iframes: 1
   invincible: 0
   invulnTime: 1
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 4794852b9ebf0c843b5ac9e56691af5e, type: 3}
@@ -430,7 +435,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 36952d6bc34f6244db8a4d1f577bc80f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

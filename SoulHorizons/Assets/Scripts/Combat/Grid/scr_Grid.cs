@@ -6,8 +6,8 @@ public class scr_Grid : MonoBehaviour
 {
     public GridGenerator gridGenerator;
 
-    [HideInInspector]public int columnSizeMax;
-    [HideInInspector]public int rowSizeMax;
+    [HideInInspector] public int columnSizeMax;
+    [HideInInspector] public int rowSizeMax;
     public scr_Tile[,] grid;
     public Entity[] activeEntities;
 
@@ -17,15 +17,15 @@ public class scr_Grid : MonoBehaviour
 
     private void Awake()
     {
-        GridController = this;     
+        GridController = this;
     }
 
     private void Start()
     {
-        if(SaveManager.IsSaveLoaded())
+        if (SaveManager.IsSaveLoaded())
             encounter = SaveManager.currentGame.GetCurrentEncounterData();
 
-        InitEncounter(); 
+        InitEncounter();
     }
 
     public bool CheckIfOccupied(int x, int y)
@@ -35,7 +35,7 @@ public class scr_Grid : MonoBehaviour
     public bool CheckIfActive(int x, int y, ActiveAttack _activeAttack)
     {
 
-        return grid[x, y].isActive; 
+        return grid[x, y].isActive;
     }
 
     public bool CheckIfFlooded(int x, int y)
@@ -60,9 +60,9 @@ public class scr_Grid : MonoBehaviour
         }
     }
 
-    public float GetTileBuff (int x, int y)
+    public float GetTileBuff(int x, int y)
     {
-        return grid[x, y].GetTileBuff(); 
+        return grid[x, y].GetTileBuff();
     }
 
     public float GetTileDamage(int x, int y)
@@ -74,7 +74,7 @@ public class scr_Grid : MonoBehaviour
     {
         columnSizeMax = new_xSizeMax;
         rowSizeMax = new_ySizeMax;
-        grid = gridGenerator.GenerateGrid(encounter); 
+        grid = gridGenerator.GenerateGrid(encounter);
     }
 
     //BUG - AT START TILES DON'T COUNT AS OCCUPIED, AFTER INIT SET TILES TO OCCUPIED FOR INITIALIZED ENTITIES
@@ -86,8 +86,8 @@ public class scr_Grid : MonoBehaviour
         rowSizeMax = encounter.GetNumberOfRows();
         //calling in awake as a debug, should be called in Encounter
         SetNewGrid(columnSizeMax, rowSizeMax);
-        activeEntities = new Entity[encounter.entities.Length]; 
-        for(int x = 0; x < activeEntities.Length; x++)
+        activeEntities = new Entity[encounter.entities.Length];
+        for (int x = 0; x < activeEntities.Length; x++)
         {
             Entity _entity = new Entity();
             _entity = (Entity)Instantiate(encounter.entities[x].entity, Vector3.zero, Quaternion.identity);
@@ -97,14 +97,15 @@ public class scr_Grid : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         //Debug.Log("CENTER: " + grid[0, 0].transform.position.x);
     }
 
-    public void PrimeNextTile(int x , int y)
+    public void PrimeNextTile(int x, int y)
     {
-        if(LocationOnGrid(x , y ))
-            grid[x, y].Prime(); 
+        if (LocationOnGrid(x, y))
+            grid[x, y].Prime();
     }
 
     /// <summary>
@@ -117,7 +118,7 @@ public class scr_Grid : MonoBehaviour
         if (LocationOnGrid(x, y))
         {
             grid[x, y].Activate();
-            
+
         }
     }
     public void ActivateTile(int x, int y, ActiveAttack activeAttack)
@@ -152,13 +153,13 @@ public class scr_Grid : MonoBehaviour
 
     public bool LocationOnGrid(int x, int y)
     {
-        if(x >= 0 && grid.GetLength(0) > x && grid.GetLength(1) > y && y >=0)
+        if (x >= 0 && grid.GetLength(0) > x && grid.GetLength(1) > y && y >= 0)
         {
             return true;
         }
         return false;
     }
-    
+
     public void DeactivateTile(int x, int y)
     {
         if (LocationOnGrid(x, y))
@@ -184,14 +185,14 @@ public class scr_Grid : MonoBehaviour
     public void SetTileTerritory(int x, int y, TerrName newName, Color newColor)
     {
         grid[x, y].SetTerritory(newName, newColor);
-   
+
     }
 
     public Territory ReturnTerritory(int x, int y)
     {
         return grid[x, y].territory;
     }
-    
+
     /// <summary>
     /// Check if an active entity is at the attack's position to be hit by the attack. Change the attack based on the results and return it.
     /// </summary>
@@ -199,14 +200,14 @@ public class scr_Grid : MonoBehaviour
     /// <returns></returns>
     public ActiveAttack AttackPosition(ActiveAttack attack)
     {
-        for (int i=0; i < activeEntities.Length; i++)
+        for (int i = 0; i < activeEntities.Length; i++)
         {
             bool hitsMultiTiled = false;
             bool hitsSingleTiled = activeEntities[i]._gridPos == attack.position;
 
             if (activeEntities[i].gridPositions != null)
             {
-                for(int j = 0; j < activeEntities[i].gridPositions.Length; j++)
+                for (int j = 0; j < activeEntities[i].gridPositions.Length; j++)
                 {
                     hitsMultiTiled = activeEntities[i].gridPositions[j] == attack.position;
                     if (hitsMultiTiled)
@@ -214,7 +215,7 @@ public class scr_Grid : MonoBehaviour
                 }
             }
 
-            if ((activeEntities[i].gameObject.activeSelf) && 
+            if ((activeEntities[i].gameObject.activeSelf) &&
                 (hitsSingleTiled || hitsMultiTiled) &&
                 (activeEntities[i].type != attack.entity.type))
             {
@@ -233,7 +234,7 @@ public class scr_Grid : MonoBehaviour
                 attack.attack.ImpactEffects();
             }
         }
-        return attack; 
+        return attack;
     }
 
     /// <summary>
@@ -246,7 +247,7 @@ public class scr_Grid : MonoBehaviour
     {
         if (LocationOnGrid(x, y))
         {
-            return grid[x,y].entityOnTile;
+            return grid[x, y].entityOnTile;
         }
         return null;
     }
@@ -259,7 +260,7 @@ public class scr_Grid : MonoBehaviour
     /// <returns></returns>
     public bool IsTileUnoccupied(int x, int y)
     {
-        return LocationOnGrid(x, y) && !grid[x,y].occupied;
+        return LocationOnGrid(x, y) && !grid[x, y].occupied;
     }
 
     /// <summary>
@@ -274,7 +275,7 @@ public class scr_Grid : MonoBehaviour
             return new Vector3(grid[x, y].transform.position.x, grid[x, y].transform.position.y, 0);
 
         else
-            return new Vector3(-100,-100,-100); // will def be off the grid 
+            return new Vector3(-100, -100, -100); // will def be off the grid 
 
     }
     /// <summary>
@@ -284,7 +285,7 @@ public class scr_Grid : MonoBehaviour
     /// <returns></returns>
     public Vector3 GetWorldLocation(Vector2Int pos)
     {
-        if (LocationOnGrid(pos.x,pos.y))
+        if (LocationOnGrid(pos.x, pos.y))
             return new Vector3(grid[pos.x, pos.y].transform.position.x, grid[pos.x, pos.y].transform.position.y, 0);
 
         else
@@ -295,26 +296,27 @@ public class scr_Grid : MonoBehaviour
     public void RemoveEntity(Entity entity)
     {
         float tempID = entity.gameObject.GetInstanceID();
-        for (int i = 0; i < activeEntities.Length; i++){
+        for (int i = 0; i < activeEntities.Length; i++)
+        {
             if (activeEntities[i].gameObject.GetInstanceID() == tempID)
             {
                 Debug.Log("help me");
                 Entity[] temporaryEntities = new Entity[activeEntities.Length - 1];
-                for(int j = 0; j < activeEntities.Length; j++)
+                for (int j = 0; j < activeEntities.Length; j++)
                 {
                     if (j >= i)
                     {
                         temporaryEntities[j] = activeEntities[j + 1];
-                        
+
                     }
-                    else if(j < i)
+                    else if (j < i)
                     {
                         temporaryEntities[j] = activeEntities[j];
                     }
                 }
                 Debug.Log(temporaryEntities);
                 activeEntities = temporaryEntities;
-                Destroy(entity.gameObject); 
+                Destroy(entity.gameObject);
 
             }
             else
@@ -322,71 +324,6 @@ public class scr_Grid : MonoBehaviour
                 return;
             }
         }
-        
-    }
 
-    //Seize Domain Card
-    public void seizeDomain(float duration)
-    {
-        bool colFound = false;
-        //Debug.Log("SEIZE!");
-        for (int i = 0; i < columnSizeMax; i++)
-        {
-
-            for (int j = 0; j < rowSizeMax; j++)
-            {
-                //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
-                if (grid[i, j].territory.name != TerrName.Player)
-                {
-                    //Debug.Log("Column: " + i);
-                    colFound = true;
-                 
-                    if (!grid[i, j].occupied)
-                    {
-                        //Debug.Log("SEIZING!");
-                        SetTileTerritory(i, j, TerrName.Player, scr_TileDict.colorDict[TerrName.Player]);
-                    }
-                }
-            }
-            //Debug.Log(colFound);
-            if (colFound)
-            {
-                StartCoroutine(reSeize(duration));
-                break;
-            }
-
-
-        }
-    }
-
-    private IEnumerator reSeize(float waitTime)
-    {
-        Debug.Log("RESEIZE");
-        yield return new WaitForSeconds(waitTime);
-        bool colFound = false;
-        for (int i = columnSizeMax - 1; i >= 0; i--)
-        {
-
-            for (int j = 0; j < rowSizeMax; j++)
-            {
-                //Debug.Log(scr_Grid.GridController.grid[i, j].territory.name);
-                if (grid[i, j].territory.name != TerrName.Enemy)
-                {
-                    //Debug.Log("Column: " + i);
-                    colFound = true;
-
-                    if (!grid[i, j].occupied)
-                    {
-                        //Debug.Log("SEIZING!");
-                        SetTileTerritory(i, j, TerrName.Enemy, scr_TileDict.colorDict[TerrName.Enemy]);
-                    }
-                }
-            }
-            //Debug.Log(colFound);
-            if (colFound)
-            {
-                break;
-            }
-        }
     }
 }

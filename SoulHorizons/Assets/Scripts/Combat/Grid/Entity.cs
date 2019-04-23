@@ -16,14 +16,19 @@ public class Entity : MonoBehaviour
 {
     public EntityType type;
 
+    public int height = 1;
+    public int width = 1;
     public Vector2Int _gridPos = new Vector2Int();
     public Vector2Int[] gridPositions;
     public Health _health = new Health();
     public scr_EntityAI _ai;
     public Territory entityTerritory;
     public SpriteRenderer spr;
+    public Shader hitShader;
+    private Shader baseShader;
     Color baseColor;
     public float lerpSpeed;
+    private float hitFlashTimer = .01f;
 
     public bool has_iframes;
     public bool invincible = false;
@@ -51,6 +56,7 @@ public class Entity : MonoBehaviour
     {
         deathManager = GameObject.Find("DeathSFXManager");
         baseColor = spr.color;
+        baseShader = spr.material.shader;
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Hurt_SFX = SFX_Sources[1];
     }
@@ -67,7 +73,7 @@ public class Entity : MonoBehaviour
         {
             _ai.Die();
         }
-        
+
         transform.position = Vector3.Lerp(transform.position, scr_Grid.GridController.GetWorldLocation(_gridPos.x, _gridPos.y), (lerpSpeed*Time.deltaTime));
         //Counts down iframes
         if (invulnCounter > 0)
@@ -87,13 +93,13 @@ public class Entity : MonoBehaviour
                 SetShield(false, 0f, 0, 0, 0);
             }
         }
-      
+
     }
 
     public void InitPosition(int x, int y)
     {
         _gridPos = new Vector2Int(x, y);
-        transform.position = scr_Grid.GridController.GetWorldLocation(_gridPos.x, _gridPos.y); 
+        transform.position = scr_Grid.GridController.GetWorldLocation(_gridPos.x, _gridPos.y);
         scr_Grid.GridController.SetTileOccupied(true, x, y, this);
         spr.sortingOrder = -_gridPos.y;
     }
@@ -109,6 +115,11 @@ public class Entity : MonoBehaviour
         if (_gridPos == new Vector2Int(x, y))
         {                                                                                                         //if we set transform, and we havent moved
             return;                                                                                                                                    //return
+        }
+
+        if(height > 1 || width > 1)
+        {
+            SetLargeTransform(new Vector2Int(x, y));
         }
 
         //Animate movement
@@ -132,7 +143,7 @@ public class Entity : MonoBehaviour
         spr.sortingOrder = -_gridPos.y;
         AttackData atk = AttackController.Instance.MoveIntoAttackCheck(_gridPos, this);
 
-        
+
         if (hasShield)
         {
             Debug.Log(shieldProtection);
@@ -153,16 +164,16 @@ public class Entity : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     //NOTE: GridPosition is the origin of the large transform, or the bottom leftmost tile.
-    public void SetLargeTransform(Vector2Int gridPosition, int width, int height)
+    public void SetLargeTransform(Vector2Int gridPosition)
     {
         //Check if you are already on this tile
         if (_gridPos == gridPosition || width <= 0 || height <= 0)
-        {                                                                                                        
-            return;                                                                                                                                    
+        {
+            return;
         }
 
         //Animate movement
@@ -202,7 +213,7 @@ public class Entity : MonoBehaviour
                 atk = AttackController.Instance.MoveIntoAttackCheck(gridPositions[i * height + j], this);
             }
         }
-     
+
         if (atk != null)
         {
             if (!invincible)
@@ -240,7 +251,7 @@ public class Entity : MonoBehaviour
             {
                 _health.TakeDamage(0);
             }
-            StartCoroutine(HitClock(.3f));
+            StartCoroutine(HitClock(hitFlashTimer));
             if (type == EntityType.Player)
             {
                 //camera shake
@@ -271,7 +282,7 @@ public class Entity : MonoBehaviour
             {
                 _health.TakeDamage(0);
             }
-            StartCoroutine(HitClock(.3f));
+            StartCoroutine(HitClock(hitFlashTimer));
             if (type == EntityType.Player)
             {
                 //camera shake
@@ -334,8 +345,8 @@ public class Entity : MonoBehaviour
         }
         //Debug.Log("I AM DEAD");
         scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
-        gameObject.SetActive(false); 
-        //scr_Grid.GridController.RemoveEntity(this);  
+        gameObject.SetActive(false);
+        //scr_Grid.GridController.RemoveEntity(this);
     }
 
     public void TakeDamageOverTime (float duration, float damageRate, int damage)
@@ -390,7 +401,7 @@ public class Entity : MonoBehaviour
 
     IEnumerator HitClock(float hitTime)
     {
-        spr.color = Color.red;
+        spr.material.shader = hitShader;
         //Debug.Log("I'M RED");
         yield return new WaitForSeconds(hitTime);
         spr.color = baseColor;
@@ -398,7 +409,7 @@ public class Entity : MonoBehaviour
     }
 
     IEnumerator DamageOverTime (float rate, int damage)
-    {       
+    {
         yield return new WaitForSeconds(rate);
         _health.TakeDamage(damage);
     }
@@ -431,7 +442,7 @@ public class Health{
         {
             hp = 0;
         }
-        //Debug.Log("MY HP: " + hp);  This was bothering me, uncomment if you desire 
+        //Debug.Log("MY HP: " + hp);  This was bothering me, uncomment if you desire
 
     }
 
@@ -448,11 +459,3 @@ public class Health{
     }
 
 }
-
-
-
-
-
-    
-
-

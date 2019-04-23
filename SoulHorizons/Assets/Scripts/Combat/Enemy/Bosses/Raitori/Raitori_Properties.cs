@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Raitori_Properties:MonoBehaviour
+public class Raitori_Properties : MonoBehaviour
 {
-    //Properties
-    [Tooltip("Width in number of tiles")]
-    public int width = 2;
-    [Tooltip("Height in number of tiles")]
-    public int height = 3;
-
     //Attacks
     //Constant ability that is on throughout the entirety of the encounter.
     public AttackData StormStrikes;

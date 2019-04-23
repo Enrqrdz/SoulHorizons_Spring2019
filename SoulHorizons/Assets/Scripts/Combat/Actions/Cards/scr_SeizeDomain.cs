@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/SeizeDomain")]
@@ -15,6 +16,6 @@ public class scr_SeizeDomain : ActionData
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = SeizeDomainSFX;
         PlayCardSFX.Play();
-        scr_Grid.GridController.seizeDomain(duration);
+        DomainManager.Instance.Activate(duration);
     }
 }

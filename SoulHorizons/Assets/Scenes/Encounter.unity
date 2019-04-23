@@ -166,7 +166,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -201, y: 228.40039}
+  m_AnchoredPosition: {x: -200.99994, y: 228.40039}
   m_SizeDelta: {x: -1709, y: 129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &93484413
@@ -440,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222816440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 865452682}
@@ -2799,7 +2799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -157.5498
+      value: -157.54974
       objectReference: {fileID: 0}
     - target: {fileID: 616674212, guid: 8988e1abacdd448079aae117df5d48cf, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4120,6 +4120,7 @@ GameObject:
   - component: {fileID: 2115534117}
   - component: {fileID: 2115534118}
   - component: {fileID: 2115534119}
+  - component: {fileID: 2115534120}
   m_Layer: 0
   m_Name: GridController
   m_TagString: GridController
@@ -4157,7 +4158,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  encounter: {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4401,6 +4402,19 @@ MonoBehaviour:
   tileSpacing: {x: 0.7, y: 0.55}
   columnOffset: 0
   rowOffset: 0
+--- !u!114 &2115534120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115534115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2116221a681e9bb47ae33743d3b442c2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  playerColumns:
 --- !u!1 &2121924710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7304582539461992430, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,
