@@ -402,10 +402,8 @@ public class Entity : MonoBehaviour
     IEnumerator HitClock(float hitTime)
     {
         spr.material.shader = hitShader;
-        //Debug.Log("I'M RED");
         yield return new WaitForSeconds(hitTime);
-        spr.color = baseColor;
-        //Debug.Log("NOT RED");
+        spr.material.shader = baseShader;
     }
 
     IEnumerator DamageOverTime (float rate, int damage)
