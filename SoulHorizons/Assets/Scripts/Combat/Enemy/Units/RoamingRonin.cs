@@ -19,8 +19,6 @@ public class RoamingRonin : scr_EntityAI
     int maxHealth = 0;
     int currHealth = 0;
 
-    public int width = 2; //Takes up 2 spaces horizontally
-    public int height = 2; // takes up 2 spaces vertically
     int xRange = 0;
     int yRange = 0;
     int transitionNumber;
@@ -60,8 +58,8 @@ public class RoamingRonin : scr_EntityAI
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         maxHealth = entity._health.hp;
-        xRange = scr_Grid.GridController.columnSizeMax - width; //8 - 2
-        yRange = scr_Grid.GridController.rowSizeMax - height;   //4 - 2
+        xRange = scr_Grid.GridController.columnSizeMax - entity.width;
+        yRange = scr_Grid.GridController.rowSizeMax - entity.height;
         SetPossibleHeadPositions();
         SetMovePattern();
     }
@@ -80,7 +78,6 @@ public class RoamingRonin : scr_EntityAI
 
     private void SetPossibleHeadPositions()
     {
-        //All possible positions for Raitori
         possibleHeadPositions = new[] {
                                         new Vector2Int(xRange - 2, yRange), new Vector2Int(xRange - 1, yRange), new Vector2Int(xRange, yRange),
                                         new Vector2Int(xRange - 2, yRange - 2), new Vector2Int(xRange - 1, yRange - 2), new Vector2Int(xRange, yRange - 2),
@@ -90,7 +87,6 @@ public class RoamingRonin : scr_EntityAI
 
     private void SetMovePattern()
     {
-        //Zig-Zag Movement Pattern for Raitori
         movePattern = new[] {
                                 possibleHeadPositions[2], possibleHeadPositions[8], possibleHeadPositions[5],
                                 possibleHeadPositions[4], possibleHeadPositions[7], possibleHeadPositions[1],
@@ -126,7 +122,7 @@ public class RoamingRonin : scr_EntityAI
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name && scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            entity.SetLargeTransform(currentHeadPosition, width, height);
+            entity.SetLargeTransform(currentHeadPosition);
         }
         else
         {
@@ -163,7 +159,7 @@ public class RoamingRonin : scr_EntityAI
 
         if (scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            entity.SetLargeTransform(currentHeadPosition, width, height);
+            entity.SetLargeTransform(currentHeadPosition);
         }
         else
         {
@@ -182,7 +178,7 @@ public class RoamingRonin : scr_EntityAI
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name && scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            entity.SetLargeTransform(currentHeadPosition, width, height);
+            entity.SetLargeTransform(currentHeadPosition);
         }
         else
         {
@@ -207,8 +203,6 @@ public class RoamingRonin : scr_EntityAI
 
     void StartRangedAttack()
     {
-        //insert animation here
-        anim.SetBool("RoninRanged", true);
         if (attackPhase == 0)
         {
             AttackController.Instance.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y, entity);
@@ -226,7 +220,7 @@ public class RoamingRonin : scr_EntityAI
         attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
-
+        PrimeAttackTiles(rangedAttack, entity._gridPos.x, entity._gridPos.y);
         Debug.Log("Air Slash");
         if (attackPhase == 0)
         {
@@ -275,9 +269,9 @@ public class RoamingRonin : scr_EntityAI
     {
         try
         {
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < entity.width; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < entity.height; j++)
                 {
                     int xPosition = (int)movePattern[transitionNumber].x + i;
                     int yPosition = (int)movePattern[transitionNumber].y + j;
@@ -311,7 +305,7 @@ public class RoamingRonin : scr_EntityAI
         {
             case 0:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
+                yield return new WaitForSeconds(movementInterval - movementIntervalModfier);
                 Move();
                 state = 1;
                 completedTask = true;
@@ -319,7 +313,7 @@ public class RoamingRonin : scr_EntityAI
             case 1:
                 completedTask = false;
                 gonnaMelee = CheckIfInMeleeRange();
-                yield return new WaitForSecondsRealtime(0.75f);
+                yield return new WaitForSeconds(0.75f);
                 if (gonnaMelee == true)
                 {
                     state = 2;
@@ -333,28 +327,29 @@ public class RoamingRonin : scr_EntityAI
             case 2:
                 completedTask = false;
                 GoToMelee();
-                yield return new WaitForSecondsRealtime(.25f);
+                PrimeAttackTiles(meleeAttack, entity._gridPos.x, entity._gridPos.y);
+                yield return new WaitForSeconds(.25f);
                 StartMeleeAttack();
                 state = 3;
-                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
+                yield return new WaitForSeconds(movementInterval - movementIntervalModfier);
                 gonnaMelee = false;
                 completedTask = true;
                 break;
             case 3:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(movementInterval - movementIntervalModfier);
+                yield return new WaitForSeconds(movementInterval - movementIntervalModfier);
                 MoveBack();
                 state = 4;
                 completedTask = true;
                 break;
             case 4:
                 completedTask = false;
-                yield return new WaitForSecondsRealtime(rangedAttackInterval);
+                PrimeAttackTiles(rangedAttack, entity._gridPos.x, entity._gridPos.y);
+                yield return new WaitForSeconds(rangedAttackInterval);
                 StartRangedAttack();
                 state = 0;
                 completedTask = true;
                 break;
-
         }
         yield return null;
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded27370048e04f4fa3a1adf8178a690, type: 3}
   m_Name: Atk_Sword Cross
   m_EditorClassIdentifier: 
-  incrementTime: 0.05
+  incrementTime: 0.5
   maxIncrementRange: 3
   modifier: 1
   damage: 6

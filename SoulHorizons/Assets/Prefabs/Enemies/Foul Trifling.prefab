@@ -225,8 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  movementIntervalLower: 2
-  movementIntervalUpper: 3
+  movementInterval: 0
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:
@@ -312,7 +311,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 50
     shield: 0
@@ -323,11 +325,13 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
   invulnTime: 100
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
@@ -349,8 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  movementIntervalLower: 1.8
-  movementIntervalUpper: 3
+  movementInterval: 1.5
   attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
   chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
   movements_SFX:

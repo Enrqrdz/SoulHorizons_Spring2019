@@ -198,10 +198,10 @@ public class scr_Critter : scr_EntityAI
 
     IEnumerator ScratchAttack (float attackInterval)
     {
-        scr_Grid.GridController.PrimeNextTile(entity._gridPos.x - 1, entity._gridPos.y);
+        PrimeAttackTiles(Scratch, entity._gridPos.x - 1, entity._gridPos.y);
         AttackController.Instance.AddNewAttack(Scratch, entity._gridPos.x - 1, entity._gridPos.y, entity);
-        yield return new WaitForSecondsRealtime(attackInterval);       
-        scr_Grid.GridController.DePrimeTile(entity._gridPos.x - 1, entity._gridPos.y);
+        yield return new WaitForSeconds(attackInterval);      
+
     }
 
     bool CheckAbleToAttack ()
@@ -222,7 +222,7 @@ public class scr_Critter : scr_EntityAI
                 attempts = 0;
                 Move();
                 state = 1;
-                yield return new WaitForSecondsRealtime(movementInterval);
+                yield return new WaitForSeconds(movementInterval);
                 canAttack = CheckAbleToAttack();
                 taskComplete = true;
                 
@@ -231,7 +231,6 @@ public class scr_Critter : scr_EntityAI
             case 1: //Move along the row
                 taskComplete = false;
                 attempts = 0;
-                Debug.Log(state);
                 int startPos = entity._gridPos.x;
                 int xRange = scr_Grid.GridController.columnSizeMax;
                 int xLimit = GetXLimit(startPos);
@@ -248,7 +247,7 @@ public class scr_Critter : scr_EntityAI
                 for (int i = 0; i < xRange; i++) //moves along the row either left or right then 
                 {
                     MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
-                    yield return new WaitForSecondsRealtime(movementInterval);
+                    yield return new WaitForSeconds(movementInterval);
                     if (entity._gridPos.x == startPos)
                     {
                         leftOrRight = !leftOrRight;
@@ -263,7 +262,7 @@ public class scr_Critter : scr_EntityAI
                 for (int i = 0; i < xRange; i++)
                 {
                     MoveAlongRow(entity._gridPos.x, entity._gridPos.y, xLimit, leftOrRight);
-                    yield return new WaitForSecondsRealtime(movementInterval);
+                    yield return new WaitForSeconds(movementInterval);
                     if (entity._gridPos.x == startPos)
                     {
                         leftOrRight = !leftOrRight;

@@ -153,9 +153,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   type: 0
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
   gridPositions: []
   _health:
@@ -168,6 +170,7 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
   lerpSpeed: 100
   has_iframes: 0
   invincible: 0
@@ -191,12 +194,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49b4527ed80ff73418bacbccda8c4cb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  movementIntervalLower: 0.75
-  movementIntervalUpper: 1.5
+  movementInterval: 0.75
+  attackInterval: 0.25
   Scratch: {fileID: 11400000, guid: 33acc9c802efedd448937f725254233f, type: 2}
   movements_SFX:
   - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}
@@ -498,6 +501,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4483777865337536}
     m_Modifications:
+    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 6893167082605971954, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -553,15 +561,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthBar
-      objectReference: {fileID: 0}
     - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: targetEntity
-      value: 
+      value:
       objectReference: {fileID: 114725702907161856}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}
