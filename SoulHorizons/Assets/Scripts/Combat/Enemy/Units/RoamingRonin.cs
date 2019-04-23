@@ -19,8 +19,6 @@ public class RoamingRonin : scr_EntityAI
     int maxHealth = 0;
     int currHealth = 0;
 
-    public int width = 2; //Takes up 2 spaces horizontally
-    public int height = 2; // takes up 2 spaces vertically
     int xRange = 0;
     int yRange = 0;
     int transitionNumber;
@@ -60,8 +58,8 @@ public class RoamingRonin : scr_EntityAI
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
         maxHealth = entity._health.hp;
-        xRange = scr_Grid.GridController.columnSizeMax - width; //8 - 2
-        yRange = scr_Grid.GridController.rowSizeMax - height;   //4 - 2
+        xRange = scr_Grid.GridController.columnSizeMax - entity.width;
+        yRange = scr_Grid.GridController.rowSizeMax - entity.height;
         SetPossibleHeadPositions();
         SetMovePattern();
     }
@@ -124,7 +122,7 @@ public class RoamingRonin : scr_EntityAI
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name && scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            entity.SetLargeTransform(currentHeadPosition, width, height);
+            entity.SetLargeTransform(currentHeadPosition);
         }
         else
         {
@@ -161,7 +159,7 @@ public class RoamingRonin : scr_EntityAI
 
         if (scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            entity.SetLargeTransform(currentHeadPosition, width, height);
+            entity.SetLargeTransform(currentHeadPosition);
         }
         else
         {
@@ -180,7 +178,7 @@ public class RoamingRonin : scr_EntityAI
 
         if (scr_Grid.GridController.ReturnTerritory(xPosition, yPosition).name == entity.entityTerritory.name && scr_Grid.GridController.CheckIfOccupied(xPosition, yPosition) == false)
         {
-            entity.SetLargeTransform(currentHeadPosition, width, height);
+            entity.SetLargeTransform(currentHeadPosition);
         }
         else
         {
@@ -271,9 +269,9 @@ public class RoamingRonin : scr_EntityAI
     {
         try
         {
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < entity.width; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < entity.height; j++)
                 {
                     int xPosition = (int)movePattern[transitionNumber].x + i;
                     int yPosition = (int)movePattern[transitionNumber].y + j;
