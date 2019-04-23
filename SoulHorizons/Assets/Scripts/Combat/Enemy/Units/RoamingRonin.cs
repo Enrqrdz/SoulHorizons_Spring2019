@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+[RequireComponent(typeof(AudioSource))]
 
 public class RoamingRonin : scr_EntityAI
 {
@@ -52,8 +53,8 @@ public class RoamingRonin : scr_EntityAI
     void Start()
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        //Attack_SFX = SFX_Sources[1];
         Footsteps_SFX = SFX_Sources[0];
-        Attack_SFX = SFX_Sources[0];
         anim = gameObject.GetComponentInChildren<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
@@ -114,6 +115,12 @@ public class RoamingRonin : scr_EntityAI
 
     public override void Move()
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Footsteps_SFX = SFX_Sources[0];
+        movement_SFX = movements_SFX[0];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
+
         transitionNumber += 1;
         transitionNumber %= movePattern.Length;
         xPosition = (int)movePattern[transitionNumber].x;
@@ -138,6 +145,12 @@ public class RoamingRonin : scr_EntityAI
 
     public void GoToMelee()
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Footsteps_SFX = SFX_Sources[0];
+        movement_SFX = movements_SFX[0];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
+
         int playerY = player.GetComponent<Entity>()._gridPos.y;      
         if (playerY == 0)
         {
@@ -203,6 +216,11 @@ public class RoamingRonin : scr_EntityAI
 
     void StartRangedAttack()
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Attack_SFX = SFX_Sources[0];
+        attack_SFX = attacks_SFX[0];
+        Attack_SFX.clip = attack_SFX;
+        Attack_SFX.Play();
         if (attackPhase == 0)
         {
             AttackController.Instance.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y, entity);
@@ -216,12 +234,8 @@ public class RoamingRonin : scr_EntityAI
 
     void RangedAttack()
     {
-        int index = UnityEngine.Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[index];
-        Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
+
         PrimeAttackTiles(rangedAttack, entity._gridPos.x, entity._gridPos.y);
-        Debug.Log("Air Slash");
         if (attackPhase == 0)
         {
             AttackController.Instance.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y, entity);
@@ -236,6 +250,11 @@ public class RoamingRonin : scr_EntityAI
     {
         //insert animation here
         anim.SetBool("RoninMelee", true);
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Attack_SFX = SFX_Sources[0];
+        attack_SFX = attacks_SFX[0];
+        Attack_SFX.clip = attack_SFX;
+        Attack_SFX.Play();
         if (attackPhase == 0)
         {
             AttackController.Instance.AddNewAttack(meleeAttack, currentHeadPosition.x - 1, currentHeadPosition.y, entity);
@@ -249,10 +268,7 @@ public class RoamingRonin : scr_EntityAI
 
     void MeleeAttack()
     {
-        int index = UnityEngine.Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[index];
-        Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
+
 
         Debug.Log("BACK SLASH");
         if (attackPhase == 0)

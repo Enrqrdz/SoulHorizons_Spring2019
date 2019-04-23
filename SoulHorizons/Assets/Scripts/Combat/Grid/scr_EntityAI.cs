@@ -34,12 +34,12 @@ public abstract class scr_EntityAI : MonoBehaviour {
 
     private IEnumerator DePrimeAttackTiles (AttackData attack, int startPoint, int yPos)
     {
+        Debug.Log("We Deprimin Bois");
         yield return new WaitForSeconds(attack.incrementTime * scr_Grid.GridController.rowSizeMax/2);
         for(int i = 0; i < attack.maxIncrementRange; i++)
         {
             scr_Grid.GridController.DePrimeTile(startPoint + i, yPos);
         }
     }
-
  
 }
