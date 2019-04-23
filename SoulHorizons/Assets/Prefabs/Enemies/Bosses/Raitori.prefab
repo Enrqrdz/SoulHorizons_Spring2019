@@ -306,6 +306,7 @@ MonoBehaviour:
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
@@ -329,7 +330,9 @@ MonoBehaviour:
   anim: {fileID: 0}
   Raitori: {fileID: 914252712182664076}
   movementInterval: 1.2
-  attacks_SFX: []
+  attacks_SFX:
+  - {fileID: 8300000, guid: b75cf3507f973d142b55d56a3314668f, type: 3}
+  - {fileID: 8300000, guid: 12a3cd800fad9204b9156c375fb8a915, type: 3}
 --- !u!114 &914252712182664076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,11 +696,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4483777865337536}
     m_Modifications:
-    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthBar
-      objectReference: {fileID: 0}
     - target: {fileID: 6893167082605971954, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -762,6 +760,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}

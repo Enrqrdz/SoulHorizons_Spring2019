@@ -22,7 +22,11 @@ public class scr_ExiledArcher : scr_EntityAI {
     private bool goBackwards = false;
     private int movePosition = 0;
 
+    public AudioSource[] SFX_Sources;
     AudioSource Attack_SFX;
+    AudioSource Footsteps_SFX;
+    public AudioClip[] movements_SFX;
+    private AudioClip movement_SFX;
     public AudioClip[] attacks_SFX;
     private AudioClip attack_SFX;
 
@@ -30,11 +34,18 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         anim = gameObject.GetComponentInChildren<Animator>();
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Attack_SFX = SFX_Sources[1]; 
+        Footsteps_SFX = SFX_Sources[0];
+        Attack_SFX = SFX_Sources[1];
     }
 
     public override void Move()
     {
+        AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+        Footsteps_SFX = SFX_Sources[0];
+        int index = Random.Range(0, movements_SFX.Length);
+        movement_SFX = movements_SFX[index];
+        Footsteps_SFX.clip = movement_SFX;
+        Footsteps_SFX.Play();
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
         int xRange = scr_Grid.GridController.columnSizeMax;
@@ -146,11 +157,21 @@ public class scr_ExiledArcher : scr_EntityAI {
         randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
         if (randomVal == 0 || randomVal == 5)
         {
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[1];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
         }
         else
         {
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[0];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         }
     }
@@ -159,10 +180,6 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         hSOnCD = true;
         yield return new WaitForSecondsRealtime(hSChargeTime);
-        int index = Random.Range(0, attacks_SFX.Length);
-        attack_SFX = attacks_SFX[index];
-        Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
         anim.SetBool("Attack", true);
         yield return new WaitForSecondsRealtime(hSCooldownTime);
         hSOnCD = false;
