@@ -56,6 +56,7 @@ Shader "Custom/Outline"
 					struct v2f 
 					{
 						float4 pos : SV_POSITION;
+						fixed4 color : COLOR;
 						float2 uv : TEXCOORD0;
 						float4 worldPosition : TEXCOORD1;
 						UNITY_VERTEX_OUTPUT_STEREO
@@ -65,6 +66,7 @@ Shader "Custom/Outline"
 					float4 _OutlineColor;
 					sampler2D _OutlineTex;
 					float4 _ClipRect;
+					fixed4 _TextureSampleAdd;
 
 					v2f vert(appdata IN) 
 					{
@@ -81,7 +83,7 @@ Shader "Custom/Outline"
 					fixed4 frag(v2f IN) : SV_Target
 					{
 						//half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
-						float4 texColor = tex2D(_OutlineTex, IN.uv);
+						float4 texColor = (tex2D(_OutlineTex, IN.uv) + _TextureSampleAdd * IN.color);
 
 						return texColor * _OutlineColor;
 					}
