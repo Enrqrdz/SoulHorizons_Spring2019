@@ -39,6 +39,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         Attack_SFX = SFX_Sources[1];
         hunterShotDecider = Random.Range(0, 6);
         Footsteps_SFX = SFX_Sources[0];
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
 
     public override void Move()
@@ -105,7 +106,6 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (!hSOnCD && HunterShotCheck())
         {
             hunterShotDecider = Random.Range(0, 6);
@@ -137,7 +137,6 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         int randomVal;
         randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
-        Debug.Log(hunterShotDecider + "ActualAttack");
 
         if (randomVal == 0 || randomVal == 6)
         {
@@ -170,7 +169,6 @@ public class scr_ExiledArcher : scr_EntityAI {
         hSOnCD = true;
         yield return new WaitForSeconds(hSChargeTime);
         anim.SetBool("Attack", true);
-        Debug.Log(hunterShotDecider + "Coroutine");
         /*if (hunterShotDecider == 0 || hunterShotDecider == 6)
         {
             yield return new WaitForSeconds(.85f);

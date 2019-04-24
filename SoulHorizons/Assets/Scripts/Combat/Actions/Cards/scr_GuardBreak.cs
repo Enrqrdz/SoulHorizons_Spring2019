@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Cards/GuardBreak")]
 [RequireComponent(typeof(AudioSource))]
@@ -29,9 +27,6 @@ public class scr_GuardBreak : ActionData
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
-        Debug.Log("Player X" + playerX);
-        Debug.Log("Player Y" + playerY);
-
         for (int i = 0; i < scr_Grid.GridController.columnSizeMax; i++)
         {
             enemy = scr_Grid.GridController.GetEntityAtPosition(i, playerY);
@@ -39,7 +34,6 @@ public class scr_GuardBreak : ActionData
             if (enemy != null && enemy.type == EntityType.Enemy)
             {
                 player.SetTransform(enemy._gridPos.x - 1, enemy._gridPos.y);
-                Debug.Log("Teleport!");
                 player.StartCoroutine(player.Teleport(teleportTime, GuardbreakDamage, playerX, playerY, enemy));
                 break;
             }

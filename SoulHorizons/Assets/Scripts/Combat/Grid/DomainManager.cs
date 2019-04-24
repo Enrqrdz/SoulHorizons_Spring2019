@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DomainManager : MonoBehaviour
@@ -8,8 +7,8 @@ public class DomainManager : MonoBehaviour
 
     private int numberOfColumns;
     private int numberOfRows;
-    public List<int> playerColumns = new List<int>();
-    private int adjacentColumn;
+    public int playerColumns;
+    private int columnToBeSeized;
     private bool largeEntity = false;
     private TerrName territorySeized;
 
@@ -23,24 +22,8 @@ public class DomainManager : MonoBehaviour
     {
         numberOfColumns = scr_Grid.GridController.columnSizeMax;
         numberOfRows = scr_Grid.GridController.rowSizeMax;
-
-        for (int i = 0; i < numberOfColumns; i++)
-        {
-            for (int j = 0; j < numberOfRows; j++)
-            {
-                if (scr_Grid.GridController.grid[i, j].territory.name != TerrName.Player)
-                {
-                    territorySeized = scr_Grid.GridController.grid[i, j].territory.name;
-                    return;
-                }
-                if (j == numberOfRows - 1)
-                {
-                    playerColumns.Add(i);
-                }
-            }
-        }
-
-        adjacentColumn = playerColumns.Count;
+        playerColumns = (numberOfColumns / 2) - 1;
+        columnToBeSeized = playerColumns + 1;
     }
 
     //This begins a recursive chain to attempt the following movements:
@@ -53,152 +36,133 @@ public class DomainManager : MonoBehaviour
 
     public void Activate(float duration)
     {
-        adjacentColumn = playerColumns.Count;
-        playerColumns.Add(adjacentColumn);
+        playerColumns++; //4
+
+        territorySeized = scr_Grid.GridController.grid[columnToBeSeized, 0].territory.name;
 
         for (int j = 0; j < numberOfRows; j++)
         {
-            Entity entityOnTile = scr_Grid.GridController.grid[adjacentColumn, j].entityOnTile;
+            Entity entityOnTile = scr_Grid.GridController.grid[columnToBeSeized, j].entityOnTile;
             if (entityOnTile != null)
             {
                 if(entityOnTile.gridPositions != null)
                 {
                     largeEntity = true;
                 }
-                PushRight(adjacentColumn, j);
+                PushRight(columnToBeSeized, j);
             }
-            scr_Grid.GridController.SetTileTerritory(adjacentColumn, j, TerrName.Player, scr_TileDict.colorDict[TerrName.Player]);
+            scr_Grid.GridController.SetTileOccupied(false, columnToBeSeized, j, null);
+            scr_Grid.GridController.SetTileTerritory(columnToBeSeized, j, TerrName.Player, scr_TileDict.colorDict[TerrName.Player]);
         }
+
+        columnToBeSeized = playerColumns + 1;
+
         StartCoroutine(SeizeDomain(duration));
     }
 
     public void Deactivate()
     {
+        playerColumns--;
+        columnToBeSeized = playerColumns + 1;
+
         for (int j = 0; j < numberOfRows; j++) 
         {
-            if (scr_Grid.GridController.grid[playerColumns[playerColumns.Count - 1], j].entityOnTile != null &&
-                scr_Grid.GridController.grid[playerColumns[playerColumns.Count - 1], j].entityOnTile.type == EntityType.Player)
+            Entity entityOnTile = scr_Grid.GridController.grid[columnToBeSeized, j].entityOnTile;
+            if (entityOnTile != null && entityOnTile.type == EntityType.Player)
             {
-                PushLeft(playerColumns[playerColumns.Count - 1], j);
+                PushLeft(columnToBeSeized, j);
             }
-            scr_Grid.GridController.SetTileTerritory(playerColumns[playerColumns.Count - 1], j, territorySeized, scr_TileDict.colorDict[territorySeized]);
+            scr_Grid.GridController.SetTileOccupied(false, columnToBeSeized, j, null);
+            scr_Grid.GridController.SetTileTerritory(columnToBeSeized, j, territorySeized, scr_TileDict.colorDict[territorySeized]);
         }
-
-        playerColumns.RemoveAt(playerColumns.Count - 1);
-        adjacentColumn = playerColumns.Count;
     }
 
     private IEnumerator SeizeDomain(float duration)
     {
-        Debug.Log("Seize Domain has started!");
         yield return new WaitForSeconds(duration);
         Deactivate();
     }
 
     private void PushRight(int x, int y)
     {
-        int newX = x + 1;
-
-        if (newX < scr_Grid.GridController.columnSizeMax)
+        int xToMoveTo = x + 1;
+        
+        if (xToMoveTo < numberOfColumns)
         {
-            if (scr_Grid.GridController.CheckIfOccupied(newX, y) == false)
+            if (scr_Grid.GridController.CheckIfOccupied(xToMoveTo, y) == false)
             {
-                scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(newX, y);
+                scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(xToMoveTo, y);
             }
             else
             {
-                PushUp(newX, y);
+                PushRight(xToMoveTo, y);
             }
         }
         else
         {
-            MoveSomewhereAvailable(x, y);
+            MoveSomewhereAvailable(columnToBeSeized, y, false);
         }
     }
 
-    private void PushUp(int newX, int y)
-    {
-        int newY = y;
-
-        if (newY < scr_Grid.GridController.rowSizeMax - 1)
-        {
-            newY = y + 1;
-        }
-
-        if (scr_Grid.GridController.CheckIfOccupied(newX, newY) == false)
-        {
-            scr_Grid.GridController.grid[newX - 1, y].entityOnTile.SetTransform(newX, newY);
-        }
-        else
-        {
-            PushDown(newX, y);
-        }
-    }
-
-    private void PushDown(int newX, int y)
-    {
-        int newY = y;
-
-        if (newY > 0)
-        {
-            newY = y - 1;
-        }
-
-        if (scr_Grid.GridController.CheckIfOccupied(newX, newY) == false)
-        {
-            scr_Grid.GridController.grid[newX - 1, y].entityOnTile.SetTransform(newX, newY);
-        }
-        else if (scr_Grid.GridController.grid[newX, y].entityOnTile.type != EntityType.Player)
-        {
-            PushRight(newX, y);
-        }
-        else if (scr_Grid.GridController.grid[newX, y].entityOnTile.type == EntityType.Player)
-        {
-            PushLeft(newX, y);
-        }
-    }
     private void PushLeft(int x, int y)
     {
-        int newX = x;
+        int xToMoveTo = x - 1;
 
-        if (newX > 0)
+        if (xToMoveTo >= 0)
         {
-            newX = x - 1;
-
-            if (scr_Grid.GridController.CheckIfOccupied(newX, y) == false)
+            if (scr_Grid.GridController.CheckIfOccupied(xToMoveTo, y) == false)
             {
-                scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(newX, y);
+                scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(xToMoveTo, y);
             }
             else
             {
-                PushUp(newX, y);
+                PushLeft(xToMoveTo, y);
             }
         }
         else
         {
-            MoveSomewhereAvailable(x, y);
+            MoveSomewhereAvailable(columnToBeSeized, y, true);
         }
     }
 
 
-    private void MoveSomewhereAvailable(int x, int y)
+    private void MoveSomewhereAvailable(int x, int y, bool isPlayer)
     {
         bool foundSomewhere = false;
 
-        for (int i = adjacentColumn; i < numberOfColumns; i++)
+        if (isPlayer)
         {
-            for (int j = 0; j < numberOfRows; j++)
+            for (int i = x - 1; i >= 0; i--)
             {
-                if (scr_Grid.GridController.grid[i, j].occupied == false)
+                for (int j = 0; j < numberOfRows; j++)
                 {
-                    foundSomewhere = true;
-                    scr_Grid.GridController.grid[adjacentColumn, y].entityOnTile.SetTransform(i, j);
+                    if (scr_Grid.GridController.grid[i, j].occupied == false)
+                    {
+                        foundSomewhere = true;
+                        scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(i, j);
+                    }
                 }
             }
         }
 
+        else
+        {
+            for (int i = x + 1; i < numberOfColumns; i++)
+            {
+                for (int j = 0; j < numberOfRows; j++)
+                {
+                    if (scr_Grid.GridController.grid[i, j].occupied == false)
+                    {
+                        foundSomewhere = true;
+                        scr_Grid.GridController.grid[x, y].entityOnTile.SetTransform(i, j);
+                    }
+                }
+            }
+        }
+
+
         //Only called if the entity is not able to move anywhere on the grid
-        if (foundSomewhere == false && scr_Grid.GridController.grid[x, y].entityOnTile != null)
+        if (foundSomewhere == false)
         {
             scr_Grid.GridController.grid[x, y].entityOnTile.Death();
         }

@@ -37,6 +37,7 @@ public class Raitori_AI : scr_EntityAI
         SetPossibleHeadPositions();
         SetZigZagPattern();
         SetTransitionNumber();
+        SetTilesOccupied();
     }
 
     private void SetInitialVariables()
@@ -87,7 +88,6 @@ public class Raitori_AI : scr_EntityAI
 
     public override void UpdateAI()
     {
-        SetTilesOccupied();
         if (canMove)
         {
             StartCoroutine(Movement());

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
@@ -117,7 +116,7 @@ public class Entity : MonoBehaviour
             return;                                                                                                                                    //return
         }
 
-        if(height > 1 || width > 1)
+        if(height * width > 1)
         {
             SetLargeTransform(new Vector2Int(x, y));
         }
@@ -146,7 +145,6 @@ public class Entity : MonoBehaviour
 
         if (hasShield)
         {
-            Debug.Log(shieldProtection);
             if (shieldProtection < shieldProtectionMax)
             {
                 shieldProtection += shieldProtectionIncrement;
@@ -345,6 +343,7 @@ public class Entity : MonoBehaviour
         }
         //Debug.Log("I AM DEAD");
         scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
+        _health.TakeDamage(_health.hp);
         gameObject.SetActive(false);
         //scr_Grid.GridController.RemoveEntity(this);
     }
@@ -366,10 +365,8 @@ public class Entity : MonoBehaviour
         enemy._health.TakeDamage(damage);
         enemy.isStunned = true;
         //isImmobile = true;
-        Debug.Log("Starting Teleport");
         yield return new WaitForSeconds(waitTime);
         SetTransform(playerX, playerY);
-        Debug.Log("UnTelport!");
         enemy.isStunned = false;
         //isImmobile = false;
     }

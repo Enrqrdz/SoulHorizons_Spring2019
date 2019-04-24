@@ -40,8 +40,6 @@ public class Atk_SoulBlight : AttackData
         Vector2 affectedTileEast = new Vector2(affectedTileCenter.x + 1, affectedTileCenter.y);
         Vector2 affectedTileWest = new Vector2(affectedTileCenter.x - 1, affectedTileCenter.y);
 
-        Debug.Log(affectedTileCenter.x + ", " + affectedTileCenter.y);
-
         scr_Grid.GridController.grid[(int)affectedTileCenter.x, (int)affectedTileCenter.y].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
 
         try

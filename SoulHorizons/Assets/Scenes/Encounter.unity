@@ -526,8 +526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
 --- !u!82 &283017073
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1316,6 +1316,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 7.2558146
       objectReference: {fileID: 0}
+    - target: {fileID: 754145659068525785, guid: 637173c07d20ff34b9815879ceb7c82b,
+        type: 3}
+      propertyPath: targetEntity
+      value: 
+      objectReference: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637173c07d20ff34b9815879ceb7c82b, type: 3}
 --- !u!224 &547296555 stripped
@@ -2196,7 +2202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50.00006}
+  m_AnchoredPosition: {x: 0, y: 72}
   m_SizeDelta: {x: -0.00012207031, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1431935929
@@ -3361,10 +3367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RewardMessage: {fileID: 1094597086}
   DeathMessage: {fileID: 431708820}
-  rewardPanel: {fileID: 0}
-  Shield: {fileID: 0}
-  EffectText: {fileID: 0}
-  currentEncounterIndex: 0
 --- !u!1 &1917006678
 GameObject:
   m_ObjectHideFlags: 0
@@ -3778,7 +3780,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
+  encounter: {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4034,7 +4036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2116221a681e9bb47ae33743d3b442c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColumns: 
+  playerColumns: 0
 --- !u!1 &2121924710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7304582539461992430, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,
