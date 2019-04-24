@@ -177,7 +177,7 @@ MonoBehaviour:
     TerrColor: {r: 1, g: 1, b: 1, a: 1}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212424679629100636}
-  hitShader: {fileID: 0}
+  hitShader: {fileID: 4800000, guid: 7b5b8562bba41fc42801af962cf31837, type: 3}
   lerpSpeed: 250
   has_iframes: 1
   invincible: 0

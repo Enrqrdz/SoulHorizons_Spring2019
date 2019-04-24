@@ -10,6 +10,7 @@ public class DomainManager : MonoBehaviour
     private int numberOfRows;
     public List<int> playerColumns = new List<int>();
     private int adjacentColumn;
+    private bool largeEntity = false;
     private TerrName territorySeized;
 
 
@@ -57,8 +58,13 @@ public class DomainManager : MonoBehaviour
 
         for (int j = 0; j < numberOfRows; j++)
         {
-            if (scr_Grid.GridController.grid[adjacentColumn, j].entityOnTile != null)
+            Entity entityOnTile = scr_Grid.GridController.grid[adjacentColumn, j].entityOnTile;
+            if (entityOnTile != null)
             {
+                if(entityOnTile.gridPositions != null)
+                {
+                    largeEntity = true;
+                }
                 PushRight(adjacentColumn, j);
             }
             scr_Grid.GridController.SetTileTerritory(adjacentColumn, j, TerrName.Player, scr_TileDict.colorDict[TerrName.Player]);
@@ -68,7 +74,7 @@ public class DomainManager : MonoBehaviour
 
     public void Deactivate()
     {
-        for (int j = 0; j < numberOfRows; j++)
+        for (int j = 0; j < numberOfRows; j++) 
         {
             if (scr_Grid.GridController.grid[playerColumns[playerColumns.Count - 1], j].entityOnTile != null &&
                 scr_Grid.GridController.grid[playerColumns[playerColumns.Count - 1], j].entityOnTile.type == EntityType.Player)

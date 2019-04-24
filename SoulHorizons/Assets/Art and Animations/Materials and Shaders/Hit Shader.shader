@@ -47,7 +47,7 @@ Shader "Custom/Hit"
 
 			Pass
 			{
-				Name "Default"
+			Name "Default"
 			CGPROGRAM
 				#pragma vertex vert
 				#pragma fragment frag
