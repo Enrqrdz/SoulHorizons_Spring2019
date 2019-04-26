@@ -5,10 +5,10 @@ public class DomainManager : MonoBehaviour
 {
     public static DomainManager Instance;
 
-    private int numberOfColumns;
-    private int numberOfRows;
+    public int numberOfColumns;
+    public int numberOfRows;
     public int playerColumns;
-    private int columnToBeSeized;
+    public int columnToBeSeized;
     private bool largeEntity = false;
     private TerrName territorySeized;
 

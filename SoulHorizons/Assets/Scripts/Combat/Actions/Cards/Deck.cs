@@ -89,6 +89,17 @@ public class Deck : MonoBehaviour
         }
     }
 
+    public void PrimeCard(int index)
+    {
+        if(hand[index] == null)
+        {
+            return;
+        }
+        ActionData cardToPrime = hand[index];
+
+        cardToPrime.Project();
+    }
+
     public ActionData Activate(int index)
     {
         ActionData activatedCard = hand[index];

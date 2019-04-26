@@ -82,7 +82,8 @@ public class AttackController : MonoBehaviour {
         scr_Grid.GridController.DePrimeTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
         try
         {
-            Destroy(activeAttacks[index].particle.gameObject);
+            if(activeAttacks[index].particle != null)
+                Destroy(activeAttacks[index].particle.gameObject);
         }
         catch
         {

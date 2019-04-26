@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Deck))]
@@ -27,6 +28,9 @@ public class ActionManager : MonoBehaviour
     [SerializeField]
     private scr_SoulManager soulManager;
 
+    private int decisionNumber;
+    private ActionData projectedAttack;
+    private bool projectingTiles = false;
     private bool readyToCastAction = true;
     private bool readyToCastAbility = true;
     private bool readyToCastMantra = true;
@@ -54,16 +58,61 @@ public class ActionManager : MonoBehaviour
         {
             if (player.isStunned == false)
             {
+                ProjectAttack();
+                CheckForMovement();
                 GetUserInput();
             }
             UpdateGUI();
         }
     }
 
-    void GetUserInput()
+    private void CheckForMovement()
+    {
+        if (projectingTiles)
+        {
+            if(InputManager.MainHorizontal() != 0 || InputManager.MainVertical() != 0)
+            {
+                projectedAttack.DeProject();
+                projectedAttack.Project();
+            }
+        }
+    }
+
+    private void ProjectAttack()
     {
         //decisionNumber will be either: -1,0,1,2,3
-        int decisionNumber = InputManager.ActionNumber();
+        decisionNumber = InputManager.ActionNumberPrimer();
+
+        if (decisionNumber != -1 && readyToCastAction)
+        {
+            bool decisionNumberIsACard = decisionNumber == 0 || decisionNumber == 1;
+            bool decisionNumberIsAMantra = decisionNumber == 2 || decisionNumber == 3;
+
+            if (decisionNumberIsACard)
+            {
+                projectingTiles = true;
+                projectedAttack = currentDeck.hand[decisionNumber];
+                if(projectedAttack != null)
+                {
+                    projectedAttack.Project();
+                }  
+            }
+            if (decisionNumberIsAMantra)
+            {
+                projectingTiles = true;
+                projectedAttack = currentMantras.activeMantras[decisionNumber - 2];
+                if (projectedAttack != null)
+                {
+                    projectedAttack.Project();
+                }
+            }
+        }
+    }
+
+    private void GetUserInput()
+    {
+        //decisionNumber will be either: -1,0,1,2,3
+        decisionNumber = InputManager.ActionNumber();
 
         if (decisionNumber != -1 && readyToCastAction)
         {
@@ -72,15 +121,49 @@ public class ActionManager : MonoBehaviour
 
             if (decisionNumberIsACard && readyToCastAbility)
             {
+                projectingTiles = false;
+                if (projectedAttack != null)
+                {
+                    currentDeck.hand[decisionNumber].DeProject();
+                }
                 ActivateCard(decisionNumber);
             }
             if (decisionNumberIsAMantra && readyToCastMantra)
             {
+                projectingTiles = false;
+                if (projectedAttack != null)
+                {
+                    currentMantras.activeMantras[decisionNumber - 2].DeProject();
+                }
                 ActivateMantra(decisionNumber);
             }
         }
     }
 
+    private void ActivateCard(int index)
+    {
+        ActionData activatedCard = currentDeck.Activate(index);
+
+        if (activatedCard != null)
+        {
+            StartCoroutine(AbilityCooldown(activatedCard.cooldown));
+            StartCoroutine(ActionCooldown(globalCooldown));
+
+            soulManager.ChargeSoulTransform(activatedCard.element, activatedCard.transformChargeAmount);
+
+            playerAnimator.SetBool("Cast", true);
+
+            for (int i = 0; i < abilityUI.Length; i++)
+            {
+                abilityUI[i].StartCooldown(activatedCard.cooldown);
+
+                if (readyToCastMantra)
+                {
+                    mantraUI[i].StartCooldown(globalCooldown);
+                }
+            }
+        }
+    }
 
     private void ActivateMantra(int decisionNumber)
     {
@@ -103,31 +186,6 @@ public class ActionManager : MonoBehaviour
             if (readyToCastAbility)
             {
                 abilityUI[i].StartCooldown(globalCooldown);
-            }
-        }
-    }
-
-    private void ActivateCard(int index)
-    {
-        ActionData activatedCard = currentDeck.Activate(index);
-
-        if(activatedCard != null)
-        {
-            StartCoroutine(AbilityCooldown(activatedCard.cooldown));
-            StartCoroutine(ActionCooldown(globalCooldown));
-
-            soulManager.ChargeSoulTransform(activatedCard.element, activatedCard.transformChargeAmount);
-
-            playerAnimator.SetBool("Cast", true);
-
-            for (int i = 0; i < abilityUI.Length; i++)
-            {
-                abilityUI[i].StartCooldown(activatedCard.cooldown);
-
-                if (readyToCastMantra)
-                {
-                    mantraUI[i].StartCooldown(globalCooldown);
-                }
             }
         }
     }

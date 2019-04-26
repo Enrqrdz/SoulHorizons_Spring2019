@@ -7,7 +7,7 @@ public class scr_RockBehavior : scr_EntityAI
     public int collisionDamage = 10;
     private void Start()
     {
-        
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
 
     public override void Move()
@@ -17,7 +17,7 @@ public class scr_RockBehavior : scr_EntityAI
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+        
     }
 
     

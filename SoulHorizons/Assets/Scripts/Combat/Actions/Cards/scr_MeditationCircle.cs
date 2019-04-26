@@ -15,16 +15,35 @@ public class scr_MeditationCircle : ActionData
     public float damageMultiplier;
     public float damageReducer;
 
+    private Entity player;
+    private int playerX, playerY;
+
     public override void Activate()
     {
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = MeditationSFX;
         PlayCardSFX.Play();
 
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
 
-        scr_Grid.GridController.grid[player._gridPos.x, player._gridPos.y].BuffTile(activeDuration, damageMultiplier, damageReducer);
+        scr_Grid.GridController.grid[playerX, playerY].BuffTile(activeDuration, damageMultiplier, damageReducer);
         GameObject MedCircleAnimation = Instantiate(MedCircleAnim, new Vector2(player.transform.position.x, player.transform.position.y+0.3f),Quaternion.identity);
         Destroy(MedCircleAnimation, activeDuration);
+    }
+
+    public override void Project()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+
+        scr_Grid.GridController.grid[playerX, playerY].Highlight();
+    }
+
+    public override void DeProject()
+    {
+        scr_Grid.GridController.grid[playerX, playerY].DeHighlight();
     }
 }

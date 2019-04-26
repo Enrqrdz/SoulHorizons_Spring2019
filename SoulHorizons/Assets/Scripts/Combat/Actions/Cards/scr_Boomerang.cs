@@ -22,4 +22,14 @@ public class scr_Boomerang : ActionData
         //does a check to see if the target col is off the map 
         AttackController.Instance.AddNewAttack(boomerangAttack, player._gridPos.x + 1, player._gridPos.y, player);
     }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
 }

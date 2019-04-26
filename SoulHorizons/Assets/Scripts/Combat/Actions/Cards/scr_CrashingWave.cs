@@ -23,4 +23,14 @@ public class scr_CrashingWave : ActionData
             AttackController.Instance.AddNewAttack(CrashingWave, (player._gridPos.x + 1), player._gridPos.y, player);
         }
     }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
 }

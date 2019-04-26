@@ -35,7 +35,12 @@ public class scr_Tile : MonoBehaviour{
     public Color BlightedColor;
     public Color FireColor;
     public Color FloodedColor;
-    //public Color inactiveColor;
+
+
+    public Material highlightMaterial;
+    public Material blightedMaterial;
+    private Material defaultMaterial;
+    public SpriteRenderer spriteRenderer;
 
     
    
@@ -70,12 +75,15 @@ public class scr_Tile : MonoBehaviour{
         
         SetSpriteRendererSettings();
 
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        defaultMaterial = spriteRenderer.material;
+
         isPrimed = false;                                                       //Sets a tile to about to be hit (yellow)
         isActive = false;                                                       //Sets a tile to do hit          (red)
         harmful = false;                                                        //Sets tile to do persistent harm. 
         helpful = false;                                                        //Sets tile to do persistent buffing.
         occupied = false;                                                       //Sets a tile to be occupied by an entity
-        gridController = GameObject.FindGameObjectWithTag("GridController");    //Grid Controller
+        gridController = scr_Grid.GridController.gameObject;    //Grid Controller
         grid = gridController.GetComponent<scr_Grid>();
         entityOnTile = null;
          
@@ -115,6 +123,16 @@ public class scr_Tile : MonoBehaviour{
         SetSpriteRendererColor(territory.TerrColor);
     }
 
+    public void Highlight()
+    {
+        spriteRenderer.material = highlightMaterial;
+    }
+
+    public void DeHighlight()
+    {
+        spriteRenderer.material = defaultMaterial;
+    }
+
     public void Prime()
     {
         isPrimed = true;
@@ -126,7 +144,7 @@ public class scr_Tile : MonoBehaviour{
     public void DePrime()
     {
         isPrimed = false;
-        if (!isPrimed)
+        if (!isOnFire || !isPoisoned || !isFlooded)
             SetSpriteRendererColor(territory.TerrColor); 
     }
     public void Activate()
@@ -218,7 +236,7 @@ public class scr_Tile : MonoBehaviour{
         {
             case 0: //Is Poisoned
                 isPoisoned = true;
-                SetSpriteRendererColor(BlightedColor);
+                spriteRenderer.material = blightedMaterial;
                 StartCoroutine(DamageTile(rate, damage));
                 StartCoroutine(RevertTile(duration));
                 break;
@@ -238,7 +256,7 @@ public class scr_Tile : MonoBehaviour{
     }
 
     private IEnumerator DamageTile(float damageRate, int damage)
-    {       
+    {   
         while (harmful)
         {
             if (entityOnTile != null)
@@ -275,6 +293,7 @@ public class scr_Tile : MonoBehaviour{
         isPoisoned = false;
         isMeditation = false;
         SetSpriteRendererColor(territory.TerrColor);
+        spriteRenderer.material = defaultMaterial;
     }
 
     public void SetSprites(TileData tileData)

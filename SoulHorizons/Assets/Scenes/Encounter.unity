@@ -526,8 +526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand:
-  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
-  - {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  - {fileID: 11400000, guid: 93690977f63fc3041a8a8b4dc0e0afd4, type: 2}
+  - {fileID: 11400000, guid: 93690977f63fc3041a8a8b4dc0e0afd4, type: 2}
 --- !u!82 &283017073
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3780,7 +3780,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: a8d78c907741f4da891bb8f02a363f97, type: 2}
+  encounter: {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4036,7 +4036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2116221a681e9bb47ae33743d3b442c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfColumns: 0
+  numberOfRows: 0
   playerColumns: 0
+  columnToBeSeized: 0
 --- !u!1 &2121924710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7304582539461992430, guid: 0911cfe7a9baa6c49a9fc8818e50afaa,

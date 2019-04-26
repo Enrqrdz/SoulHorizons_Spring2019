@@ -50,6 +50,9 @@ public class Entity : MonoBehaviour
     public Animator anim;
 
     public GameObject deathManager;
+    private Material defaultMaterial;
+    [SerializeField]
+    private Material highlightMaterial;
 
     public void Start()
     {
@@ -163,6 +166,17 @@ public class Entity : MonoBehaviour
             }
         }
 
+    }
+
+    public void Highlight()
+    {
+        defaultMaterial = spr.material;
+        spr.material = highlightMaterial;
+    }
+
+    public void DeHighlight()
+    {
+        spr.material = defaultMaterial;
     }
 
     //NOTE: GridPosition is the origin of the large transform, or the bottom leftmost tile.

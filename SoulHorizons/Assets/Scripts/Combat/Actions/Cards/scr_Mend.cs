@@ -20,4 +20,14 @@ public class scr_Mend : ActionData
         player._health.Heal(Mend_hp);
 
     }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
 }

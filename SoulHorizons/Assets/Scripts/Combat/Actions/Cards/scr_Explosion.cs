@@ -54,4 +54,13 @@ public class scr_Explosion : ActionData
         { }   
     }
 
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
 }
