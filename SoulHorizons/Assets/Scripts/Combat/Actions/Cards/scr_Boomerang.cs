@@ -16,7 +16,7 @@ public class scr_Boomerang : ActionData
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
 
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map 

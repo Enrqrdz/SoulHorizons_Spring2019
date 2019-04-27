@@ -20,8 +20,8 @@ public class atk_StaticShield : AttackData
     {
         //activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.identity);
 
-        playerX = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.x;
-        playerY = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y;
+        playerX = ObjectReference.Instance.PlayerEntity._gridPos.x;
+        playerY = ObjectReference.Instance.PlayerEntity._gridPos.y;
 
         if (PlayCardSFX == null)
         {
@@ -40,7 +40,7 @@ public class atk_StaticShield : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().hasShield = false;
+        ObjectReference.Instance.PlayerEntity.hasShield = false;
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)

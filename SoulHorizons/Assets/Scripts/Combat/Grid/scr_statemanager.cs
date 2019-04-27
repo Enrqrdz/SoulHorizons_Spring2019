@@ -13,10 +13,10 @@ public class scr_statemanager : MonoBehaviour {
 
     void Start ()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = ObjectReference.Instance.Player;
         if (player != null)
         {
-            playerEntity = player.GetComponent<Entity>();
+            playerEntity = ObjectReference.Instance.PlayerEntity;
 
             try
             {
@@ -53,7 +53,7 @@ public class scr_statemanager : MonoBehaviour {
         }
         else
         {
-            playerEntity = player.GetComponent<Entity>();
+            playerEntity = ObjectReference.Instance.PlayerEntity;
         }
         //END OF ENCOUNTER - NO MORE ENEMIES
 		if(!endCombat && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)

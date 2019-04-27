@@ -16,7 +16,7 @@ public class scr_Cleave : ActionData
     {
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
@@ -78,7 +78,7 @@ public class scr_Cleave : ActionData
         PlayCardSFX.Play();
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;

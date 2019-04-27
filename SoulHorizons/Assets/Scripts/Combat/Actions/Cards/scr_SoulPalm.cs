@@ -40,7 +40,7 @@ public class scr_SoulPalm : ActionData
 
     public override void Project()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 

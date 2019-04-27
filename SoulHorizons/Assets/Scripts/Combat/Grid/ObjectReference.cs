@@ -5,20 +5,24 @@ using UnityEngine;
 public class ObjectReference : MonoBehaviour
 {
     public static ObjectReference Instance;
-    [HideInInspector]
+    //[HideInInspector]
     public AudioSource ActionManager;
-    [HideInInspector]
+    //[HideInInspector]
     public RegionManager RegionManager;
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject EventSystem;
+    //[HideInInspector]
+    public GameObject Player;
+    //[HideInInspector]
+    public Entity PlayerEntity;
 
 
     private void Awake()
     {
         InitializeSingleton();
         ActionManager = GameObject.Find("ActionManager").GetComponent<AudioSource>();
-        RegionManager = GameObject.Find("RegionManager").GetComponent<RegionManager>();
-        EventSystem = GameObject.Find("EventSystem");
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerEntity = Player.GetComponent<Entity>();
     }
 
     private void InitializeSingleton()
@@ -26,10 +30,6 @@ public class ObjectReference : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-        }
-        else
-        {
-            DontDestroyOnLoad(Instance);
         }
     }
 }

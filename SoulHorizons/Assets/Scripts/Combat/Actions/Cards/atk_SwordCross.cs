@@ -16,8 +16,9 @@ public class atk_SwordCross : AttackData
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        playerX = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.x;
-        playerY = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y;        
+        playerX = ObjectReference.Instance.PlayerEntity._gridPos.x;
+        playerY = ObjectReference.Instance.PlayerEntity._gridPos.y;        
+
         if (yPos > playerY)
         {
             int temp = xPos - playerX;

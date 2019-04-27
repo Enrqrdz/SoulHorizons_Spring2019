@@ -15,7 +15,7 @@ public class scr_Mend : ActionData
         PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = MendSFX;
         PlayCardSFX.Play();
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         player._health.Heal(Mend_hp);
 

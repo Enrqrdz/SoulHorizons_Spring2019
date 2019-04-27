@@ -13,17 +13,20 @@ public class scr_Blur : ActionData
     public float duration;
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        if(PlayCardSFX == null)
+        {
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
+        }
         PlayCardSFX.clip = BlurSFX;
         PlayCardSFX.Play();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         player.setInvincible(true, duration);
 
     }
 
     public override void Project()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         player.Highlight();
     }
 

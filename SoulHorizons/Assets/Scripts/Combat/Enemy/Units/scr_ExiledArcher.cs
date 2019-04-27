@@ -124,7 +124,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     bool HunterShotCheck()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = ObjectReference.Instance.Player;
         int playerY = player.GetComponent<Entity>()._gridPos.y;
         if (entity._gridPos.y == playerY)
         {
@@ -189,7 +189,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         //TELEGRAPH
         canArrowRain = false;
         yield return new WaitForSeconds(1f);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = ObjectReference.Instance.Player;
         int playerXPos = player.GetComponent<Entity>()._gridPos.x;
         AttackController.Instance.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
         yield return new WaitForSeconds(_aRInterval);

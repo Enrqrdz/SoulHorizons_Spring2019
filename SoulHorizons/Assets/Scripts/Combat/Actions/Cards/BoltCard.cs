@@ -18,7 +18,7 @@ public class BoltCard : ActionData
     {
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
 
         playerX = player._gridPos.x;
@@ -60,7 +60,7 @@ public class BoltCard : ActionData
     {
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
 
         playerX = player._gridPos.x;

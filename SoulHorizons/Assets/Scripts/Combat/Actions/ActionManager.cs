@@ -45,8 +45,8 @@ public class ActionManager : MonoBehaviour
 	void Start ()
     {
         AudioSource SFX_Source = GetComponent<AudioSource>();
-        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        playerAnimator = ObjectReference.Instance.Player.GetComponentInChildren<Animator>();
+        player = ObjectReference.Instance.PlayerEntity;
         CardChange_SFX = SFX_Source;
         UpdateGUI();
         SetMantraGraphics();
@@ -54,6 +54,10 @@ public class ActionManager : MonoBehaviour
 
     void Update()
     {
+        if(player == null)
+        {
+            player = ObjectReference.Instance.PlayerEntity;
+        }
         if (deckIsEnabled == true)
         {
             if (player.isStunned == false)
@@ -72,8 +76,11 @@ public class ActionManager : MonoBehaviour
         {
             if(InputManager.MainHorizontal() != 0 || InputManager.MainVertical() != 0)
             {
-                projectedAttack.DeProject();
-                projectedAttack.Project();
+                if(projectedAttack != null)
+                {
+                    projectedAttack.DeProject();
+                    projectedAttack.Project();
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ public class scr_CrescentStrike : ActionData
         PlayCardSFX.clip = CrescentSFX;
         PlayCardSFX.Play();
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
@@ -39,7 +39,7 @@ public class scr_CrescentStrike : ActionData
 
     public override void Project()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 

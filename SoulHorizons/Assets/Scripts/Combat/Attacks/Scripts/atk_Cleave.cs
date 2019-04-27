@@ -13,7 +13,7 @@ public class atk_Cleave : AttackData
     {
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;

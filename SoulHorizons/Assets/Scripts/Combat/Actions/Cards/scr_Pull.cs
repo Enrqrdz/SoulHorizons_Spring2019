@@ -19,7 +19,7 @@ public class scr_Pull : ActionData
         PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip =PullSFX;
         PlayCardSFX.Play();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
@@ -29,7 +29,7 @@ public class scr_Pull : ActionData
 
     public override void Project()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 

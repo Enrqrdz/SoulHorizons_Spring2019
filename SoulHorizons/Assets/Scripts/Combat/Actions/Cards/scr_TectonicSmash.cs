@@ -16,7 +16,7 @@ public class scr_TectonicSmash : ActionData
         PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = SmashSFX;
         PlayCardSFX.Play();
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         //add attack to attack controller script
         AttackController.Instance.AddNewAttack(Smash, player._gridPos.x, player._gridPos.y, player);

@@ -12,7 +12,7 @@ public class scr_CrashingWave : ActionData
 
     public override void Activate()
     {
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
         try
         {
             AttackController.Instance.AddNewAttack(CrashingWave, (player._gridPos.x + 1), player._gridPos.y + 1, player);

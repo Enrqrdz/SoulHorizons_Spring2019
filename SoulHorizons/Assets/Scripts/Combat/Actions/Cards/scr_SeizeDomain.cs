@@ -14,8 +14,8 @@ public class scr_SeizeDomain : ActionData
 
 
     public override void Activate()
-    {    
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+    {
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = SeizeDomainSFX;
         PlayCardSFX.Play();
         DomainManager.Instance.Activate(duration);
