@@ -68,7 +68,7 @@ public class Scr_SwordCross : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = SwordSFX;
         PlayCardSFX.Play();
 

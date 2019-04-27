@@ -12,7 +12,7 @@ public class scr_Mend : ActionData
     public AudioClip MendSFX;
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = MendSFX;
         PlayCardSFX.Play();
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();

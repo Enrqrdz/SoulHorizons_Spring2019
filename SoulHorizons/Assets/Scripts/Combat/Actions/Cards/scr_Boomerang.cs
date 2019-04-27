@@ -12,7 +12,7 @@ public class scr_Boomerang : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
 

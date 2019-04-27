@@ -37,7 +37,7 @@ public class atk_SoulPalm : AttackData
 
         if (PlayCardSFX == null)
         {
-            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
         }
         PlayCardSFX.clip = PalmSFX;
         PlayCardSFX.Play();

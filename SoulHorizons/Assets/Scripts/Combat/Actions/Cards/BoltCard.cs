@@ -66,7 +66,7 @@ public class BoltCard : ActionData
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = BoltSFX;
         PlayCardSFX.Play();
 

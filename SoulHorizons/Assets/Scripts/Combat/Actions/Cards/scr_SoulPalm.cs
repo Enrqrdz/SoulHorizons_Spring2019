@@ -14,7 +14,7 @@ public class scr_SoulPalm : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = PalmSFX;
         PlayCardSFX.Play();
 

@@ -25,7 +25,7 @@ public class atk_StaticShield : AttackData
 
         if (PlayCardSFX == null)
         {
-            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
         }
 
         PlayCardSFX.clip = CrescentSFX;

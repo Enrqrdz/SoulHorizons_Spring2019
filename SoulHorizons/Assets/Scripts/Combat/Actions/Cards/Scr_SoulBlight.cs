@@ -18,7 +18,7 @@ public class Scr_SoulBlight : ActionData
     public override void Activate()
     {
 
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = BlightSFX;
         PlayCardSFX.Play();
 

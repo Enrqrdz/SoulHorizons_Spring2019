@@ -73,7 +73,7 @@ public class scr_Cleave : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = CleaveSFX;
         PlayCardSFX.Play();
         if (player == null)

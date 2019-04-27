@@ -53,7 +53,7 @@ public class atk_SwordCross : AttackData
         
         if (PlayCardSFX == null)
         {
-            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
         }
 
         PlayCardSFX.clip = SwordSFX;

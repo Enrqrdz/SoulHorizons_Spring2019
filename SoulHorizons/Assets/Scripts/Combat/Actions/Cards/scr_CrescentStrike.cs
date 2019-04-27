@@ -16,7 +16,7 @@ public class scr_CrescentStrike : ActionData
     public override void Activate()
     {
         
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = CrescentSFX;
         PlayCardSFX.Play();
 

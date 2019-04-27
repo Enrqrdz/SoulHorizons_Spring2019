@@ -19,7 +19,7 @@ public class scr_GuardBreak : ActionData
     public override void Activate()
     {
 
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = BreakSFX;
         PlayCardSFX.Play();
 
