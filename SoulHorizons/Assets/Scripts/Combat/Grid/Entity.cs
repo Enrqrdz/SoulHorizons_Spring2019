@@ -81,7 +81,7 @@ public class Entity : MonoBehaviour
             invulnCounter -= Time.deltaTime;
             if(invulnCounter <= 0)
             {
-                setInvincible(false, 0f);
+                SetInvincible(false, 0f);
             }
         }
 
@@ -160,7 +160,7 @@ public class Entity : MonoBehaviour
                 HitByAttack(atk);
                 if (has_iframes)
                 {
-                    setInvincible(true, invulnTime);
+                    SetInvincible(true, invulnTime);
                 }
             }
         }
@@ -222,7 +222,7 @@ public class Entity : MonoBehaviour
                 if (has_iframes)
                 {
                     //Activate invincibility frames
-                    setInvincible(true, invulnTime);
+                    SetInvincible(true, invulnTime);
                 }
             }
         }
@@ -242,7 +242,11 @@ public class Entity : MonoBehaviour
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
 
-            float tempDamage = attack.damage * attack.modifier;
+            float tempDamage = attack.damage * attack.damageModifier;
+            if (scr_Grid.GridController.CheckIfHelpful(_gridPos.x, _gridPos.x) == true)
+            {
+                tempDamage = attack.damage * scr_Grid.GridController.grid[_gridPos.x, _gridPos.y].GetTileProtection();
+            }
             if (tempDamage - shieldProtection >= 0)
             {
                 _health.TakeDamage((int)tempDamage - shieldProtection);
@@ -297,7 +301,7 @@ public class Entity : MonoBehaviour
     }
 
     //makes the entity invincible for a time
-    public void setInvincible(bool inv, float time)
+    public void SetInvincible(bool inv, float time)
     {
         invincible = inv;
         if (inv)
@@ -420,8 +424,10 @@ public class Health{
     public int shield = 0;
     public int max_hp;
 
+
     public void TakeDamage(int damage)
     {
+
         if (shield > 0)
         {
             shield -= damage;

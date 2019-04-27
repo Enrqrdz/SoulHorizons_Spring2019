@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum TerrName { Player, Enemy, Neutral, Blocked }
@@ -39,8 +38,8 @@ public class scr_Tile : MonoBehaviour{
 
     
    
-    public bool harmful = false;
-    public bool helpful = false;
+    public bool isTileHarmful = false;
+    public bool isTilehelpful = false;
     public bool isOnFire = false;
     public bool isFlooded = false;
     public bool isPoisoned = false;
@@ -72,8 +71,8 @@ public class scr_Tile : MonoBehaviour{
 
         isPrimed = false;                                                       //Sets a tile to about to be hit (yellow)
         isActive = false;                                                       //Sets a tile to do hit          (red)
-        harmful = false;                                                        //Sets tile to do persistent harm. 
-        helpful = false;                                                        //Sets tile to do persistent buffing.
+        isTileHarmful = false;                                                        //Sets tile to do persistent harm. 
+        isTilehelpful = false;                                                        //Sets tile to do persistent buffing.
         occupied = false;                                                       //Sets a tile to be occupied by an entity
         gridController = GameObject.FindGameObjectWithTag("GridController");    //Grid Controller
         grid = gridController.GetComponent<scr_Grid>();
@@ -210,7 +209,7 @@ public class scr_Tile : MonoBehaviour{
     }
     public void DeBuffTile (float duration, int damage, float rate, int type)
     {
-        harmful = true;
+        isTileHarmful = true;
         tileAffectRate = rate;
         tileDamage = damage;
         
@@ -239,7 +238,7 @@ public class scr_Tile : MonoBehaviour{
 
     private IEnumerator DamageTile(float damageRate, int damage)
     {       
-        while (harmful)
+        while (isTileHarmful)
         {
             if (entityOnTile != null)
             {
@@ -253,7 +252,7 @@ public class scr_Tile : MonoBehaviour{
 
     public void BuffTile (float duration, float dmgBuff, float defBuff)
     {
-        helpful = true;
+        isTilehelpful = true;
         isMeditation = true;
         tileBuff = dmgBuff;
         tileProtection = defBuff;
@@ -268,8 +267,8 @@ public class scr_Tile : MonoBehaviour{
         tileDamage = 0;
         tileProtection = 0;
         tileAffectRate = 0;
-        harmful = false;
-        helpful = false;
+        isTileHarmful = false;
+        isTilehelpful = false;
         isOnFire = false;
         isFlooded = false;
         isPoisoned = false;

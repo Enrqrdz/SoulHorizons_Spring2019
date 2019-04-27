@@ -16,7 +16,7 @@ public class scr_Blur : ActionData
         PlayCardSFX.clip = BlurSFX;
         PlayCardSFX.Play();
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
-        player.setInvincible(true, duration);
+        player.SetInvincible(true, duration);
 
     }
 }

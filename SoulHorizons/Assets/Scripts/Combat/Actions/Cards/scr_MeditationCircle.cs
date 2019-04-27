@@ -17,7 +17,10 @@ public class scr_MeditationCircle : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        if (PlayCardSFX == null)
+        {
+            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        }
         PlayCardSFX.clip = MeditationSFX;
         PlayCardSFX.Play();
 
