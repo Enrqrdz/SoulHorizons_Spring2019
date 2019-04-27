@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
@@ -89,6 +87,17 @@ public class Deck : MonoBehaviour
         {
             hand[index] = deck.Dequeue();        
         }
+    }
+
+    public void PrimeCard(int index)
+    {
+        if(hand[index] == null)
+        {
+            return;
+        }
+        ActionData cardToPrime = hand[index];
+
+        cardToPrime.Project();
     }
 
     public ActionData Activate(int index)

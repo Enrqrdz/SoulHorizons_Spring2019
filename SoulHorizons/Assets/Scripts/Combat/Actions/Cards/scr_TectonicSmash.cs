@@ -21,4 +21,14 @@ public class scr_TectonicSmash : ActionData
         //add attack to attack controller script
         AttackController.Instance.AddNewAttack(Smash, player._gridPos.x, player._gridPos.y, player);
     }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
 }

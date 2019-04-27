@@ -34,56 +34,35 @@ public class Atk_SoulBlight : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-        Vector2 affectedTileCenter = new Vector2(activeAttack.position.x - 1, activeAttack.position.y);
-        Vector2 affectedTileNorth = new Vector2(affectedTileCenter.x, affectedTileCenter.y + 1);
-        Vector2 affectedTileSouth = new Vector2(affectedTileCenter.x, affectedTileCenter.y - 1);
-        Vector2 affectedTileEast = new Vector2(affectedTileCenter.x + 1, affectedTileCenter.y);
-        Vector2 affectedTileWest = new Vector2(affectedTileCenter.x - 1, affectedTileCenter.y);
+        int impactX = activeAttack.position.x - 1;
+        int impactY = activeAttack.position.y;
 
-        Debug.Log(affectedTileCenter.x + ", " + affectedTileCenter.y);
+        bool northTileExsists = impactY != scr_Grid.GridController.rowSizeMax - 1;
+        bool southTileExsists = impactY != 0;
+        bool westTileExists = impactX != DomainManager.Instance.columnToBeSeized;
+        bool eastTileExists = impactX != scr_Grid.GridController.columnSizeMax - 1;
 
-        scr_Grid.GridController.grid[(int)affectedTileCenter.x, (int)affectedTileCenter.y].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
 
-        try
+
+
+        scr_Grid.GridController.grid[impactX, impactY].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
+
+        if (northTileExsists)
         {
-            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileNorth.x, (int)affectedTileNorth.y).name == TerrName.Enemy)
-            {
-                Debug.Log("North");
-                scr_Grid.GridController.grid[(int)affectedTileNorth.x, (int)affectedTileNorth.y].DeBuffTile(blightDuration, blightSideDamage, damageRate, 0);
-            }
+            scr_Grid.GridController.grid[impactX, impactY + 1].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
         }
-        catch
-        { }
-        try
+        if (southTileExsists)
         {
-            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileSouth.x, (int)affectedTileSouth.y).name == TerrName.Enemy)
-            {
-                Debug.Log("South");
-                scr_Grid.GridController.grid[(int)affectedTileSouth.x, (int)affectedTileSouth.y].DeBuffTile(blightDuration, blightSideDamage, damageRate , 0);
-            }
+            scr_Grid.GridController.grid[impactX, impactY - 1].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
         }
-        catch
-        { }
-        try
+        if (westTileExists)
         {
-            Debug.Log("East");
-            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileEast.x, (int)affectedTileEast.y).name == TerrName.Enemy)
-            {
-                scr_Grid.GridController.grid[(int)affectedTileEast.x, (int)affectedTileEast.y].DeBuffTile(blightDuration, blightSideDamage, damageRate, 0);
-            }
+            scr_Grid.GridController.grid[impactX - 1, impactY].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
         }
-        catch
-        { }
-        try
-        {            
-            if (scr_Grid.GridController.ReturnTerritory((int)affectedTileWest.x, (int)affectedTileWest.y).name == TerrName.Enemy)
-            {
-                Debug.Log("West");
-                scr_Grid.GridController.grid[(int)affectedTileWest.x, (int)affectedTileWest.y].DeBuffTile(blightDuration, blightSideDamage, damageRate, 0);
-            }
+        if (eastTileExists)
+        {
+            scr_Grid.GridController.grid[impactX + 1, impactY].DeBuffTile(blightDuration, blightMainDamage, damageRate, 0);
         }
-        catch
-        {}     
     }
 
 

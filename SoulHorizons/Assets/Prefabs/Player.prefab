@@ -177,7 +177,7 @@ MonoBehaviour:
     TerrColor: {r: 1, g: 1, b: 1, a: 1}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212424679629100636}
-  hitShader: {fileID: 0}
+  hitShader: {fileID: 4800000, guid: 7b5b8562bba41fc42801af962cf31837, type: 3}
   lerpSpeed: 250
   has_iframes: 1
   invincible: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   anim: {fileID: 95721540959835254}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
+  highlightMaterial: {fileID: 2100000, guid: 5e59cf5f535c013429b94c2ead6db49a, type: 2}
 --- !u!82 &82461514573680058
 AudioSource:
   m_ObjectHideFlags: 0

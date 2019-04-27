@@ -198,6 +198,31 @@ public static class InputManager
 		{
 			return 3;
 		}
+		return -2;
+	}
+
+    public static int ActionNumberPrimer()
+	{
+		if(cannotInputAnything)
+		{
+			return -1;
+		}
+		else if (Input.GetButtonDown("PlayCard1_Button") && canInputCards)
+		{
+			return 0;
+		}
+		else if (Input.GetButtonDown("PlayCard2_Button") && canInputCards)
+		{
+			return 1;
+		}
+		else if (Input.GetButtonDown("PlayCard3_Button") && canInputMantras)
+		{
+			return 2;
+		}
+		else if (Input.GetButtonDown("PlayCard4_Button") && canInputMantras)
+		{
+			return 3;
+		}
 		return -1;
 	}
 

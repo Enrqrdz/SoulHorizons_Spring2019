@@ -22,4 +22,9 @@ public abstract class ActionData : ScriptableObject
     public string description;
 
     public abstract void Activate();
+    public abstract void Project();
+    /// <summary>
+    /// Currently relies on Project funtion to obtain player x and y and uses that as a reference in DeProject.
+    /// </summary>
+    public abstract void DeProject();
 }

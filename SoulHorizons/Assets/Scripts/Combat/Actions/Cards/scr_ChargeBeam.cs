@@ -18,4 +18,14 @@ public class scr_ChargeBeam : ActionData
 
         AttackController.Instance.AddNewAttack(ChargeBeam, (player._gridPos.x + 1), player._gridPos.y, player);
     }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
 }

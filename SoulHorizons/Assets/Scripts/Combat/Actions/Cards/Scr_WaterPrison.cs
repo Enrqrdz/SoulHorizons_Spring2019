@@ -18,4 +18,14 @@ public class Scr_WaterPrison : ActionData
         //add attack to attack controller script
         AttackController.Instance.AddNewAttack(WaterPrison, player._gridPos.x, player._gridPos.y, player);
     }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
 }

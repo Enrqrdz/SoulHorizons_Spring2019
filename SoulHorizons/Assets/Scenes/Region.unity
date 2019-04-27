@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda59a823d28f7b4faf4c7875a5b46f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: 29bbb49828ddd3e40851ea1492d6f443, type: 3}
+  music: {fileID: 0}
   inventoryOpenSFX: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
   inventoryAddSFX: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
   inventoryCloseSFX: {fileID: 8300000, guid: 8ce300e61b7423247acc75067bfa9365, type: 3}

@@ -35,6 +35,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[1];
         Footsteps_SFX = SFX_Sources[0];
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
 
     public override void Move()
@@ -101,7 +102,6 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (!hSOnCD && HunterShotCheck())
         {
             StartCoroutine(HunterShot());

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Attacks/SoulPalm")]
 [RequireComponent(typeof(AudioSource))]
@@ -10,9 +8,11 @@ public class atk_SoulPalm : AttackData
     private AudioSource PlayCardSFX;
     public AudioClip PalmSFX;
 
+    Entity player;
     int playerX;
     int playerY;
-    int counter;
+    float verticalOffset = 1.5f;
+    static int counter = 0;
     
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
@@ -21,19 +21,27 @@ public class atk_SoulPalm : AttackData
     }
     public override ActiveAttack BeginAttack(ActiveAttack activeAtk)
     {
-        activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.entity._gridPos.x, activeAtk.entity._gridPos.y) + new Vector3(0, 1.5f, 0), Quaternion.identity);
+        counter++;
 
-        playerX = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.x;
-        playerY = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y;
-        counter = 1;
+        if (counter == 2)
+        {
+            activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(playerX, playerY) + new Vector3(0, verticalOffset, 0), Quaternion.identity);
+        }
+
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        }
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
 
         if (PlayCardSFX == null)
         {
             PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         }
-
         PlayCardSFX.clip = PalmSFX;
         PlayCardSFX.Play();
+
         return activeAtk;
     }
 
@@ -44,7 +52,7 @@ public class atk_SoulPalm : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-
+        counter = 0;
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
@@ -58,72 +66,16 @@ public class atk_SoulPalm : AttackData
 
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        
-        Debug.Log(counter);
-        if (counter == 1)
-        {
-            counter++;
-            if (playerY == scr_Grid.GridController.rowSizeMax - 1)
-            {
-                maxIncrementRange = maxIncrementRange + 2;
-                scr_Grid.GridController.ActivateTile(xPos, yPos);
-                return new Vector2Int(xPos, yPos);
-            }
-            else
-            {
-                scr_Grid.GridController.ActivateTile(xPos, yPos + 1);
-                return new Vector2Int(xPos, yPos + 1);
-            }
-        }
-
-        else if (counter == 2)
-        {
-            counter++;
-            scr_Grid.GridController.ActivateTile(xPos, yPos - 1);
-            return new Vector2Int(xPos, yPos - 1);
-        }
-
-        else if (counter == 3)
-        {
-            counter++;
-            if (playerY == 0)
-            {
-                counter = 5;
-                maxIncrementRange = maxIncrementRange + 2;
-                scr_Grid.GridController.ActivateTile(xPos + 1, yPos);
-                return new Vector2Int(xPos + 1, yPos);
-            }
-            scr_Grid.GridController.ActivateTile(xPos, yPos - 1);
-            return new Vector2Int(xPos, yPos - 1);
-        }
-
-        else if (counter == 4)
-        {
-            counter++;
-            scr_Grid.GridController.ActivateTile(xPos + 1, yPos);
-            return new Vector2Int(xPos + 1, yPos);
-        }
-        else if (counter == 5)
-        {
-            counter++;
-            scr_Grid.GridController.ActivateTile(xPos, yPos + 1);
-            return new Vector2Int(xPos , yPos+1);
-        }
-        else if (counter == 6)
-        {
-            counter++;
-            scr_Grid.GridController.ActivateTile(xPos, yPos + 1);
-            return new Vector2Int(xPos, yPos + 1);
-        }
-        else
-        {
-            return new Vector2Int(xPos, yPos);
-        }
-
+        return new Vector2Int(xPos + 1, yPos);
     }
     public override void ProgressEffects(ActiveAttack activeAttack)
     {
-       activeAttack.particle.transform.position = Vector3.Lerp(activeAttack.particle.transform.position, scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset, (particleSpeed) * Time.deltaTime);
-
+        if (activeAttack.particle != null)
+        {
+            activeAttack.particle.transform.position =
+            Vector3.Lerp(activeAttack.particle.transform.position,
+            scr_Grid.GridController.GetWorldLocation(activeAttack.lastPosition.x, activeAttack.lastPosition.y) + activeAttack.attack.particlesOffset,
+            (particleSpeed) * Time.deltaTime);
+        }
     }
 }

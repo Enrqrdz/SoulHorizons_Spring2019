@@ -63,11 +63,11 @@ public class RoamingRonin : scr_EntityAI
         yRange = scr_Grid.GridController.rowSizeMax - entity.height;
         SetPossibleHeadPositions();
         SetMovePattern();
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         currHealth = entity._health.hp;
         PhaseManager();
         if (completedTask)
@@ -133,7 +133,7 @@ public class RoamingRonin : scr_EntityAI
         }
         else
         {
-            transitionNumber += 2;  //This will effectively skip three zig-zag positions before the next check
+            transitionNumber += 2;
         }
     }
 

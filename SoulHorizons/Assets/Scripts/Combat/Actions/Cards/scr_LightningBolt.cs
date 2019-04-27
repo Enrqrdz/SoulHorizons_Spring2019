@@ -18,4 +18,14 @@ public class scr_LightningBolt : ActionData {
         //implement functionality here
         Debug.Log(actionName + ": Zap!");
     }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
 }

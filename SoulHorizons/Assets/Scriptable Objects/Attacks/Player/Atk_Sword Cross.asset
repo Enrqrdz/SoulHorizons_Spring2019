@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Atk_Sword Cross
   m_EditorClassIdentifier: 
   incrementTime: 0.5
-  maxIncrementRange: 3
+  maxIncrementRange: 2
   modifier: 1
   damage: 6
   type: 1

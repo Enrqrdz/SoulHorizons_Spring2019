@@ -18,4 +18,14 @@ public class scr_HardenSoul : ActionData {
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         player._health.shield += Shield_hp;
     }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
 }
