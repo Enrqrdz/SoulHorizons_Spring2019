@@ -58,6 +58,14 @@ public class BoltCard : ActionData
 
     public override void Activate()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        }
+
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = BoltSFX;
         PlayCardSFX.Play();

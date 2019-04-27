@@ -76,19 +76,28 @@ public class scr_Cleave : ActionData
         PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
         PlayCardSFX.clip = CleaveSFX;
         PlayCardSFX.Play();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
-
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
 
-        if (scr_Grid.GridController.LocationOnGrid(playerX + 1, playerY - 1))
+        if (playerY == 0)
 		{
-        	AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY - 1, player);
+            attack.maxIncrementRange = 1;
+            AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY, player);
 		}
-		else
+		else if (playerY == scr_Grid.GridController.rowSizeMax - 1)
 		{
-			AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY, player);
+            attack.maxIncrementRange = 1;
+            AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY - 1, player);
 		}
+        else
+        {
+            attack.maxIncrementRange = 2;
+            AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY - 1, player);
+        }
     }
 }
