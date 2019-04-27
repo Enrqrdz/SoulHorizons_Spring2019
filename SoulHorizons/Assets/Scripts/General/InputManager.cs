@@ -198,7 +198,7 @@ public static class InputManager
 		{
 			return 3;
 		}
-		return -1;
+		return -2;
 	}
 
     public static int ActionNumberPrimer()

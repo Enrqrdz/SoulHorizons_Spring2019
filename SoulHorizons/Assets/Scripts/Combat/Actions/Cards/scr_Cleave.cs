@@ -12,40 +12,22 @@ public class scr_Cleave : ActionData
     private Entity player;
     private int playerX, playerY;
 
-    public override void Activate()
-    {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
-        PlayCardSFX.clip = CleaveSFX;
-        PlayCardSFX.Play();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
-
-        playerX = player._gridPos.x;
-        playerY = player._gridPos.y;
-
-
-        if (scr_Grid.GridController.LocationOnGrid(playerX + 1, playerY - 1))
-		{
-        	AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY - 1, player);
-		}
-		else
-		{
-			AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY, player);
-		}
-    }
-
     public override void Project()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
-        if (playerY !=  scr_Grid.GridController.rowSizeMax - 1 && playerY != 0)
+        if (playerY == 0)
         {
-            for(int i = 0; i <= attack.maxIncrementRange; i++)
+            for (int i = 0; i < attack.maxIncrementRange; i++)
             {
-                scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].Highlight();
+                scr_Grid.GridController.grid[playerX + 1, playerY + i].Highlight();
             }
-            
+
         }
         else if (playerY == scr_Grid.GridController.rowSizeMax - 1)
         {
@@ -54,11 +36,11 @@ public class scr_Cleave : ActionData
                 scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].Highlight();
             }
         }
-        else if(playerY == 0)
+        else
         {
-            for (int i = 0; i < attack.maxIncrementRange; i++)
+            for (int i = 0; i <= attack.maxIncrementRange; i++)
             {
-                scr_Grid.GridController.grid[playerX + 1, playerY + i].Highlight();
+                scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].Highlight();
             }
         }
     }
@@ -87,5 +69,26 @@ public class scr_Cleave : ActionData
                 scr_Grid.GridController.grid[playerX + 1, playerY + i].DeHighlight();
             }
         }
+    }
+
+    public override void Activate()
+    {
+        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX.clip = CleaveSFX;
+        PlayCardSFX.Play();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+
+
+        if (scr_Grid.GridController.LocationOnGrid(playerX + 1, playerY - 1))
+		{
+        	AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY - 1, player);
+		}
+		else
+		{
+			AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY, player);
+		}
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Atk_Soul Palm
   m_EditorClassIdentifier: 
   incrementTime: 0.2
-  maxIncrementRange: 2
+  maxIncrementRange: 1
   modifier: 1
   damage: 15
   type: 1

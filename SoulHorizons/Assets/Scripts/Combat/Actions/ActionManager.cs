@@ -78,6 +78,17 @@ public class ActionManager : MonoBehaviour
         }
     }
 
+    private void CleanUpProjections()
+    {
+        for(int i = 0; i < scr_Grid.GridController.columnSizeMax; i++)
+        {
+            for (int j = 0; j < scr_Grid.GridController.rowSizeMax; j++)
+            {
+                scr_Grid.GridController.grid[i, j].DeHighlight();
+            }
+        }
+    }
+
     private void ProjectAttack()
     {
         //decisionNumber will be either: -1,0,1,2,3
@@ -122,7 +133,7 @@ public class ActionManager : MonoBehaviour
             if (decisionNumberIsACard && readyToCastAbility)
             {
                 projectingTiles = false;
-                if (projectedAttack != null)
+                if (currentDeck.hand[decisionNumber] != null)
                 {
                     currentDeck.hand[decisionNumber].DeProject();
                 }
@@ -131,7 +142,7 @@ public class ActionManager : MonoBehaviour
             if (decisionNumberIsAMantra && readyToCastMantra)
             {
                 projectingTiles = false;
-                if (projectedAttack != null)
+                if (currentDeck.hand[decisionNumber - 2] != null)
                 {
                     currentMantras.activeMantras[decisionNumber - 2].DeProject();
                 }
@@ -246,6 +257,7 @@ public class ActionManager : MonoBehaviour
         if (cooldown != 0)
         {
             readyToCastAction = false;
+            CleanUpProjections();
             yield return new WaitForSeconds(cooldown);
             readyToCastAction = true;
         }

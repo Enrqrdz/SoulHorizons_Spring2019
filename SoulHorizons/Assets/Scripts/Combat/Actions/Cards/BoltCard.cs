@@ -24,7 +24,7 @@ public class BoltCard : ActionData
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
-        impactX = Mathf.Min(playerX + boltAttack.maxIncrementRange, scr_Grid.GridController.columnSizeMax - 1);
+        impactX = Mathf.Min(playerX + boltAttack.maxIncrementRange, scr_Grid.GridController.columnSizeMax);
 
         for (int i = playerX + 1; i < impactX; i++)
         {
@@ -62,6 +62,6 @@ public class BoltCard : ActionData
         PlayCardSFX.clip = BoltSFX;
         PlayCardSFX.Play();
 
-        AttackController.Instance.AddNewAttack(boltAttack, player._gridPos.x, player._gridPos.y, player);
+        AttackController.Instance.AddNewAttack(boltAttack, playerX, playerY, player);
     }
 }
