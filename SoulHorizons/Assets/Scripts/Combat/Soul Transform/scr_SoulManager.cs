@@ -30,9 +30,9 @@ public class scr_SoulManager : MonoBehaviour {
 
     void Start () {
         //find the player
-        GameObject p = GameObject.FindGameObjectWithTag("Player");
+        GameObject p = ObjectReference.Instance.Player;
         player = p.GetComponent<Entity>();
-        anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        anim = ObjectReference.Instance.Player.GetComponentInChildren<Animator>();
 
         //TODO: Set all the button sprites according to the soul transforms given
 

@@ -10,7 +10,7 @@ public class scr_Meteor : ActionData {
 
     public override void Activate()
     {
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map 

@@ -16,7 +16,7 @@ public class scr_Cleave : ActionData
     {
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
@@ -73,12 +73,12 @@ public class scr_Cleave : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = CleaveSFX;
         PlayCardSFX.Play();
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;

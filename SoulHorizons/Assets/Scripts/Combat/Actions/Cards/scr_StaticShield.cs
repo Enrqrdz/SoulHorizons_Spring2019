@@ -17,10 +17,10 @@ public class scr_StaticShield : ActionData
     public float duration;
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = shieldSFX;
         PlayCardSFX.Play();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
 
         player.SetShield(true, duration, shieldProtection,shieldProtectionIncrement, shieldProtectionMax);
 
@@ -28,7 +28,7 @@ public class scr_StaticShield : ActionData
 
     public override void Project()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         player.Highlight();
     }
 

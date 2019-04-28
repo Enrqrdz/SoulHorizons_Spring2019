@@ -56,7 +56,7 @@ public class RoamingRonin : scr_EntityAI
         //Attack_SFX = SFX_Sources[1];
         Footsteps_SFX = SFX_Sources[0];
         anim = gameObject.GetComponentInChildren<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
 
         maxHealth = entity._health.hp;
         xRange = scr_Grid.GridController.columnSizeMax - entity.width;
