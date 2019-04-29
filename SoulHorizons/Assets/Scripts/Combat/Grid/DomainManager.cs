@@ -28,15 +28,13 @@ public class DomainManager : MonoBehaviour
 
     //This begins a recursive chain to attempt the following movements:
     // 1) x+1, y
-    // 2) x+1, y+1
-    // 3) x+1, y-1
-    // 4) x+2, y...
-    // 5) Repeat
+    // 2) (x+1) + 1, y
+    // 3) Repeat until the end of the grid
     // n) Base Case any open position, if not, kill the entity.
 
     public void Activate(float duration)
     {
-        playerColumns++; //4
+        playerColumns++;
 
         territorySeized = scr_Grid.GridController.grid[columnToBeSeized, 0].territory.name;
 
