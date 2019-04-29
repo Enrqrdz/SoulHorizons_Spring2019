@@ -45,4 +45,12 @@ public class scr_AnimController : MonoBehaviour {
             anim.SetBool("Attack2", false);
         }
     }
+
+    public void doneHit()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("Hit", false);
+        }
+    }
 }

@@ -1,0 +1,286 @@
+
+mushroom_son_forpsine.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armLeft
+  rotate: false
+  xy: 230, 29
+  size: 64, 80
+  orig: 64, 80
+  offset: 0, 0
+  index: -1
+armRight
+  rotate: true
+  xy: 133, 31
+  size: 78, 95
+  orig: 78, 95
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 826, 552
+  size: 181, 265
+  orig: 181, 265
+  offset: 0, 0
+  index: -1
+body eyes closed
+  rotate: true
+  xy: 1093, 552
+  size: 181, 265
+  orig: 181, 265
+  offset: 0, 0
+  index: -1
+drip1
+  rotate: true
+  xy: 2, 40
+  size: 69, 129
+  orig: 69, 129
+  offset: 0, 0
+  index: -1
+drip2
+  rotate: true
+  xy: 1681, 620
+  size: 57, 66
+  orig: 57, 66
+  offset: 0, 0
+  index: -1
+drippys
+  rotate: false
+  xy: 399, 550
+  size: 425, 183
+  orig: 425, 183
+  offset: 0, 0
+  index: -1
+drop
+  rotate: false
+  xy: 1820, 736
+  size: 18, 36
+  orig: 18, 36
+  offset: 0, 0
+  index: -1
+drop2
+  rotate: true
+  xy: 2, 3
+  size: 35, 68
+  orig: 35, 68
+  offset: 0, 0
+  index: -1
+drop3
+  rotate: true
+  xy: 1842, 774
+  size: 15, 35
+  orig: 15, 35
+  offset: 0, 0
+  index: -1
+drophit1
+  rotate: true
+  xy: 1764, 684
+  size: 88, 54
+  orig: 88, 54
+  offset: 0, 0
+  index: -1
+drophit2
+  rotate: false
+  xy: 1490, 668
+  size: 94, 65
+  orig: 94, 65
+  offset: 0, 0
+  index: -1
+drophit3
+  rotate: false
+  xy: 1580, 610
+  size: 56, 40
+  orig: 56, 40
+  offset: 0, 0
+  index: -1
+eyeLeft
+  rotate: false
+  xy: 2017, 830
+  size: 26, 54
+  orig: 26, 54
+  offset: 0, 0
+  index: -1
+eyeLeft charged
+  rotate: false
+  xy: 1552, 612
+  size: 26, 54
+  orig: 26, 54
+  offset: 0, 0
+  index: -1
+eyeRight
+  rotate: false
+  xy: 375, 430
+  size: 26, 49
+  orig: 26, 49
+  offset: 0, 0
+  index: -1
+eyeRight charged
+  rotate: false
+  xy: 403, 430
+  size: 26, 49
+  orig: 26, 49
+  offset: 0, 0
+  index: -1
+eyebrowLeft
+  rotate: false
+  xy: 72, 2
+  size: 55, 36
+  orig: 55, 36
+  offset: 0, 0
+  index: -1
+eyebrowRight
+  rotate: false
+  xy: 1360, 540
+  size: 73, 40
+  orig: 73, 40
+  offset: 0, 0
+  index: -1
+eyewhites
+  rotate: false
+  xy: 1360, 669
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+footLeft
+  rotate: false
+  xy: 1360, 582
+  size: 95, 85
+  orig: 95, 85
+  offset: 0, 0
+  index: -1
+footRight
+  rotate: true
+  xy: 290, 425
+  size: 111, 83
+  orig: 111, 83
+  offset: 0, 0
+  index: -1
+ghost
+  rotate: false
+  xy: 2, 538
+  size: 395, 483
+  orig: 395, 483
+  offset: 0, 0
+  index: -1
+loincloth
+  rotate: false
+  xy: 375, 481
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+mouth blue 1
+  rotate: false
+  xy: 290, 235
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+mouth blue 2
+  rotate: false
+  xy: 290, 330
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+mouth1
+  rotate: false
+  xy: 1934, 791
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+mouthClosed
+  rotate: false
+  xy: 290, 140
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+mouthDrip1
+  rotate: true
+  xy: 1586, 652
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+mouthDrip2
+  rotate: true
+  xy: 1457, 585
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+mushroiom top color 1
+  rotate: true
+  xy: 2, 111
+  size: 425, 286
+  orig: 425, 286
+  offset: 0, 0
+  index: -1
+mushroiom top color blue
+  rotate: false
+  xy: 399, 735
+  size: 425, 286
+  orig: 425, 286
+  offset: 0, 0
+  index: -1
+mushroiom top color charged
+  rotate: false
+  xy: 826, 735
+  size: 425, 286
+  orig: 425, 286
+  offset: 0, 0
+  index: -1
+mushroom top
+  rotate: false
+  xy: 1253, 735
+  size: 425, 286
+  orig: 425, 286
+  offset: 0, 0
+  index: -1
+sash
+  rotate: false
+  xy: 1680, 774
+  size: 160, 110
+  orig: 160, 110
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 1680, 886
+  size: 365, 135
+  orig: 365, 135
+  offset: 0, 0
+  index: -1
+sneeze1
+  rotate: false
+  xy: 296, 45
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+sneeze1 charged
+  rotate: false
+  xy: 1681, 679
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1
+sneeze2
+  rotate: false
+  xy: 1842, 791
+  size: 90, 93
+  orig: 90, 93
+  offset: 0, 0
+  index: -1
+spore
+  rotate: false
+  xy: 1435, 563
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1

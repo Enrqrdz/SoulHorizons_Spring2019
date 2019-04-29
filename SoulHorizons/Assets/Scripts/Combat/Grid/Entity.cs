@@ -241,6 +241,10 @@ public class Entity : MonoBehaviour
             hurt_SFX = hurts_SFX[index];
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
+            if (anim)
+            {
+                anim.SetBool("Hit", true);
+            }
 
             float tempDamage = attack.damage * attack.modifier;
             if (tempDamage - shieldProtection >= 0)
