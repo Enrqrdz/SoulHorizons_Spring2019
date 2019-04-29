@@ -1,0 +1,223 @@
+
+crab_boi_forSpine.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+LoinCloth_dangle
+  rotate: true
+  xy: 1667, 748
+  size: 69, 222
+  orig: 69, 222
+  offset: 0, 0
+  index: -1
+armLeft_lower
+  rotate: false
+  xy: 316, 89
+  size: 134, 166
+  orig: 134, 166
+  offset: 0, 0
+  index: -1
+armLeft_upper
+  rotate: true
+  xy: 720, 618
+  size: 150, 285
+  orig: 150, 285
+  offset: 0, 0
+  index: -1
+armRight_lower
+  rotate: false
+  xy: 2, 30
+  size: 312, 453
+  orig: 312, 453
+  offset: 0, 0
+  index: -1
+armRight_upper
+  rotate: true
+  xy: 1071, 779
+  size: 228, 314
+  orig: 228, 314
+  offset: 0, 0
+  index: -1
+clawLeft_bottom
+  rotate: false
+  xy: 316, 257
+  size: 154, 161
+  orig: 154, 161
+  offset: 0, 0
+  index: -1
+clawLeft_top
+  rotate: false
+  xy: 733, 502
+  size: 124, 114
+  orig: 124, 114
+  offset: 0, 0
+  index: -1
+clawRight_bottom
+  rotate: false
+  xy: 1667, 819
+  size: 304, 188
+  orig: 304, 188
+  offset: 0, 0
+  index: -1
+clawRight_top
+  rotate: false
+  xy: 720, 770
+  size: 349, 237
+  orig: 349, 237
+  offset: 0, 0
+  index: -1
+eyeLeft
+  rotate: false
+  xy: 452, 224
+  size: 15, 31
+  orig: 15, 31
+  offset: 0, 0
+  index: -1
+eyeRight
+  rotate: false
+  xy: 316, 451
+  size: 17, 32
+  orig: 17, 32
+  offset: 0, 0
+  index: -1
+eyelidLeft
+  rotate: true
+  xy: 2, 2
+  size: 26, 42
+  orig: 26, 42
+  offset: 0, 0
+  index: -1
+eyelidRight
+  rotate: false
+  xy: 983, 569
+  size: 60, 47
+  orig: 60, 47
+  offset: 0, 0
+  index: -1
+eyewhites
+  rotate: false
+  xy: 316, 31
+  size: 79, 56
+  orig: 79, 56
+  offset: 0, 0
+  index: -1
+headMain
+  rotate: false
+  xy: 606, 429
+  size: 125, 154
+  orig: 125, 154
+  offset: 0, 0
+  index: -1
+legLeftBack_1
+  rotate: false
+  xy: 733, 418
+  size: 127, 82
+  orig: 127, 82
+  offset: 0, 0
+  index: -1
+legLeftBack_2
+  rotate: false
+  xy: 1263, 726
+  size: 69, 51
+  orig: 69, 51
+  offset: 0, 0
+  index: -1
+legLeftBack_3
+  rotate: true
+  xy: 1973, 857
+  size: 44, 73
+  orig: 44, 73
+  offset: 0, 0
+  index: -1
+legLeftFront_2
+  rotate: false
+  xy: 1007, 618
+  size: 75, 45
+  orig: 75, 45
+  offset: 0, 0
+  index: -1
+legLeftFront_3
+  rotate: false
+  xy: 1007, 665
+  size: 67, 103
+  orig: 67, 103
+  offset: 0, 0
+  index: -1
+legLefttFront_1
+  rotate: true
+  xy: 859, 503
+  size: 113, 122
+  orig: 113, 122
+  offset: 0, 0
+  index: -1
+legRightBack_1
+  rotate: false
+  xy: 862, 411
+  size: 120, 90
+  orig: 120, 90
+  offset: 0, 0
+  index: -1
+legRightBack_2
+  rotate: false
+  xy: 1891, 753
+  size: 78, 64
+  orig: 78, 64
+  offset: 0, 0
+  index: -1
+legRightBack_3
+  rotate: true
+  xy: 1166, 713
+  size: 64, 95
+  orig: 64, 95
+  offset: 0, 0
+  index: -1
+legRightFront_1
+  rotate: true
+  xy: 472, 259
+  size: 159, 129
+  orig: 159, 129
+  offset: 0, 0
+  index: -1
+legRightFront_2
+  rotate: false
+  xy: 1076, 700
+  size: 88, 77
+  orig: 88, 77
+  offset: 0, 0
+  index: -1
+legRightFront_3
+  rotate: false
+  xy: 1973, 903
+  size: 72, 104
+  orig: 72, 104
+  offset: 0, 0
+  index: -1
+loinCloth
+  rotate: false
+  xy: 1387, 765
+  size: 278, 242
+  orig: 278, 242
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 354, 420
+  size: 250, 163
+  orig: 250, 163
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 354, 585
+  size: 364, 422
+  orig: 364, 422
+  offset: 0, 0
+  index: -1
+vest
+  rotate: false
+  xy: 2, 485
+  size: 350, 522
+  orig: 350, 522
+  offset: 0, 0
+  index: -1

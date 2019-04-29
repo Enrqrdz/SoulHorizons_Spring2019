@@ -216,6 +216,7 @@ public class RoamingRonin : scr_EntityAI
 
     void StartRangedAttack()
     {
+        anim.SetBool("Attack", true);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
         attack_SFX = attacks_SFX[0];
@@ -249,7 +250,7 @@ public class RoamingRonin : scr_EntityAI
     void StartMeleeAttack()
     {
         //insert animation here
-        anim.SetBool("RoninMelee", true);
+        anim.SetBool("Attack2", true);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
         attack_SFX = attacks_SFX[0];

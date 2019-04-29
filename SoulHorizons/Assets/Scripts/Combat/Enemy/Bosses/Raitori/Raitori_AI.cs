@@ -118,6 +118,8 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeStormStrike();
         Raitori.stormStrikesIsActive = true;
+
+        anim.SetBool("Cast", true);
         yield return new WaitForSeconds(Raitori.stormStrikeWindUpTime);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
@@ -342,11 +344,14 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeBirdBash();
         Raitori.birdBashIsActive = true;
+        
+            anim.SetBool("Attack", true);
+        
         yield return new WaitForSeconds(Raitori.birdBashWindUpTime);
         attack_SFX = attacks_SFX[0];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
-        //anim.SetBool("Attack", true);
+        
         StartBirdBash();
         yield return new WaitForSeconds(Raitori.birdBashCooldownTime);
         Raitori.birdBashIsActive = false;
@@ -369,6 +374,9 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeTwinTornado();
         Raitori.twinTornadoIsActive = true;
+        
+            anim.SetBool("Attack2", true);
+        
         yield return new WaitForSeconds(Raitori.twinTornadoWindUpTime);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
@@ -401,6 +409,9 @@ public class Raitori_AI : scr_EntityAI
     {
         Raitori.gustGaleIsActive = true;
         PrimeGustGale();
+        
+        anim.SetBool("Attack3", true);
+        
         yield return new WaitForSeconds(Raitori.gustGaleWindUpTime);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
@@ -461,6 +472,7 @@ public class Raitori_AI : scr_EntityAI
     {
         Raitori.gustGaleIsActive = true;
         PrimeFeatherRend();
+        anim.SetBool("Attack3", true);
         yield return new WaitForSeconds(Raitori.featherRendWindUpTime);
         //int index = Random.Range(0, attacks_SFX.Length);
         //attack_SFX = attacks_SFX[index];

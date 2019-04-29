@@ -48,6 +48,7 @@ public class Entity : MonoBehaviour
     public AudioClip die_SFX;
 
     public Animator anim;
+    public bool hasDeathAnim;
 
     public GameObject deathManager;
     private Material defaultMaterial;
@@ -366,7 +367,13 @@ public class Entity : MonoBehaviour
         //Debug.Log("I AM DEAD");
         scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
         _health.TakeDamage(_health.hp);
-        gameObject.SetActive(false);
+        if (hasDeathAnim)
+        {
+            gameObject.GetComponent<Entity>().enabled = false;
+        }else
+        {
+            gameObject.SetActive(false);
+        }
         //scr_Grid.GridController.RemoveEntity(this);
     }
 
