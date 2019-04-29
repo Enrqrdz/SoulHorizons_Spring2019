@@ -48,6 +48,6 @@ public class FogController : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }

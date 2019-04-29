@@ -19,7 +19,7 @@ public class atk_GuardBreak : AttackData
 
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
         player.isImmobile = true;

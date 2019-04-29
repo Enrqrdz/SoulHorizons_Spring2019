@@ -10,7 +10,7 @@ public class atk_CrashingWave : AttackData
     {
         if (activeAtk.currentIncrement != 0)
         {
-            activeAtk.attack.modifier -= .25f;
+            activeAtk.attack.damageModifier -= .25f;
         }
         scr_Grid.GridController.ActivateTile(xPos, yPos);
         scr_Grid.GridController.grid[xPos, yPos].DeBuffTile(floodedDuration, 0, 0, 2);

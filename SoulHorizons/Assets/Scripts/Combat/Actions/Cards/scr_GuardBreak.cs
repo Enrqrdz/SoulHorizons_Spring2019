@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Cards/GuardBreak")]
 [RequireComponent(typeof(AudioSource))]
@@ -16,21 +14,19 @@ public class scr_GuardBreak : ActionData
     public float teleportTime = 0.5f;
     int playerX;
     int playerY;
+    Vector2Int teleportPosition;
 
     public override void Activate()
     {
 
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = BreakSFX;
         PlayCardSFX.Play();
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
 
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
-
-        Debug.Log("Player X" + playerX);
-        Debug.Log("Player Y" + playerY);
 
         for (int i = 0; i < scr_Grid.GridController.columnSizeMax; i++)
         {
@@ -39,12 +35,39 @@ public class scr_GuardBreak : ActionData
             if (enemy != null && enemy.type == EntityType.Enemy)
             {
                 player.SetTransform(enemy._gridPos.x - 1, enemy._gridPos.y);
-                Debug.Log("Teleport!");
                 player.StartCoroutine(player.Teleport(teleportTime, GuardbreakDamage, playerX, playerY, enemy));
                 break;
             }
         }
         //AttackController.Instance.AddNewAttack(BreakAttack, player._gridPos.x + 1, player._gridPos.y, player);
         //scr_Grid.GridController.activeEntities[i].type == EntityType.Enemy
+    }
+
+    public override void Project()
+    {
+        player = ObjectReference.Instance.PlayerEntity;
+
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+
+        for (int i = 0; i < scr_Grid.GridController.columnSizeMax; i++)
+        {
+            enemy = scr_Grid.GridController.GetEntityAtPosition(i, playerY);
+
+            if (enemy != null && enemy.type == EntityType.Enemy)
+            {
+                teleportPosition = new Vector2Int(i - 1, playerY);
+                scr_Grid.GridController.grid[teleportPosition.x, teleportPosition.y].Highlight();
+                break;
+            }
+        }
+    }
+
+    public override void DeProject()
+    {
+        if(teleportPosition != null)
+        {
+            scr_Grid.GridController.grid[teleportPosition.x, teleportPosition.y].DeHighlight();
+        }
     }
 }

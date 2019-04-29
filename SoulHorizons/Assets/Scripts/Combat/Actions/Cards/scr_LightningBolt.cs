@@ -12,10 +12,20 @@ public class scr_LightningBolt : ActionData {
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = LightningBoltSFX;
         PlayCardSFX.Play();
         //implement functionality here
         Debug.Log(actionName + ": Zap!");
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
     }
 }

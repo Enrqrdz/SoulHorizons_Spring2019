@@ -26,20 +26,20 @@ public abstract class scr_EntityAI : MonoBehaviour {
             }
             else
             {
-                StartCoroutine(DePrimeAttackTiles(attack, num, yPos));
+                
                 break;
             }
         }
+        StartCoroutine(DePrimeAttackTiles(attack, num, yPos));
     }
 
     private IEnumerator DePrimeAttackTiles (AttackData attack, int startPoint, int yPos)
     {
-        yield return new WaitForSeconds(attack.incrementTime * scr_Grid.GridController.rowSizeMax/2);
+        yield return new WaitForSeconds(.5f/attack.incrementTime);
         for(int i = 0; i < attack.maxIncrementRange; i++)
         {
             scr_Grid.GridController.DePrimeTile(startPoint + i, yPos);
         }
     }
-
  
 }

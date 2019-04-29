@@ -15,12 +15,12 @@ public class GameLaunch : MonoBehaviour
         SaveManager.currentGame.inventory.AddCardToInventory(startingDeck);
         SaveManager.currentGame.inventory.AddCardToDeck(startingDeck);
 
-        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.WORLDMAP);
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.INTRODUCTION);
     }
 
     public void Continue()
     {
         SaveManager.Load();
-        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.WORLDMAP);
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.INTRODUCTION);
     }
 }

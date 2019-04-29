@@ -35,7 +35,6 @@ public class AttackController : MonoBehaviour {
             bool attackIsOnFinalTarget = !activeAttacks[i].attack.hasPiercing && activeAttacks[i].entityIsHit;
             bool attackIsNotOnGrid = scr_Grid.GridController.LocationOnGrid(activeAttacks[i].position.x, activeAttacks[i].position.y) == false;
             bool attackHasMoved = activeAttacks[i].currentIncrement != 0;
-            bool attackHasPassedBuff = scr_Grid.GridController.CheckIfHelpful(activeAttacks[i].position.x, activeAttacks[i].position.y) == true;
 
             if (activeAttacks[i].CanAttackContinue())
             {
@@ -48,19 +47,6 @@ public class AttackController : MonoBehaviour {
                 if (attackHasMoved)
                 {
                     scr_Grid.GridController.DeactivateTile(activeAttacks[i].lastPosition.x, activeAttacks[i].lastPosition.y);
-                }
-
-                if (attackHasPassedBuff)
-                {
-                    if (activeAttacks[i].attack.type == EntityType.Player)
-                    {
-                        activeAttacks[i].attack.modifier = activeAttacks[i].attack.modifier * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileBuff();
-                    }
-                    else
-                    {
-                        activeAttacks[i].attack.modifier = activeAttacks[i].attack.modifier * scr_Grid.GridController.grid[activeAttacks[i].position.x, activeAttacks[i].position.y].GetTileProtection();
-
-                    }
                 }
                 activeAttacks[i].lastPosition = activeAttacks[i].position;
                 activeAttacks[i].Clone(scr_Grid.GridController.AttackPosition(activeAttacks[i]));
@@ -75,14 +61,15 @@ public class AttackController : MonoBehaviour {
     private void RemoveFromArray(int index)
     {
         //Attack end effects
-        activeAttacks[index].attack.modifier = 1;
+        activeAttacks[index].attack.damageModifier = 1;
         activeAttacks[index].attack.EndEffects(activeAttacks[index]);
         scr_Grid.GridController.DeactivateTile(activeAttacks[index].lastPosition.x, activeAttacks[index].lastPosition.y);
         scr_Grid.GridController.DeactivateTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
         scr_Grid.GridController.DePrimeTile(activeAttacks[index].position.x, activeAttacks[index].position.y);
         try
         {
-            Destroy(activeAttacks[index].particle.gameObject);
+            if(activeAttacks[index].particle != null)
+                Destroy(activeAttacks[index].particle.gameObject);
         }
         catch
         {
@@ -108,6 +95,8 @@ public class AttackController : MonoBehaviour {
         activeAttacks[numberOfActiveAttacks].attack.BeginAttack(xPos, yPos, activeAttacks[numberOfActiveAttacks]);
         activeAttacks[numberOfActiveAttacks].Clone(activeAttacks[numberOfActiveAttacks].attack.BeginAttack(activeAttacks[numberOfActiveAttacks]));
 
+        bool attackHasBuff = scr_Grid.GridController.CheckIfHelpful(entity._gridPos.x, entity._gridPos.y) == true;
+
         if (attackData == null)
         {
             Debug.Log("AttackController: attack is null");
@@ -115,6 +104,11 @@ public class AttackController : MonoBehaviour {
         if (activeAttacks[numberOfActiveAttacks] == null)
         {
             Debug.Log("AttackController: attack is null");
+        }
+
+        if(attackHasBuff == true)
+        {
+            attackData.damageModifier = attackData.damageModifier * scr_Grid.GridController.grid[entity._gridPos.x, entity._gridPos.y].GetTileBuff();
         }
         attackData.LaunchEffects(activeAttacks[numberOfActiveAttacks]);
         numberOfActiveAttacks++;

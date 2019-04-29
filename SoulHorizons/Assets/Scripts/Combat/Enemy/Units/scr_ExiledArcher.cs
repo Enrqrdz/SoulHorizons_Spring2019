@@ -20,9 +20,6 @@ public class scr_ExiledArcher : scr_EntityAI {
     private bool canMove = true;
     private bool goBackwards = false;
     private int movePosition = 0;
-
-    [HideInInspector]
-    public int hunterShotDecider;
     public AudioSource[] SFX_Sources;
 
     AudioSource Attack_SFX;
@@ -37,8 +34,8 @@ public class scr_ExiledArcher : scr_EntityAI {
         anim = gameObject.GetComponentInChildren<Animator>();
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[1];
-        hunterShotDecider = Random.Range(0, 6);
         Footsteps_SFX = SFX_Sources[0];
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
 
     public override void Move()
@@ -105,10 +102,8 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (!hSOnCD && HunterShotCheck())
         {
-            hunterShotDecider = Random.Range(0, 6);
             StartCoroutine(HunterShot());
         }
         else if (canMove)
@@ -124,7 +119,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     bool HunterShotCheck()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = ObjectReference.Instance.Player;
         int playerY = player.GetComponent<Entity>()._gridPos.y;
         if (entity._gridPos.y == playerY)
         {
@@ -135,30 +130,13 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     void StartHunterShot()
     {
-        int randomVal;
-        randomVal = Random.Range(0, 6); //The arrow has a 3/5 chance to come out straight, and a 1/5 chance to come out either one tile below or above the archer
-        Debug.Log(hunterShotDecider + "ActualAttack");
-
-        if (randomVal == 0 || randomVal == 6)
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y > entity._gridPos.y || GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y < entity._gridPos.y)
         {
-            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
-            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
-            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-            Attack_SFX = SFX_Sources[0];
-            attack_SFX = attacks_SFX[1];
-            Attack_SFX.clip = attack_SFX;
-            Attack_SFX.Play();
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
         }
         else
         {
-            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
-            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-            Attack_SFX = SFX_Sources[0];
-            attack_SFX = attacks_SFX[0];
-            Attack_SFX.clip = attack_SFX;
-            Attack_SFX.Play();
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         }
     }
@@ -170,18 +148,25 @@ public class scr_ExiledArcher : scr_EntityAI {
         hSOnCD = true;
         yield return new WaitForSeconds(hSChargeTime);
         anim.SetBool("Attack", true);
-        Debug.Log(hunterShotDecider + "Coroutine");
-        /*if (hunterShotDecider == 0 || hunterShotDecider == 6)
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y > entity._gridPos.y || GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y < entity._gridPos.y)
         {
-            yield return new WaitForSeconds(.85f);
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[1];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
         }
         else
         {
-            yield return new WaitForSeconds(.85f);
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[0];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
-        }*/
+        }
         yield return new WaitForSeconds(hSCooldownTime);
         hSOnCD = false;
     }
@@ -191,7 +176,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         //TELEGRAPH
         canArrowRain = false;
         yield return new WaitForSeconds(1f);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = ObjectReference.Instance.Player;
         int playerXPos = player.GetComponent<Entity>()._gridPos.x;
         AttackController.Instance.AddNewAttack(arrowRain, playerXPos, scr_Grid.GridController.rowSizeMax - 1, entity);
         yield return new WaitForSeconds(_aRInterval);

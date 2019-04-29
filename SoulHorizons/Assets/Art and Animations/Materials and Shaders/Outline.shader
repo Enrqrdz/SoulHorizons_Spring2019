@@ -5,102 +5,79 @@ Shader "Custom/Outline"
 	Properties
 	{
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
-		_Color("Tint", Color) = (1,1,1,1)
-		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
-		[HideInInspector] _RendererColor("RendererColor", Color) = (1,1,1,1)
-		[HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
-		[PerRendererData] _AlphaTex("External Alpha", 2D) = "white" {}
-		[PerRendererData] _EnableExternalAlpha("Enable External Alpha", Float) = 0
-
-		_OutlineTex("Outline Texture", 2D) = "white" {}
+		_Color("Sprite Color", Color) = (1,1,1,1)
 		_OutlineColor("Outline Color", Color) = (1,1,1,1)
-		_OutlineWidth("Outline Width", Range(0.5,10.0)) = 1.1
+		_OutlineThickness("Outline Thickness", Range(1.0,200.0)) = 4.0
 	}
 
 		SubShader
 		{
-			Tags
-			{
-				"Queue" = "Transparent"
-				"IgnoreProjector" = "True"
-				"RenderType" = "Transparent"
-				"PreviewType" = "Plane"
-				"CanUseSpriteAtlas" = "True"
-			}
-
 			Cull Off
-			Lighting Off
-			ZWrite Off
-			Blend One OneMinusSrcAlpha
+			Blend SrcAlpha OneMinusSrcAlpha
 
 			Pass
 			{
 				CGPROGRAM
 					#pragma vertex vert
 					#pragma fragment frag
-					#pragma target 2.0
-					
+
 					#include "UnityCG.cginc"
-					#include "UnityUI.cginc"
 
-					#pragma multi_compile __ UNITY_UI_CLIP_RECT
-					#pragma multi_compile __ UNITY_UI_ALPHACLIP
+					sampler2D _MainTex;
+					fixed4 _Color;
 
-					struct appdata
+					struct appdata_t
 					{
-						float4 vertex : POSITION;
-						float2 uv : TEXCOORD0;
-						UNITY_VERTEX_INPUT_INSTANCE_ID
+						float4 vertex   : POSITION;
+						float4 color    : COLOR;
+						float2 texcoord : TEXCOORD0;
 					};
 
-					struct v2f 
+					struct v2f
 					{
 						float4 pos : SV_POSITION;
 						fixed4 color : COLOR;
 						float2 uv : TEXCOORD0;
-						float4 worldPosition : TEXCOORD1;
-						UNITY_VERTEX_OUTPUT_STEREO
 					};
 
-					float _OutlineWidth;
-					float4 _OutlineColor;
-					sampler2D _OutlineTex;
-					float4 _ClipRect;
-					fixed4 _TextureSampleAdd;
-
-					v2f vert(appdata IN) 
+					v2f vert(appdata_t IN)
 					{
-						IN.vertex.xyz *= _OutlineWidth;
-
 						v2f OUT;
 
 						OUT.pos = UnityObjectToClipPos(IN.vertex);
-						OUT.uv = IN.uv * _OutlineColor;
+						OUT.uv = IN.texcoord;
+
+						OUT.color = IN.color *_Color;
 
 						return OUT;
 					}
 
-					fixed4 frag(v2f IN) : SV_Target
-					{
-						//half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
-						float4 texColor = (tex2D(_OutlineTex, IN.uv) + _TextureSampleAdd * IN.color);
+					float4 _MainTex_TexelSize;
+					fixed4 _OutlineColor;
+					float _OutlineThickness;
 
-						return texColor * _OutlineColor;
+					fixed4 frag(v2f IN) : COLOR
+					{
+						half4 color = (tex2D(_MainTex, IN.uv)) * IN.color;
+
+						color.rgb *= color.a;
+
+
+						half4 outlineColor = _OutlineColor;
+						outlineColor.a *= ceil(color.a);
+						outlineColor.rgb *= color.a;
+
+						fixed northAlpha = tex2D(_MainTex, IN.uv + fixed2(0, _MainTex_TexelSize.y) * _OutlineThickness).a;
+						fixed southAlpha = tex2D(_MainTex, IN.uv - fixed2(0, _MainTex_TexelSize.y) * _OutlineThickness).a;
+						fixed westAlpha = tex2D(_MainTex, IN.uv - fixed2(_MainTex_TexelSize.x, 0) * _OutlineThickness).a;
+						fixed eastAlpha = tex2D(_MainTex, IN.uv + fixed2(_MainTex_TexelSize.x , 0) * _OutlineThickness).a;
+
+						fixed sumAlpha = northAlpha * southAlpha * westAlpha * eastAlpha;
+
+
+						return lerp(outlineColor, color, ceil(sumAlpha));
 					}
 
-				ENDCG
-			}
-
-			Pass
-			{
-				CGPROGRAM
-					#pragma vertex SpriteVert
-					#pragma fragment SpriteFrag
-					#pragma target 2.0
-					#pragma multi_compile_instancing
-					#pragma multi_compile _ PIXELSNAP_ON
-					#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
-					#include "UnitySprites.cginc"
 				ENDCG
 			}
 		}

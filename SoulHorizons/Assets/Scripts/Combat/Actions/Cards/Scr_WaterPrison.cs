@@ -13,9 +13,19 @@ public class Scr_WaterPrison : ActionData
     public override void Activate()
     {
 
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         //add attack to attack controller script
         AttackController.Instance.AddNewAttack(WaterPrison, player._gridPos.x, player._gridPos.y, player);
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
     }
 }
