@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class scr_FoulTrifling : scr_EntityAI
 {
-    public float movementIntervalLower;
-    public float movementIntervalUpper;
+    public float movementInterval;
 
     public AttackData attack1;
     public AttackData chargedAttack;
@@ -22,8 +21,8 @@ public class scr_FoulTrifling : scr_EntityAI
     private int state = 0;
     private bool completedTask = true;
     private bool isStuck = false;
-    private bool xDirection = false; //false means left, true means right
-    private bool yDirection = false; //false means down, true means up
+    private bool moveRight = false; //false means left, true means right
+    private bool moveUp = false; //false means down, true means up
 
     public void Start()
     {
@@ -31,11 +30,11 @@ public class scr_FoulTrifling : scr_EntityAI
         Footsteps_SFX = SFX_Sources[0];
         Attack_SFX = SFX_Sources[1];
         anim = gameObject.GetComponentInChildren<Animator>();
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
 
     public override void UpdateAI()
     {
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
         if (completedTask)
         {
             StartCoroutine(Brain());
@@ -55,7 +54,7 @@ public class scr_FoulTrifling : scr_EntityAI
         Footsteps_SFX.Play();
 
 
-        if (!xDirection)
+        if (!moveRight)
         {
             xPos--;
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
@@ -65,7 +64,7 @@ public class scr_FoulTrifling : scr_EntityAI
             }
             else if (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == TerrName.Player)
             {
-                xDirection = !xDirection;
+                moveRight = !moveRight;
                 Move();
             }
         }
@@ -82,7 +81,7 @@ public class scr_FoulTrifling : scr_EntityAI
             }
             catch
             {
-                xDirection = !xDirection;
+                moveRight = !moveRight;
                 Move();
             }
         }
@@ -94,7 +93,6 @@ public class scr_FoulTrifling : scr_EntityAI
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
         Footsteps_SFX.Play();
-
         if (direction)
         {
             yPos = yPos + 1;
@@ -103,13 +101,10 @@ public class scr_FoulTrifling : scr_EntityAI
         {
             yPos = yPos - 1;
         }
-
         try
         {
             if (!scr_Grid.GridController.CheckIfOccupied(xPos, yPos) && (scr_Grid.GridController.ReturnTerritory(xPos, yPos).name == entity.entityTerritory.name))
             {
-                //if the tile is not occupied
-                scr_Grid.GridController.SetTileOccupied(true, xPos, yPos, entity);          //set it to be occupied  
                 entity.SetTransform(xPos, yPos);
                 return;
             }
@@ -128,12 +123,6 @@ public class scr_FoulTrifling : scr_EntityAI
 
     void AttackManager()
     {
-        int random = Random.Range(1, 10);
-        if (random < 7)
-        {
-            StartAttack1();
-        }
-
         if (attackCounter >= 3)
         {
             int rand = Random.Range(0, 2);
@@ -146,6 +135,15 @@ public class scr_FoulTrifling : scr_EntityAI
                 attackCounter = 0;
             }
         }
+        else
+        {
+            int random = Random.Range(1, 10);
+            if (random < 7)
+            {
+                StartAttack1();
+            }
+        }
+       
     }
 
     void GetYDirection(int yPos)
@@ -153,22 +151,22 @@ public class scr_FoulTrifling : scr_EntityAI
         int yRange = scr_Grid.GridController.rowSizeMax;
         if (yPos == 0)
         {
-            yDirection = true;
+            moveUp = true;
         }
         else if (yPos == yRange - 1)
         {
-            yDirection = false;
+            moveUp = false;
         }
         else
         {
             int random = Random.Range(0, 2);
             if (random == 1)
             {
-                yDirection = true;
+                moveUp = true;
             }
             else
             {
-                yDirection = false;
+                moveUp = false;
             }
         }
     }
@@ -177,36 +175,33 @@ public class scr_FoulTrifling : scr_EntityAI
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
-
         int index = Random.Range(0, attacks_SFX.Length);
         attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
-
         AttackController.Instance.AddNewAttack(attack1, entity._gridPos.x, entity._gridPos.y, entity);
-
     }
     void Attack2()
     {
+
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
-
         int index = Random.Range(0, attacks_SFX.Length);
         attack_SFX = attacks_SFX[index];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
-
         AttackController.Instance.AddNewAttack(chargedAttack, entity._gridPos.x, entity._gridPos.y, entity);
     }
     void StartAttack1()
     {
         anim.SetBool("Attack", true);
+        PrimeAttackTiles(attack1, entity._gridPos.x, entity._gridPos.y);
     }
     void StartAttack2()
     {
         anim.SetBool("Attack2", true);
+        PrimeAttackTiles(chargedAttack, entity._gridPos.x, entity._gridPos.y);
     }
-
 
     private IEnumerator Brain()
     {
@@ -215,10 +210,7 @@ public class scr_FoulTrifling : scr_EntityAI
             case 0:
                 completedTask = false;
                 Move();
-                float moveInterval = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(moveInterval);
-                attackCounter++;
-                AttackManager();
+                yield return new WaitForSeconds(movementInterval);
                 state = 1;
                 completedTask = true;
                 break;
@@ -229,12 +221,10 @@ public class scr_FoulTrifling : scr_EntityAI
                 GetYDirection(entity._gridPos.y);
                 for (int i = 0; i < yRange; i++) //along the column
                 {
+                    MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, moveUp);
                     attackCounter++;
                     AttackManager();
-
-                    MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, yDirection);
-                    float moveInterval2 = Random.Range(movementIntervalLower, movementIntervalUpper);
-                    yield return new WaitForSecondsRealtime(moveInterval2);
+                    yield return new WaitForSeconds(movementInterval);
                     if (entity._gridPos.y == 0)
                     {
                         break;
@@ -244,12 +234,12 @@ public class scr_FoulTrifling : scr_EntityAI
                         isStuck = false;
                         break;
                     }
-
                 }
                 completedTask = true;
                 state = 0;
-                float moveInterval3 = Random.Range(movementIntervalLower, movementIntervalUpper);
-                yield return new WaitForSecondsRealtime(moveInterval3);
+                yield return new WaitForSeconds(movementInterval);
+                break;
+            case 2:
                 break;
         }
         yield return null;

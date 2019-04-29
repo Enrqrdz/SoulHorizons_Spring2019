@@ -12,13 +12,25 @@ public class scr_CrashingWave : ActionData
 
     public override void Activate()
     {
-
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
-
-        //add attack to attack controller script
-        for(int i = 0; i < scr_Grid.GridController.columnSizeMax; i++)
+        Entity player = ObjectReference.Instance.PlayerEntity;
+        try
         {
-            AttackController.Instance.AddNewAttack(CrashingWave, (player._gridPos.x + 1), i, player);
+            AttackController.Instance.AddNewAttack(CrashingWave, (player._gridPos.x + 1), player._gridPos.y + 1, player);
+            AttackController.Instance.AddNewAttack(CrashingWave, (player._gridPos.x + 1), player._gridPos.y, player);
         }
+        catch
+        {
+            AttackController.Instance.AddNewAttack(CrashingWave, (player._gridPos.x + 1), player._gridPos.y, player);
+        }
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
     }
 }

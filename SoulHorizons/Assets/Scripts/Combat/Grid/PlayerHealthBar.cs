@@ -6,7 +6,7 @@ public class PlayerHealthBar : HealthBar
 {
     public override void OnStart()
     {
-        targetEntity = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Entity>();
+        targetEntity = ObjectReference.Instance.Player.GetComponentInChildren<Entity>();
 
         if(targetEntity == null)
         {

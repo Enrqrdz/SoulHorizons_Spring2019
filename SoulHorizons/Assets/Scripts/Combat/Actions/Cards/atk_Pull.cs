@@ -32,48 +32,23 @@ public class atk_Pull : AttackData
     {
         if (activeAttack.entityIsHit == true)
         {
-            int entityXPos = activeAttack.entityHit._gridPos.x;
-            int entityYPos = activeAttack.entityHit._gridPos.y;
-            int xLimit = GetXLimit(entityXPos, activeAttack.entityHit);
-            Debug.Log(entityXPos);
-            if ((entityXPos - 1) != xLimit)
+            Entity enemyHit = activeAttack.entityHit;
+            int entityXPos = enemyHit._gridPos.x;
+            int entityYPos = enemyHit._gridPos.y;
+
+            entityXPos = DomainManager.Instance.columnToBeSeized;
+            if (!scr_Grid.GridController.CheckIfOccupied(entityXPos, entityYPos))
             {
-                entityXPos = activeAttack.entityHit._gridPos.x--;
-                if (!scr_Grid.GridController.CheckIfOccupied(entityXPos, entityYPos) && (scr_Grid.GridController.ReturnTerritory(entityXPos, entityYPos).name != TerrName.Player))
-                {
-                    //if the tile is not occupied
-                    scr_Grid.GridController.SetTileOccupied(false, entityXPos++, entityYPos, activeAttack.entityHit);          //set it to be occupied  
-                    scr_Grid.GridController.SetTileOccupied(true, entityXPos, entityYPos, activeAttack.entityHit);          //set it to be occupied  
-                    activeAttack.entityHit.SetTransform(entityXPos, entityYPos);
-                    activeAttack.entityHit.gotStunned(stunTime);
-                    return;
-                }
+                enemyHit.SetTransform(entityXPos, entityYPos);
+                enemyHit.gotStunned(stunTime);
             }
             else
             {
-                activeAttack.entityHit.gotStunned(stunTime);
+                enemyHit.gotStunned(stunTime);
                 return;
             }
+
         }
     }
 
-    int GetXLimit(int xPos, Entity entity)
-    {
-        int xRange = scr_Grid.GridController.columnSizeMax-1;
-        int xLimit = xPos;
-        int tempX = xPos;
-        for (int i = 0; i < xRange; i++)
-        {
-            tempX--;
-            if (scr_Grid.GridController.grid[xLimit, entity._gridPos.y].territory.name != TerrName.Player)
-            {
-                xLimit = tempX;
-            }
-            else
-            {
-                return xLimit;
-            }
-        }
-        return xLimit;
-    }
 }

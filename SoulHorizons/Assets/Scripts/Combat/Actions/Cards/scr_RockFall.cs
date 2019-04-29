@@ -14,7 +14,7 @@ public class scr_RockFall : ActionData
     public override void Activate()
     {
 
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         //add attack to attack controller script
         if (player._gridPos.x + 2 < scr_Grid.GridController.columnSizeMax - 1)
@@ -25,5 +25,15 @@ public class scr_RockFall : ActionData
         {
 
         }
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
     }
 }

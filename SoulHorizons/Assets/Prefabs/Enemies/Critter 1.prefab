@@ -156,7 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 10
     shield: 0
@@ -167,14 +170,16 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitShader: {fileID: 4800000, guid: 7b5b8562bba41fc42801af962cf31837, type: 3}
   lerpSpeed: 100
   has_iframes: 0
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
-  - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}
   die_SFX: {fileID: 8300000, guid: e8f86f352c7d3ec4aa8b9948ce4e9c48, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
@@ -193,10 +198,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
-  movementIntervalLower: 0.75
-  movementIntervalUpper: 1.5
+  movementInterval: 0.75
+  attackInterval: 0.25
+  Scratch: {fileID: 11400000, guid: 33acc9c802efedd448937f725254233f, type: 2}
   movements_SFX:
-  - {fileID: 8300000, guid: 4ef9f18db4eb1f64e9c3efd1dd77c45c, type: 3}
+  - {fileID: 0}
 --- !u!82 &82587730288405618
 AudioSource:
   m_ObjectHideFlags: 0

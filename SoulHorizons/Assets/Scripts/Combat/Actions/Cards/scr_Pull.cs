@@ -9,16 +9,57 @@ public class scr_Pull : ActionData
     private AudioSource PlayCardSFX;
     public AudioClip PullSFX;
     public AttackData pull;
+    private Entity player;
+    private Entity enemy;
+    private int playerX, playerY;
+    private Vector2Int pullPosition;
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip =PullSFX;
         PlayCardSFX.Play();
-         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
 
         //add attack to attack controller script
-        AttackController.Instance.AddNewAttack(pull, player._gridPos.x, player._gridPos.y, player);
+        AttackController.Instance.AddNewAttack(pull, playerX, playerY, player);
     }
 
+    public override void Project()
+    {
+        player = ObjectReference.Instance.PlayerEntity;
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+
+        for (int i = 0; i < scr_Grid.GridController.columnSizeMax; i++)
+        {
+            enemy = scr_Grid.GridController.GetEntityAtPosition(i, playerY);
+
+            if (enemy != null && enemy.type == EntityType.Enemy)
+            {
+                pullPosition = new Vector2Int(i, playerY);
+                scr_Grid.GridController.grid[pullPosition.x, pullPosition.y].Highlight();
+                scr_Grid.GridController.grid[DomainManager.Instance.columnToBeSeized, pullPosition.y].Highlight();
+                break;
+            }
+        }
+    }
+
+    public override void DeProject()
+    {
+        for (int i = 0; i < scr_Grid.GridController.columnSizeMax; i++)
+        {
+            enemy = scr_Grid.GridController.GetEntityAtPosition(i, playerY);
+
+            if (enemy != null && enemy.type == EntityType.Enemy)
+            {
+                pullPosition = new Vector2Int(i, playerY);
+                scr_Grid.GridController.grid[pullPosition.x, pullPosition.y].DeHighlight();
+                scr_Grid.GridController.grid[DomainManager.Instance.columnToBeSeized, pullPosition.y].DeHighlight();
+                break;
+            }
+        }
+    }
 }

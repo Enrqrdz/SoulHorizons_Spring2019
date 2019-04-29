@@ -8,15 +8,30 @@ public class scr_Blur : ActionData
 {
     private AudioSource PlayCardSFX;
     public AudioClip BlurSFX;
+    private Entity player;
 
     public float duration;
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        if(PlayCardSFX == null)
+        {
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
+        }
         PlayCardSFX.clip = BlurSFX;
         PlayCardSFX.Play();
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         player.setInvincible(true, duration);
 
+    }
+
+    public override void Project()
+    {
+        player = ObjectReference.Instance.PlayerEntity;
+        player.Highlight();
+    }
+
+    public override void DeProject()
+    {
+        player.DeHighlight();
     }
 }

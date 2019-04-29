@@ -114,8 +114,10 @@ MonoBehaviour:
   hSChargeTime: 3
   arrowRain: {fileID: 11400000, guid: 320a8358f456ced43b8ea33ecfec776c, type: 2}
   aRInterval: 5
-  movementIntervalLower: 3
-  movementIntervalUpper: 5
+  movementInterval: 0
+  hunterShotDecider: 0
+  SFX_Sources: []
+  movements_SFX: []
   attacks_SFX:
   - {fileID: 8300000, guid: 22734ed54445ec54f8f3c99b2db34d69, type: 3}
 --- !u!82 &82002260226468596
@@ -310,7 +312,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 75
     shield: 0
@@ -321,11 +326,13 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitShader: {fileID: 4800000, guid: 7b5b8562bba41fc42801af962cf31837, type: 3}
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
@@ -351,10 +358,17 @@ MonoBehaviour:
   hSChargeTime: 3
   arrowRain: {fileID: 11400000, guid: 320a8358f456ced43b8ea33ecfec776c, type: 2}
   aRInterval: 5
-  movementIntervalLower: 2.5
-  movementIntervalUpper: 3.5
+  movementInterval: 2.5
+  hunterShotDecider: 0
+  SFX_Sources:
+  - {fileID: 82240855345996476}
+  - {fileID: 82240855345996476, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
+  - {fileID: 82240855345996476, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
+  movements_SFX:
+  - {fileID: 8300000, guid: f5b38e9c3c02bfc479d50f0c38163efd, type: 3}
   attacks_SFX:
   - {fileID: 8300000, guid: d25492f55425f534994a68501fb4cc25, type: 3}
+  - {fileID: 8300000, guid: b976a4af7f206084d9c2514315c76698, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -728,11 +742,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.2
       objectReference: {fileID: 0}
-    - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
-        type: 3}
-      propertyPath: targetEntity
-      value: 
-      objectReference: {fileID: 114725702907161856}
     - target: {fileID: 6890958084846689348, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_IsActive
@@ -743,6 +752,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+        type: 3}
+      propertyPath: targetEntity
+      value: 
+      objectReference: {fileID: 114725702907161856}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}
 --- !u!4 &908514017464375694 stripped

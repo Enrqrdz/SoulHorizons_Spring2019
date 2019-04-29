@@ -12,14 +12,24 @@ public class scr_Boomerang : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = BoomerangSFX;
         PlayCardSFX.Play();
 
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         //add attack to attack controller script
         //does a check to see if the target col is off the map 
         AttackController.Instance.AddNewAttack(boomerangAttack, player._gridPos.x + 1, player._gridPos.y, player);
+    }
+
+    public override void Project()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeProject()
+    {
+        throw new System.NotImplementedException();
     }
 }

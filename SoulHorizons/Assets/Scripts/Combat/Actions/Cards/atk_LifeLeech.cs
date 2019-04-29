@@ -24,7 +24,7 @@ public class atk_LifeLeech : AttackData
     {
         activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
         activeAttack.particle.sortingOrder = -activeAttack.position.y;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
     }
 
     public override void ProgressEffects(ActiveAttack activeAttack)

@@ -32,6 +32,13 @@ public class atk_ExplosionMain : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-        scr_Grid.GridController.grid[activeAttack.position.x - 1, activeAttack.position.y].DeBuffTile(6f, 3, 1, 1);
+        try
+        {
+            scr_Grid.GridController.grid[activeAttack.position.x - 1, activeAttack.position.y].DeBuffTile(6f, fireDamage, 1, 1);
+        }
+        catch
+        {
+
+        }
     }
 }

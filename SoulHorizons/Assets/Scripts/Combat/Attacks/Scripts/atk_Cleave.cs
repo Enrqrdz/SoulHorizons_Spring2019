@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Attacks/Cleave")]
-public class atk_Cleave : AttackData {
+public class atk_Cleave : AttackData
+{
+    Entity player;
+    int playerX;
+    int playerY;
 
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
-        scr_Grid.GridController.PrimeNextTile(xPos, yPos + 2);
+        if (player == null)
+        {
+            player = ObjectReference.Instance.PlayerEntity;
+        }
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+
         return new Vector2Int(xPos, yPos); 
     }
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        return Cleave_ProgressAttack(xPos, yPos, activeAtk);
-    }
-
-    Vector2Int Cleave_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
-    {
-        scr_Grid.GridController.ActivateTile(xPos, yPos);
         return new Vector2Int(xPos, yPos + 1);
     }
 

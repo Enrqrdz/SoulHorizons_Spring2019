@@ -10,7 +10,7 @@ public class atk_Updraft : AttackData
     Entity player;
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        player = ObjectReference.Instance.PlayerEntity;
         activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.entity._gridPos.x, activeAtk.entity._gridPos.y) + new Vector3(0, 2.5f, 0), Quaternion.Euler(new Vector3(0, 0, 320)));   
         return new Vector2Int(xPos, yPos);
     }

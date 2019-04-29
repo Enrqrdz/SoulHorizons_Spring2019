@@ -153,10 +153,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   type: 0
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 20
     shield: 0
@@ -167,11 +170,13 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
+  hitShader: {fileID: 4800000, guid: 7b5b8562bba41fc42801af962cf31837, type: 3}
   lerpSpeed: 100
   has_iframes: 0
   invincible: 0
   invulnTime: 0
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 208dc7926836b9545aa96ff3a1b0c39a, type: 3}
@@ -179,6 +184,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
+  highlightMaterial: {fileID: 0}
 --- !u!114 &114019123319126768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,10 +195,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 195948f997208e5488dc9520e904ac69, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
+  collisionDamage: 10
 --- !u!82 &82587730288405618
 AudioSource:
   m_ObjectHideFlags: 0
@@ -554,7 +561,7 @@ PrefabInstance:
     - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: targetEntity
-      value:
+      value: 
       objectReference: {fileID: 114725702907161856}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}
@@ -564,12 +571,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2200713146953692099}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1945630890653086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f0fc37ea925cd8409d057b1b4265a35, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  pivot: {fileID: 1650102032847892}
-  bluePivot: {fileID: 0}
-  targetEntity: {fileID: 114725702907161856}

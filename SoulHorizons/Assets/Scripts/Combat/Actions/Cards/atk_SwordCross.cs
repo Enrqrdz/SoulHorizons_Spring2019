@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [CreateAssetMenu(menuName = "Attacks/SwordCross")]
 [RequireComponent(typeof(AudioSource))]
-
-
 public class atk_SwordCross : AttackData
 {
     private AudioSource PlayCardSFX;
@@ -15,12 +12,13 @@ public class atk_SwordCross : AttackData
     int startX = 0;
     int startY = 0;
 
+    int incrementTimeModifier = 1;
+
     public override Vector2Int BeginAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-        playerX = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.x;
-        playerY = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y;
+        playerX = ObjectReference.Instance.PlayerEntity._gridPos.x;
+        playerY = ObjectReference.Instance.PlayerEntity._gridPos.y;        
 
-        
         if (yPos > playerY)
         {
             int temp = xPos - playerX;
@@ -56,7 +54,7 @@ public class atk_SwordCross : AttackData
         
         if (PlayCardSFX == null)
         {
-            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
         }
 
         PlayCardSFX.clip = SwordSFX;
@@ -86,7 +84,6 @@ public class atk_SwordCross : AttackData
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
         int temp = xPos - playerX;
-
         if (yPos > playerY)
         {         
             if (temp == 1)

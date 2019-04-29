@@ -53,6 +53,9 @@ MonoBehaviour:
   BlightedColor: {r: 0.5471698, g: 0.5445888, b: 0.5445888, a: 0.69411767}
   FireColor: {r: 0.9622642, g: 0.3461882, b: 0.17702031, a: 0.6862745}
   FloodedColor: {r: 0.031149892, g: 0.46838263, b: 0.9433962, a: 0.7764706}
+  highlightMaterial: {fileID: 2100000, guid: 5e59cf5f535c013429b94c2ead6db49a, type: 2}
+  blightedMaterial: {fileID: 2100000, guid: 877f9c45eadd6134182fb1638c8d7cba, type: 2}
+  spriteRenderer: {fileID: 643530655673934228}
   harmful: 0
   helpful: 0
   isOnFire: 0
@@ -148,7 +151,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 36952d6bc34f6244db8a4d1f577bc80f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,15 +171,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -50
-  m_Sprite: {fileID: 21300000, guid: ceb4b47d396016d4dae08d385c90228e, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: cf32843e900dd4ac7a98c958d78a23b5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 6.81, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8242429040876209308
@@ -227,7 +230,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 36952d6bc34f6244db8a4d1f577bc80f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

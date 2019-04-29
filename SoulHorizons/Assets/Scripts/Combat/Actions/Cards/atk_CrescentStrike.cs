@@ -21,17 +21,17 @@ public class atk_CrescentStrike : AttackData
     {
         activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.identity);
 
-        playerX = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.x;
-        playerY = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y;
+        playerX = ObjectReference.Instance.PlayerEntity._gridPos.x;
+        playerY = ObjectReference.Instance.PlayerEntity._gridPos.y;
         
-        if(playerY == 0)
+        if(playerY == 0 || playerY == scr_Grid.GridController.rowSizeMax - 1)
         {
-            maxIncrementRange = maxIncrementRange - 1;
+            maxIncrementRange = 3;
         }
 
         if (PlayCardSFX == null)
         {
-            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
         }
 
         PlayCardSFX.clip = CrescentSFX;
@@ -46,7 +46,7 @@ public class atk_CrescentStrike : AttackData
 
     public override void EndEffects(ActiveAttack activeAttack)
     {
-
+        maxIncrementRange = 4;
     }
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
@@ -62,6 +62,7 @@ public class atk_CrescentStrike : AttackData
     {
         int tempX = xPos - playerX;
         int tempY = yPos - playerY;
+        bool playerIsOnTopRow = playerIsOnTopRow = playerY == scr_Grid.GridController.rowSizeMax - 1;
 
         if (tempX <= 1)
         {
@@ -69,11 +70,23 @@ public class atk_CrescentStrike : AttackData
             scr_Grid.GridController.ActivateTile(xPos, yPos);
             return new Vector2Int(xPos + 1, yPos);
         }
-        else if (tempX == 2 && yPos <= playerY)
+        else if (tempX == 2 && yPos <= playerY && playerIsOnTopRow == false)
         {
             scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
             scr_Grid.GridController.ActivateTile(xPos, yPos);
             return new Vector2Int(xPos, yPos + 1);
+        }
+        else if (tempX == 2 && tempY == -1 && playerIsOnTopRow == true)
+        {
+            scr_Grid.GridController.PrimeNextTile(xPos, yPos + 1);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos, yPos + 1);
+        }
+        else if(tempX == 2 && tempY == 0 && playerIsOnTopRow == true)
+        {
+            scr_Grid.GridController.PrimeNextTile(xPos - 1, yPos);
+            scr_Grid.GridController.ActivateTile(xPos, yPos);
+            return new Vector2Int(xPos - 1, yPos);
         }
         else 
         {

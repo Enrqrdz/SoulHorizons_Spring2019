@@ -163,7 +163,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  height: 1
+  width: 1
   _gridPos: {x: 0, y: 0}
+  gridPositions: []
   _health:
     hp: 100
     shield: 0
@@ -174,11 +177,13 @@ MonoBehaviour:
     TerrColor: {r: 1, g: 1, b: 1, a: 1}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212424679629100636}
+  hitShader: {fileID: 4800000, guid: 7b5b8562bba41fc42801af962cf31837, type: 3}
   lerpSpeed: 250
   has_iframes: 1
   invincible: 0
   invulnTime: 1
   isStunned: 0
+  isImmobile: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 4794852b9ebf0c843b5ac9e56691af5e, type: 3}
@@ -186,6 +191,7 @@ MonoBehaviour:
   anim: {fileID: 95721540959835254}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
+  highlightMaterial: {fileID: 2100000, guid: 5e59cf5f535c013429b94c2ead6db49a, type: 2}
 --- !u!82 &82461514573680058
 AudioSource:
   m_ObjectHideFlags: 0
@@ -430,7 +436,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 36952d6bc34f6244db8a4d1f577bc80f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

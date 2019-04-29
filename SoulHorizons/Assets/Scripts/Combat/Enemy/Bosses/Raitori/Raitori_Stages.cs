@@ -64,7 +64,7 @@ public class Raitori_Stages : MonoBehaviour
     private IEnumerator RunTransition()
     {
         currentPhase = Phase.Transition;
-        yield return new WaitForSecondsRealtime(0f);
+        yield return new WaitForSeconds(0f);
     }
 
 

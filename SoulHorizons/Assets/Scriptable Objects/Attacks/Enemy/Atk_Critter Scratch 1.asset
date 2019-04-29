@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35d28f3e2504984a857653a5247bb1e, type: 3}
+  m_Name: Atk_Critter Scratch 1
+  m_EditorClassIdentifier: 
+  incrementTime: 0.3
+  maxIncrementRange: 10
+  modifier: 1
+  damage: 5
+  type: 0
+  hasPiercing: 0
+  particles: {fileID: 212733152073702336, guid: aa708d6c132e0914db56472cb4cbb023,
+    type: 3}
+  particlesOffset: {x: 0, y: 0.3, z: 0}
+  particleSpeed: 11

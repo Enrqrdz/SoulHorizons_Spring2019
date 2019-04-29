@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a49a7d621cd7b45a320c2d365e5c13, type: 3}
   m_Name: Atk_RoninMelee2
   m_EditorClassIdentifier: 
-  incrementTime: 0.01
-  maxIncrementRange: 3
+  incrementTime: 0.1
+  maxIncrementRange: 1
+  modifier: 1
   damage: 15
   type: 0
-  hasPiercing: 0
-  particles: {fileID: 212489909936821062, guid: 93dcc66df25d71d408deac69aa2070c0,
+  hasPiercing: 1
+  particles: {fileID: 212733152073702336, guid: aa708d6c132e0914db56472cb4cbb023,
     type: 3}
-  particlesOffset: {x: 0, y: 0, z: 0}
-  particleSpeed: 1
+  particlesOffset: {x: 0, y: 0.1, z: 0}
+  particleSpeed: 11
