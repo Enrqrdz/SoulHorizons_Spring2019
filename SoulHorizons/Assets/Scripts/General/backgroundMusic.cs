@@ -7,7 +7,8 @@ using UnityEngine;
 public class backgroundMusic : MonoBehaviour {
 
     AudioSource Music, Buttons;
-    public AudioClip music, buttonsSFX;
+    public AudioClip music, button_SFX;
+    public AudioClip[] buttons_SFX;
 
     void Start () {
         AudioSource[] Audio_Sources = GetComponents<AudioSource>();
@@ -19,7 +20,9 @@ public class backgroundMusic : MonoBehaviour {
 
     public void ButtonSFX ()
     {
-        Buttons.clip = buttonsSFX;
+        int index = Random.Range(0, buttons_SFX.Length);
+        button_SFX = buttons_SFX[index];
+        Buttons.clip = button_SFX;
         Buttons.Play();
     }
 	

@@ -125,7 +125,7 @@ public class Raitori_AI : scr_EntityAI
         Attack_SFX = SFX_Sources[0];
         attack_SFX = attacks_SFX[1];
         Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
+        Attack_SFX.PlayOneShot(attack_SFX, 0.7f);
         StartStormStrike();
         yield return new WaitForSeconds(Raitori.StormStrikes.incrementTime + .15f);
         DePrimeStormStrike();
@@ -344,14 +344,14 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeBirdBash();
         Raitori.birdBashIsActive = true;
-        
+
             anim.SetBool("Attack", true);
-        
+
         yield return new WaitForSeconds(Raitori.birdBashWindUpTime);
-        attack_SFX = attacks_SFX[0];
-        Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
-        
+        attack_SFX = attacks_SFX[2];
+        //Attack_SFX.clip = attack_SFX;
+        Attack_SFX.PlayOneShot(attack_SFX, 0.7f);
+        //anim.SetBool("Attack", true);
         StartBirdBash();
         yield return new WaitForSeconds(Raitori.birdBashCooldownTime);
         Raitori.birdBashIsActive = false;
@@ -374,9 +374,9 @@ public class Raitori_AI : scr_EntityAI
     {
         PrimeTwinTornado();
         Raitori.twinTornadoIsActive = true;
-        
+
             anim.SetBool("Attack2", true);
-        
+
         yield return new WaitForSeconds(Raitori.twinTornadoWindUpTime);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
@@ -409,15 +409,15 @@ public class Raitori_AI : scr_EntityAI
     {
         Raitori.gustGaleIsActive = true;
         PrimeGustGale();
-        
+
         anim.SetBool("Attack3", true);
-        
+
         yield return new WaitForSeconds(Raitori.gustGaleWindUpTime);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
         attack_SFX = attacks_SFX[0];
         Attack_SFX.clip = attack_SFX;
-        Attack_SFX.Play();
+        Attack_SFX.PlayOneShot(attack_SFX, 0.7f);
         StartGustGale();
         yield return new WaitForSeconds(Raitori.GustGale.incrementTime * scr_Grid.GridController.rowSizeMax);
         DePrimeGustGale();

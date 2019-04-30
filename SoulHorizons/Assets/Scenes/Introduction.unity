@@ -643,6 +643,8 @@ MonoBehaviour:
   displayText: {fileID: 1049945854}
   portraitToDisplay: {fileID: 1083558660}
   decisionHolder: {fileID: 1592091302}
+  dialogues_SFX:
+  - {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
   dialogue_SFX: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
 --- !u!82 &1117565996
 AudioSource:
@@ -657,7 +659,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.484
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1282,7 +1284,7 @@ PrefabInstance:
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: m_Volume
-      value: 0.35
+      value: 0.506
       objectReference: {fileID: 0}
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
@@ -1291,14 +1293,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
+      propertyPath: buttons_SFX.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
       propertyPath: music
       value: 
-      objectReference: {fileID: 8300000, guid: 29bbb49828ddd3e40851ea1492d6f443, type: 3}
+      objectReference: {fileID: 8300000, guid: 0bcab4eade46dbf46acad6cb173f8eba, type: 3}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: buttonsSFX
       value: 
       objectReference: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: button_SFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: buttons_SFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: buttons_SFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 82bc81128c05b464e9ea80287e98101f, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: buttons_SFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: buttons_SFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 942323526e14b6a48a45d0d3b4055ff7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8938461b55cee448d03f5ffbed4b5c, type: 3}
 --- !u!1 &2099289325 stripped
