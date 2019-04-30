@@ -10,16 +10,16 @@ public static class EncounterPool
 
     public static void AddEncounter(EncounterData newEncounter)
     {
-        if(newEncounter.type == EncounterType.Combat)
+        if(newEncounter.type == EncounterType.Boss)
+        {
+            bossEncounters.Add(newEncounter);
+        }
+        else
         {
             if(IsNewTier(newEncounter.tier))
                 CreateTier(newEncounter.tier);
 
             encountersByTier[newEncounter.tier].Add(newEncounter);
-        }
-        else if(newEncounter.type == EncounterType.Boss)
-        {
-            bossEncounters.Add(newEncounter);
         }
     }
 
@@ -43,7 +43,7 @@ public static class EncounterPool
 
     public static int GetRandomEncounterIndexOfTier(int tier)
     {
-        if(tier > encountersByTier.Count)
+        if(tier < encountersByTier.Count)
             return Random.Range(0, encountersByTier[tier].Count);
         else    
             return 0;
