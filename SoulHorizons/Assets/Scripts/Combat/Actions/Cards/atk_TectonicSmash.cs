@@ -54,7 +54,7 @@ public class atk_TectonicSmash : AttackData
                     Debug.Log("Commin straight from the underground");
                     scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
                     Entity hitByRock = scr_Grid.GridController.GetEntityAtPosition(entityXPos+1, entityYPos);
-                    hitByRock._health.TakeDamage(rockCollisionDamage);
+                    hitByRock._health.TakeDamage(rockCollisionDamage, hitByRock);
                     activeAttack.entityHit.Death();
                 }
                 else //if (!scr_Grid.GridController.CheckIfOccupied(entityXPos + 1, entityYPos) && activeAttack.entityHit.type == EntityType.Obstacle)

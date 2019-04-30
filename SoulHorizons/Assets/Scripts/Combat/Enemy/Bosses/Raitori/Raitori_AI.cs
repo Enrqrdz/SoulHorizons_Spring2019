@@ -449,7 +449,7 @@ public class Raitori_AI : scr_EntityAI
                 if (scr_Grid.GridController.activeEntities[i].isStunned == true)
                 {
                     scr_Grid.GridController.activeEntities[i].isStunned = false;
-                    scr_Grid.GridController.activeEntities[i]._health.TakeDamage(Raitori.gustGaleFallDamage);
+                    scr_Grid.GridController.activeEntities[i]._health.TakeDamage(Raitori.gustGaleFallDamage, scr_Grid.GridController.activeEntities[i]);
                     scr_Grid.GridController.activeEntities[i].spr.color = Color.white;
                     break;
                 }

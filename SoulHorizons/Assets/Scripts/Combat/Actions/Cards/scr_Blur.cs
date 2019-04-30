@@ -20,7 +20,7 @@ public class scr_Blur : ActionData
         PlayCardSFX.clip = BlurSFX;
         PlayCardSFX.Play();
         player = ObjectReference.Instance.PlayerEntity;
-        player.setInvincible(true, duration);
+        player.SetInvincible(true, duration);
 
     }
 
