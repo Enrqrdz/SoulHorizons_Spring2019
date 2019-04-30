@@ -23,6 +23,7 @@ public class scr_FoulTrifling : scr_EntityAI
     private bool isStuck = false;
     private bool moveRight = false; //false means left, true means right
     private bool moveUp = false; //false means down, true means up
+    bool isImmobile = false;
 
     public void Start()
     {
@@ -43,11 +44,8 @@ public class scr_FoulTrifling : scr_EntityAI
 
     public override void Move()
     {
-
         int xPos = entity._gridPos.x;
         int yPos = entity._gridPos.y;
-
-
         int index = Random.Range(0, movements_SFX.Length);
         movement_SFX = movements_SFX[index];
         Footsteps_SFX.clip = movement_SFX;
@@ -143,7 +141,7 @@ public class scr_FoulTrifling : scr_EntityAI
                 StartAttack1();
             }
         }
-       
+
     }
 
     void GetYDirection(int yPos)
@@ -173,6 +171,7 @@ public class scr_FoulTrifling : scr_EntityAI
 
     void Attack1()
     {
+
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
         int index = Random.Range(0, attacks_SFX.Length);
@@ -183,7 +182,6 @@ public class scr_FoulTrifling : scr_EntityAI
     }
     void Attack2()
     {
-
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
         int index = Random.Range(0, attacks_SFX.Length);
@@ -217,29 +215,22 @@ public class scr_FoulTrifling : scr_EntityAI
 
             case 1:
                 completedTask = false;
-                int yRange = scr_Grid.GridController.rowSizeMax;
                 GetYDirection(entity._gridPos.y);
-                for (int i = 0; i < yRange; i++) //along the column
+                MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, moveUp);
+                attackCounter++;
+                AttackManager();
+                yield return new WaitForSeconds(movementInterval*2);
+                if (entity._gridPos.y == 0)
                 {
-                    MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, moveUp);
-                    attackCounter++;
-                    AttackManager();
-                    yield return new WaitForSeconds(movementInterval);
-                    if (entity._gridPos.y == 0)
-                    {
-                        break;
-                    }
-                    if (isStuck)
-                    {
-                        isStuck = false;
-                        break;
-                    }
+                    state = 0;
+                }
+                if (isStuck)
+                {
+                    isStuck = false;
+                    state = 1;
                 }
                 completedTask = true;
-                state = 0;
                 yield return new WaitForSeconds(movementInterval);
-                break;
-            case 2:
                 break;
         }
         yield return null;
