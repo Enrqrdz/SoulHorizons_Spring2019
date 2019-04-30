@@ -24,6 +24,6 @@ MonoBehaviour:
     x: 5
     y: 0
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}
-  clearRadiusWhileUndiscovered: 0.1
+  clearRadiusWhileUndiscovered: 0.2
   clearRadiusWhileDiscovered: 1
   clearRadiusWhileCompleted: 1

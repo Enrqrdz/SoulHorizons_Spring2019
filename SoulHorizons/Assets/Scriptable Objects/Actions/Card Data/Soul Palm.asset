@@ -19,5 +19,5 @@ MonoBehaviour:
   castingTime: 0
   cooldown: 1
   description: Slams two rows infront of the player with a Soul Hand
-  PalmSFX: {fileID: 8300000, guid: 7c2dda9d2d517ee418941112f06c492d, type: 3}
+  PalmSFX: {fileID: 8300000, guid: d4711b06889b47142afa667fdddca521, type: 3}
   palmAttack: {fileID: 11400000, guid: b446ad1b863c9ea4da4a633d247ca0ae, type: 2}

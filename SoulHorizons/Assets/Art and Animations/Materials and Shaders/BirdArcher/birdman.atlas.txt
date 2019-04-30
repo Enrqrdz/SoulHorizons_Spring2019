@@ -1,0 +1,439 @@
+
+birdman.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armLeft_lower
+  rotate: false
+  xy: 1288, 103
+  size: 184, 145
+  orig: 184, 145
+  offset: 0, 0
+  index: -1
+armLeft_upper
+  rotate: true
+  xy: 1060, 27
+  size: 100, 180
+  orig: 100, 180
+  offset: 0, 0
+  index: -1
+armRight_upper
+  rotate: true
+  xy: 1242, 2
+  size: 99, 170
+  orig: 99, 170
+  offset: 0, 0
+  index: -1
+arrow_01
+  rotate: true
+  xy: 1512, 1326
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_02
+  rotate: true
+  xy: 1512, 924
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_03
+  rotate: true
+  xy: 1512, 522
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_04
+  rotate: false
+  xy: 1498, 262
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_05
+  rotate: false
+  xy: 1498, 2
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_06
+  rotate: true
+  xy: 1772, 1326
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_07
+  rotate: true
+  xy: 1772, 924
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_08
+  rotate: true
+  xy: 1772, 522
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+bowMain
+  rotate: false
+  xy: 2, 1300
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form01
+  rotate: false
+  xy: 2, 552
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form02
+  rotate: false
+  xy: 304, 1300
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form03
+  rotate: false
+  xy: 304, 552
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form04
+  rotate: false
+  xy: 606, 1300
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form05
+  rotate: false
+  xy: 606, 552
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form06
+  rotate: true
+  xy: 2, 250
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form07
+  rotate: false
+  xy: 908, 1300
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form08
+  rotate: false
+  xy: 908, 552
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form09
+  rotate: false
+  xy: 1210, 1300
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form10
+  rotate: false
+  xy: 1210, 552
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+bow_form11
+  rotate: true
+  xy: 750, 250
+  size: 300, 746
+  orig: 300, 746
+  offset: 0, 0
+  index: -1
+clawLeft1
+  rotate: true
+  xy: 2, 2
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+clawLeft2
+  rotate: true
+  xy: 2008, 1946
+  size: 44, 37
+  orig: 44, 37
+  offset: 0, 0
+  index: -1
+clawLeft3
+  rotate: false
+  xy: 1991, 1753
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+clawRight1
+  rotate: false
+  xy: 28, 4
+  size: 40, 32
+  orig: 40, 32
+  offset: 0, 0
+  index: -1
+clawRight2
+  rotate: false
+  xy: 719, 6
+  size: 50, 61
+  orig: 50, 61
+  offset: 0, 0
+  index: -1
+clawRight3
+  rotate: false
+  xy: 2008, 1992
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+eyeLeft
+  rotate: false
+  xy: 1474, 227
+  size: 15, 21
+  orig: 15, 21
+  offset: 0, 0
+  index: -1
+eyeRight
+  rotate: false
+  xy: 1050, 2
+  size: 29, 23
+  orig: 29, 23
+  offset: 0, 0
+  index: -1
+eyewhites
+  rotate: true
+  xy: 1013, 28
+  size: 71, 39
+  orig: 71, 39
+  offset: 0, 0
+  index: -1
+feather1
+  rotate: false
+  xy: 509, 37
+  size: 106, 48
+  orig: 106, 48
+  offset: 0, 0
+  index: -1
+feather2
+  rotate: false
+  xy: 1876, 1741
+  size: 113, 54
+  orig: 113, 54
+  offset: 0, 0
+  index: -1
+feather5
+  rotate: true
+  xy: 1414, 2
+  size: 99, 75
+  orig: 99, 75
+  offset: 0, 0
+  index: -1
+feather6
+  rotate: true
+  xy: 1900, 329
+  size: 191, 146
+  orig: 191, 146
+  offset: 0, 0
+  index: -1
+footRight
+  rotate: false
+  xy: 617, 4
+  size: 100, 63
+  orig: 100, 63
+  offset: 0, 0
+  index: -1
+handLeft
+  rotate: false
+  xy: 771, 16
+  size: 59, 51
+  orig: 59, 51
+  offset: 0, 0
+  index: -1
+jaw
+  rotate: false
+  xy: 1013, 2
+  size: 35, 24
+  orig: 35, 24
+  offset: 0, 0
+  index: -1
+legLeft_lower
+  rotate: false
+  xy: 1900, 7
+  size: 131, 320
+  orig: 131, 320
+  offset: 0, 0
+  index: -1
+legLeft_upper
+  rotate: true
+  xy: 840, 13
+  size: 86, 171
+  orig: 86, 171
+  offset: 0, 0
+  index: -1
+legRight_lower
+  rotate: true
+  xy: 327, 38
+  size: 47, 180
+  orig: 47, 180
+  offset: 0, 0
+  index: -1
+legRight_upper
+  rotate: true
+  xy: 840, 101
+  size: 147, 218
+  orig: 147, 218
+  offset: 0, 0
+  index: -1
+nailRight1
+  rotate: false
+  xy: 1081, 2
+  size: 9, 23
+  orig: 9, 23
+  offset: 0, 0
+  index: -1
+nailRight2
+  rotate: false
+  xy: 1242, 103
+  size: 38, 24
+  orig: 38, 24
+  offset: 0, 0
+  index: -1
+nailRight3
+  rotate: true
+  xy: 1498, 525
+  size: 25, 12
+  orig: 25, 12
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 1876, 1797
+  size: 249, 130
+  orig: 249, 130
+  offset: 0, 0
+  index: -1
+skirt
+  rotate: false
+  xy: 1512, 1728
+  size: 362, 318
+  orig: 362, 318
+  offset: 0, 0
+  index: -1
+tail1
+  rotate: false
+  xy: 1060, 129
+  size: 226, 119
+  orig: 226, 119
+  offset: 0, 0
+  index: -1
+tail2
+  rotate: false
+  xy: 327, 87
+  size: 303, 161
+  orig: 303, 161
+  offset: 0, 0
+  index: -1
+tail3
+  rotate: false
+  xy: 2, 38
+  size: 323, 210
+  orig: 323, 210
+  offset: 0, 0
+  index: -1
+tail4
+  rotate: false
+  xy: 632, 69
+  size: 206, 179
+  orig: 206, 179
+  offset: 0, 0
+  index: -1
+
+birdman2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armRight_lower
+  rotate: true
+  xy: 289, 30
+  size: 78, 157
+  orig: 78, 157
+  offset: 0, 0
+  index: -1
+arrow_09
+  rotate: true
+  xy: 2, 110
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+arrow_10
+  rotate: true
+  xy: 262, 110
+  size: 400, 258
+  orig: 400, 258
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 522, 206
+  size: 257, 304
+  orig: 257, 304
+  offset: 0, 0
+  index: -1
+feather3
+  rotate: false
+  xy: 448, 37
+  size: 132, 71
+  orig: 132, 71
+  offset: 0, 0
+  index: -1
+feather4
+  rotate: false
+  xy: 2, 5
+  size: 151, 103
+  orig: 151, 103
+  offset: 0, 0
+  index: -1
+footLeft
+  rotate: false
+  xy: 522, 132
+  size: 98, 72
+  orig: 98, 72
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 622, 51
+  size: 136, 153
+  orig: 136, 153
+  offset: 0, 0
+  index: -1
+tail5
+  rotate: true
+  xy: 155, 2
+  size: 106, 132
+  orig: 106, 132
+  offset: 0, 0
+  index: -1

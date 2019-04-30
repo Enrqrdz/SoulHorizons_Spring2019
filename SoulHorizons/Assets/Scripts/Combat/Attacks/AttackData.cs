@@ -7,7 +7,7 @@ public abstract class AttackData : ScriptableObject {
     public float incrementTime;
     public int maxIncrementRange = 10;
     [HideInInspector]
-    public float modifier = 1f;
+    public float damageModifier = 1f;
     public int damage;
     [Header("Where the attack is coming from")]
     public EntityType type; //Player, Obstacle, Enemy

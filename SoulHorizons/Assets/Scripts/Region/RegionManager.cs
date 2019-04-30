@@ -11,14 +11,13 @@ using UnityEngine.Assertions;
 
 public class RegionManager : MonoBehaviour
 {
-    [SerializeField]
+    [Header("Must Be Set")]
+    [SerializeField] private GameObject buttonPrefab;
+    [SerializeField] private GameObject nodeConnectionPrefab;
+    [SerializeField] private GameObject inventoryButton;
+    [SerializeField] private RegionGenerator regionGenerator;
+
     private RegionState currentRegion;
-    [SerializeField]
-    private GameObject buttonPrefab;
-    [SerializeField]
-    private GameObject nodeConnectionPrefab;
-    [SerializeField]
-    private GameObject inventoryButton;
 
     private List<Button> buttons;
     private GameObject encounterMap;
@@ -26,8 +25,19 @@ public class RegionManager : MonoBehaviour
     private Vector3 bossLocation;
 
     void Start()
-    {
+    {        
+        if(!SaveManager.IsSaveLoaded())
+        {
+            SaveManager.NewSave();
+        }
+
         currentRegion = SaveManager.currentGame.GetRegion();
+        if(currentRegion == null)
+        {
+            currentRegion = regionGenerator.GenerateRegion();
+            SaveManager.currentGame.SetRegion(currentRegion);
+        }
+
         encounterMap = new GameObject("Map");
 
         GenerateButtons();

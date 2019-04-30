@@ -37,7 +37,10 @@ public class scr_MeditationCircle : ActionData
 
     public override void Activate()
     {
-        PlayCardSFX = ObjectReference.Instance.ActionManager;
+        if (PlayCardSFX == null)
+        {
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
+        }
         PlayCardSFX.clip = MeditationSFX;
         PlayCardSFX.Play();
         if (player == null)

@@ -182,8 +182,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
   die_SFX: {fileID: 8300000, guid: ef7d83db635bdfd45a2682bcd94f1ee5, type: 3}
   anim: {fileID: 0}
+  hasDeathAnim: 0
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
+  highlightMaterial: {fileID: 0}
 --- !u!114 &114019123319126768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,15 +499,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4483777865337536}
     m_Modifications:
-    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthBar
-      objectReference: {fileID: 0}
     - target: {fileID: 6893167082605971954, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6893167082605971954, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
@@ -566,6 +563,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthBar
       objectReference: {fileID: 0}
     - target: {fileID: 6788005532255461780, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}

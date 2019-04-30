@@ -45,14 +45,14 @@ public class scr_Grid : MonoBehaviour
 
     public bool CheckIfHarmful(int x, int y)
     {
-        return grid[x, y].harmful;
+        return grid[x, y].isTileHarmful;
     }
 
     public bool CheckIfHelpful(int x, int y)
     {
         try
         {
-            return grid[x, y].helpful;
+            return grid[x, y].isTilehelpful;
         }
         catch
         {
@@ -226,7 +226,7 @@ public class scr_Grid : MonoBehaviour
                     if (activeEntities[i].has_iframes)
                     {
                         //Activate invincibility frames
-                        activeEntities[i].setInvincible(true, activeEntities[i].invulnTime);
+                        activeEntities[i].SetInvincible(true, activeEntities[i].invulnTime);
                     }
                 }
                 attack.entityIsHit = true;

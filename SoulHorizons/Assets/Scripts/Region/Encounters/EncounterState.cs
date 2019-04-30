@@ -39,7 +39,7 @@ public class EncounterState
     public void Randomize()
     {
         if(type == EncounterType.Boss)
-            encounterIndexInPool = EncounterPool.GetRandomBossEncounterIndex(tier);
+            encounterIndexInPool = EncounterPool.GetRandomBossEncounterIndex();
         else
             encounterIndexInPool = EncounterPool.GetRandomEncounterIndexOfTier(tier);
     }

@@ -48,6 +48,7 @@ public class Entity : MonoBehaviour
     public AudioClip die_SFX;
 
     public Animator anim;
+    public bool hasDeathAnim;
 
     public GameObject deathManager;
     private Material defaultMaterial;
@@ -83,7 +84,7 @@ public class Entity : MonoBehaviour
             invulnCounter -= Time.deltaTime;
             if(invulnCounter <= 0)
             {
-                setInvincible(false, 0f);
+                SetInvincible(false, 0f);
             }
         }
 
@@ -161,7 +162,7 @@ public class Entity : MonoBehaviour
                 HitByAttack(atk);
                 if (has_iframes)
                 {
-                    setInvincible(true, invulnTime);
+                    SetInvincible(true, invulnTime);
                 }
             }
         }
@@ -234,7 +235,7 @@ public class Entity : MonoBehaviour
                 if (has_iframes)
                 {
                     //Activate invincibility frames
-                    setInvincible(true, invulnTime);
+                    SetInvincible(true, invulnTime);
                 }
             }
         }
@@ -253,15 +254,23 @@ public class Entity : MonoBehaviour
             hurt_SFX = hurts_SFX[index];
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
+            if (anim)
+            {
+                anim.SetBool("Hit", true);
+            }
 
-            float tempDamage = attack.damage * attack.modifier;
+            float tempDamage = attack.damage * attack.damageModifier;
+            if (scr_Grid.GridController.CheckIfHelpful(_gridPos.x, _gridPos.x) == true)
+            {
+                tempDamage = attack.damage * scr_Grid.GridController.grid[_gridPos.x, _gridPos.y].GetTileProtection();
+            }
             if (tempDamage - shieldProtection >= 0)
             {
-                _health.TakeDamage((int)tempDamage - shieldProtection);
+                _health.TakeDamage((int)tempDamage - shieldProtection, this);
             }
             else
             {
-                _health.TakeDamage(0);
+                _health.TakeDamage(0, this);
             }
             StartCoroutine(HitClock(hitFlashTimer));
             if (type == EntityType.Player)
@@ -288,11 +297,11 @@ public class Entity : MonoBehaviour
 
             if (damage - shieldProtection >= 0)
             {
-                _health.TakeDamage(damage - shieldProtection);
+                _health.TakeDamage(damage - shieldProtection, this);
             }
             else
             {
-                _health.TakeDamage(0);
+                _health.TakeDamage(0, this);
             }
             StartCoroutine(HitClock(hitFlashTimer));
             if (type == EntityType.Player)
@@ -309,7 +318,7 @@ public class Entity : MonoBehaviour
     }
 
     //makes the entity invincible for a time
-    public void setInvincible(bool inv, float time)
+    public void SetInvincible(bool inv, float time)
     {
         invincible = inv;
         if (inv)
@@ -357,8 +366,14 @@ public class Entity : MonoBehaviour
         }
         //Debug.Log("I AM DEAD");
         scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
-        _health.TakeDamage(_health.hp);
-        gameObject.SetActive(false);
+        _health.TakeDamage(_health.hp, this);
+        if (hasDeathAnim)
+        {
+            gameObject.GetComponent<Entity>().enabled = false;
+        }else
+        {
+            gameObject.SetActive(false);
+        }
         //scr_Grid.GridController.RemoveEntity(this);
     }
 
@@ -366,7 +381,7 @@ public class Entity : MonoBehaviour
     {
         while (duration >= 0)
         {
-            _health.TakeDamage(damage);
+            _health.TakeDamage(damage, this);
             StartCoroutine(GenericClock(damageRate));
             duration -= damageRate;
             Debug.Log("shit");
@@ -376,7 +391,7 @@ public class Entity : MonoBehaviour
 
     public IEnumerator Teleport (float waitTime, int damage, int playerX, int playerY, Entity enemy)
     {
-        enemy._health.TakeDamage(damage);
+        enemy._health.TakeDamage(damage, this);
         enemy.isStunned = true;
         //isImmobile = true;
         yield return new WaitForSeconds(waitTime);
@@ -420,7 +435,7 @@ public class Entity : MonoBehaviour
     IEnumerator DamageOverTime (float rate, int damage)
     {
         yield return new WaitForSeconds(rate);
-        _health.TakeDamage(damage);
+        _health.TakeDamage(damage, this);
     }
 
 }
@@ -431,27 +446,32 @@ public class Health{
     public int shield = 0;
     public int max_hp;
 
-    public void TakeDamage(int damage)
+
+    public void TakeDamage(int damage, Entity entity)
     {
+
         if (shield > 0)
         {
+            DamageNumbersController.Instance.SpawnNumbers(damage, entity.transform.position);
             shield -= damage;
             if(shield < 0)
             {
                 //Carry over extra damage to normal hp
+                DamageNumbersController.Instance.SpawnNumbers(-shield, entity.transform.position);
                 hp += shield;
                 shield = 0;
             }
         }
         else
         {
+            DamageNumbersController.Instance.SpawnNumbers(damage, entity.transform.position);
             hp -= damage;
         }
         if (hp <= 0)
         {
             hp = 0;
         }
-        //Debug.Log("MY HP: " + hp);  This was bothering me, uncomment if you desire
+
 
     }
 
@@ -466,5 +486,6 @@ public class Health{
             hp = max_hp;
         }
     }
+
 
 }

@@ -28,7 +28,7 @@ public class scr_FoulTrifling : scr_EntityAI
     {
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Footsteps_SFX = SFX_Sources[0];
-        Attack_SFX = SFX_Sources[1];
+        Attack_SFX = SFX_Sources[0];
         anim = gameObject.GetComponentInChildren<Animator>();
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }

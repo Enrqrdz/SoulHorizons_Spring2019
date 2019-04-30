@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4305045404258468049}
-  - component: {fileID: 6231566793628307438}
-  m_Layer: 0
-  m_Name: FogMask
+  - component: {fileID: 6224818336120963817}
+  m_Layer: 9
+  m_Name: CloudMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 1435419618308550985}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!331 &6231566793628307438
+--- !u!331 &6224818336120963817
 SpriteMask:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,10 +127,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 9164578934188407989}
   fogMask: {fileID: 8582986284544875261}
-  bossEncounter: {fileID: 21300018, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
-  combatEncounter: {fileID: 21300012, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
+  complete: 0
+  accesible: 0
+  bossEncounter: {fileID: 21300000, guid: 09c4aceede64d4951a96f5415a3a67bc, type: 3}
+  combatEncounter: {fileID: 21300000, guid: 44d1ee1e21a83424dbd136faa6769cc5, type: 3}
   eventEncounter: {fileID: 21300000, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
-  outpostEncounter: {fileID: 21300002, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
+  outpostEncounter: {fileID: 21300000, guid: b0233612a23304943b68ce95ab08db1d, type: 3}
   restEncounter: {fileID: 21300016, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
   treasureEncounter: {fileID: 21300010, guid: 531d2fbf1280ebb40acf90ef669bd310, type: 3}
 --- !u!114 &6211674027352714260
@@ -243,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 9164578934188407989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1435419618308550985}
   m_RootOrder: 0
