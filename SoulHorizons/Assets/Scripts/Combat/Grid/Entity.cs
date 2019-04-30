@@ -25,6 +25,8 @@ public class Entity : MonoBehaviour
     public SpriteRenderer spr;
     public Shader hitShader;
     private Shader baseShader;
+    public GameObject staticShield;
+    public GameObject blur;
     Color baseColor;
     public float lerpSpeed;
     private float hitFlashTimer = .01f;
@@ -325,12 +327,20 @@ public class Entity : MonoBehaviour
         {
             invulnCounter = time;
             spr.color = Color.gray;
+            if(type == EntityType.Player)
+            {
+                blur.SetActive(true);
+            }
         }
         else
         {
             invulnCounter = 0f;
             invincible = false;
             spr.color = baseColor;
+            if (type == EntityType.Player)
+            {
+                blur.SetActive(false);
+            }
         }
     }
 
@@ -343,7 +353,7 @@ public class Entity : MonoBehaviour
         if (shield == true)
         {
             shieldCounter = time;
-            spr.color = Color.gray;
+            staticShield.SetActive(true);
         }
         else
         {
@@ -351,7 +361,7 @@ public class Entity : MonoBehaviour
             shieldProtection = 0;
             shieldProtectionIncrement = 0;
             hasShield = false;
-            spr.color = baseColor;
+            staticShield.SetActive(false);
         }
 
     }
