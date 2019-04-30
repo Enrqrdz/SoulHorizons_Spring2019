@@ -415,7 +415,7 @@ public class Raitori_AI : scr_EntityAI
         yield return new WaitForSeconds(Raitori.gustGaleWindUpTime);
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
-        attack_SFX = attacks_SFX[0];
+        attack_SFX = attacks_SFX[3];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.PlayOneShot(attack_SFX, 0.7f);
         StartGustGale();

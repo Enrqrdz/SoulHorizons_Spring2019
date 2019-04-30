@@ -368,8 +368,8 @@ MonoBehaviour:
   movements_SFX:
   - {fileID: 8300000, guid: f5b38e9c3c02bfc479d50f0c38163efd, type: 3}
   attacks_SFX:
-  - {fileID: 8300000, guid: d25492f55425f534994a68501fb4cc25, type: 3}
-  - {fileID: 8300000, guid: b976a4af7f206084d9c2514315c76698, type: 3}
+  - {fileID: 8300000, guid: 4bb7bb690ce9a664b825da196fb17fe0, type: 3}
+  - {fileID: 8300000, guid: 23e40704584e2234c9a841707243d858, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0

@@ -119,6 +119,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2179539277869454833, guid: ede3c53563af24f5aa1b0f2381573032,
+        type: 3}
+      propertyPath: m_Name
+      value: ScriptableObjectFinder
+      objectReference: {fileID: 0}
     - target: {fileID: 2179539277869454832, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: encounterPool.Array.size
@@ -136,11 +141,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fa7b1dab752ce4608ab08c6a963e3aec,
         type: 2}
-    - target: {fileID: 2179539277869454833, guid: ede3c53563af24f5aa1b0f2381573032,
-        type: 3}
-      propertyPath: m_Name
-      value: ScriptableObjectFinder
-      objectReference: {fileID: 0}
     - target: {fileID: 2179539277869454839, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda59a823d28f7b4faf4c7875a5b46f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
+  music: {fileID: 8300000, guid: 29bbb49828ddd3e40851ea1492d6f443, type: 3}
   inventoryOpenSFX: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
   inventoryAddSFX: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
   inventoryCloseSFX: {fileID: 8300000, guid: 8ce300e61b7423247acc75067bfa9365, type: 3}

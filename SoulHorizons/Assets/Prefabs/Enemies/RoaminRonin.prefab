@@ -364,9 +364,9 @@ MonoBehaviour:
   movementInterval: 0.75
   rangedAttackInterval: 1
   movements_SFX:
-  - {fileID: 8300000, guid: 1a4946e1e2a704e46b3ca02361277021, type: 3}
+  - {fileID: 8300000, guid: d7ca05f0ba95dbd47959dd3338c46253, type: 3}
   attacks_SFX:
-  - {fileID: 8300000, guid: bbbc5be9e90d263468a163a7ca4ce84e, type: 3}
+  - {fileID: 8300000, guid: 1c1e3d5570f4dd344b88eacd87d362b5, type: 3}
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ AudioSource:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243641188393201274, guid: 7117f9058e0f8104c8d7218cd2b06d74,
+  OutputAudioMixerGroup: {fileID: 243883424422922524, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
