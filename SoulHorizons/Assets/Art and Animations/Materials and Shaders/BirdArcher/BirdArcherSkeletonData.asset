@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+  m_Name: BirdArcherSkeletonData
+  m_EditorClassIdentifier: 
+  atlasAssets:
+  - {fileID: 11400000, guid: 38a5b08da0431a241ae1512e17700f12, type: 2}
+  scale: 0.01
+  skeletonJSON: {fileID: 4900000, guid: fd3d906efea053c4ba7514e1d3ed1d93, type: 3}
+  skeletonDataModifiers: []
+  fromAnimation: []
+  toAnimation: []
+  duration: []
+  defaultMix: 0
+  controller: {fileID: 9100000, guid: f101b2d7572b3d842b1ba368a7f8cdde, type: 2}

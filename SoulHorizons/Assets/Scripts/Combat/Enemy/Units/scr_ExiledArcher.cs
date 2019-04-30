@@ -139,6 +139,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
         }
+        anim.SetBool("Attack", false);
     }
 
 
