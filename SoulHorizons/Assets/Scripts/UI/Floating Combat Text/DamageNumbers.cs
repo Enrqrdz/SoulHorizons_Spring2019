@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro; 
 
-public class DamageNumbers : MonoBehaviour {
-
+public class DamageNumbers : MonoBehaviour
+{
 	public float riseSpeed = 0.03f;
 	public float sideDist = 0.03f;
 
@@ -19,7 +19,8 @@ public class DamageNumbers : MonoBehaviour {
 	private Vector3 startScale;
 	// Use this for initialization
 
-	void Start () {
+	void Start ()
+    {
 		myTextObj = gameObject.GetComponent<TextMeshPro>();
 		camToLook = Camera.main.transform;
 		myTextObj.color = new Color(0f,0f,0f,0f);
@@ -51,11 +52,11 @@ public class DamageNumbers : MonoBehaviour {
 		if(isActive == false)
 			return;
 
-		Vector3 newLoc = transform.position;
-		newLoc.y += riseSpeed * Time.deltaTime;
-		newLoc.x += moveX * Time.deltaTime;
-		newLoc.z += moveZ * Time.deltaTime;
-		transform.position = newLoc;
+		Vector3 newLocation = transform.position;
+		newLocation.y += riseSpeed * Time.deltaTime;
+		newLocation.x += moveX * Time.deltaTime;
+		newLocation.z += moveZ * Time.deltaTime;
+		transform.position = newLocation;
 		transform.forward = camToLook.forward;
 
 		if(fade)
@@ -69,7 +70,7 @@ public class DamageNumbers : MonoBehaviour {
 
 	IEnumerator FadeNumbers()
 	{
-		yield return new WaitForSeconds(0.7f);
+		yield return new WaitForSeconds(0.25f);
 		fade = true;
 	}
 }

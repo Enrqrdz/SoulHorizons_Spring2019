@@ -392,6 +392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf467917d307194d85e896936511f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regularDamageColor: {r: 1, g: 1, b: 1, a: 1}
+  bigDamageColor: {r: 1, g: 0.8751692, b: 0, a: 1}
+  critScale: 1.5
   damageNumbersPrefab: {fileID: 8114520341545658002, guid: 809eee88dcb869c499c299591f433af2,
     type: 3}
 --- !u!4 &148748084
@@ -415,6 +418,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114420744322883032, guid: 50a29c5521521bb46a851340eca76195,
+        type: 3}
+      propertyPath: currentEncounter
+      value: 
+      objectReference: {fileID: 11400000, guid: c2eea985e5ee5cc4bae814e182776a19,
+        type: 2}
     - target: {fileID: 4097518697393024, guid: 50a29c5521521bb46a851340eca76195, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1032.9166
@@ -447,12 +456,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114420744322883032, guid: 50a29c5521521bb46a851340eca76195,
-        type: 3}
-      propertyPath: currentEncounter
-      value: 
-      objectReference: {fileID: 11400000, guid: c2eea985e5ee5cc4bae814e182776a19,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50a29c5521521bb46a851340eca76195, type: 3}
 --- !u!224 &179241310 stripped
@@ -3873,7 +3876,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: 0daf5ed6577fed3478d5d53d94de8bec, type: 2}
+  encounter: {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
