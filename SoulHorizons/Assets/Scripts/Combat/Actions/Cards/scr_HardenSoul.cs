@@ -12,10 +12,10 @@ public class scr_HardenSoul : ActionData {
     public override void Activate()
 
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = HardenSoulSFX;
         PlayCardSFX.Play();
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
         player._health.shield += Shield_hp;
     }
 

@@ -17,14 +17,15 @@ public class scr_Grid : MonoBehaviour
     private void Awake()
     {
         GridController = this;
-    }
-
-    private void Start()
-    {
         if (SaveManager.IsSaveLoaded())
             encounter = SaveManager.currentGame.GetCurrentEncounterData();
 
         InitEncounter();
+    }
+
+    private void Start()
+    {
+
     }
 
     public bool CheckIfOccupied(int x, int y)

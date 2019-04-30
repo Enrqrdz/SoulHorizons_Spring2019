@@ -30,14 +30,14 @@ public class atk_SoulPalm : AttackData
 
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
         if (PlayCardSFX == null)
         {
-            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
         }
         PlayCardSFX.clip = PalmSFX;
         PlayCardSFX.Play();

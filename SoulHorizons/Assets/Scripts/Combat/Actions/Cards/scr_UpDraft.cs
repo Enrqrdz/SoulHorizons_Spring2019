@@ -15,7 +15,7 @@ public class scr_UpDraft : ActionData
     public override void Activate()
     {
 
-        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Entity player = ObjectReference.Instance.PlayerEntity;
 
         if (scr_Grid.GridController.LocationOnGrid((player._gridPos.x + 3), player._gridPos.y) == true)
         {

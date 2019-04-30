@@ -21,8 +21,8 @@ public class atk_CrescentStrike : AttackData
     {
         activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.identity);
 
-        playerX = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.x;
-        playerY = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y;
+        playerX = ObjectReference.Instance.PlayerEntity._gridPos.x;
+        playerY = ObjectReference.Instance.PlayerEntity._gridPos.y;
         
         if(playerY == 0 || playerY == scr_Grid.GridController.rowSizeMax - 1)
         {
@@ -31,7 +31,7 @@ public class atk_CrescentStrike : AttackData
 
         if (PlayCardSFX == null)
         {
-            PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+            PlayCardSFX = ObjectReference.Instance.ActionManager;
         }
 
         PlayCardSFX.clip = CrescentSFX;

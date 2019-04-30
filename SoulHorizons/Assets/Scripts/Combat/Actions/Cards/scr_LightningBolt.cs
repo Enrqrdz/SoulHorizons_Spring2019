@@ -12,7 +12,7 @@ public class scr_LightningBolt : ActionData {
 
     public override void Activate()
     {
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = LightningBoltSFX;
         PlayCardSFX.Play();
         //implement functionality here

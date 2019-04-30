@@ -260,7 +260,7 @@ public class scr_Tile : MonoBehaviour{
         {
             if (entityOnTile != null)
             {
-                entityOnTile._health.TakeDamage(damage);
+                entityOnTile._health.TakeDamage(damage, entityOnTile);
             }
             yield return new WaitForSeconds(damageRate);
         }

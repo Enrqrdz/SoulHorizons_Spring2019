@@ -18,7 +18,7 @@ public class Scr_SoulBlight : ActionData
     public override void Activate()
     {
 
-        PlayCardSFX = GameObject.Find("ActionManager").GetComponent<AudioSource>();
+        PlayCardSFX = ObjectReference.Instance.ActionManager;
         PlayCardSFX.clip = BlightSFX;
         PlayCardSFX.Play();
 
@@ -33,7 +33,7 @@ public class Scr_SoulBlight : ActionData
     {
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            player = ObjectReference.Instance.PlayerEntity;
         }
 
         playerX = player._gridPos.x;

@@ -42,7 +42,7 @@ public class atk_FeatherRend : AttackData
             {
                 if(scr_Grid.GridController.activeEntities[i]._gridPos.y == 2)
                 {
-                    scr_Grid.GridController.activeEntities[i]._health.TakeDamage(centerDamage);
+                    scr_Grid.GridController.activeEntities[i]._health.TakeDamage(centerDamage, scr_Grid.GridController.activeEntities[i]);
                 }
             }
         }
