@@ -23,6 +23,7 @@ public class scr_FoulTrifling : scr_EntityAI
     private bool isStuck = false;
     private bool moveRight = false; //false means left, true means right
     private bool moveUp = false; //false means down, true means up
+    bool isImmobile = false;
 
     public void Start()
     {
@@ -170,6 +171,7 @@ public class scr_FoulTrifling : scr_EntityAI
 
     void Attack1()
     {
+
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
         int index = Random.Range(0, attacks_SFX.Length);
@@ -180,7 +182,6 @@ public class scr_FoulTrifling : scr_EntityAI
     }
     void Attack2()
     {
-
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
         Attack_SFX = SFX_Sources[0];
         int index = Random.Range(0, attacks_SFX.Length);
@@ -218,7 +219,7 @@ public class scr_FoulTrifling : scr_EntityAI
                 MoveAlongColumn(entity._gridPos.x, entity._gridPos.y, moveUp);
                 attackCounter++;
                 AttackManager();
-                yield return new WaitForSeconds(movementInterval);
+                yield return new WaitForSeconds(movementInterval*2);
                 if (entity._gridPos.y == 0)
                 {
                     state = 0;

@@ -260,6 +260,13 @@ public class RoamingRonin : scr_EntityAI
         attack_SFX = attacks_SFX[0];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
+
+        StartCoroutine(Ranged());
+    }
+
+    private IEnumerator Ranged()
+    {
+        yield return new WaitForSeconds(0.5f);
         if (attackPhase == 0)
         {
             AttackController.Instance.AddNewAttack(rangedAttack, entity._gridPos.x, entity._gridPos.y, entity);
@@ -294,6 +301,12 @@ public class RoamingRonin : scr_EntityAI
         attack_SFX = attacks_SFX[0];
         Attack_SFX.clip = attack_SFX;
         Attack_SFX.Play();
+        StartCoroutine(Melee());
+
+    }
+    private IEnumerator Melee()
+    {
+        yield return new WaitForSeconds(0.75f);
         if (attackPhase == 0)
         {
             AttackController.Instance.AddNewAttack(meleeAttack, currentHeadPosition.x - 1, currentHeadPosition.y, entity);
