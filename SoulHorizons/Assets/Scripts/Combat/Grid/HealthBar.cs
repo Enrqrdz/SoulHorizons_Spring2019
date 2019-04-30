@@ -13,13 +13,14 @@ public class HealthBar : MonoBehaviour
     public Entity targetEntity;
 
     [Header("Options")]
-    public Color flashColor = Color.red;
-    public float flashTime = .1f;
+    public Color flashColor = Color.white;
+    public float flashTime = .01f;
 
     float health, maxHealth, shield;
 
     private float shieldThreshold = 100f;
-    private float lerpRate = 0.01f; 
+    private float lerpRate = 0.01f;
+    private bool healthHasChanged = false;
 
 	void Start () 
     {
@@ -35,11 +36,9 @@ public class HealthBar : MonoBehaviour
 	
 	void Update () 
     {
-        bool healthChanged = false;
-         
         if(targetEntity != null)
         {
-            healthChanged = (health != targetEntity._health.hp);
+            healthHasChanged = (health != targetEntity._health.hp);
 
             health = targetEntity._health.hp;
             maxHealth = targetEntity._health.max_hp;
@@ -60,7 +59,7 @@ public class HealthBar : MonoBehaviour
             }  
         }      
 
-        if(healthChanged)
+        if(healthHasChanged)
         {
             StartCoroutine("Flash");
         }

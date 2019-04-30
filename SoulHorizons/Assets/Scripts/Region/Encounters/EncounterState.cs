@@ -42,7 +42,5 @@ public class EncounterState
             encounterIndexInPool = EncounterPool.GetRandomBossEncounterIndex();
         else
             encounterIndexInPool = EncounterPool.GetRandomEncounterIndexOfTier(tier);
-
-        Debug.Log(encounterIndexInPool);
     }
 }

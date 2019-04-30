@@ -64,7 +64,7 @@ public class DamageNumbersController : MonoBehaviour
         }
         else
         {
-            SpawnNormalDamage(damage.ToString(), position);
+            SpawnBigDamage(damage.ToString(), position);
         }
 		
 	}

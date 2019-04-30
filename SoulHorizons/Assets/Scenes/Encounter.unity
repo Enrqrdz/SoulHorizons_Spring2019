@@ -394,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regularDamageColor: {r: 1, g: 1, b: 1, a: 1}
   bigDamageColor: {r: 1, g: 0.8751692, b: 0, a: 1}
-  critScale: 1.5
+  critScale: 1.2
   damageNumbersPrefab: {fileID: 8114520341545658002, guid: 809eee88dcb869c499c299591f433af2,
     type: 3}
 --- !u!4 &148748084
@@ -1244,6 +1244,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIHealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 754145659068525787, guid: 637173c07d20ff34b9815879ceb7c82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 754145659068525784, guid: 637173c07d20ff34b9815879ceb7c82b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1302,17 +1307,17 @@ PrefabInstance:
     - target: {fileID: 754145659068525784, guid: 637173c07d20ff34b9815879ceb7c82b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.5
+      value: -156
       objectReference: {fileID: 0}
     - target: {fileID: 754145659068525784, guid: 637173c07d20ff34b9815879ceb7c82b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -236
+      value: -237
       objectReference: {fileID: 0}
     - target: {fileID: 754145659068525784, guid: 637173c07d20ff34b9815879ceb7c82b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.9998779
+      value: 163.99994
       objectReference: {fileID: 0}
     - target: {fileID: 754145659068525784, guid: 637173c07d20ff34b9815879ceb7c82b,
         type: 3}
@@ -1370,6 +1375,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605,
         type: 3}
+    - target: {fileID: 754145659137907653, guid: 637173c07d20ff34b9815879ceb7c82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754145659988986520, guid: 637173c07d20ff34b9815879ceb7c82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754145660067925745, guid: 637173c07d20ff34b9815879ceb7c82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754145658755980808, guid: 637173c07d20ff34b9815879ceb7c82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637173c07d20ff34b9815879ceb7c82b, type: 3}
 --- !u!224 &547296555 stripped
@@ -3876,7 +3901,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
+  encounter: {fileID: 11400000, guid: 911a290e5fb911743a9661095138f6e5, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0
