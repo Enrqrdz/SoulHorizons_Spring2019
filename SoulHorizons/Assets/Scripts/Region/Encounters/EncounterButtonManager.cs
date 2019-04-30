@@ -88,6 +88,11 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
         gameObject.GetComponent<Button>().interactable = interactable;
         fogMask.transform.localScale = new Vector3(fogRadius, fogRadius, 0);
 
+        if(fogRadius == 0)
+            fogMask.SetActive(false);
+        else
+            fogMask.SetActive(true);
+
         SetSprite();
     }
 
