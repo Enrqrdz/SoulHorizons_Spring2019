@@ -5,6 +5,7 @@ using UnityEngine;
 public static class CardPool
 {
     private static List<ActionData> cardPool = new List<ActionData>();
+    private static bool isLoaded = false;
 
     public static void AddCard(ActionData newCard)
     {
@@ -38,5 +39,15 @@ public static class CardPool
     {
         int r = Random.Range(0,cardPool.Count);
         return new CardState(cardPool[r], 1);
+    }
+
+    public static bool IsLoaded()
+    {
+        return isLoaded;
+    }
+
+    public static void SetLoaded(bool loadedStatus)
+    {
+        isLoaded = loadedStatus;
     }
 }

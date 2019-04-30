@@ -15,6 +15,9 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
     private GameObject eventSystem; 
     private GameObject locationIndicator;
 
+    public bool complete = false;
+    public bool accesible = false;
+
     [Header("Encounter Type Sprites")]
     public Sprite bossEncounter;
     public Sprite combatEncounter;
@@ -29,6 +32,12 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
         locationIndicator = GameObject.Find("LocationIndicator");
 
         UpdateChildren();
+    }
+
+    void Update()
+    {
+        complete = encounterState.isCompleted;
+        accesible = encounterState.isAccessible;
     }
 
     public void OnSelect(BaseEventData eventData)
@@ -78,6 +87,11 @@ public class EncounterButtonManager : MonoBehaviour, ISelectHandler, IDeselectHa
         sprite.GetComponent<SpriteRenderer>().color = spriteColor; 
         gameObject.GetComponent<Button>().interactable = interactable;
         fogMask.transform.localScale = new Vector3(fogRadius, fogRadius, 0);
+
+        if(fogRadius == 0)
+            fogMask.SetActive(false);
+        else
+            fogMask.SetActive(true);
 
         SetSprite();
     }

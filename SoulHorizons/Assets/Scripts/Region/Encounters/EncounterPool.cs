@@ -6,6 +6,7 @@ public static class EncounterPool
 {
     private static List<List<EncounterData>> encountersByTier = new List<List<EncounterData>>();
     private static List<EncounterData> bossEncounters = new List<EncounterData>();
+    private static bool isLoaded = false;
 
     public static void AddEncounter(EncounterData newEncounter)
     {
@@ -42,10 +43,13 @@ public static class EncounterPool
 
     public static int GetRandomEncounterIndexOfTier(int tier)
     {
-        return Random.Range(0, encountersByTier[tier].Count);
+        if(tier > encountersByTier.Count)
+            return Random.Range(0, encountersByTier[tier].Count);
+        else    
+            return 0;
     }
 
-    public static int GetRandomBossEncounterIndex(int tier)
+    public static int GetRandomBossEncounterIndex()
     {
         return Random.Range(0, bossEncounters.Count);
     }
@@ -68,5 +72,15 @@ public static class EncounterPool
     public static int GetMaxDifficulty()
     {
         return encountersByTier.Count - 1;
+    }
+
+    public static bool IsLoaded()
+    {
+        return isLoaded;
+    }
+
+    public static void SetLoaded(bool loadedStatus)
+    {
+        isLoaded = loadedStatus;
     }
 }
