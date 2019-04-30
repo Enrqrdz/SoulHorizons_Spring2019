@@ -24,7 +24,7 @@ public class BoltCard : ActionData
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
-        impactX = Mathf.Min(playerX + boltAttack.maxIncrementRange, scr_Grid.GridController.columnSizeMax);
+        impactX = Mathf.Min(playerX + boltAttack.maxIncrementRange + 1, scr_Grid.GridController.columnSizeMax);
 
         for (int i = playerX + 1; i < impactX; i++)
         {

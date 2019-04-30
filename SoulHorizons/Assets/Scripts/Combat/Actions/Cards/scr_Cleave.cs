@@ -23,16 +23,18 @@ public class scr_Cleave : ActionData
 
         if (playerY == 0)
         {
-            for (int i = 0; i < attack.maxIncrementRange; i++)
+            for (int i = 0; i <= attack.maxIncrementRange; i++)
             {
+                attack.maxIncrementRange = 1;
                 scr_Grid.GridController.grid[playerX + 1, playerY + i].Highlight();
             }
 
         }
         else if (playerY == scr_Grid.GridController.rowSizeMax - 1)
         {
-            for (int i = 0; i < attack.maxIncrementRange; i++)
+            for (int i = 0; i <= attack.maxIncrementRange; i++)
             {
+                attack.maxIncrementRange = 1;
                 scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].Highlight();
             }
         }
@@ -40,6 +42,7 @@ public class scr_Cleave : ActionData
         {
             for (int i = 0; i <= attack.maxIncrementRange; i++)
             {
+                attack.maxIncrementRange = 2;
                 scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].Highlight();
             }
         }
@@ -47,26 +50,26 @@ public class scr_Cleave : ActionData
 
     public override void DeProject()
     {
-        if (playerY != scr_Grid.GridController.rowSizeMax - 1 && playerY != 0)
+        if (playerY == 0)
         {
             for (int i = 0; i <= attack.maxIncrementRange; i++)
             {
-                scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].DeHighlight();
+                scr_Grid.GridController.grid[playerX + 1, playerY + i].DeHighlight();
             }
 
         }
         else if (playerY == scr_Grid.GridController.rowSizeMax - 1)
         {
-            for (int i = 0; i < attack.maxIncrementRange; i++)
+            for (int i = 0; i <= attack.maxIncrementRange; i++)
             {
                 scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].DeHighlight();
             }
         }
-        else if (playerY == 0)
+        else
         {
-            for (int i = 0; i < attack.maxIncrementRange; i++)
+            for (int i = 0; i <= attack.maxIncrementRange; i++)
             {
-                scr_Grid.GridController.grid[playerX + 1, playerY + i].DeHighlight();
+                scr_Grid.GridController.grid[playerX + 1, playerY - 1 + i].DeHighlight();
             }
         }
     }
@@ -86,17 +89,10 @@ public class scr_Cleave : ActionData
 
         if (playerY == 0)
 		{
-            attack.maxIncrementRange = 1;
             AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY, player);
-		}
-		else if (playerY == scr_Grid.GridController.rowSizeMax - 1)
-		{
-            attack.maxIncrementRange = 1;
-            AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY - 1, player);
 		}
         else
         {
-            attack.maxIncrementRange = 2;
             AttackController.Instance.AddNewAttack(attack, playerX + 1, playerY - 1, player);
         }
     }
