@@ -21,5 +21,5 @@ MonoBehaviour:
   description: 'Pull''s an enemy in the same row one space closer
 
     and stuns them briefly'
-  PullSFX: {fileID: 8300000, guid: 665e911fc54763e4fba4d8065bd512fb, type: 3}
+  PullSFX: {fileID: 8300000, guid: 174592f07d9fe8a44b153e415ae6e15b, type: 3}
   pull: {fileID: 11400000, guid: ece247c5e701ec54fb1e4685a8e83af1, type: 2}

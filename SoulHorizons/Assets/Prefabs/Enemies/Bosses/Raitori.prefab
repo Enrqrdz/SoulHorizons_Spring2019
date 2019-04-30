@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b30cb5074d4cadc40b8b84e8568d4dcb, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   anim: {fileID: 95959456289832174}
 --- !u!82 &82002260226468596
 AudioSource:
@@ -206,7 +206,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7490e84f7093e649a8e70f277eab5c7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   type: 0
   height: 3
   width: 2
@@ -309,7 +309,7 @@ MonoBehaviour:
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
     TerrSprite: {fileID: 0}
   spr: {fileID: 212410729078944208}
-  hitMaterial: {fileID: 2100000, guid: 32b6b33e598dc78419788b001824c441, type: 2}
+  hitShader: {fileID: 0}
   lerpSpeed: 15
   has_iframes: 0
   invincible: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
-  die_SFX: {fileID: 8300000, guid: 3251b7f620ce65b418021e67114e816a, type: 3}
+  die_SFX: {fileID: 8300000, guid: ddc4a81348916e7489e393687fb14012, type: 3}
   anim: {fileID: 0}
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
@@ -333,15 +333,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b679107095173184590d7ec9130442b8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 0}
   Raitori: {fileID: 914252712182664076}
   movementInterval: 1.2
   attacks_SFX:
-  - {fileID: 8300000, guid: b75cf3507f973d142b55d56a3314668f, type: 3}
+  - {fileID: 8300000, guid: f3ce8d560cb722d499300f04b92de4c8, type: 3}
   - {fileID: 8300000, guid: 12a3cd800fad9204b9156c375fb8a915, type: 3}
+  - {fileID: 8300000, guid: cf05196bc43bcda468d2459d10b7dbe0, type: 3}
 --- !u!114 &914252712182664076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,8 +353,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12b2975417983e64e9bd437897ef1020, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   StormStrikes: {fileID: 11400000, guid: 8a96aacdaa1b772448ef786868017ef8, type: 2}
   stormStrikeWindUpTime: 2
   stormStrikeCooldown: 5
@@ -395,8 +396,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fc71b3633fa51441b813ad92b60fd29, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Raitori: {fileID: 114725702907161856}
   currentPhase: 0
   introTime: 3.6
@@ -414,7 +415,7 @@ AudioSource:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243641188393201274, guid: 7117f9058e0f8104c8d7218cd2b06d74,
+  OutputAudioMixerGroup: {fileID: 243883424422922524, guid: 7117f9058e0f8104c8d7218cd2b06d74,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -703,6 +704,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4483777865337536}
     m_Modifications:
+    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 6893167082605971954, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,11 +773,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891074803934099376, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542adf5febbb04fc7b6fc6e2b6a5ddaf, type: 3}

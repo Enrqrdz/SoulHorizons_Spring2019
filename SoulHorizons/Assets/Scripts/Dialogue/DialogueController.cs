@@ -18,6 +18,7 @@ public class DialogueController : MonoBehaviour
     private List<IConsequence> consequences = new List<IConsequence>();
 
     AudioSource Dialogue_SFX;
+    public AudioClip[] dialogues_SFX;
     public AudioClip dialogue_SFX;
 
     private void Start()
@@ -166,6 +167,12 @@ public class DialogueController : MonoBehaviour
             AudioSource Dialogue_SFX = GetComponent<AudioSource>();
             Dialogue_SFX.clip = dialogue_SFX;
             Dialogue_SFX.Play();
+
+            int index = Random.Range(0, dialogues_SFX.Length);
+            dialogue_SFX = dialogues_SFX[index];
+            Dialogue_SFX.clip = dialogue_SFX;
+            Dialogue_SFX.Play();
+
             conversationIndex++;
         }
     }
