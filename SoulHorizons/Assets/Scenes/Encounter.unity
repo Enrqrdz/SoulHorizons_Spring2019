@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand:
-  - {fileID: 11400000, guid: 99d15dc373a432b4ca18fd34a8de2e17, type: 2}
+  - {fileID: 11400000, guid: 76f7ee053452f9d44a55a338f48fa285, type: 2}
   - {fileID: 11400000, guid: 76f7ee053452f9d44a55a338f48fa285, type: 2}
 --- !u!82 &283017073
 AudioSource:

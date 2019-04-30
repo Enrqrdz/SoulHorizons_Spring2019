@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour
     public SpriteRenderer spr;
     public Shader hitShader;
     private Shader baseShader;
+    public GameObject staticShield;
     Color baseColor;
     public float lerpSpeed;
     private float hitFlashTimer = .01f;
@@ -343,7 +344,7 @@ public class Entity : MonoBehaviour
         if (shield == true)
         {
             shieldCounter = time;
-            spr.color = Color.gray;
+            staticShield.SetActive(true);
         }
         else
         {
@@ -351,7 +352,7 @@ public class Entity : MonoBehaviour
             shieldProtection = 0;
             shieldProtectionIncrement = 0;
             hasShield = false;
-            spr.color = baseColor;
+            staticShield.SetActive(false);
         }
 
     }

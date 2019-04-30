@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incrementTime: 0.05
   maxIncrementRange: 4
+  damageModifier: 1
   damage: 0
   type: 1
   hasPiercing: 0
-  particles: {fileID: 212286977064683536, guid: 657edad4b3569b845a6d196bb9d171ab,
+  particles: {fileID: 212286977064683536, guid: 7c66a438bc49c5e42afb01941894610d,
     type: 3}
   particlesOffset: {x: 0.4, y: 0.3, z: 0}
   particleSpeed: 11
   damageRate: 1
-  duration: 6
+  blightDuration: 6
   blightMainDamage: 6
   blightSideDamage: 4
