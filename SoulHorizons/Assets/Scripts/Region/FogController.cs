@@ -5,38 +5,49 @@ using UnityEngine;
 public class FogController : MonoBehaviour
 {
     [Header("Needs To Be Set")]
-    public List<GameObject> cloudRows;
+    public List<GameObject> cloudPrefabs;
     public Vector3 topLeftCorner, bottomRightCorner;
 
     [Header("Options")]
+    private int cloudsPerRow = 30;
+    private int numberOfRows = 30;
     private float maxForce = 10f;
+    private int minmumOrderInLayer = 2;
+    private float scaleRange = .2f;
+
+    private List<GameObject> clouds = new List<GameObject>();
 
     void Start()
     {
-        int forceDirection = 1;
+        float verticalDistancePerRow = (topLeftCorner.y - bottomRightCorner.y) / numberOfRows;
 
-        foreach(GameObject cloudRow in cloudRows)
+        for(int i = 0; i < numberOfRows; i++)
         {
-            float rForce = Random.Range(0, maxForce);
-            Vector2 force = new Vector2(rForce * forceDirection, 0);
-            AddForceToRow(cloudRow, force);
-            forceDirection *= -1;
+            Vector3 force = new Vector3(Random.Range(-maxForce, maxForce), 0, 0);
+
+            for(int j = 0; j < cloudsPerRow; j++)
+            {
+                int r = Random.Range(0, cloudPrefabs.Count);
+
+                float yPosition = (verticalDistancePerRow * i) + bottomRightCorner.y;
+
+                Vector3 position = new Vector3(Random.Range(topLeftCorner.x, bottomRightCorner.x), yPosition, 0);
+
+                GameObject newCloud = Instantiate(cloudPrefabs[r], position, Quaternion.identity);
+
+                newCloud.GetComponent<Rigidbody2D>().AddForce(force);
+                newCloud.GetComponent<SpriteRenderer>().sortingOrder = numberOfRows + minmumOrderInLayer - i;
+                float rScale = Random.Range(1 - scaleRange, 1 + scaleRange);
+                newCloud.transform.localScale = new Vector3(rScale, rScale, 1);
+                newCloud.transform.parent = gameObject.transform;
+
+                clouds.Add(newCloud);
+            }
         }
     }
 
     void Update()
     {
         
-    }
-
-    void AddForceToRow(GameObject cloudRow, Vector2 force)
-    {
-        foreach(Transform cloudRibbon in cloudRow.transform)
-        {
-            foreach(Transform cloud in cloudRibbon.transform)
-            {
-                cloud.GetComponent<Rigidbody2D>().AddForce(force);
-            }
-        }
     }
 }
