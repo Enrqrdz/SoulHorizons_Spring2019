@@ -243,12 +243,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
+      propertyPath: buttons_SFX.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
       propertyPath: music
       value: 
       objectReference: {fileID: 8300000, guid: 71669c827d3f3494b9fd65d60e3d5d21, type: 3}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: buttonsSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e7b86a8ab80fd843bec269bbacfa925, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: buttons_SFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e7b86a8ab80fd843bec269bbacfa925, type: 3}
+    - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
+        type: 3}
+      propertyPath: button_SFX
       value: 
       objectReference: {fileID: 8300000, guid: 8e7b86a8ab80fd843bec269bbacfa925, type: 3}
     m_RemovedComponents: []
@@ -773,7 +788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 250, y: 75.30994}
+  m_AnchoredPosition: {x: 250, y: 75.309814}
   m_SizeDelta: {x: 419.19, y: 76.29001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1547103028
@@ -1272,6 +1287,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2179539277869454833, guid: ede3c53563af24f5aa1b0f2381573032,
+        type: 3}
+      propertyPath: m_Name
+      value: ScriptableObjectFinder
+      objectReference: {fileID: 0}
     - target: {fileID: 2179539277869454832, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: encounterPool.Array.size
@@ -1283,11 +1303,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fa7b1dab752ce4608ab08c6a963e3aec,
         type: 2}
-    - target: {fileID: 2179539277869454833, guid: ede3c53563af24f5aa1b0f2381573032,
-        type: 3}
-      propertyPath: m_Name
-      value: ScriptableObjectFinder
-      objectReference: {fileID: 0}
     - target: {fileID: 2179539277869454839, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: m_LocalPosition.x

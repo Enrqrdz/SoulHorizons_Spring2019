@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro; 
 
-public class DamageNumbersController : MonoBehaviour {
-
-	public static DamageNumbersController damageNumbers;
+public class DamageNumbersController : MonoBehaviour 
+{
+	public static DamageNumbersController Instance;
+    public Color regularDamageColor;
+    public Color bigDamageColor;
+    public float critScale;
 	public DamageNumbers damageNumbersPrefab;
 	private DamageNumbers[] numbersCache;
 	private DamageNumbers currentNum;
+
 	// Use this for initialization
 	void Awake()
 	{
-		if(damageNumbers != null && damageNumbers != this)
+		if(Instance != null && Instance != this)
 			Destroy(this);
 		else
-			damageNumbers = this;
+			Instance = this;
 			
 	}
 
@@ -38,14 +42,31 @@ public class DamageNumbersController : MonoBehaviour {
 
 	}
 
-	public void SpawnNumbers(string text, Vector3 position, Color color)
+	public void SpawnNormalDamage(string text, Vector3 position)
 	{
-		SpawnNumbers(text, position, color, 1f);
+		SpawnNumbers(text, position, regularDamageColor, 0.75f);
 	}
 
-	public void SpawnNumbers(int text, Vector3 position, Color color)
+    public void SpawnBigDamage(string text, Vector3 position)
 	{
-		SpawnNumbers(text.ToString(), position, color);
+		SpawnNumbers(text, position, bigDamageColor, critScale);
+	}
+
+	public void SpawnNumbers(int damage, Vector3 position)
+	{
+        if(damage == 0)
+        {
+            return;
+        }
+        else if(damage <= 10)
+        {
+            SpawnNormalDamage(damage.ToString(), position);
+        }
+        else
+        {
+            SpawnBigDamage(damage.ToString(), position);
+        }
+		
 	}
 
 	DamageNumbers NumberCache()

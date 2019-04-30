@@ -19,5 +19,5 @@ MonoBehaviour:
   castingTime: 0
   cooldown: 0.8
   description: 
-  BlurSFX: {fileID: 8300000, guid: 93d3d9cc687f5e04ab58b052c4d14d1d, type: 3}
+  BlurSFX: {fileID: 8300000, guid: 160ebfe82a087c4449ae08046dc13bcd, type: 3}
   duration: 3

@@ -20,5 +20,5 @@ MonoBehaviour:
   cooldown: 1
   description: "Shoots a projectile that curses the land where it \nlands, dealing
     damage to enemies that stand on\nit."
-  BlightSFX: {fileID: 0}
+  BlightSFX: {fileID: 8300000, guid: f1705d1b4ad4b0d4e8d2228728774e0d, type: 3}
   blightAttack: {fileID: 11400000, guid: e15fbf608238cd744a594b6fba0aa415, type: 2}

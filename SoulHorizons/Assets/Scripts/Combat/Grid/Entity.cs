@@ -48,6 +48,7 @@ public class Entity : MonoBehaviour
     public AudioClip die_SFX;
 
     public Animator anim;
+    public bool hasDeathAnim;
 
     public GameObject deathManager;
     private Material defaultMaterial;
@@ -253,6 +254,10 @@ public class Entity : MonoBehaviour
             hurt_SFX = hurts_SFX[index];
             Hurt_SFX.clip = hurt_SFX;
             Hurt_SFX.Play();
+            if (anim)
+            {
+                anim.SetBool("Hit", true);
+            }
 
             float tempDamage = attack.damage * attack.damageModifier;
             if (scr_Grid.GridController.CheckIfHelpful(_gridPos.x, _gridPos.x) == true)
@@ -362,7 +367,13 @@ public class Entity : MonoBehaviour
         //Debug.Log("I AM DEAD");
         scr_Grid.GridController.SetTileOccupied(false, _gridPos.x, _gridPos.y, this);
         _health.TakeDamage(_health.hp, this);
-        gameObject.SetActive(false);
+        if (hasDeathAnim)
+        {
+            gameObject.GetComponent<Entity>().enabled = false;
+        }else
+        {
+            gameObject.SetActive(false);
+        }
         //scr_Grid.GridController.RemoveEntity(this);
     }
 
@@ -441,19 +452,19 @@ public class Health{
 
         if (shield > 0)
         {
-            DamageNumbersController.damageNumbers.SpawnNumbers(damage, entity.transform.position, Color.cyan);
+            DamageNumbersController.Instance.SpawnNumbers(damage, entity.transform.position);
             shield -= damage;
             if(shield < 0)
             {
                 //Carry over extra damage to normal hp
-                DamageNumbersController.damageNumbers.SpawnNumbers(-shield, entity.transform.position, Color.red);
+                DamageNumbersController.Instance.SpawnNumbers(-shield, entity.transform.position);
                 hp += shield;
                 shield = 0;
             }
         }
         else
         {
-            DamageNumbersController.damageNumbers.SpawnNumbers(damage, entity.transform.position, Color.red);
+            DamageNumbersController.Instance.SpawnNumbers(damage, entity.transform.position);
             hp -= damage;
         }
         if (hp <= 0)
@@ -475,6 +486,6 @@ public class Health{
             hp = max_hp;
         }
     }
-    
+
 
 }
