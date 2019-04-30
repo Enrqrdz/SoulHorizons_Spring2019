@@ -16,6 +16,12 @@ public static class SaveManager
     public static void NewSave()
     {
         currentGame = new GameState();
+
+        ScriptableObjectFinder finder = GameObject.Find("ScriptableObjectFinder").GetComponent<ScriptableObjectFinder>();
+        List<CardState> startingDeck = finder.GetStartingDeck();
+        SaveManager.currentGame.inventory.AddCardToInventory(startingDeck);
+        SaveManager.currentGame.inventory.AddCardToDeck(startingDeck);
+        
         Save();
     }
 

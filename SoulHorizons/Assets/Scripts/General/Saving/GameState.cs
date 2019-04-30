@@ -15,7 +15,6 @@ public class GameState
     {
         player = new PlayerState();
         inventory = new InventoryState();
-        region = new RegionState();
     }
     
     public int GetPlayerLevel()
