@@ -19,7 +19,7 @@ public abstract class scr_EntityAI : MonoBehaviour {
         for (int i = 0; i < attack.maxIncrementRange; i++)
         {
             
-            if (scr_Grid.GridController.GetEntityAtPosition(xPos - 1 - i, yPos) == null || (scr_Grid.GridController.GetEntityAtPosition(xPos - 1 - i, yPos).type == EntityType.Player))
+            if (scr_Grid.GridController.GetEntityAtPosition(xPos - 1 - i, yPos) == null || (scr_Grid.GridController.GetEntityAtPosition(xPos - 1 - i, yPos).type != EntityType.Obstacle))
             {
                 scr_Grid.GridController.PrimeNextTile(xPos - 1 - i, yPos);
                 num = xPos - 1 - i;
@@ -35,7 +35,7 @@ public abstract class scr_EntityAI : MonoBehaviour {
 
     private IEnumerator DePrimeAttackTiles (AttackData attack, int startPoint, int yPos)
     {
-        yield return new WaitForSeconds(.5f/attack.incrementTime);
+        yield return new WaitForSeconds(.55f/attack.incrementTime);
         for(int i = 0; i < attack.maxIncrementRange; i++)
         {
             scr_Grid.GridController.DePrimeTile(startPoint + i, yPos);

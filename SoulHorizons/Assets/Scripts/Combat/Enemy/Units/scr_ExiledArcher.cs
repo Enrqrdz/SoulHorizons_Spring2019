@@ -33,7 +33,7 @@ public class scr_ExiledArcher : scr_EntityAI {
     {
         anim = gameObject.GetComponentInChildren<Animator>();
         AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-        Attack_SFX = SFX_Sources[1];
+        Attack_SFX = SFX_Sources[0];
         Footsteps_SFX = SFX_Sources[0];
         scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
@@ -74,13 +74,13 @@ public class scr_ExiledArcher : scr_EntityAI {
                 if (!scr_Grid.GridController.CheckIfOccupied((int)newPosition.x, (int)newPosition.y) && (scr_Grid.GridController.ReturnTerritory((int)newPosition.x, (int)newPosition.y).name == entity.entityTerritory.name))
                 {
                     entity.SetTransform((int)newPosition.x, (int)newPosition.y);
-                    if (movePosition < 3)
+                    if (movePosition > 0)
                     {
-                        movePosition++;
+                        movePosition--;
                     }
                     else
                     {
-                        movePosition = 0;
+                        movePosition = 3;
                     }
                     return;
                 }
@@ -163,7 +163,7 @@ public class scr_ExiledArcher : scr_EntityAI {
         {
             AudioSource[] SFX_Sources = GetComponents<AudioSource>();
             Attack_SFX = SFX_Sources[0];
-            attack_SFX = attacks_SFX[0];
+            attack_SFX = attacks_SFX[1];
             Attack_SFX.clip = attack_SFX;
             Attack_SFX.Play();
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
@@ -205,7 +205,7 @@ public class scr_ExiledArcher : scr_EntityAI {
             }
             else
             {
-                return new Vector2(xPos + 1, yPos - 1);
+                return new Vector2(xPos + 1, yPos + 1);
             }
         }
         else if (movePosition == 2)
@@ -227,29 +227,10 @@ public class scr_ExiledArcher : scr_EntityAI {
             }
             else
             {
-                return new Vector2(xPos + 1, yPos + 1);
+                return new Vector2(xPos - 1, yPos + 1);
             }
         }
 
-    }
-    int GetXLimit(int xPos)
-    {
-        int xRange = scr_Grid.GridController.columnSizeMax;
-        int xLimit = xPos;
-        int tempX = xPos;
-        for (int i = 0; i < xRange; i++)
-        {
-            tempX--;
-            if (scr_Grid.GridController.grid[xLimit, entity._gridPos.y].territory.name != TerrName.Player)
-            {
-                xLimit = tempX;
-            }
-            else
-            {
-                return xLimit;
-            }
-        }
-        return xLimit;
     }
 
     IEnumerator MovementClock()
