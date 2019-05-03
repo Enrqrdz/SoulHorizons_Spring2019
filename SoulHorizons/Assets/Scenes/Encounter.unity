@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryMantra: {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
-  secondaryMantra: {fileID: 11400000, guid: 7507efb0d7f08e34d878601513c98909, type: 2}
+  secondaryMantra: {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
   activeMantras:
   - {fileID: 0}
   - {fileID: 0}

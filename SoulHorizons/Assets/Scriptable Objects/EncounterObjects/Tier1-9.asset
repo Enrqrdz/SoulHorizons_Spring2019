@@ -20,7 +20,7 @@ MonoBehaviour:
   - entity: {fileID: 114787085351951448, guid: ac588191e5f641a42aa1bbaff8497605, type: 3}
     x: 1
     y: 1
-  - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
+  - entity: {fileID: 114725702907161856, guid: b6743db7fbb245c4db040a28e3ddff19, type: 3}
     x: 7
     y: 0
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}
