@@ -7,7 +7,6 @@ public class scr_FoulTrifling : scr_EntityAI
     public float movementInterval;
 
     public AttackData attack1;
-    public AttackData chargedAttack;
     private int attackCounter = 0; // keeps track of how many tiles the entity has moved before it can attack , if it reaches 3 then it attempts to do a charge attack
 
     AudioSource[] SFX_Sources;

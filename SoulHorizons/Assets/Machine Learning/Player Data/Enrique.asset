@@ -12,4 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaab16668da88742a6360baebcccc3d, type: 3}
   m_Name: Enrique
   m_EditorClassIdentifier: 
-  phase1: {fileID: 0}
+  phaseData:
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
+  - movementFrequency: 0
+    attackFrequency: 0
+    horizontalDistance: 0
+    verticalDistance: 0
