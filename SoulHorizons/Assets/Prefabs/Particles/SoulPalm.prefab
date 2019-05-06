@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7729413330173881187}
   - component: {fileID: 3469597774226472197}
+  - component: {fileID: 5832815618835490685}
   m_Layer: 0
   m_Name: SoulPalm
   m_TagString: Untagged
@@ -68,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 178d02087ddc4ce4088656dc5f5e2fba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f4aef035ab35df4ead6c1b6fe77d8f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -79,3 +80,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5832815618835490685
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943842329607849509}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 302d1ac3168d725459d2f2709e7dca41, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
