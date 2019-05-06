@@ -76,11 +76,9 @@ public class atk_SoulPalm : AttackData
     {
         currentIncrement++;
         currentIncrement %= (6 * (maxIncrementRange + 1)) + 1;
-        Debug.Log(currentIncrement);
 
         if (currentIncrement > 6 * maxIncrementRange - 1)
         {
-            Debug.Log("Current Increment matches Max Increment");
             damage = tempDamage;
         }
         else
