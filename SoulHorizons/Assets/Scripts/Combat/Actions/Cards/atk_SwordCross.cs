@@ -24,11 +24,11 @@ public class atk_SwordCross : AttackData
             int temp = xPos - playerX;
             if (temp == 1)
             {
-                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, 315)));
+                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, -135)));
             }
             else
             {
-                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, 225)));
+                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, -225)));
             }
         }
         else
@@ -36,11 +36,11 @@ public class atk_SwordCross : AttackData
             int temp = xPos - playerX;
             if (temp == 1)
             {
-                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, 45)));
+                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, -45)));
             }
             else
             {
-                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, 135)));
+                activeAtk.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAtk.position), Quaternion.Euler(new Vector3(0, 0, 45)));
             }
         }
         
