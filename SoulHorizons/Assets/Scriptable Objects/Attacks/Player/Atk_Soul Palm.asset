@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece8cbdcdeb72e047856711f8c4cec3f, type: 3}
   m_Name: Atk_Soul Palm
   m_EditorClassIdentifier: 
-  incrementTime: 0.2
-  maxIncrementRange: 1
-  modifier: 1
-  damage: 15
+  incrementTime: 0.15
+  maxIncrementRange: 12
+  damageModifier: 1
+  damage: 20
   type: 1
   hasPiercing: 1
   particles: {fileID: 3469597774226472197, guid: 9ed71cc67b4df30418cbfa151b6e11ec,
     type: 3}
-  particlesOffset: {x: 0, y: 0.1, z: 0}
+  particlesOffset: {x: 0.5, y: 0, z: 0}
   particleSpeed: 1
   PalmSFX: {fileID: 8300000, guid: 7c2dda9d2d517ee418941112f06c492d, type: 3}
+  currentIncrement: 0
+  tempDamage: 20
+  verticalOffset: 2
+  horizontalOffset: 0

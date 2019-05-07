@@ -11,6 +11,8 @@ public class scr_SoulPalm : ActionData
     public AttackData palmAttack;
     private Entity player;
     private int playerX, playerY;
+    private int[] xPositions = new int[2];
+    private int[] yPositions = new int[3];
 
     public override void Activate()
     {
@@ -18,23 +20,44 @@ public class scr_SoulPalm : ActionData
         PlayCardSFX.clip = PalmSFX;
         PlayCardSFX.Play();
 
+        playerX = player._gridPos.x;
+        playerY = player._gridPos.y;
+
+        for (int i = 0; i < xPositions.Length; i++)
+        {
+            xPositions[i] = playerX + i + 1;
+        }
+
         if (playerY == 0)
         {
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY + 0, player);
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY + 1, player);
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY + 2, player);
+            for (int i = 0; i < yPositions.Length; i++)
+            {
+                yPositions[i] = playerY + i;
+            }
         }
         else if (playerY == scr_Grid.GridController.rowSizeMax - 1)
         {
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY + 0, player);
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY - 1, player);
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY - 2, player);
+            for (int i = 0; i < yPositions.Length; i++)
+            {
+                yPositions[i] = playerY + i - 2;
+            }
         }
         else
         {
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY + 0, player);
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY + 1, player);
-            AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY - 1, player);
+            for (int i = 0; i < yPositions.Length; i++)
+            {
+                yPositions[i] = playerY + i - 1;
+            }
+        }
+
+        //AttackController.Instance.AddNewAttack(palmAttack, playerX + 1, playerY, player);
+
+        for (int i = 0; i < xPositions.Length; i++)
+        {
+            for (int j = 0; j < yPositions.Length; j++)
+            {
+                AttackController.Instance.AddNewAttack(palmAttack, xPositions[i], yPositions[j], player);
+            }
         }
     }
 
@@ -44,63 +67,50 @@ public class scr_SoulPalm : ActionData
         playerX = player._gridPos.x;
         playerY = player._gridPos.y;
 
-        if(playerY == 0)
+        for (int i = 0; i < xPositions.Length; i++)
         {
-            scr_Grid.GridController.grid[playerX + 1, playerY + 0].Highlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY + 1].Highlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY + 2].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 0].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 1].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 2].Highlight();
+            xPositions[i] = playerX + i + 1;
+        }
+
+        if (playerY == 0)
+        {
+            for (int i = 0; i < yPositions.Length; i++)
+            {
+                yPositions[i] = playerY + i;
+            }
         }
         else if(playerY == scr_Grid.GridController.rowSizeMax - 1)
         {
-            scr_Grid.GridController.grid[playerX + 1, playerY + 0].Highlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY - 1].Highlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY - 2].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 0].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY - 1].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY - 2].Highlight();
+            for (int i = 0; i < yPositions.Length; i++)
+            {
+                yPositions[i] = playerY + i - 2;
+            }
         }
         else
         {
-            scr_Grid.GridController.grid[playerX + 1, playerY + 0].Highlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY + 1].Highlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY - 1].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 0].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 1].Highlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY - 1].Highlight();
+            for (int i = 0; i < yPositions.Length; i++)
+            {
+                yPositions[i] = playerY + i - 1;
+            }
+        }
+
+        for (int i = 0; i < xPositions.Length; i++)
+        {
+            for (int j = 0; j < yPositions.Length; j++)
+            {
+                scr_Grid.GridController.grid[xPositions[i], yPositions[j]].Highlight();
+            }
         }
     }
 
     public override void DeProject()
     {
-        if (playerY == 0)
+        for (int i = 0; i < xPositions.Length; i++)
         {
-            scr_Grid.GridController.grid[playerX + 1, playerY + 0].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY + 1].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY + 2].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 0].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 1].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 2].DeHighlight();
-        }
-        else if (playerY == scr_Grid.GridController.rowSizeMax - 1)
-        {
-            scr_Grid.GridController.grid[playerX + 1, playerY + 0].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY - 1].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY - 2].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 0].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY - 1].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY - 2].DeHighlight();
-        }
-        else
-        {
-            scr_Grid.GridController.grid[playerX + 1, playerY + 0].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY + 1].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 1, playerY - 1].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 0].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY + 1].DeHighlight();
-            scr_Grid.GridController.grid[playerX + 2, playerY - 1].DeHighlight();
+            for (int j = 0; j < yPositions.Length; j++)
+            {
+                scr_Grid.GridController.grid[xPositions[i], yPositions[j]].DeHighlight();
+            }
         }
     }
 }
