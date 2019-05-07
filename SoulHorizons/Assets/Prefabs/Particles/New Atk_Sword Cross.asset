@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ded27370048e04f4fa3a1adf8178a690, type: 3}
-  m_Name: Atk_Sword Cross
+  m_Name: New Atk_Sword Cross
   m_EditorClassIdentifier: 
-  incrementTime: 0.5
-  maxIncrementRange: 2
+  incrementTime: 0
+  maxIncrementRange: 10
   damageModifier: 1
-  damage: 6
-  type: 1
-  hasPiercing: 1
-  particles: {fileID: 822255763060273358, guid: 87623d81128ac5649825557a88a1a712,
-    type: 3}
+  damage: 0
+  type: 0
+  hasPiercing: 0
+  particles: {fileID: 0}
   particlesOffset: {x: 0, y: 0, z: 0}
-  particleSpeed: 0.2
-  SwordSFX: {fileID: 8300000, guid: 87fa4948881007d468ac76538be41624, type: 3}
+  particleSpeed: 1
+  SwordSFX: {fileID: 0}
