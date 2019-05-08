@@ -21,7 +21,7 @@ MonoBehaviour:
     x: 1
     y: 1
   - entity: {fileID: 114725702907161856, guid: b6743db7fbb245c4db040a28e3ddff19, type: 3}
-    x: 7
+    x: 5
     y: 0
   mapData: {fileID: 11400000, guid: 761a7365b263542d385a5a045d54035d, type: 2}
   clearRadiusWhileUndiscovered: 0

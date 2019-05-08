@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 97cb234a11113394986a5a9d08f9b317, type: 2}
   enemyToTrack: {fileID: 0}
-  trackData: 0
+  trackData: 1
 --- !u!114 &114404296688108730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,9 +186,9 @@ MonoBehaviour:
   _gridPos: {x: 0, y: 0}
   gridPositions: []
   _health:
-    hp: 100
+    hp: 200
     shield: 0
-    max_hp: 100
+    max_hp: 200
   _ai: {fileID: 114404296688108730}
   entityTerritory:
     name: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   blur: {fileID: 4330813964445881367}
   lerpSpeed: 250
   has_iframes: 1
-  invincible: 1
+  invincible: 0
   invulnTime: 1
   isStunned: 0
   isImmobile: 0
@@ -675,6 +675,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4270750817129084}
     m_Modifications:
+    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
+        type: 3}
+      propertyPath: m_Name
+      value: Blur
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532154673637980253, guid: b542436292ec9254da93a498279c7976,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 433812055
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532154673637980253, guid: b542436292ec9254da93a498279c7976,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7882374467428248515, guid: b542436292ec9254da93a498279c7976,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -740,26 +760,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
-        type: 3}
-      propertyPath: m_Name
-      value: Blur
-      objectReference: {fileID: 0}
-    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6532154673637980253, guid: b542436292ec9254da93a498279c7976,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 433812055
-      objectReference: {fileID: 0}
-    - target: {fileID: 6532154673637980253, guid: b542436292ec9254da93a498279c7976,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b542436292ec9254da93a498279c7976, type: 3}
 --- !u!1 &4330813964445881367 stripped
@@ -781,6 +781,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4270750817129084}
     m_Modifications:
+    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
+      propertyPath: m_Name
+      value: Static Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0125
@@ -832,14 +840,6 @@ PrefabInstance:
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.28431463
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
-      propertyPath: m_Name
-      value: Static Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}

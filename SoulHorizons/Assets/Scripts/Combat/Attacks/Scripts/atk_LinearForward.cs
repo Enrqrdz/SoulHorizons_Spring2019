@@ -5,9 +5,6 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "Attacks/LinearForward")]
 public class atk_LinearForward : AttackData {
 
-    public float chanceToAttack = 30f;
-
-
     public override Vector2Int ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
         return LinearForward_ProgressAttack(xPos,yPos, activeAtk); 
@@ -15,15 +12,12 @@ public class atk_LinearForward : AttackData {
 
     Vector2Int LinearForward_ProgressAttack(int xPos, int yPos, ActiveAttack activeAtk)
     {
-
-
-        //scr_Grid.GridController.PrimeNextTile(xPos - 1,yPos);
         scr_Grid.GridController.ActivateTile(xPos, yPos); 
         return new Vector2Int(xPos - 1, yPos); 
     }
     public override bool CheckCondition(Entity _ent)
     {
-        return Random.Range(0, 100) < chanceToAttack; 
+        return true;
     }
 
     //--Effects Methods--
@@ -40,7 +34,7 @@ public class atk_LinearForward : AttackData {
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
     {
-
+        
     }
 
     public override void EndEffects(ActiveAttack activeAttack)

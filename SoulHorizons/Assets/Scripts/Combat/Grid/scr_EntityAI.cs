@@ -35,7 +35,7 @@ public abstract class scr_EntityAI : MonoBehaviour {
 
     private IEnumerator DePrimeAttackTiles (AttackData attack, int startPoint, int yPos)
     {
-        yield return new WaitForSeconds(.55f/attack.incrementTime);
+        yield return new WaitForSeconds(attack.incrementTime * attack.maxIncrementRange);
         for(int i = 0; i < attack.maxIncrementRange; i++)
         {
             scr_Grid.GridController.DePrimeTile(startPoint + i, yPos);

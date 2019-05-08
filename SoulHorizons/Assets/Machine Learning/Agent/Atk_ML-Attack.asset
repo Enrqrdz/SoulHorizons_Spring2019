@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bfc36621c8b32548a8c23e3b6c7a04b, type: 3}
   m_Name: Atk_ML-Attack
   m_EditorClassIdentifier: 
-  incrementTime: 0.15
-  maxIncrementRange: 10
+  incrementTime: 0.05
+  maxIncrementRange: 5
   damageModifier: 1
-  damage: 5
+  damage: 4
   type: 0
   hasPiercing: 0
   particles: {fileID: 212286977064683536, guid: 657edad4b3569b845a6d196bb9d171ab,
     type: 3}
   particlesOffset: {x: -0.3, y: 0.3, z: 0}
   particleSpeed: 1
-  chanceToAttack: 100

@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 4483777865337536}
   - component: {fileID: 61906949573251334}
   - component: {fileID: 114725702907161856}
-  - component: {fileID: 6450218370751255472}
+  - component: {fileID: 5952674958170101982}
   - component: {fileID: 6982098170002606615}
   - component: {fileID: 82240855345996476}
   - component: {fileID: 82587730288405618}
@@ -294,10 +294,10 @@ MonoBehaviour:
   _gridPos: {x: 0, y: 0}
   gridPositions: []
   _health:
-    hp: 50
+    hp: 800
     shield: 0
-    max_hp: 50
-  _ai: {fileID: 6450218370751255472}
+    max_hp: 800
+  _ai: {fileID: 5952674958170101982}
   entityTerritory:
     name: 1
     TerrColor: {r: 0, g: 0, b: 0, a: 0}
@@ -321,7 +321,7 @@ MonoBehaviour:
   deathManager: {fileID: 1576292096190378, guid: 2e7f05e13f7325a4f9885b66700d913a,
     type: 3}
   highlightMaterial: {fileID: 0}
---- !u!114 &6450218370751255472
+--- !u!114 &5952674958170101982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,19 +330,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1116592492456940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a0407a7f4e82a94ca65c5e99e39bb0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7373073a3e62b5c468bf1758dc52380f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 114725702907161856}
   anim: {fileID: 7781657675289860417}
-  movementInterval: 1.75
-  attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
-  chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
+  primaryAttack: {fileID: 11400000, guid: b1441fcda9256ca44ba168247504e58d, type: 2}
+  startingDamage: 4
+  damageIncrement: 2
+  startingSpeed: 0.35
+  speedIncrement: 0.05
+  startingMovementCooldown: 1.75
+  movementCooldown: 0.25
+  movementIncrement: 0.25
+  startingIdleFrequency: 15
+  idleFrequency: 3
+  idleIncrement: 1
+  currentMovement: 0
   movements_SFX:
   - {fileID: 8300000, guid: d2c64de9a270ca64c8f56eb9d83acbf2, type: 3}
   - {fileID: 8300000, guid: 689d0a78f054505488f1acfcc6679d1c, type: 3}
   attacks_SFX:
-  - {fileID: 8300000, guid: 282a1d403f79ced42b7978407b9b807b, type: 3}
+  - {fileID: 8300000, guid: 2a4b8d76122eff84a8b0dd06431dc0db, type: 3}
 --- !u!114 &6982098170002606615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,20 +359,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116592492456940}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 838bb33eb91edb34d91195485d5f5555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 114725702907161856}
-  anim: {fileID: 7781657675289860417}
-  momvementFrequency: 3.5
-  enemyOnSameRow: 0
-  currentState: 0
-  primaryAttack: {fileID: 11400000, guid: b1441fcda9256ca44ba168247504e58d, type: 2}
-  attackFrequency: 3.5
-  movements_SFX: []
-  attacks_SFX: []
+  brain: {fileID: 0}
+  agentParameters:
+    agentCameras: []
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
 --- !u!82 &82240855345996476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -668,7 +675,6 @@ GameObject:
   - component: {fileID: 6076949571761319366}
   - component: {fileID: 7781657675289860417}
   - component: {fileID: 2239010965526459523}
-  - component: {fileID: 7942852319751181738}
   - component: {fileID: 2727314921724325806}
   - component: {fileID: 5916774404457227823}
   m_Layer: 0
@@ -792,29 +798,6 @@ MonoBehaviour:
     autoReset: 1
     layerMixModes: 00000000
     layerBlendModes: 02000000
---- !u!114 &7942852319751181738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7690806748645899282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a0407a7f4e82a94ca65c5e99e39bb0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity: {fileID: 114725702907161856}
-  anim: {fileID: 0}
-  movementInterval: 0
-  attack1: {fileID: 11400000, guid: 1949500ade449b24fbfd31dfc7eea5ab, type: 2}
-  chargedAttack: {fileID: 11400000, guid: 6a88ee06edd0e12498c83eced9f3270b, type: 2}
-  movements_SFX:
-  - {fileID: 8300000, guid: e2cc8e59c2082a44c977a355b271fcd8, type: 3}
-  - {fileID: 8300000, guid: afc69b12168979649b8f6110080fd4c8, type: 3}
-  - {fileID: 8300000, guid: 06847d784b65279448930a7c65222bd1, type: 3}
-  attacks_SFX:
-  - {fileID: 8300000, guid: 2a4b8d76122eff84a8b0dd06431dc0db, type: 3}
 --- !u!114 &2727314921724325806
 MonoBehaviour:
   m_ObjectHideFlags: 0

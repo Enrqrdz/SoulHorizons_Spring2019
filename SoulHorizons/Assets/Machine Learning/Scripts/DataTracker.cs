@@ -1,14 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DataTracker : MonoBehaviour
 {
     public static DataTracker Instance;
     public PlayerData playerData;
     public Entity enemyToTrack;
-    public static int stageTracker;
+    [Tooltip("Select this for new data to be tracked")]
     public bool trackData;
-    private Entity player;
 
+    private Entity player;
+    private float startTime;
+    private float endTime;
+    private float totalTime;
+    private static int trackerIndex;
+    private int horizontalSteps;
+    private int verticalSteps;
+    private float totalSteps;
+    private float attackCounter;
 
     private void Awake()
     {
@@ -20,19 +29,22 @@ public class DataTracker : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         }
-        if(Instance != null)
-        {
-            Instance = this;
-        }
+        Instance = this;
     }
 
     private void Start()
     {
         if (trackData == true)
         {
-            stageTracker = 0;
+            trackerIndex = 0;
             ResetPlayerData();
+            TrackSingleEnemy();
         }
+    }
+
+    private void TrackSingleEnemy()
+    {
+        enemyToTrack = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Entity>();
     }
 
     private void ResetPlayerData()
@@ -50,8 +62,47 @@ public class DataTracker : MonoBehaviour
         }
     }
 
-    private void Update()
+    //When enemy goes into new stage
+    public void StartPhase()
     {
-        
+        trackerIndex++;
+        horizontalSteps = 0;
+        verticalSteps = 0;
+        totalSteps = 0;
+        attackCounter = 0;
+        startTime = Time.time;
+    }
+
+    //When enemy ends phase
+    public void EndPhase()
+    {
+        endTime = Time.time;
+        CalculateTotals();
+    }
+
+    //When enemy moves horizontally
+    public void CalculateHorizontalDistance()
+    {
+        horizontalSteps++;
+        playerData.phaseData[trackerIndex].horizontalDistance += enemyToTrack._gridPos.x - player._gridPos.x;
+        playerData.phaseData[trackerIndex].horizontalDistance /= horizontalSteps;
+    }
+
+    //When enemy moves vertically
+    public void CalculateVerticalDistance()
+    {
+        verticalSteps++;
+        playerData.phaseData[trackerIndex].verticalDistance += enemyToTrack._gridPos.y - player._gridPos.y;
+        playerData.phaseData[trackerIndex].verticalDistance /= verticalSteps;
+    }
+
+    //When enemy ends phase
+    private void CalculateTotals()
+    {
+        totalTime = endTime - startTime;
+        totalSteps = verticalSteps + horizontalSteps;
+
+        playerData.phaseData[trackerIndex].attackFrequency = attackCounter / totalTime;
+        playerData.phaseData[trackerIndex].movementFrequency = totalSteps / totalTime;
     }
 }

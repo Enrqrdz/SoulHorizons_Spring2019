@@ -37,11 +37,3 @@ MonoBehaviour:
     attackFrequency: 0
     horizontalDistance: 0
     verticalDistance: 0
-  - movementFrequency: 0
-    attackFrequency: 0
-    horizontalDistance: 0
-    verticalDistance: 0
-  - movementFrequency: 0
-    attackFrequency: 0
-    horizontalDistance: 0
-    verticalDistance: 0

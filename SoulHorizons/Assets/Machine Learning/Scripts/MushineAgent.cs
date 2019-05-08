@@ -8,7 +8,7 @@ public class MushineAgent : Agent
 {
     public override void CollectObservations()
     {
-
+        
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
