@@ -16,7 +16,7 @@ public class MushineAI : scr_EntityAI
     public float startingSpeed = 0.3f;
     public float speedIncrement = 0.05f;
     [HideInInspector]
-    public float maxSpeed = 0.05f;
+    public float minSpeed = 0.05f;
 
     //Movement Values to modify
     public float startingMovementCooldown = 1.75f;

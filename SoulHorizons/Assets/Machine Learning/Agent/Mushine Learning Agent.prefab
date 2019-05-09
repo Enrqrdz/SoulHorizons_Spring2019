@@ -343,7 +343,7 @@ MonoBehaviour:
   maxDamage: 20
   startingSpeed: 0.3
   speedIncrement: 0.05
-  maxSpeed: 0.05
+  minSpeed: 0.05
   startingMovementCooldown: 1.65
   movementCooldown: 0.25
   movementIncrement: 0.25
@@ -375,7 +375,7 @@ MonoBehaviour:
   brain: {fileID: 11400000, guid: f0a85ef04f06dac40b4cbb52c91a5c0e, type: 2}
   agentParameters:
     agentCameras: []
-    maxStep: 6000
+    maxStep: 3000
     resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 1

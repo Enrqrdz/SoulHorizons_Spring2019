@@ -1,4 +1,4 @@
-5/9/2019 10:11:30 AM
+5/9/2019 5:38:03 PM
  
 Exception
 NullReferenceException: Object reference not set to an instance of an object
@@ -24,15 +24,6 @@ MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Error
-'New SkeletonAnimation' AnimationEvent 'Attack1' has no receiver! Are you missing a component?
-
-Log
 MoveUp
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
@@ -63,15 +54,6 @@ MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Error
-'New SkeletonAnimation' AnimationEvent 'Attack1' has no receiver! Are you missing a component?
-
-Log
 MoveUp
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
@@ -85,168 +67,6 @@ Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
 MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Error
-'New SkeletonAnimation' AnimationEvent 'Attack1' has no receiver! Are you missing a component?
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Error
-'New SkeletonAnimation' AnimationEvent 'Attack1' has no receiver! Are you missing a component?
-
-Log
-Idle
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Error
-'New SkeletonAnimation' AnimationEvent 'Attack1' has no receiver! Are you missing a component?
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Error
-'New SkeletonAnimation' AnimationEvent 'Attack1' has no receiver! Are you missing a component?
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
@@ -276,6 +96,84 @@ MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
 MoveDown
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
@@ -300,55 +198,13 @@ MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
 MoveUp
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveDown
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-Attacking
-UnityEngine.Debug:Log(Object)
-MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
-Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
-
-Log
-MoveUp
+Idle
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
@@ -373,6 +229,12 @@ Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
 Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
@@ -396,7 +258,582 @@ MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
 Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Error
+<RI.Hid> Failed to create device file:
+ 20 The process cannot access the file because it is being used by another process.
+
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Attacking
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
@@ -415,6 +852,24 @@ Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
 
 Log
 MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveDown
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+Idle
+UnityEngine.Debug:Log(Object)
+MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
+Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)
+
+Log
+MoveUp
 UnityEngine.Debug:Log(Object)
 MushineAI:UpdateAI() (at Assets/Machine Learning/Scripts/MushineAI.cs:120)
 Entity:Update() (at Assets/Scripts/Combat/Grid/Entity.cs:78)

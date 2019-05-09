@@ -61,7 +61,7 @@ public class MushineAgent : Agent
 
             AI.movementCooldown = Mathf.Clamp(AI.movementCooldown, AI.minimumMovementCooldown, AI.startingMovementCooldown);
             AI.idleFrequency = Mathf.Clamp(AI.idleFrequency, AI.minimumIdleFrequency, AI.startingIdleFrequency);
-            AI.primaryAttack.incrementTime = Mathf.Clamp(AI.primaryAttack.incrementTime, AI.startingSpeed, AI.maxSpeed);
+            AI.primaryAttack.incrementTime = Mathf.Clamp(AI.primaryAttack.incrementTime, AI.startingSpeed, AI.minSpeed);
             AI.primaryAttack.damage = Mathf.Clamp(AI.primaryAttack.damage, AI.startingDamage, AI.maxDamage);
 
 
@@ -69,7 +69,7 @@ public class MushineAgent : Agent
 
         else if(Player.isBeingEvasive == false || MushineEntity.isBeingEvasive)
         {
-            SetReward(0.1f);
+            SetReward(0.1f + (AI.primaryAttack.damage / 10f));
         }
 
         if (Player.isBeingEvasive || MushineEntity.isHit)
@@ -79,12 +79,12 @@ public class MushineAgent : Agent
 
         if(Player._health.hp <= 0)
         {
-            SetReward(MushineEntity._health.hp/ MushineEntity._health.max_hp);
+            SetReward((MushineEntity._health.hp/ MushineEntity._health.max_hp) * 100);
             Done();
         }
         if (MushineEntity._health.hp <= 0)
         {
-            SetReward(-(Player._health.hp / Player._health.max_hp));
+            SetReward(-(Player._health.hp / Player._health.max_hp) * 100);
             Done();
         }
     }
