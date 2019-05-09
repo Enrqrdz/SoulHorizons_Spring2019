@@ -338,14 +338,14 @@ MonoBehaviour:
   primaryAttack: {fileID: 11400000, guid: b1441fcda9256ca44ba168247504e58d, type: 2}
   startingDamage: 4
   damageIncrement: 2
-  startingSpeed: 0.35
+  startingSpeed: 0.3
   speedIncrement: 0.05
-  startingMovementCooldown: 1.75
+  startingMovementCooldown: 1.65
   movementCooldown: 0.25
   movementIncrement: 0.25
   startingIdleFrequency: 15
   idleFrequency: 3
-  idleIncrement: 1
+  idleIncrement: 2
   currentMovement: 0
   movements_SFX:
   - {fileID: 8300000, guid: d2c64de9a270ca64c8f56eb9d83acbf2, type: 3}

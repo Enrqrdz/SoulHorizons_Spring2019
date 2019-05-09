@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518702da90945de44a2b3451140b0b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 97cb234a11113394986a5a9d08f9b317, type: 2}
+  playerData: {fileID: 11400000, guid: 2394da5929852aa4d958ccdc08a670d7, type: 2}
   enemyToTrack: {fileID: 0}
   trackData: 1
 --- !u!114 &114404296688108730

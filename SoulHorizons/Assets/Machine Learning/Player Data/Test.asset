@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfaab16668da88742a6360baebcccc3d, type: 3}
-  m_Name: Enrique
+  m_Name: Test
   m_EditorClassIdentifier: 
   phaseData:
-  - movementFrequency: 1.3341002
-    attackFrequency: 3.6020708
+  - movementFrequency: 1.201084
+    attackFrequency: 3.2696176
     horizontalDistance: -2
     verticalDistance: 0
-  - movementFrequency: 1.1331612
-    attackFrequency: 4.0660486
+  - movementFrequency: 1.1325406
+    attackFrequency: 2.9979017
     horizontalDistance: -2
     verticalDistance: 0
-  - movementFrequency: 1.7990946
-    attackFrequency: 2.7319584
+  - movementFrequency: 0.9993162
+    attackFrequency: 3.197812
     horizontalDistance: -2
     verticalDistance: 0
-  - movementFrequency: 1.9313618
-    attackFrequency: 2.8637433
+  - movementFrequency: 0.9993717
+    attackFrequency: 2.6649914
     horizontalDistance: -3
     verticalDistance: 0
-  - movementFrequency: 0.79965186
-    attackFrequency: 3.9316216
+  - movementFrequency: 0.8655221
+    attackFrequency: 3.328931
     horizontalDistance: -4
     verticalDistance: 0
-  - movementFrequency: 1.401724
-    attackFrequency: 3.2039404
-    horizontalDistance: -4
+  - movementFrequency: 1.2680166
+    attackFrequency: 3.3368857
+    horizontalDistance: -5
     verticalDistance: 0

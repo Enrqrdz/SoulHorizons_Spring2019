@@ -8,7 +8,7 @@ public class EvolutionManager : MonoBehaviour
     public float timeIntervalLength;
     public TextMeshProUGUI stageDisplay;
     private int numberOfStages;
-    private int currentStage;
+    private int currentStage = 1;
     private float timeIntervalStart;
     private float totalTime;
     private MushineAI evolveableEntityAI;
@@ -16,13 +16,11 @@ public class EvolutionManager : MonoBehaviour
     private void Start()
     {
         timeIntervalStart = timeIntervalLength;
-        Debug.Log("Number of stages" + numberOfStages);
         numberOfStages = DataTracker.Instance.playerData.phaseData.Count;
-        currentStage = numberOfStages;
-        Debug.Log("Number of stages" + numberOfStages);
         evolveableEntityAI = GameObject.FindGameObjectWithTag("Enemy").GetComponent<MushineAI>();
         totalTime = timeIntervalLength * numberOfStages;
-        stageDisplay.SetText("Stage:" + currentStage);
+        stageDisplay.SetText("Stage: " + currentStage);
+        DataTracker.Instance.StartPhase();
     }
 
     private void Update()
@@ -35,9 +33,11 @@ public class EvolutionManager : MonoBehaviour
 
             if (timeIntervalLength <= 0)
             {
-                currentStage--;
+                DataTracker.Instance.EndPhase();
+                currentStage++;
                 stageDisplay.SetText("Stage: " + currentStage);
                 timeIntervalLength = timeIntervalStart;
+                DataTracker.Instance.StartPhase();
                 evolveableEntityAI.NextPhase();
             }
         }
@@ -45,6 +45,9 @@ public class EvolutionManager : MonoBehaviour
         {
             Debug.Log("Simulation Over");
             InputManager.cannotMove = true;
+            InputManager.cannotInputAnything = true;
+            InputManager.canInputMantras = false;
+            DataTracker.Instance.EndPhase();
         }
     }
 }

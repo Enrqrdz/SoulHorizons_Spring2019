@@ -12,7 +12,7 @@ public class MushineAI : scr_EntityAI
     public int damageIncrement = 2;
     private int maxDamage = 20;
 
-    public float startingSpeed = 0.35f;
+    public float startingSpeed = 0.3f;
     public float speedIncrement = 0.05f;
     private float maxSpeed = 0.05f;
 
@@ -20,7 +20,7 @@ public class MushineAI : scr_EntityAI
     public float startingMovementCooldown = 1.75f;
     public float movementCooldown;      //If player accuracy is too high
     public float movementIncrement = 0.25f;
-    private float minimumMovementCooldown = 0.25f;
+    private float minimumMovementCooldown = 0.15f;
 
     public int startingIdleFrequency = 15;
     public int idleFrequency;       //If player accuracy is too high

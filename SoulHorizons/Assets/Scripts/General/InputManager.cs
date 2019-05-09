@@ -29,13 +29,13 @@ public static class InputManager
 		r += Input.GetAxis("J_DHorizontal");
 		r += Input.GetAxis("K_MainHorizontal");
 
-		if (r < 0f)
+        if (r < 0f)
 		{
-			return -1;
+            return -1;
 		}
 		else if (r > 0f)
 		{
-			return 1;
+            return 1;
 		}
 		return 0;
 	}
@@ -74,13 +74,14 @@ public static class InputManager
 		r += Input.GetAxis("J_MainVertical");
 		r += Input.GetAxis("J_DVertical");
 		r += Input.GetAxis("K_MainVertical");
-		if (r < 0f)
+
+        if (r < 0f)
 		{
-			return 1;
+            return 1;
 		}
 		else if (r > 0f)
 		{
-			return -1;
+            return -1;
 		}
 		return 0;
 	}
@@ -192,11 +193,13 @@ public static class InputManager
 		}
 		else if (Input.GetButtonUp("PlayCard3_Button") && canInputMantras)
 		{
+            DataTracker.Instance.AddAttackCounter();
 			return 2;
 		}
 		else if (Input.GetButtonUp("PlayCard4_Button") && canInputMantras)
 		{
-			return 3;
+            DataTracker.Instance.AddAttackCounter();
+            return 3;
 		}
 		return -1;
 	}

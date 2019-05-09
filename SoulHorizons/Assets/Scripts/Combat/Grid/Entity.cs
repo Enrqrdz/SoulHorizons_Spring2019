@@ -250,7 +250,6 @@ public class Entity : MonoBehaviour
     /// <param name="attack"></param>
     public void HitByAttack(AttackData attack)
     {
-        Debug.Log("Taking damage!");
         if (attack.type != type)
         {
             int index = Random.Range(0, hurts_SFX.Length);
