@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Decision", menuName = "Decision")]
-public class Decision : ScriptableObject
+public class DialogueDecision : ScriptableObject
 {
     [HideInInspector]
     public const int choiceSize = 4;

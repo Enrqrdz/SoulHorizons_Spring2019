@@ -10,22 +10,26 @@ public class MushineAI : scr_EntityAI
     //Attack Values to modify
     public int startingDamage = 4;
     public int damageIncrement = 2;
-    private int maxDamage = 20;
+    [HideInInspector]
+    public int maxDamage = 20;
 
     public float startingSpeed = 0.3f;
     public float speedIncrement = 0.05f;
-    private float maxSpeed = 0.05f;
+    [HideInInspector]
+    public float maxSpeed = 0.05f;
 
     //Movement Values to modify
     public float startingMovementCooldown = 1.75f;
     public float movementCooldown;      //If player accuracy is too high
     public float movementIncrement = 0.25f;
-    private float minimumMovementCooldown = 0.15f;
+    [HideInInspector]
+    public float minimumMovementCooldown = 0.15f;
 
     public int startingIdleFrequency = 15;
     public int idleFrequency;       //If player accuracy is too high
     public int idleIncrement = 2;
-    private int minimumIdleFrequency = 1;
+    [HideInInspector]
+    public int minimumIdleFrequency = 1;
 
     public Movement currentMovement;
     private int moveCounter = 0;
@@ -33,10 +37,16 @@ public class MushineAI : scr_EntityAI
     private Movement previousMovement;
 
     private float attackCooldown;
-    private int attackCounter = 0;
+    [HideInInspector]
+    public int attackCounter = 0;
     private float windUpTime;
     private bool readyToAttack = false;
     private bool enemyOnSameRow = false;
+    [HideInInspector]
+    public bool playerIsStayingOnRow = false;
+    private float playerOnSameRowFrequency;
+    private float timeInterval = 10f;
+    private float startingTime = 10f;
 
     private Entity player;
     private bool preparingAttack = false;
@@ -59,17 +69,43 @@ public class MushineAI : scr_EntityAI
         anim = gameObject.GetComponentInChildren<Animator>();
         player = ObjectReference.Instance.PlayerEntity;
 
+        InitializeValuesForTraining();
+
+        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
+    }
+
+    private void InitializeValuesForTraining()
+    {
         primaryAttack.damage = startingDamage;
         primaryAttack.incrementTime = startingSpeed;
         movementCooldown = startingMovementCooldown;
         idleFrequency = startingIdleFrequency;
-
-        scr_Grid.GridController.SetTileOccupied(true, entity._gridPos.x, entity._gridPos.y, this.entity);
     }
 
     public override void UpdateAI()
     {
         enemyOnSameRow = entity._gridPos.y == player._gridPos.y;
+
+        if (enemyOnSameRow)
+        {
+            playerOnSameRowFrequency += Time.deltaTime;
+        }
+
+        timeInterval -= Time.deltaTime;
+        if (timeInterval < 0)
+        {
+            timeInterval = startingTime;
+            playerOnSameRowFrequency /= timeInterval;
+
+            if(playerOnSameRowFrequency > 0.90f)
+            {
+                playerIsStayingOnRow = true;
+            }
+            else
+            {
+                playerIsStayingOnRow = false;
+            }
+        }
 
         if (readyToMove)
         {
@@ -190,7 +226,6 @@ public class MushineAI : scr_EntityAI
 
     public void NextPhase()
     {
-        Debug.Log("Next Phase");
         primaryAttack.damage += damageIncrement;
         Mathf.Clamp(primaryAttack.damage, startingDamage, maxDamage);
 

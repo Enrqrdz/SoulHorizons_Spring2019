@@ -36,6 +36,10 @@ public class Entity : MonoBehaviour
     public float invulnTime;
     public bool isStunned = false;
     public bool isImmobile = false;
+    public bool isHit = false;
+    public bool isBeingEvasive = false;
+    private float timeInterval = 10f;
+    private float startTime = 10f;
     float invulnCounter = 0f;
     public bool hasShield = false;
     float shieldCounter = 0f;
@@ -97,6 +101,13 @@ public class Entity : MonoBehaviour
             {
                 SetShield(false, 0f, 0, 0, 0);
             }
+        }
+
+        timeInterval -= Time.deltaTime;
+        if(timeInterval < 0)
+        {
+            timeInterval = startTime;
+            isBeingEvasive = true;
         }
 
     }
@@ -438,7 +449,11 @@ public class Entity : MonoBehaviour
     IEnumerator HitClock(float hitTime)
     {
         spr.material.shader = hitShader;
+        isHit = true;
+        isBeingEvasive = false;
+        timeInterval = startTime;
         yield return new WaitForSeconds(hitTime);
+        isHit = false;
         spr.material.shader = baseShader;
     }
 

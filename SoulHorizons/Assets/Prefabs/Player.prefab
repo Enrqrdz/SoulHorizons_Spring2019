@@ -109,6 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4270750817129084}
   - component: {fileID: 931371787380572279}
+  - component: {fileID: 8959135705775392741}
   - component: {fileID: 114404296688108730}
   - component: {fileID: 114787085351951448}
   - component: {fileID: 82461514573680058}
@@ -146,15 +147,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546032312897718}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 518702da90945de44a2b3451140b0b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 2394da5929852aa4d958ccdc08a670d7, type: 2}
   enemyToTrack: {fileID: 0}
-  trackData: 1
---- !u!114 &114404296688108730
+  trackData: 0
+--- !u!114 &8959135705775392741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,6 +163,20 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546032312897718}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48ba0fe40e798b40a64b6111b48bb5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataToEmulate: {fileID: 11400000, guid: 97cb234a11113394986a5a9d08f9b317, type: 2}
+  abilityToActivate: {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
+--- !u!114 &114404296688108730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546032312897718}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33cbda59ae4a35e4b8fc63e8bf4fd56f, type: 3}
   m_Name: 
@@ -204,6 +219,8 @@ MonoBehaviour:
   invulnTime: 1
   isStunned: 0
   isImmobile: 0
+  isHit: 0
+  isBeingEvasive: 0
   hasShield: 0
   hurts_SFX:
   - {fileID: 8300000, guid: 4794852b9ebf0c843b5ac9e56691af5e, type: 3}

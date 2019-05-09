@@ -11,7 +11,7 @@ public class Dialogue: ScriptableObject
     public List<string> text = new List<string> ();
 
     [Tooltip("Decisions for the entire scene.")]
-    public List<Decision> decisions = new List<Decision>();
+    public List<DialogueDecision> decisions = new List<DialogueDecision>();
 
     [Tooltip("Indexes for the decisions.")]
     public List<int> decisionIndexes = new List<int>();
