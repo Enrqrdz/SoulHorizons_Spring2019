@@ -125,7 +125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17721883}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51cf6e4662f9763478167471754c580a, type: 3}
   m_Name: 
@@ -443,8 +443,9 @@ MonoBehaviour:
   broadcastHub:
     broadcastingBrains:
     - {fileID: 11400000, guid: f0a85ef04f06dac40b4cbb52c91a5c0e, type: 2}
-    _brainsToControl: []
-  maxSteps: 0
+    _brainsToControl:
+    - {fileID: 11400000, guid: f0a85ef04f06dac40b4cbb52c91a5c0e, type: 2}
+  maxSteps: 6000
   trainingConfiguration:
     width: 80
     height: 80
@@ -455,7 +456,7 @@ MonoBehaviour:
     width: 1280
     height: 720
     qualityLevel: 5
-    timeScale: 1
+    timeScale: 100
     targetFrameRate: 60
   resetParameters:
     resetParameters: []

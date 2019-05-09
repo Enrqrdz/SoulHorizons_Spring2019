@@ -28,15 +28,15 @@ public class MushineAI : scr_EntityAI
     public int startingIdleFrequency = 15;
     public int idleFrequency;       //If player accuracy is too high
     public int idleIncrement = 2;
-    [HideInInspector]
-    public int minimumIdleFrequency = 1;
+
+    public int minimumIdleFrequency = 2;
 
     public Movement currentMovement;
     private int moveCounter = 0;
     private bool readyToMove = false;
     private Movement previousMovement;
 
-    private float attackCooldown;
+    private float attackCooldown = 3f;
     [HideInInspector]
     public int attackCounter = 0;
     private float windUpTime;

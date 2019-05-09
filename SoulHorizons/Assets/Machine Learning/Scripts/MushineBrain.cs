@@ -14,7 +14,7 @@ public class MushineBrain : Decision
     {
         try
         { 
-        Player = ObjectReference.Instance.PlayerEntity;
+            Player = ObjectReference.Instance.PlayerEntity;
         }
         catch
         {
@@ -31,6 +31,7 @@ public class MushineBrain : Decision
         bool done,
         List<float> memory)
     {
+        Debug.Log("Deciding");
 
         Player = ObjectReference.Instance.PlayerEntity;
 
@@ -38,7 +39,7 @@ public class MushineBrain : Decision
         {
             List<float> actions = new List<float>();
 
-            if(AI.entity.isHit)
+            if(MushineEntity.isBeingEvasive == false)
             {
                 Debug.Log("Increasing Movement");
                 actions.Add(vectorObs[0] += AI.movementIncrement);

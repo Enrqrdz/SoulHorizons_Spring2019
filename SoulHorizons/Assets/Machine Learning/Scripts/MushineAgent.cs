@@ -24,6 +24,7 @@ public class MushineAgent : Agent
 
     public override void InitializeAgent()
     {
+        Debug.Log("Initializing Agent");
         try
         {
             Player = ObjectReference.Instance.PlayerEntity;
@@ -32,8 +33,8 @@ public class MushineAgent : Agent
         {
             Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         }
-        MushineEntity = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Entity>();
-        AI = MushineEntity.GetComponent<MushineAI>();
+        MushineEntity = gameObject.GetComponent<Entity>();
+        AI = gameObject.GetComponent<MushineAI>();
     }
 
     public override void CollectObservations()
@@ -48,30 +49,42 @@ public class MushineAgent : Agent
     {
         if(brain.brainParameters.vectorActionSpaceType == SpaceType.continuous)
         {
-            var actionMoveCooldown = Mathf.Clamp(vectorAction[0], AI.minimumMovementCooldown, AI.startingMovementCooldown);
-            var actionIdleFrequency = Mathf.Clamp(vectorAction[1], AI.minimumIdleFrequency, AI.minimumIdleFrequency);
-            var actionAttackSpeed = Mathf.Clamp(vectorAction[2], AI.startingSpeed, AI.maxSpeed);
-            var actionDamage = Mathf.Clamp(vectorAction[3], AI.startingDamage, AI.maxDamage);
+            var actionMoveCooldown = Mathf.Clamp(vectorAction[0], -AI.movementIncrement, AI.movementIncrement);
+            var actionIdleFrequency = Mathf.Clamp(vectorAction[1], -AI.idleIncrement, AI.idleIncrement);
+            var actionAttackSpeed = Mathf.Clamp(vectorAction[2], -AI.speedIncrement, AI.speedIncrement);
+            var actionDamage = Mathf.Clamp(vectorAction[3], -AI.damageIncrement, AI.damageIncrement);
 
-            AI.movementCooldown = actionMoveCooldown;
-            AI.idleFrequency = (int)actionIdleFrequency;
-            AI.primaryAttack.incrementTime = actionAttackSpeed;
-            AI.primaryAttack.damage = (int)actionDamage;
+            AI.movementCooldown += actionMoveCooldown;
+            AI.idleFrequency += (int)actionIdleFrequency;
+            AI.primaryAttack.incrementTime += actionAttackSpeed;
+            AI.primaryAttack.damage += (int)actionDamage;
+
+            AI.movementCooldown = Mathf.Clamp(AI.movementCooldown, AI.minimumMovementCooldown, AI.startingMovementCooldown);
+            AI.idleFrequency = Mathf.Clamp(AI.idleFrequency, AI.minimumIdleFrequency, AI.startingIdleFrequency);
+            AI.primaryAttack.incrementTime = Mathf.Clamp(AI.primaryAttack.incrementTime, AI.startingSpeed, AI.maxSpeed);
+            AI.primaryAttack.damage = Mathf.Clamp(AI.primaryAttack.damage, AI.startingDamage, AI.maxDamage);
+
+
         }
-        if (Player.isBeingEvasive || MushineEntity.isBeingEvasive == false)
-        {
-            SetReward(-0.1f);
-        }
+
         else if(Player.isBeingEvasive == false || MushineEntity.isBeingEvasive)
         {
             SetReward(0.1f);
         }
+
+        if (Player.isBeingEvasive || MushineEntity.isHit)
+        {
+            SetReward(-0.1f);
+        }
+
         if(Player._health.hp <= 0)
         {
+            SetReward(MushineEntity._health.hp/ MushineEntity._health.max_hp);
             Done();
         }
         if (MushineEntity._health.hp <= 0)
         {
+            SetReward(-(Player._health.hp / Player._health.max_hp));
             Done();
         }
     }
