@@ -413,13 +413,6 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.1666666
-    functionName: StartHunterShot
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 2.1333334
     functionName: doneHit
     data: 
@@ -649,7 +642,7 @@ AnimatorStateMachine:
     m_Position: {x: 386.28946, y: 110.98773, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102735658283737028}
-    m_Position: {x: 648.7844, y: 11.908752, z: 0}
+    m_Position: {x: 648, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102866689206024584}
     m_Position: {x: 400.44363, y: 1.6148376, z: 0}
