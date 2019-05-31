@@ -8,8 +8,6 @@ public class scr_ExiledArcher : scr_EntityAI {
     //AKA Bird Bow Boi
 
     public AttackData hunterShot;
-    public float hSChargeTime;
-    private bool hSOnCD = false;   //On Cooldown
     private float hSCooldownTime = 1.5f;
 
     public AttackData arrowRain;
@@ -17,7 +15,6 @@ public class scr_ExiledArcher : scr_EntityAI {
     public float movementInterval;
 
     private bool canArrowRain = true;
-    private bool canMove = true;
     private bool goBackwards = false;
     private int movePosition = 0;
     public AudioSource[] SFX_Sources;
@@ -107,14 +104,6 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void UpdateAI()
     {
-        /* if (!hSOnCD && HunterShotCheck())
-         {
-             StartCoroutine(HunterShot());
-         }
-         else if (canMove)
-         {
-             StartCoroutine(MovementClock());
-         }*/
         if (completedTask)
         {
             StartCoroutine(Brain());
@@ -126,62 +115,8 @@ public class scr_ExiledArcher : scr_EntityAI {
         entity.Death();
     }
 
-    bool HunterShotCheck()
-    {
-        GameObject player = ObjectReference.Instance.Player;
-        int playerY = player.GetComponent<Entity>()._gridPos.y;
-        if (entity._gridPos.y == playerY)
-        {
-            return true;
-        }
-        return false;
-    }
 
     void StartHunterShot()
-    {
-        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y > entity._gridPos.y || GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y < entity._gridPos.y)
-        {
-            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
-            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
-        }
-        else
-        {
-            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
-        }
-        anim.SetBool("Attack", false);
-    }
-
-
-
-    /*private IEnumerator HunterShot()
-    {
-        hSOnCD = true;
-        yield return new WaitForSeconds(hSChargeTime);
-        anim.SetBool("Attack", true);
-        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y > entity._gridPos.y || GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y < entity._gridPos.y)
-        {
-            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-            Attack_SFX = SFX_Sources[0];
-            attack_SFX = attacks_SFX[1];
-            Attack_SFX.clip = attack_SFX;
-            Attack_SFX.Play();
-            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
-            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
-        }
-        else
-        {
-            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
-            Attack_SFX = SFX_Sources[0];
-            attack_SFX = attacks_SFX[1];
-            Attack_SFX.clip = attack_SFX;
-            Attack_SFX.Play();
-            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
-        }
-        yield return new WaitForSeconds(hSCooldownTime);
-        hSOnCD = false;
-    }*/
-
-    void StartHunterShotAttack()
     {
         anim.SetBool("Attack", true);
         if (GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y > entity._gridPos.y || GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y < entity._gridPos.y)
@@ -194,7 +129,6 @@ public class scr_ExiledArcher : scr_EntityAI {
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
             hunterShotType = 2;
-            StartCoroutine(HunterShot());
         }
         else
         {
@@ -205,8 +139,8 @@ public class scr_ExiledArcher : scr_EntityAI {
             Attack_SFX.Play();
             PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
             hunterShotType = 1;
-            StartCoroutine(HunterShot());
         }
+        StartCoroutine(HunterShot());
     }
 
     private IEnumerator HunterShot()
@@ -284,17 +218,6 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     }
 
-    IEnumerator MovementClock()
-    {
-        if (canMove)
-        {
-            canMove = false;
-            yield return new WaitForSeconds(movementInterval);
-            Move();
-            canMove = true;
-        }
-    }
-
     private IEnumerator Brain()
     {
         switch (state)
@@ -321,7 +244,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
             case 1:
                 completedTask = false;
-                StartHunterShotAttack();
+                StartHunterShot();
                 yield return new WaitForSeconds(hSCooldownTime);
                 moveCounter = 0;
                 state = 0;
