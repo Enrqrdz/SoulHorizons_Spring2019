@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 952f6f3d63234af44a0b006fb205f30e
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: Assets/Machine Learning/Brain Parameters/Mushroom Learning.nn
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 83221ad3db87f4b3b91b041047cb2bc5, type: 3}

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: ba2eef4fbe2b6bb44bc7724885c8a9db
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400002: Assets/Machine Learning/Brain Parameters/4th Run.nn
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 83221ad3db87f4b3b91b041047cb2bc5, type: 3}

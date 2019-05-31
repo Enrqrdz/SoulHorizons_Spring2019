@@ -17,11 +17,6 @@ public class MushineAgent : Agent
     private int agentHitCounter;
     private int playerTotalAttacks;
 
-    //movementCooldown
-    //idleFrequency
-    //primaryAttack.incrementTime
-    //primaryAttack.damage
-
     public override void InitializeAgent()
     {
         Debug.Log("Initializing Agent");

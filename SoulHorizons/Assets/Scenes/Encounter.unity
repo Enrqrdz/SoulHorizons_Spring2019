@@ -601,8 +601,7 @@ MonoBehaviour:
   broadcastHub:
     broadcastingBrains:
     - {fileID: 11400000, guid: f0a85ef04f06dac40b4cbb52c91a5c0e, type: 2}
-    _brainsToControl:
-    - {fileID: 11400000, guid: f0a85ef04f06dac40b4cbb52c91a5c0e, type: 2}
+    _brainsToControl: []
   maxSteps: 6000
   trainingConfiguration:
     width: 80
@@ -4037,7 +4036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1455183963
 RectTransform:
   m_ObjectHideFlags: 0

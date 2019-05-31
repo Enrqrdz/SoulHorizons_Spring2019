@@ -23,5 +23,5 @@ MonoBehaviour:
     - Change Projectile Speed
     - Change Projectile Damage
     vectorActionSpaceType: 1
-  model: {fileID: 0}
+  model: {fileID: 11400000, guid: 6e6b4d3be9fdf8a42b93b1d866f8341b, type: 3}
   inferenceDevice: 0
