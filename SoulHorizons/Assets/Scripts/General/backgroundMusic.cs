@@ -1,15 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-/*
- * 
- * 
- * Type a whole bunch of useless info here
- * 
- *
- * 
- */
 [RequireComponent(typeof(AudioSource))]
 
 
