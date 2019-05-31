@@ -22,6 +22,11 @@ public class scr_ExiledArcher : scr_EntityAI {
     private int movePosition = 0;
     public AudioSource[] SFX_Sources;
 
+    int state = 0;
+    int moveCounter = 0;
+    bool completedTask = true;
+    int hunterShotType = 1; //1 for 1 arrow, 2 for two arrows
+
     AudioSource Attack_SFX;
     AudioSource Footsteps_SFX;
     public AudioClip[] movements_SFX;
@@ -102,13 +107,17 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     public override void UpdateAI()
     {
-        if (!hSOnCD && HunterShotCheck())
+        /* if (!hSOnCD && HunterShotCheck())
+         {
+             StartCoroutine(HunterShot());
+         }
+         else if (canMove)
+         {
+             StartCoroutine(MovementClock());
+         }*/
+        if (completedTask)
         {
-            StartCoroutine(HunterShot());
-        }
-        else if (canMove)
-        {
-            StartCoroutine(MovementClock());
+            StartCoroutine(Brain());
         }
     }
 
@@ -144,7 +153,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
 
 
-    private IEnumerator HunterShot()
+    /*private IEnumerator HunterShot()
     {
         hSOnCD = true;
         yield return new WaitForSeconds(hSChargeTime);
@@ -170,6 +179,48 @@ public class scr_ExiledArcher : scr_EntityAI {
         }
         yield return new WaitForSeconds(hSCooldownTime);
         hSOnCD = false;
+    }*/
+
+    void StartHunterShotAttack()
+    {
+        anim.SetBool("Attack", true);
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y > entity._gridPos.y || GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>()._gridPos.y < entity._gridPos.y)
+        {
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[1];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y + 1);
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y - 1);
+            hunterShotType = 2;
+            StartCoroutine(HunterShot());
+        }
+        else
+        {
+            AudioSource[] SFX_Sources = GetComponents<AudioSource>();
+            Attack_SFX = SFX_Sources[0];
+            attack_SFX = attacks_SFX[1];
+            Attack_SFX.clip = attack_SFX;
+            Attack_SFX.Play();
+            PrimeAttackTiles(hunterShot, entity._gridPos.x, entity._gridPos.y);
+            hunterShotType = 1;
+            StartCoroutine(HunterShot());
+        }
+    }
+
+    private IEnumerator HunterShot()
+    {
+        yield return new WaitForSeconds(1.5f);
+        if(hunterShotType == 1)
+        {
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
+        }
+        else if (hunterShotType == 2)
+        {
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y + 1, entity);
+            AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y - 1, entity);
+        }
     }
 
     private IEnumerator ArrowRain(float _aRInterval) //Maybe one day we'll put this in
@@ -242,5 +293,41 @@ public class scr_ExiledArcher : scr_EntityAI {
             Move();
             canMove = true;
         }
+    }
+
+    private IEnumerator Brain()
+    {
+        switch (state)
+        {
+            case 0:
+                completedTask = false;
+                Move();
+                moveCounter++;
+                yield return new WaitForSeconds(movementInterval);
+                if(moveCounter > 3)
+                {
+                    int rand = Random.Range(0, 2);
+                    if (rand == 1)
+                    {
+                        state = 1;
+                    }
+                    else if(moveCounter > 5)
+                    {
+                        state = 1;
+                    }          
+                }
+                completedTask = true;
+                break;
+
+            case 1:
+                completedTask = false;
+                StartHunterShotAttack();
+                yield return new WaitForSeconds(hSCooldownTime);
+                moveCounter = 0;
+                state = 0;
+                completedTask = true;
+                break;
+        }
+        yield return null;
     }
 }

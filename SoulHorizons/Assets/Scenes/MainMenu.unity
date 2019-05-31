@@ -1268,11 +1268,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2179539277869454833, guid: ede3c53563af24f5aa1b0f2381573032,
-        type: 3}
-      propertyPath: m_Name
-      value: ScriptableObjectFinder
-      objectReference: {fileID: 0}
     - target: {fileID: 2179539277869454832, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: encounterPool.Array.size
@@ -1284,6 +1279,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fa7b1dab752ce4608ab08c6a963e3aec,
         type: 2}
+    - target: {fileID: 2179539277869454833, guid: ede3c53563af24f5aa1b0f2381573032,
+        type: 3}
+      propertyPath: m_Name
+      value: ScriptableObjectFinder
+      objectReference: {fileID: 0}
     - target: {fileID: 2179539277869454839, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: m_LocalPosition.x
