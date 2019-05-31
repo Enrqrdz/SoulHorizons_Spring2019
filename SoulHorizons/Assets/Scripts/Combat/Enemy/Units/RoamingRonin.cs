@@ -7,11 +7,6 @@ using UnityEngine;
 public class RoamingRonin : scr_EntityAI
 {
     //Roaming Ronin
-    //Two Attacks: a long range attack and an upclose melee when player is close
-    //AI: Two Phases: Changes phase when health is 40%
-    // Phase 1: Moves every 3 seconds, tries to be in the same row as the player
-    // Phase 2: Moves every 1 second, melee attack also strikes twice
-
     public AttackData rangedAttack;
     public AttackData rangedAttack2; //stronger version of ranged attack
     public AttackData meleeAttack;

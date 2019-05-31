@@ -184,7 +184,7 @@ MonoBehaviour:
   blur: {fileID: 4330813964445881367}
   lerpSpeed: 250
   has_iframes: 1
-  invincible: 1
+  invincible: 0
   invulnTime: 1
   isStunned: 0
   isImmobile: 0
@@ -659,16 +659,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4270750817129084}
     m_Modifications:
-    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
-        type: 3}
-      propertyPath: m_Name
-      value: Blur
-      objectReference: {fileID: 0}
-    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7882374467428248515, guid: b542436292ec9254da93a498279c7976,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -734,6 +724,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
+        type: 3}
+      propertyPath: m_Name
+      value: Blur
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258952896040594146, guid: b542436292ec9254da93a498279c7976,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6532154673637980253, guid: b542436292ec9254da93a498279c7976,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -765,14 +765,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4270750817129084}
     m_Modifications:
-    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
-      propertyPath: m_Name
-      value: Static Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0125
@@ -824,6 +816,14 @@ PrefabInstance:
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.28431463
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
+      propertyPath: m_Name
+      value: Static Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}

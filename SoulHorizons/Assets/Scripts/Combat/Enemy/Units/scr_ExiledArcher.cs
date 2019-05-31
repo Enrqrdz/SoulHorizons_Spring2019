@@ -145,7 +145,7 @@ public class scr_ExiledArcher : scr_EntityAI {
 
     private IEnumerator HunterShot()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.36f);
         if(hunterShotType == 1)
         {
             AttackController.Instance.AddNewAttack(hunterShot, entity._gridPos.x, entity._gridPos.y, entity);
