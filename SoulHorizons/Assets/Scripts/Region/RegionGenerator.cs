@@ -8,6 +8,7 @@ public class RegionGenerator : MonoBehaviour
     public int tiers = 10;
     public float distanceBetweenTiers = 10;
     public float connectionRange = 10;
+    public float mapWidth = 10;
 
     public RegionState GenerateRegion()
     {
@@ -50,15 +51,26 @@ public class RegionGenerator : MonoBehaviour
 
         for(int i = 1; i < tiers; i++)
         {
-            int maxNodesInTier = i * 3 + 1;
-            int anglePortion = 360/maxNodesInTier;
+            int numNodesInTier;
 
-            for(int j = 0; j < maxNodesInTier; j++)
+            if(i <=3)
+                numNodesInTier = i + 1;
+            else
+                numNodesInTier = Random.Range(3, 6);
+
+            float widthPortion = mapWidth / numNodesInTier;
+            Debug.Log("tier" + i + "widthportion" + widthPortion);
+
+            for(int j = 0; j < numNodesInTier; j++)
             {
-                float randomAngle = Random.Range(0, anglePortion) + j * anglePortion + Random.Range(0, 360f/maxNodesInTier/2);
+                float yPosition = i * distanceBetweenTiers;
+                yPosition += Random.Range(0, distanceBetweenTiers / 2);
+                float xPosition = widthPortion * j;
+                xPosition += Random.Range(0, widthPortion / 2);
+                xPosition -= mapWidth/2;
 
-                float radAngle = Mathf.Deg2Rad * randomAngle;
-                Vector3 position = new Vector3((i * distanceBetweenTiers) * Mathf.Cos(radAngle), (i * distanceBetweenTiers) * -Mathf.Sin(radAngle));
+
+                Vector3 position = new Vector3(xPosition, yPosition, 0);
                
                 map.AddNode(new Node(position), i);
             }
@@ -70,7 +82,11 @@ public class RegionGenerator : MonoBehaviour
             {
                 foreach(Node nextNode in map.rings[i+1])
                 {
-                    if(Vector3.Distance(currentNode.position, nextNode.position) < (connectionRange + distanceBetweenTiers))
+                    if(i == 0)
+                    {
+                        currentNode.AddNextNode(nextNode);
+                    }
+                    else if(Vector3.Distance(currentNode.position, nextNode.position) < (connectionRange + distanceBetweenTiers))
                     {
                         currentNode.AddNextNode(nextNode);
                     }

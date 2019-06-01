@@ -1276,7 +1276,7 @@ PrefabInstance:
     - target: {fileID: 2179539277869454832, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: encounterPool.Array.size
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2179539277869454832, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
