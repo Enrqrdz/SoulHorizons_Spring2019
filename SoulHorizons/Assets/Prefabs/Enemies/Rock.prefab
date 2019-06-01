@@ -179,6 +179,7 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  damageVulnerability: 1
   isStunned: 0
   isImmobile: 0
   isDampened: 0
@@ -508,6 +509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Static Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 212286977064683536, guid: 8e770e5466d6acf47ab104cdf2976e35,
         type: 3}
       propertyPath: m_Color.r
@@ -530,11 +535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: 0.031
       objectReference: {fileID: 0}
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: 0.788
       objectReference: {fileID: 0}
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalPosition.z
@@ -574,11 +579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5468
+      value: 1.0195633
       objectReference: {fileID: 0}
     - target: {fileID: 4970064240338886, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.37060001
+      value: 0.618293
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}

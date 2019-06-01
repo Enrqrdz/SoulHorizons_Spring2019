@@ -335,6 +335,7 @@ MonoBehaviour:
   has_iframes: 0
   invincible: 0
   invulnTime: 0
+  damageVulnerability: 1
   isStunned: 0
   isImmobile: 0
   isDampened: 0
@@ -942,6 +943,10 @@ PrefabInstance:
     - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
       propertyPath: m_Name
       value: Static Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246339046452440, guid: 8e770e5466d6acf47ab104cdf2976e35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212286977064683536, guid: 8e770e5466d6acf47ab104cdf2976e35,
         type: 3}
