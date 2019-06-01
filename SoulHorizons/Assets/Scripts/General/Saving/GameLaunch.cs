@@ -7,12 +7,12 @@ public class GameLaunch : MonoBehaviour
     public void NewGame()
     {
         SaveManager.NewSave();
-        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.INTRODUCTION);
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
     }
 
     public void Continue()
     {
         SaveManager.Load();
-        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.INTRODUCTION);
+        scr_SceneManager.globalSceneManager.ChangeScene(SceneNames.REGION);
     }
 }

@@ -7,9 +7,11 @@ public class Mantras : MonoBehaviour
 {
     public static Mantras Instance { get; private set;}
 
-    public const int MANTRASIZE = 2;
-    public ActionData primaryMantra;
-    public ActionData secondaryMantra;
+    public const int MANTRASIZE = 4;
+    public ActionData a_Mantra;
+    public ActionData b_Mantra;
+    public ActionData x_Mantra;
+    public ActionData y_Mantra;
     public ActionData[] activeMantras = new ActionData[MANTRASIZE];
 
     private void OnValidate()
@@ -41,8 +43,10 @@ public class Mantras : MonoBehaviour
 
     private void InitializeMantras()
     {
-        activeMantras[0] = primaryMantra;
-        activeMantras[1] = secondaryMantra;
+        activeMantras[0] = a_Mantra;
+        activeMantras[1] = b_Mantra;
+        activeMantras[2] = x_Mantra;
+        activeMantras[3] = y_Mantra;
     }
 
     public void Activate(int index)
