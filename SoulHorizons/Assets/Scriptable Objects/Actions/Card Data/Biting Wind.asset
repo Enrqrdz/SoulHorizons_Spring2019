@@ -20,4 +20,4 @@ MonoBehaviour:
   cooldown: 3
   description: 
   bitingWindAttack: {fileID: 11400000, guid: e5da2c5780cd78a48993bacbfc722312, type: 2}
-  BitingWindSFX: {fileID: 8300000, guid: b75cf3507f973d142b55d56a3314668f, type: 3}
+  BitingWindSFX: {fileID: 8300000, guid: 8639574188fa20346bbf789abfd43fdb, type: 3}

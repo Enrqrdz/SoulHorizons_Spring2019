@@ -22,4 +22,4 @@ MonoBehaviour:
     type: 3}
   particlesOffset: {x: 0, y: 0, z: 0}
   particleSpeed: 1.5
-  SwordSFX: {fileID: 8300000, guid: 87fa4948881007d468ac76538be41624, type: 3}
+  SwordSFX: {fileID: 8300000, guid: 8e6f7288c8b7e8c4eae6a3e4b3913550, type: 3}

@@ -20,6 +20,6 @@ MonoBehaviour:
   cooldown: 2.75
   description: 
   boltAttack: {fileID: 11400000, guid: 02472833244063d49bd6f5c058f0da84, type: 2}
-  BoltSFX: {fileID: 8300000, guid: 2a977ea0e5cf5d24685663bc83a907a8, type: 3}
+  BoltSFX: {fileID: 8300000, guid: 5bb9559af198c374abb6194ae903e1a9, type: 3}
   secondBoltDelay: 0.25
   thirdBoltDelay: 0.75
