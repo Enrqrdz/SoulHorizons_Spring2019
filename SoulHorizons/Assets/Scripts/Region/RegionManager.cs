@@ -14,7 +14,7 @@ public class RegionManager : MonoBehaviour
     [Header("Must Be Set")]
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private GameObject nodeConnectionPrefab;
-    [SerializeField] private GameObject inventoryButton;
+    //[SerializeField] private GameObject inventoryButton;
     [SerializeField] private RegionGenerator regionGenerator;
 
     private RegionState currentRegion;
@@ -48,7 +48,7 @@ public class RegionManager : MonoBehaviour
 
     void Update()
     {
-        CheckForInventoryInput();
+        //CheckForInventoryInput();
     }
 
     public void GoToEncounter(EncounterState encounter)
@@ -129,7 +129,7 @@ public class RegionManager : MonoBehaviour
     {
         if(Input.GetButtonDown("PlayCard2_Button") || Input.GetKeyDown("i"))
         {
-            inventoryButton.GetComponent<Button>().onClick.Invoke();
+            //inventoryButton.GetComponent<Button>().onClick.Invoke();
         }
     }
 
