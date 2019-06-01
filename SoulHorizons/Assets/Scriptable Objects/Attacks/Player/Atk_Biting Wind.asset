@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275d96a8e07579a4e9d8e9af9583ffe1, type: 3}
+  m_Name: Atk_Biting Wind
+  m_EditorClassIdentifier: 
+  incrementTime: 0.175
+  maxIncrementRange: 4
+  damageModifier: 1
+  damage: 2
+  type: 1
+  hasPiercing: 1
+  particles: {fileID: 6532154673637980253, guid: b542436292ec9254da93a498279c7976,
+    type: 3}
+  particlesOffset: {x: 0, y: 0.65, z: 0}
+  particleSpeed: 8
+  stunDuration: 3
+  vulnerabilityDuration: 2
+  vulnerabilityMultiplier: 2

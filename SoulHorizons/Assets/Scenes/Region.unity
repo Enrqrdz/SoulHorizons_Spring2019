@@ -132,13 +132,13 @@ PrefabInstance:
     - target: {fileID: 2179539277869454832, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: encounterPool.Array.data[16]
-      value: 
+      value:
       objectReference: {fileID: 11400000, guid: fa7b1dab752ce4608ab08c6a963e3aec,
         type: 2}
     - target: {fileID: 2179539277869454832, guid: ede3c53563af24f5aa1b0f2381573032,
         type: 3}
       propertyPath: encounterPool.Array.data[17]
-      value: 
+      value:
       objectReference: {fileID: 11400000, guid: fa7b1dab752ce4608ab08c6a963e3aec,
         type: 2}
     - target: {fileID: 2179539277869454839, guid: ede3c53563af24f5aa1b0f2381573032,
@@ -425,8 +425,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -444,8 +444,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
@@ -793,8 +793,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc9817d519e2f427495aa070abdaf9fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   cameraSpeed: 0.01
 --- !u!1 &264745392
 GameObject:
@@ -933,24 +933,24 @@ PrefabInstance:
     - target: {fileID: 5303232243750536980, guid: 2cf796ca4d59c054eb92b7b931335da9,
         type: 3}
       propertyPath: buttonPrefab
-      value: 
+      value:
       objectReference: {fileID: 8632418411268067779, guid: 1c5fa3536914941ec9bf1df1bdf22ecc,
         type: 3}
     - target: {fileID: 5303232243750536980, guid: 2cf796ca4d59c054eb92b7b931335da9,
         type: 3}
       propertyPath: nodeConnectionPrefab
-      value: 
+      value:
       objectReference: {fileID: 7129456954366042988, guid: 9372ae0d7ee57464ea3287b10981395f,
         type: 3}
     - target: {fileID: 5303232243750536980, guid: 2cf796ca4d59c054eb92b7b931335da9,
         type: 3}
       propertyPath: inventoryButton
-      value: 
+      value:
       objectReference: {fileID: 0}
     - target: {fileID: 5303232243750536980, guid: 2cf796ca4d59c054eb92b7b931335da9,
         type: 3}
       propertyPath: regionGenerator
-      value: 
+      value:
       objectReference: {fileID: 825602671}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf796ca4d59c054eb92b7b931335da9, type: 3}
@@ -1159,8 +1159,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1376,8 +1376,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e113ad87e1843a4894a317571a2c63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   tiers: 10
   distanceBetweenTiers: 4
   connectionRange: 2
@@ -1748,12 +1748,12 @@ PrefabInstance:
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: m_audioClip
-      value: 
+      value:
       objectReference: {fileID: 0}
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: OutputAudioMixerGroup
-      value: 
+      value:
       objectReference: {fileID: 243849955281638176, guid: 5fa349ee0e2b0fa4e865c4bb8f191b0b,
         type: 2}
     - target: {fileID: 82602084663091530, guid: 4d8938461b55cee448d03f5ffbed4b5c,
@@ -1764,12 +1764,12 @@ PrefabInstance:
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: music
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: 29bbb49828ddd3e40851ea1492d6f443, type: 3}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
       propertyPath: buttonsSFX
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
     - target: {fileID: 114453582048640936, guid: 4d8938461b55cee448d03f5ffbed4b5c,
         type: 3}
@@ -1892,8 +1892,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cda59a823d28f7b4faf4c7875a5b46f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   music: {fileID: 8300000, guid: 29bbb49828ddd3e40851ea1492d6f443, type: 3}
   inventoryOpenSFX: {fileID: 8300000, guid: 5b5a2b9070f17c649bf8a7e4f68531e3, type: 3}
   inventoryAddSFX: {fileID: 8300000, guid: 6d3f09ec96cdebd4cb9e9e1b92476031, type: 3}
@@ -2642,8 +2642,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -3807,8 +3807,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18f5ece5733f4a838e23ce3001e2c4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!4 &2103950831
 Transform:
   m_ObjectHideFlags: 0

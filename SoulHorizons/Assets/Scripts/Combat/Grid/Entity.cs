@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     private Shader baseShader;
     public GameObject staticShield;
     public GameObject blur;
+    public GameObject dampen;
     Color baseColor;
     public float lerpSpeed;
     private float hitFlashTimer = .01f;
@@ -34,8 +35,10 @@ public class Entity : MonoBehaviour
     public bool has_iframes;
     public bool invincible = false;
     public float invulnTime;
+    public float damageVulnerability = 1f;
     public bool isStunned = false;
     public bool isImmobile = false;
+    public bool isDampened = false;
     float invulnCounter = 0f;
     public bool hasShield = false;
     float shieldCounter = 0f;
@@ -67,6 +70,15 @@ public class Entity : MonoBehaviour
     }
     public void Update()
     {
+        if (isDampened)
+        {
+            dampen.SetActive(true);
+        }
+        else
+        {
+            dampen.SetActive(false);
+        }
+
         if (gameObject.activeSelf)
         {
             if (isStunned == false)
@@ -261,7 +273,8 @@ public class Entity : MonoBehaviour
                 anim.SetBool("Hit", true);
             }
 
-            float tempDamage = attack.damage * attack.damageModifier;
+            float tempDamage = attack.damage * attack.damageModifier * damageVulnerability;
+            Debug.Log("Damage Vuln: " + damageVulnerability);
             if (scr_Grid.GridController.CheckIfHelpful(_gridPos.x, _gridPos.x) == true)
             {
                 tempDamage = attack.damage * scr_Grid.GridController.grid[_gridPos.x, _gridPos.y].GetTileProtection();
@@ -281,6 +294,18 @@ public class Entity : MonoBehaviour
                 CameraShaker.Instance.ShakeOnce(2f, 2f, 0.2f, 0.2f);
             }
         }
+    }
+
+    public void Weaken(float vulnerability, float duration)
+    {
+        StartCoroutine(WeakenTimer(vulnerability, duration));
+    }
+
+    public IEnumerator WeakenTimer(float vulnerability, float duration)
+    {
+        damageVulnerability = vulnerability;
+        yield return new WaitForSeconds(duration);
+        damageVulnerability = 1f;
     }
 
     /// <summary>
@@ -447,7 +472,6 @@ public class Entity : MonoBehaviour
         yield return new WaitForSeconds(rate);
         _health.TakeDamage(damage, this);
     }
-
 }
 [System.Serializable]
 public class Health{
@@ -496,6 +520,4 @@ public class Health{
             hp = max_hp;
         }
     }
-
-
 }
