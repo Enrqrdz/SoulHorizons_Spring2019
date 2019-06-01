@@ -17,7 +17,7 @@ MonoBehaviour:
   element: 1
   transformChargeAmount: 5
   castingTime: 0
-  cooldown: 1
+  cooldown: 10
   description: 'Summon Four Soul Swords of Revealing
 
     Light that slash in an X'

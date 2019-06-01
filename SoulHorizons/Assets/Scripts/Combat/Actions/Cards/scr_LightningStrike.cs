@@ -52,7 +52,7 @@ public class scr_LightningStrike : ActionData
         for (int i = 0; i < scr_Grid.GridController.activeEntities.Length; i++)
         {
             Entity target = scr_Grid.GridController.activeEntities[i];
-            if(target != null)
+            if(target != null && target._health.hp > 0)
             {
                 if (target.isDampened && target._gridPos != new Vector2Int(impactX, playerY))
                 {
