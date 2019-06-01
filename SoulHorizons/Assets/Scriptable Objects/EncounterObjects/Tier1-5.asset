@@ -23,7 +23,7 @@ MonoBehaviour:
   - entity: {fileID: 114725702907161856, guid: da6e4d25beaae874da66705cc25743e2, type: 3}
     x: 5
     y: 0
-  - entity: {fileID: 114725702907161856, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
+  - entity: {fileID: 2610, guid: 45c5dbc0db4939c4f9edf2a076547d51, type: 3}
     x: 6
     y: 2
   - entity: {fileID: 114725702907161856, guid: 974c207dd73715e47b75e772ec393f45, type: 3}
