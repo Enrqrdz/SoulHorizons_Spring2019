@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     private Shader baseShader;
     public GameObject staticShield;
     public GameObject blur;
+    public GameObject stun;
     public GameObject dampen;
     Color baseColor;
     public float lerpSpeed;
@@ -456,7 +457,9 @@ public class Entity : MonoBehaviour
     {
         Debug.Log("Got Stunned");
         isStunned = true;
+        stun.SetActive(true);
         yield return new WaitForSeconds(stunTime);
+        stun.SetActive(false);
         isStunned = false;
     }
 
