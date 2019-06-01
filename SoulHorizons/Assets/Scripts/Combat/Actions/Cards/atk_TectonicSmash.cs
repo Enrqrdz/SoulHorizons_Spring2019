@@ -45,7 +45,7 @@ public class atk_TectonicSmash : AttackData
                     scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
                     scr_Grid.GridController.SetTileOccupied(true, entityXPos++, entityYPos, activeAttack.entityHit);
                     activeAttack.entityHit.SetTransform(entityXPos++, entityYPos);
-                    activeAttack.entityHit.gotStunned(stunTime);
+                    activeAttack.entityHit.GotStunned(stunTime);
                     Debug.Log(activeAttack.entityHit._gridPos.x + ", " + activeAttack.entityHit._gridPos.y);
                     return;
                 }
@@ -59,7 +59,7 @@ public class atk_TectonicSmash : AttackData
                 }
                 else //if (!scr_Grid.GridController.CheckIfOccupied(entityXPos + 1, entityYPos) && activeAttack.entityHit.type == EntityType.Obstacle)
                 {
-                    activeAttack.entityHit.gotStunned(stunTime);
+                    activeAttack.entityHit.GotStunned(stunTime);
                     scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
                     scr_Grid.GridController.SetTileOccupied(true, entityXPos++, entityYPos, activeAttack.entityHit);
                     activeAttack.entityHit.SetTransform(entityXPos++, entityYPos);
@@ -67,7 +67,7 @@ public class atk_TectonicSmash : AttackData
             }
             else
             {
-                activeAttack.entityHit.gotStunned(stunTime);
+                activeAttack.entityHit.GotStunned(stunTime);
                 scr_Grid.GridController.SetTileOccupied(false, entityXPos, entityYPos, activeAttack.entityHit);
                 scr_Grid.GridController.SetTileOccupied(true, entityXPos++, entityYPos, activeAttack.entityHit);
                 activeAttack.entityHit.SetTransform(entityXPos++, entityYPos);

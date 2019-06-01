@@ -6,9 +6,9 @@ using UnityEngine;
 public class atk_HydroBurst : AttackData
 {
     public ActionData HydroBurst;
-    public float dampenLength;
+    public float dampenDuration;
     private Vector2Int gridPosition;
-    public List<Entity> entityHit = new List<Entity>();
+    public Entity entityHit;
     private int hitCounter = 0;
     private bool hitCounterStarted = false;
 
@@ -32,12 +32,12 @@ public class atk_HydroBurst : AttackData
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
     {
-        entityHit.Add(scr_Grid.GridController.GetEntityAtPosition(gridPosition.x, gridPosition.y));
+        entityHit = scr_Grid.GridController.GetEntityAtPosition(gridPosition.x, gridPosition.y);
 
         try
         {
-            entityHit[entityHit.Count - 1].StartCoroutine(Dampen(dampenLength));
-            entityHit[entityHit.Count - 1].StartCoroutine(HitCounter());
+            entityHit.Dampen(dampenDuration);
+            entityHit.StartCoroutine(HitCounter());
 
             damage *= 2;
             hitCounter++;
@@ -55,24 +55,6 @@ public class atk_HydroBurst : AttackData
         hitCounterStarted = false;
         damage = 4;
         hitCounter = 0;
-    }
-
-    public IEnumerator Dampen(float time)
-    {
-        entityHit[entityHit.Count - 1].isDampened = true;
-        yield return new WaitForSeconds(time);
-        try
-        {
-            foreach (Entity entity in entityHit)
-            {
-                entity.isDampened = false;
-            }
-        }
-        catch
-        {
-
-        }
-        entityHit.Clear();
     }
 
     public override void EndEffects(ActiveAttack activeAttack)

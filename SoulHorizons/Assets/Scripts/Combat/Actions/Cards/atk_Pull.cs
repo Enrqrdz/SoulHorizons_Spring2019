@@ -40,11 +40,11 @@ public class atk_Pull : AttackData
             if (!scr_Grid.GridController.CheckIfOccupied(entityXPos, entityYPos))
             {
                 enemyHit.SetTransform(entityXPos, entityYPos);
-                enemyHit.gotStunned(stunTime);
+                enemyHit.GotStunned(stunTime);
             }
             else
             {
-                enemyHit.gotStunned(stunTime);
+                enemyHit.GotStunned(stunTime);
                 return;
             }
 

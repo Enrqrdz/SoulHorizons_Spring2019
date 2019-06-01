@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lightning Strike
   m_EditorClassIdentifier: 
   actionName: Lightning Strike
-  art: {fileID: 21300000, guid: 601c34c55cd89fb499d352c56bbc8e27, type: 3}
+  art: {fileID: 21300000, guid: 1e265f7cffb45a44683e51193279decd, type: 3}
   element: 4
   transformChargeAmount: 5
   castingTime: 0

@@ -40,7 +40,7 @@ public class atk_GuardBreak : AttackData
     {
         if (activeAttack.entityIsHit == true)
         {
-            activeAttack.entityHit.gotStunned(stunTime);
+            activeAttack.entityHit.GotStunned(stunTime);
             player.StartCoroutine(player.GenericClock(timeTeleported));
             player.SetTransform(activeAttack.position.x - 1, activeAttack.position.y);
             player.SetTransform(playerX, playerY);

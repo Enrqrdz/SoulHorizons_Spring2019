@@ -37,7 +37,7 @@ public class atk_ChargeBeam : AttackData
     public override void LaunchEffects(ActiveAttack activeAttack)
     {
         player = ObjectReference.Instance.PlayerEntity;
-        player.StartCoroutine(player.gotStunned(stunTime / 2));
+        player.StartCoroutine(player.GotStunned(stunTime / 2));
         activeAttack.particle = Instantiate(particles, scr_Grid.GridController.GetWorldLocation(activeAttack.position.x, activeAttack.position.y) + particlesOffset, Quaternion.identity);
 
     }

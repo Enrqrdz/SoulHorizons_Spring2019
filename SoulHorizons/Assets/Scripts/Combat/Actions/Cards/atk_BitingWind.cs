@@ -38,7 +38,7 @@ public class atk_BitingWind : AttackData
             Debug.Log("Target is vulnerable!");
             if (entityHit.isDampened)
             {
-                entityHit.gotStunned(stunDuration);
+                entityHit.GotStunned(stunDuration);
                 Debug.Log("Target is stunned!");
             }
             

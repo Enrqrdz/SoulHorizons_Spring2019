@@ -29,6 +29,7 @@ public class Entity : MonoBehaviour
     public GameObject blur;
     public GameObject stun;
     public GameObject dampen;
+    public GameObject frail;
     Color baseColor;
     public float lerpSpeed;
     private float hitFlashTimer = .01f;
@@ -71,15 +72,6 @@ public class Entity : MonoBehaviour
     }
     public void Update()
     {
-        if (isDampened)
-        {
-            dampen.SetActive(true);
-        }
-        else
-        {
-            dampen.SetActive(false);
-        }
-
         if (gameObject.activeSelf)
         {
             if (isStunned == false)
@@ -305,7 +297,9 @@ public class Entity : MonoBehaviour
     public IEnumerator WeakenTimer(float vulnerability, float duration)
     {
         damageVulnerability = vulnerability;
+        frail.SetActive(true);
         yield return new WaitForSeconds(duration);
+        frail.SetActive(false);
         damageVulnerability = 1f;
     }
 
@@ -452,10 +446,29 @@ public class Entity : MonoBehaviour
         }
     }
 
-
-    public IEnumerator gotStunned(float stunTime)
+    public void Dampen(float duration)
     {
-        Debug.Log("Got Stunned");
+        StartCoroutine(GotDampened(duration));
+    }
+
+    public IEnumerator GotDampened(float duration)
+    {
+        Debug.Log("Got Dampened");
+        isDampened = true;
+        dampen.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        Debug.Log("Stop Dampened");
+        dampen.SetActive(false);
+        isDampened = false;
+    }
+
+    public void Stun(float duration)
+    {
+        StartCoroutine(GotStunned(duration));
+    }
+
+    public IEnumerator GotStunned(float stunTime)
+    {
         isStunned = true;
         stun.SetActive(true);
         yield return new WaitForSeconds(stunTime);

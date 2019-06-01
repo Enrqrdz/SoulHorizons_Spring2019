@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword Cross
   m_EditorClassIdentifier: 
   actionName: Sword Cross
-  art: {fileID: 21300000, guid: 055fad1decaacc944abf1ffa4cd72486, type: 3}
+  art: {fileID: 21300000, guid: 6590331562d4c49498e90ffc29b5733e, type: 3}
   element: 1
   transformChargeAmount: 5
   castingTime: 0
