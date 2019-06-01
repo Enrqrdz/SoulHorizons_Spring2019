@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ea073eb2a7a7b459f48ffcec4708a5, type: 3}
+  m_Name: Atk_Hydro Burst
+  m_EditorClassIdentifier: 
+  incrementTime: 0.05
+  maxIncrementRange: 7
+  damageModifier: 1
+  damage: 32
+  type: 1
+  hasPiercing: 0
+  particles: {fileID: 212919924544438062, guid: 07a4e007d8e532445b9b9db17fa90895,
+    type: 3}
+  particlesOffset: {x: 0.4, y: 0.3, z: 0}
+  particleSpeed: 11
+  HydroBurst: {fileID: 11400000, guid: 50e5ac1c9b18c7b4fa30fa37c1ff56ee, type: 2}
+  dampenLength: 3

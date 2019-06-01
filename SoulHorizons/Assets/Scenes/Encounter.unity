@@ -538,6 +538,8 @@ MonoBehaviour:
   - {fileID: 1507864603}
   - {fileID: 1870908958}
   mantraUI:
+  - {fileID: 1507864603}
+  - {fileID: 1870908958}
   - {fileID: 1708419913}
   - {fileID: 2049233228}
   upcomingCardsUI:
@@ -548,6 +550,10 @@ MonoBehaviour:
   playerAnimator: {fileID: 0}
   player: {fileID: 0}
   globalCooldown: 0.2
+  xCooldown: 0
+  yCooldown: 0
+  aCooldown: 0
+  bCooldown: 0
   shuffleArt: {fileID: 21300000, guid: 1ed445c41053042adb1f0c72f420d50f, type: 3}
   CardChange_SFX: {fileID: 0}
   currentDeck: {fileID: 0}
@@ -693,10 +699,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1986a6012e4b316489ba7c7057ffe69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a_Mantra: {fileID: 11400000, guid: b5b4bbac060b24e47b78711e8b929c98, type: 2}
-  b_Mantra: {fileID: 0}
-  x_Mantra: {fileID: 0}
-  y_Mantra: {fileID: 11400000, guid: c5ff505325372e24fbe90adfc517f45a, type: 2}
+  x_Mantra: {fileID: 11400000, guid: 7507efb0d7f08e34d878601513c98909, type: 2}
+  y_Mantra: {fileID: 11400000, guid: 518e826e5c97bb3489f344bc30558a75, type: 2}
+  a_Mantra: {fileID: 11400000, guid: 50e5ac1c9b18c7b4fa30fa37c1ff56ee, type: 2}
+  b_Mantra: {fileID: 11400000, guid: 7f6cecc3d5e2eba4fa85d29ae6d90608, type: 2}
   activeMantras:
   - {fileID: 0}
   - {fileID: 0}
@@ -4338,7 +4344,7 @@ MonoBehaviour:
   columnSizeMax: 0
   rowSizeMax: 0
   activeEntities: []
-  encounter: {fileID: 11400000, guid: 0daf5ed6577fed3478d5d53d94de8bec, type: 2}
+  encounter: {fileID: 11400000, guid: 73cbfa11eef717d4e98cf4821ee9d6af, type: 2}
 --- !u!114 &2115534118
 MonoBehaviour:
   m_ObjectHideFlags: 0

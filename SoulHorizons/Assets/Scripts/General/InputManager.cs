@@ -182,11 +182,11 @@ public static class InputManager
 		{
 			return -1;
 		}
-		else if (Input.GetButtonUp("PlayCard1_Button") && canInputCards)
+		else if (Input.GetButtonUp("PlayCard1_Button") && canInputMantras)
 		{
 			return 0;
 		}
-		else if (Input.GetButtonUp("PlayCard2_Button") && canInputCards)
+		else if (Input.GetButtonUp("PlayCard2_Button") && canInputMantras)
 		{
 			return 1;
 		}
@@ -207,11 +207,11 @@ public static class InputManager
 		{
 			return -1;
 		}
-		else if (Input.GetButtonDown("PlayCard1_Button") && canInputCards)
+		else if (Input.GetButtonDown("PlayCard1_Button") && canInputMantras)
 		{
 			return 0;
 		}
-		else if (Input.GetButtonDown("PlayCard2_Button") && canInputCards)
+		else if (Input.GetButtonDown("PlayCard2_Button") && canInputMantras)
 		{
 			return 1;
 		}

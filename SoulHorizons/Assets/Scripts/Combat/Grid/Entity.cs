@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     private Shader baseShader;
     public GameObject staticShield;
     public GameObject blur;
+    public GameObject dampen;
     Color baseColor;
     public float lerpSpeed;
     private float hitFlashTimer = .01f;
@@ -36,6 +37,7 @@ public class Entity : MonoBehaviour
     public float invulnTime;
     public bool isStunned = false;
     public bool isImmobile = false;
+    public bool isDampened = false;
     float invulnCounter = 0f;
     public bool hasShield = false;
     float shieldCounter = 0f;
@@ -67,6 +69,15 @@ public class Entity : MonoBehaviour
     }
     public void Update()
     {
+        if (isDampened)
+        {
+            dampen.SetActive(true);
+        }
+        else
+        {
+            dampen.SetActive(false);
+        }
+
         if (gameObject.activeSelf)
         {
             if (isStunned == false)
@@ -447,7 +458,6 @@ public class Entity : MonoBehaviour
         yield return new WaitForSeconds(rate);
         _health.TakeDamage(damage, this);
     }
-
 }
 [System.Serializable]
 public class Health{
@@ -496,6 +506,4 @@ public class Health{
             hp = max_hp;
         }
     }
-
-
 }
