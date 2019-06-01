@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2e6f57231a25a4fb2f1dde3654b174, type: 3}
+  m_Name: Atk_Lightning Strike
+  m_EditorClassIdentifier: 
+  incrementTime: 0.15
+  maxIncrementRange: 1
+  damageModifier: 1
+  damage: 12
+  type: 1
+  hasPiercing: 0
+  particles: {fileID: 212286977064683536, guid: 0805ecfd91705e94f91520ff787d3c04,
+    type: 3}
+  particlesOffset: {x: 0, y: 2.5, z: 0}
+  particleSpeed: 1
+  LightningSFX: {fileID: 8300000, guid: 12a3cd800fad9204b9156c375fb8a915, type: 3}
+  horizontalOffset: 2.25
+  verticalOffset: 2.25

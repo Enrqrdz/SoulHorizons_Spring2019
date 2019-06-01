@@ -15,7 +15,7 @@ MonoBehaviour:
   incrementTime: 0.05
   maxIncrementRange: 7
   damageModifier: 1
-  damage: 32
+  damage: 4
   type: 1
   hasPiercing: 0
   particles: {fileID: 212919924544438062, guid: 07a4e007d8e532445b9b9db17fa90895,
@@ -24,3 +24,4 @@ MonoBehaviour:
   particleSpeed: 11
   HydroBurst: {fileID: 11400000, guid: 50e5ac1c9b18c7b4fa30fa37c1ff56ee, type: 2}
   dampenLength: 3
+  entityHit: []

@@ -8,7 +8,7 @@ public class atk_HydroBurst : AttackData
     public ActionData HydroBurst;
     public float dampenLength;
     private Vector2Int gridPosition;
-    private Entity entityHit;
+    public List<Entity> entityHit = new List<Entity>();
     private int hitCounter = 0;
     private bool hitCounterStarted = false;
 
@@ -32,11 +32,12 @@ public class atk_HydroBurst : AttackData
 
     public override void ImpactEffects(int xPos = -1, int yPos = -1)
     {
-        entityHit = scr_Grid.GridController.GetEntityAtPosition(gridPosition.x, gridPosition.y);
+        entityHit.Add(scr_Grid.GridController.GetEntityAtPosition(gridPosition.x, gridPosition.y));
+
         try
         {
-            entityHit.StartCoroutine(Dampen(dampenLength));
-            entityHit.StartCoroutine(HitCounter());
+            entityHit[entityHit.Count - 1].StartCoroutine(Dampen(dampenLength));
+            entityHit[entityHit.Count - 1].StartCoroutine(HitCounter());
 
             damage *= 2;
             hitCounter++;
@@ -58,9 +59,20 @@ public class atk_HydroBurst : AttackData
 
     public IEnumerator Dampen(float time)
     {
-        entityHit.isDampened = true;
+        entityHit[entityHit.Count - 1].isDampened = true;
         yield return new WaitForSeconds(time);
-        entityHit.isDampened = false;
+        try
+        {
+            foreach (Entity entity in entityHit)
+            {
+                entity.isDampened = false;
+            }
+        }
+        catch
+        {
+
+        }
+        entityHit.Clear();
     }
 
     public override void EndEffects(ActiveAttack activeAttack)
