@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using EZCameraShake;
 
 public enum EntityType
 {
@@ -281,11 +280,6 @@ public class Entity : MonoBehaviour
                 _health.TakeDamage(0, this);
             }
             StartCoroutine(HitClock(hitFlashTimer));
-            if (type == EntityType.Player)
-            {
-                //camera shake
-                CameraShaker.Instance.ShakeOnce(2f, 2f, 0.2f, 0.2f);
-            }
         }
     }
 
@@ -326,11 +320,6 @@ public class Entity : MonoBehaviour
                 _health.TakeDamage(0, this);
             }
             StartCoroutine(HitClock(hitFlashTimer));
-            if (type == EntityType.Player)
-            {
-                //camera shake
-                CameraShaker.Instance.ShakeOnce(2f, 2f, 0.2f, 0.2f);
-            }
         }
     }
 
